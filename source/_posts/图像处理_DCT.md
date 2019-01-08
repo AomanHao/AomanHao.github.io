@@ -8,6 +8,6 @@ mathjax: true
 
 
 
-
+DCT
 <!--more-->
 
