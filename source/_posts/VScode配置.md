@@ -4,7 +4,9 @@ date: 2018-09-19 09:39:40
 tags: [VScode]
 toc: true
 ---
+
 VScode配置
+
 <!--more-->
 
 ### VScode插件
@@ -40,4 +42,5 @@ Studio Icons 图标展示，丰富界面
 应用商店搜索插件-chinese(simplified)
 
 ```
+
 [参考文章](https://blog.csdn.net/p930318/article/details/80491499?utm_source=copy)
