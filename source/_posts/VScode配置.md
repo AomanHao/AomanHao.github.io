@@ -5,7 +5,7 @@ tags: [VScode]
 toc: true
 ---
 
-<img width="800" height="800" src="http://ph04wnm2q.bkt.clouddn.com/bg/magazine-unlock-01-2.3.972-_1e1e6ebdd97d46788ea6fe0b42162af7.jpg"/>
+VScode配置
 
 <!--more-->
 
@@ -42,4 +42,5 @@ Studio Icons 图标展示，丰富界面
 应用商店搜索插件-chinese(simplified)
 
 ```
+
 [参考文章](https://blog.csdn.net/p930318/article/details/80491499?utm_source=copy)
