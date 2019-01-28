@@ -9,10 +9,10 @@ Hexo主题Next配置
 
 <!--more-->
 ### 新建404界面
-在站点根目录下，输入'hexo new page 404'，在默认'Hexo站点下/source/404/index.md'
+在站点根目录下，输入`hexo new page 404`，在默认`Hexo站点下/source/404/index.md`
 打开新建的404界面，编辑属于自己的404界面，可以显示腾讯公益404界面，代码如下：
 
-'''
+```
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -31,7 +31,7 @@ Hexo主题Next配置
   <script src="https://qzone.qq.com/gy/404/page.js" charset="utf-8"></script>
 </body>
 </html>
-'''
+```
 
 ### 静态资源压缩
 
@@ -39,15 +39,18 @@ Hexo主题Next配置
 
 在站点目录下安装插件：
 
-''$ npm install gulp -g''
+```$ npm install gulp -g```
 
+```
 npm install gulp-minify-css --save
 npm install gulp-uglify --save
 npm install gulp-htmlmin --save
 npm install gulp-htmlclean --save
 npm install gulp-imagemin --save
+```
 
-在Hexo站点下添加gulpfile.js文件，文件内容如下：
+在Hexo站点下添加`gulpfile.js`文件，文件内容如下：
+```
 var gulp = require('gulp');
 var minifycss = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
@@ -93,8 +96,33 @@ gulp.task('minify-images', function() {
 gulp.task('default', [
   'minify-html','minify-css','minify-js','minify-images'
 ]);
-
+```
 需要只在每次执行generate命令后执行gulp就可以实现对静态资源的压缩，完成压缩后执行deploy命令同步到服务器：
+```
 hexo g
 gulp
 hexo d
+
+```
+---
+
+### 隐藏网页底部powered By Hexo / 强力驱动
+打开`themes/next/layout/_partials/footer.swig`,使用`<!--`与`-->`隐藏之间的代码即可，或者直接删除。位置如图：
+![http://upload-images.jianshu.io/upload_images/5308475-8e8340c7a0489bce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240](hexo)
+
+---
+### 各版块透明度修改
+#### 内容板块透明
+根博客目录`themes\next\source\css\_schemes\Pisces\_layout.styl`文件.content-wrap标签下background: white修改为：
+background: rgba(255,255,255,0.7); //0.7是透明度
+
+#### 菜单栏背景
+根博客目录themes\next\source\css\_schemes\Pisces\_layout.styl文件.header-inner标签下background: white修改为：
+background: rgba(255,255,255,0.7); //0.7是透明度
+
+#### 站点概况背景
+根博客目录themes\next\source\css\_schemes\Pisces\_sidebar.styl文件.sidebar-inner标签下background: white修改为：
+background: rgba(255,255,255,0.7); //0.7是透明度
+
+修改然后根博客目录themes\next\source\css\_schemes\Pisces\_layout.styl文件.sidebar标签下background: $body-bg-color修改为：
+background: rgba(255,255,255,0.7); //0.7是透明度
