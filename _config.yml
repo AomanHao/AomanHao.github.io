@@ -127,3 +127,10 @@ live2d:
     #vOffset: 40
   mobile:
     show: true
+
+#表示站内搜索
+search:
+    path: search.xml
+    field: post
+    format: html
+    limit: 10000
