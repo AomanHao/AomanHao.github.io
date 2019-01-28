@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="C++入门">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++入门">
+<meta property="og:url" content="http://www.aomanhao.top/2018/07/19/C++入门/index.html">
+<meta property="og:site_name" content="AomanHao的个人博客">
+<meta property="og:description" content="C++入门">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201002/9/4758664_12657012034TT4.jpg">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201002/9/4758664_1265703222WluB.jpg">
+<meta property="og:updated_time" content="2019-01-28T01:16:31.180Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++入门">
+<meta name="twitter:description" content="C++入门">
+<meta name="twitter:image" content="http://hi.csdn.net/attachment/201002/9/4758664_12657012034TT4.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.aomanhao.top/2018/07/19/C++入门/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>C++入门 | AomanHao的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AomanHao的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">唯有梦想与好姑娘不可辜负</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2018/07/19/C++入门/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AomanHao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AomanHao的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++入门
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-19 09:39:40" itemprop="dateCreated datePublished" datetime="2018-07-19T09:39:40+08:00">2018-07-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 09:16:31" itemprop="dateModified" datetime="2019-01-28T09:16:31+08:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>C++入门</p>
+<a id="more"></a>
+<h3 id="指针入门"><a href="#指针入门" class="headerlink" title="指针入门"></a>指针入门</h3><blockquote>
+<p>指针作用：  引用类型，传递地址，减少内存消耗<br>案例<br>int p &gt;定义变量p<br>int* p &gt;定义指针变量p<br>使用指针，先要定义指针变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int main() &#123;</span><br><span class="line">    int *p;     //int* p &gt;定义指针变量p</span><br><span class="line">    int a=3; </span><br><span class="line">    p=&amp;a;   //&amp;a是把a的地址赋给指针p，&amp;：取址符a</span><br><span class="line">    printf(&quot;%d\n&quot;,*p)   //输出为3</span><br><span class="line">    return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&amp; 取变量的地址 &amp;(变量名)</span><br><span class="line">* 指针运算符（取值运算） *(变量名)</span><br><span class="line">&amp; *互为逆运算 *(&amp;(int i =6))=6</span><br></pre></td></tr></table></figure>
+<p>指针变量是存储地址的变量，随机分配<br>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int *p1;</span><br><span class="line">char *name</span><br><span class="line"></span><br><span class="line">int x;int *p; p=&amp;x;</span><br><span class="line">答：*P=3;</span><br><span class="line">p是x的地址，*p是x的值</span><br></pre></td></tr></table></figure></p>
+<p>常用错误：<br>1、指针不能直接复制<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">错误：</span><br><span class="line">int *p; </span><br><span class="line">p =100;//错误</span><br><span class="line"></span><br><span class="line">正确：</span><br><span class="line">int i, *p, *t;</span><br><span class="line">p=&amp;i;</span><br><span class="line">t=p;</span><br><span class="line">*p *t是指针，把i的地址赋给pt指针（元素地址）</span><br></pre></td></tr></table></figure></p>
+<p>2、不能直接给指针赋值(不能直接变量取值)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int x= 20;</span><br><span class="line">printf(&quot;%d,&amp;(*x));</span><br></pre></td></tr></table></figure></p>
+<p>Scanf函数:函数后的参数应该传入指针，不应该是值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int score;</span><br><span class="line">printf(&quot;shuru :\n&quot;);</span><br><span class="line">scanf(&quot;%d&quot;,score);</span><br></pre></td></tr></table></figure></p>
+<p>Swap函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">void swap(int *x, int *y)</span><br><span class="line">&#123;</span><br><span class="line">    int temp;//中间变量</span><br><span class="line">    temp=*x;</span><br><span class="line">    *x = *y;</span><br><span class="line">    *y = temp;</span><br><span class="line"></span><br><span class="line">    printf(&quot;x=%d, y=%d \n&quot;, *x, *y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main()&#123;</span><br><span class="line">    int i =13, j =45;</span><br><span class="line">    swap(&amp;i, &amp;j);</span><br><span class="line">    printf(&quot;i=%d, j=%d\n&quot;,i ,j);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//输出： x=45,y=13    i=45,j=13</span><br></pre></td></tr></table></figure></p>
+<h3 id="二级指针"><a href="#二级指针" class="headerlink" title="二级指针"></a>二级指针</h3><blockquote>
+<p>C语言的参数传递都是值传递，当传传递一个指针给函数的时，其实质上还是值传递，除非使用双指针。<br>只有一个<em>号的时候，我们叫它一级指针。*</em> 两个星号的叫二级指针。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">void  </span><br><span class="line">swap ( int *a, int *b )&#123;  </span><br><span class="line">    int c;  </span><br><span class="line">    c = *a;  </span><br><span class="line">    *a = *b;  </span><br><span class="line">    *b = c;  </span><br><span class="line">&#125;  </span><br><span class="line">int  </span><br><span class="line">main(int argc, char **argv)&#123;  </span><br><span class="line">    int a,b;  </span><br><span class="line">    a = 16;  </span><br><span class="line">    b = 32;  </span><br><span class="line">    swap( &amp;a, &amp;b);  </span><br><span class="line">    return ( a - b );  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>段代码编译成汇编语言之后，除了会有代码段，数据段，堆栈，那么在调用的时候，会把main函数的参数变量压入main函数的栈帧，然后接着会压入swap函数的局部变量和参数</p>
+<p><img src="http://hi.csdn.net/attachment/201002/9/4758664_12657012034TT4.jpg" alt=""></p>
+<p>我们申明 **a之后，其实双指针变量a其实已经存在,内存效果如下<br><img src="http://hi.csdn.net/attachment/201002/9/4758664_1265703222WluB.jpg" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">p中放的是中间桥梁bridge的地址&amp;bridge</span><br><span class="line">*p就是中间桥梁bridge的内容(即是目标操作数的地址&amp;income)，</span><br><span class="line">**p就是目标操作数</span><br><span class="line"></span><br><span class="line">中间的bridge是桥梁，中间件使用的，过度吧</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>双指针主要用在但我们想向一个A函数传递参数的时候，但是我们希望在A内部对参数做任何修改都能保存起来，那么就是用双指针吧。</p>
+</blockquote>
+<h3 id="输入输出流"><a href="#输入输出流" class="headerlink" title="输入输出流"></a>输入输出流</h3><p>IO库：<br>|头文件|类型|||<br>|-|-|-|-|<br>|iostream|istream,wistream 从流读取数据|ostream, wostream向流写入数据|iostream. wiostream读写流|<br>|fstream|ifstream, wifstream从文件读取数据|ofstream, wofstream向文件写入数据|fstream, wfstream读写文件|<br>|sstream|istringstream. wistringstream string 读取数据|ostringstream, wostringstream string 写入数据|stringstream, wstringstream string 读写string|</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">类型ifsream和istringstream都继承自istream;</span><br><span class="line">类型ofsream和ostringstream都继承自ostream;</span><br><span class="line">类型fsream和stringstream都继承自iostream;</span><br></pre></td></tr></table></figure>
+<p>1、创建使用文件流对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ifstream in(ifile);//构造一个ifstream并打开给定文件</span><br><span class="line">ofstream out;//构造输出文件流，未关联任何文件</span><br><span class="line"></span><br><span class="line">in.close();//关闭文件</span><br><span class="line">in.open(ifile + &quot;2&quot;);//打开另一个文件</span><br></pre></td></tr></table></figure></p>
+<p>ifstream,ofstream和fstream是实现文件读写操作的类型</p>
+<p>案例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;                                                                                                                                </span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()&#123;</span><br><span class="line">   char buffer[256];</span><br><span class="line">   ifstream in(&quot;input.txt&quot;);//文件不存在会返回错误</span><br><span class="line">   if (! in.is_open())&#123;</span><br><span class="line">       cout &lt;&lt; &quot;Error opening file&quot;&lt;&lt;endl;</span><br><span class="line">       exit (1);</span><br><span class="line">   &#125;</span><br><span class="line">   vector&lt;string&gt; a;</span><br><span class="line">   while (!in.eof())&#123;</span><br><span class="line">       in.getline (buffer,100);</span><br><span class="line">       //cout &lt;&lt; buffer &lt;&lt; endl;</span><br><span class="line">       a.push_back(buffer);</span><br><span class="line">    &#125;   </span><br><span class="line">   for(unsigned int i=0;i&lt;a.size();i++)</span><br><span class="line">       cout&lt;&lt;a[i]&lt;&lt;endl;</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="resize-reserve"><a href="#resize-reserve" class="headerlink" title="resize(),reserve()"></a>resize(),reserve()</h3><p>resize()，设置大小（size）;<br>reserve()，设置容量（capacity）;<br>size()是分配容器的内存大小，而capacity()只是设置容器容量大小，但并没有真正分配内存。</p>
+<h3 id="ifstream"><a href="#ifstream" class="headerlink" title="ifstream"></a>ifstream</h3><p><a href="https://blog.csdn.net/kingstar158/article/details/6859379" target="_blank" rel="noopener">cankao</a><br><br>1、文件打开<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifstream infile(fname,ios::in);</span><br></pre></td></tr></table></figure></p>
+<p>定义ifstream的对象infile,打开文件faname,ios::in是读取</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>打开文件的方式在ios类(所以流式I/O的基类)中定义</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IO流的定义</td>
+<td>含义</td>
+</tr>
+<tr>
+<td>ios::in</td>
+<td>为输入(读)而打开文件</td>
+</tr>
+<tr>
+<td>ios::out</td>
+<td>为输出(写)而打开文件</td>
+</tr>
+<tr>
+<td>ios::ate</td>
+<td>初始位置：文件尾</td>
+</tr>
+<tr>
+<td>ios::app</td>
+<td>所有输出附加在文件末尾</td>
+</tr>
+<tr>
+<td>ios::trunc</td>
+<td>如果文件已存在则先删除该文件</td>
+</tr>
+<tr>
+<td>ios::binary</td>
+<td>二进制方式</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>2、关闭文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">infile.close</span><br></pre></td></tr></table></figure></p>
+<p>3、文本文件的读写</p>
+<p>类ofstream, ifstream 和fstream 是分别从ostream, istream 和iostream 中引申而来的。这就是为什么 fstream 的对象可以使用其父类的成员来访问数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">写入内容：</span><br><span class="line">#include &lt;fiostream.h&gt;</span><br><span class="line">    int main () &#123;</span><br><span class="line">        ofstream out(&quot;out.txt&quot;);</span><br><span class="line">        if (out.is_open()) </span><br><span class="line">       &#123;</span><br><span class="line">            out &lt;&lt; &quot;This is a line.\n&quot;;</span><br><span class="line">            out &lt;&lt; &quot;This is another line.\n&quot;;</span><br><span class="line">            out.close();</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">   //结果: 在out.txt中写入：</span><br><span class="line">   This is a line.</span><br><span class="line">   This is another line</span><br><span class="line"></span><br><span class="line">读取内容：</span><br><span class="line">// reading a text file</span><br><span class="line">    #include &lt;iostream.h&gt;</span><br><span class="line">    #include &lt;fstream.h&gt;</span><br><span class="line">    #include &lt;stdlib.h&gt;</span><br><span class="line">    </span><br><span class="line">    int main () &#123;</span><br><span class="line">        char buffer[256];</span><br><span class="line">        ifstream in(&quot;test.txt&quot;);</span><br><span class="line">        if (! in.is_open())</span><br><span class="line">        &#123; cout &lt;&lt; &quot;Error opening file&quot;; exit (1); &#125;</span><br><span class="line">        while (!in.eof() )</span><br><span class="line">        &#123;</span><br><span class="line">            in.getline (buffer,100);</span><br><span class="line">            cout &lt;&lt; buffer &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    //结果 在屏幕上输出</span><br><span class="line">     This is a line.</span><br><span class="line">     This is another line</span><br><span class="line">```	</span><br><span class="line">状态标识符</span><br></pre></td></tr></table></figure></p>
+<p>bad()<br>如果在读写过程中出错，返回 true 。例如：当我们要对一个不是打开为写状态的文件进行写入时，或者我们要写入的设备没有剩余空间的时候。</p>
+<p>fail()<br>除了与bad() 同样的情况下会返回 true 以外，加上格式错误时也返回true ，例如当想要读入一个整数，而获得了一个字母的时候。</p>
+<p>eof()<br>如果读文件到达文件末尾，返回true。</p>
+<p>good()<br>这是最通用的：如果调用以上任何一个函数返回true 的话，此函数返回 false 。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">要想重置以上成员函数所检查的状态标志，你可以使用成员函数clear()，没有参数。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### sizeof</span><br><span class="line">sizeof 求对象或者类型的大小`sizeof(array)`&lt;br&gt;</span><br><span class="line">[cankao](https://blog.csdn.net/tao20dage/article/details/52372604)</span><br></pre></td></tr></table></figure></p>
+<p>特性0：sizeof是运算符，不是函数<br>特性1：sizeof不能求得void类型的长度<br>特性2：sizeof能求得void类型的指针的长度<br>特性3：sizeof能求得静态分配内存的数组的长度!<br>特性4：sizeof不能求得动态分配的内存的大小!<br>特性5：sizeof不能对不完整的数组求长度！<br>特性6：当表达式作为sizeof的操作数时，它返回表达式的计算结果的类型大小，但是它不对表达式求值！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">### new(std::nothrow)</span><br><span class="line"> 顾名思义，即不抛出异常，当new一个对象失败时，默认设置该对象为NULL，这样可以方便的通过if(p == NULL) 来判断new操作是否成功</span><br><span class="line"> 建议在c++代码中，凡是涉及到new操作，都采用new(std::nothrow)，然后if(p==NULL)的方式进行判断</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">### vector</span><br><span class="line">[cankao](https://blog.csdn.net/duan19920101/article/details/50617190/)&lt;br&gt;</span><br><span class="line">在c++中，vector是一个十分有用的容器。</span><br><span class="line">作用：它能够像容器一样存放各种类型的对象，简单地说，vector是一个能够存放任意类型的动态数组，能够增加和压缩数据。&lt;br&gt;</span><br><span class="line">&gt;1、如果你要表示的向量长度较长（需要为向量内部保存很多数），容易导致内存泄漏，而且效率会很低；&lt;br&gt;</span><br><span class="line">2、Vector作为函数的参数或者返回值时，需要注意它的写法：</span><br><span class="line">   double Distance(vector&lt;int&gt;&amp;a, vector&lt;int&gt;&amp;b) 其中的“&amp;”绝对不能少！！！</span><br><span class="line"></span><br><span class="line">   c++基本操作</span><br></pre></td></tr></table></figure></p>
+<p>   1 、基本操作</p>
+<p>(1)头文件#include<vector>.<br>(2)创建vector对象，vector<int> vec;<br>(3)尾部插入数字：vec.push_back(a);<br>(4)使用下标访问元素，cout&lt;<vec[0]<<endl;记住下标是从0开始的。 (5)使用迭代器访问元素.="" vector<int="">::iterator it;<br>for(it=vec.begin();it!=vec.end();it++)<br>    cout&lt;&lt;*it&lt;<endl; (6)插入元素：="" vec.insert(vec.begin()+i,a);在第i+1个元素前面插入a;="" (7)删除元素：="" vec.erase(vec.begin()+2);删除第3个元素="" vec.erase(vec.begin()+i,vec.end()+j);删除区间[i,j-1];区间从0开始="" (8)向量大小:vec.size();="" (9)清空:vec.clear();="" <figure="" class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">### 二维数组</span><br></pre></td></tr></table></endl;></vec[0]<<endl;记住下标是从0开始的。></int></vector></p>
+<h1 id="include-“stdafx-h”"><a href="#include-“stdafx-h”" class="headerlink" title="include “stdafx.h”"></a>include “stdafx.h”</h1><h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <cv.h></cv.h></h1><h1 id="include-1"><a href="#include-1" class="headerlink" title="include "></a>include <vector></vector></h1><h1 id="include-2"><a href="#include-2" class="headerlink" title="include "></a>include <iostream></iostream></h1><p>using namespace std;<br>int main()<br>{<br>    using namespace std;<br>    int out[3][2] = { 1, 2,<br>             3, 4,<br>            5, 6 };<br>    vector <int*> v1;</int*></p>
+<pre><code>v1.push_back(out[0]);
+v1.push_back(out[1]);
+v1.push_back(out[2]);
+
+cout &lt;&lt; v1[0][0] &lt;&lt; endl;//1
+cout &lt;&lt; v1[0][1] &lt;&lt; endl;//2
+cout &lt;&lt; v1[1][0] &lt;&lt; endl;//3
+cout &lt;&lt; v1[1][1] &lt;&lt; endl;//4
+cout &lt;&lt; v1[2][0] &lt;&lt; endl;//5
+cout &lt;&lt; v1[2][1] &lt;&lt; endl;//6
+
+return 0;
+</code></pre><p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 随机数</span><br><span class="line">RAND_MAX是C中stdlib.h中宏定义的一个字符常量：</span><br><span class="line">`#define RAND_MAX Ox7FFF`</span><br><span class="line">其值最小为32767,最大为2147483647</span><br></pre></td></tr></table></figure>
+<p>(double)rand() / RAND_MAX;//生成随机数<br>```</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/19/C++图像处理程序/" rel="next" title="C++图像处理程序">
+                <i class="fa fa-chevron-left"></i> C++图像处理程序
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/19/数据结构_二叉树/" rel="prev" title="数据结构_二叉树">
+                数据结构_二叉树 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">AomanHao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">86</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/aomanhao" title="GitHub &rarr; https://github.com/aomanhao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:1014325364@qq.com" title="E-Mail &rarr; mailto:1014325364@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/2831714980" title="Weibo &rarr; https://weibo.com/u/2831714980" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#指针入门"><span class="nav-number">1.</span> <span class="nav-text">指针入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二级指针"><span class="nav-number">2.</span> <span class="nav-text">二级指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入输出流"><span class="nav-number">3.</span> <span class="nav-text">输入输出流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#resize-reserve"><span class="nav-number">4.</span> <span class="nav-text">resize(),reserve()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ifstream"><span class="nav-number">5.</span> <span class="nav-text">ifstream</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#include-“stdafx-h”"><span class="nav-number"></span> <span class="nav-text">include “stdafx.h”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#include"><span class="nav-number"></span> <span class="nav-text">include </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#include-1"><span class="nav-number"></span> <span class="nav-text">include </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#include-2"><span class="nav-number"></span> <span class="nav-text">include </span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AomanHao</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":75,"height":150},"mobile":{"show":true},"log":false});</script></body>
+</html>

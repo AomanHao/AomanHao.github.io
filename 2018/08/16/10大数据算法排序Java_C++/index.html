@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="10大数据算法排序Java_C++">
+<meta name="keywords" content="Java,C++,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10大数据算法排序Java_C++">
+<meta property="og:url" content="http://www.aomanhao.top/2018/08/16/10大数据算法排序Java_C++/index.html">
+<meta property="og:site_name" content="AomanHao的个人博客">
+<meta property="og:description" content="10大数据算法排序Java_C++">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://images0.cnblogs.com/blog2015/731178/201508/272007357503007.jpg">
+<meta property="og:image" content="http://my.csdn.net/uploads/201207/20/1342782317_4426.jpg">
+<meta property="og:image" content="http://my.csdn.net/uploads/201207/20/1342782329_8314.jpg">
+<meta property="og:image" content="http://p3qhnc0eg.bkt.clouddn.com/blog/img/guibing_1.png">
+<meta property="og:image" content="http://p3qhnc0eg.bkt.clouddn.com/blog/img/guibing_2.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/776259/201604/776259-20160410150915593-1435777167.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/776259/201604/776259-20160410150948406-1525110244.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/776259/201604/776259-20160410151057625-469827986.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/776259/201604/776259-20160410151437250-974257904.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/776259/201604/776259-20160410151453015-690847102.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/776259/201604/776259-20160410151523218-139482913.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/776259/201604/776259-20160410151713156-328299797.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/776259/201604/776259-20160410151728406-2042556892.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/776259/201604/776259-20160410151755062-2073568164.png">
+<meta property="og:updated_time" content="2019-01-28T01:16:31.176Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="10大数据算法排序Java_C++">
+<meta name="twitter:description" content="10大数据算法排序Java_C++">
+<meta name="twitter:image" content="https://images0.cnblogs.com/blog2015/731178/201508/272007357503007.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.aomanhao.top/2018/08/16/10大数据算法排序Java_C++/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>10大数据算法排序Java_C++ | AomanHao的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AomanHao的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">唯有梦想与好姑娘不可辜负</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2018/08/16/10大数据算法排序Java_C++/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AomanHao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AomanHao的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">10大数据算法排序Java_C++
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-16 09:39:40" itemprop="dateCreated datePublished" datetime="2018-08-16T09:39:40+08:00">2018-08-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 09:16:31" itemprop="dateModified" datetime="2019-01-28T09:16:31+08:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>10大数据算法排序Java_C++</p>
+<a id="more"></a>
+<p><img src="https://images0.cnblogs.com/blog2015/731178/201508/272007357503007.jpg" alt=""></p>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><blockquote>
+<p>依次比较n与后面的数字，大的放右面，小的放左边<br>Java代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     * 冒泡排序</span><br><span class="line">     * 比较相邻的元素。如果第一个比第二个大，就交换他们两个。  </span><br><span class="line">     * 对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。  </span><br><span class="line">     * 针对所有的元素重复以上的步骤，除了最后一个。</span><br><span class="line">     * 持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。 </span><br><span class="line">     * @param numbers 需要排序的整型数组</span><br><span class="line">     */</span><br><span class="line">    public static void bubbleSort(int[] numbers)</span><br><span class="line">    &#123;</span><br><span class="line">        int temp = 0;</span><br><span class="line">        int size = numbers.length;</span><br><span class="line">        for(int i = 0 ; i &lt; size-1; i ++)</span><br><span class="line">        &#123;</span><br><span class="line">        for(int j = 0 ;j &lt; size-1-i ; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(numbers[j] &gt; numbers[j+1])  //交换两数位置</span><br><span class="line">            &#123;</span><br><span class="line">            temp = numbers[j];</span><br><span class="line">            numbers[j] = numbers[j+1];</span><br><span class="line">            numbers[j+1] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>C++代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">待补充</span><br></pre></td></tr></table></figure></p>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><blockquote>
+<p>选择n个数组成的数组arr里最大的一个数，放在arr[n-1]，<br><br>然后维数n-1<br><br>选择前n-1个数组成的数组，取最大数，放在arr</p>
+</blockquote>
+<p>Java代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     * 选择排序算法</span><br><span class="line">     * 在未排序序列中找到最小元素，存放到排序序列的起始位置  </span><br><span class="line">     * 再从剩余未排序元素中继续寻找最小元素，然后放到排序序列末尾。 </span><br><span class="line">     * 以此类推，直到所有元素均排序完毕。 </span><br><span class="line">     * @param numbers</span><br><span class="line">     */</span><br><span class="line">    public static void selectSort(int[] numbers)</span><br><span class="line">    &#123;</span><br><span class="line">    int size = numbers.length; //数组长度</span><br><span class="line">    int temp = 0 ; //中间变量</span><br><span class="line">    </span><br><span class="line">    for(int i = 0 ; i &lt; size ; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        int k = i;   //待确定的位置</span><br><span class="line">        //选择出应该在第i个位置的数</span><br><span class="line">        for(int j = size -1 ; j &gt; i ; j--)</span><br><span class="line">        &#123;</span><br><span class="line">        if(numbers[j] &lt; numbers[k])</span><br><span class="line">        &#123;</span><br><span class="line">            k = j;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //交换两个数</span><br><span class="line">        temp = numbers[i];</span><br><span class="line">        numbers[i] = numbers[k];</span><br><span class="line">        numbers[k] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>C++代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">待补充</span><br></pre></td></tr></table></figure></p>
+<h3 id="快速排序及其改进算法C-实现"><a href="#快速排序及其改进算法C-实现" class="headerlink" title="快速排序及其改进算法C++实现"></a>快速排序及其改进算法C++实现</h3><blockquote>
+<p>快速排序可以看成是插入排序的改进，它是一种分治的排序算法<br><img src="http://my.csdn.net/uploads/201207/20/1342782317_4426.jpg" alt="一次快排"><br><img src="http://my.csdn.net/uploads/201207/20/1342782329_8314.jpg" alt="快排流程"></p>
+</blockquote>
+<p>Java代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">public class FastSort&#123;</span><br><span class="line"></span><br><span class="line">     public static void main(String []args)&#123;</span><br><span class="line">        System.out.println(&quot;Hello World&quot;);</span><br><span class="line">        int[] a = &#123;12,20,5,16,15,1,30,45,23,9&#125;;</span><br><span class="line">        int start = 0;</span><br><span class="line">        int end = a.length-1;</span><br><span class="line">        sort(a,start,end);</span><br><span class="line">        for(int i = 0; i&lt;a.length; i++)&#123;</span><br><span class="line">             System.out.println(a[i]);</span><br><span class="line">         &#125;</span><br><span class="line">        </span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     public void sort(int[] a,int low,int high)&#123;</span><br><span class="line">         int start = low;</span><br><span class="line">         int end = high;</span><br><span class="line">         int key = a[low];</span><br><span class="line">         </span><br><span class="line">         </span><br><span class="line">         while(end&gt;start)&#123;</span><br><span class="line">             //从后往前比较</span><br><span class="line">             while(end&gt;start&amp;&amp;a[end]&gt;=key)  //如果没有比关键值小的，比较下一个，直到有比关键值小的交换位置，然后又从前往后比较</span><br><span class="line">                 end--;</span><br><span class="line">             if(a[end]&lt;=key)&#123;</span><br><span class="line">                 int temp = a[end];</span><br><span class="line">                 a[end] = a[start];</span><br><span class="line">                 a[start] = temp;</span><br><span class="line">             &#125;</span><br><span class="line">             //从前往后比较</span><br><span class="line">             while(end&gt;start&amp;&amp;a[start]&lt;=key)//如果没有比关键值大的，比较下一个，直到有比关键值大的交换位置</span><br><span class="line">                start++;</span><br><span class="line">             if(a[start]&gt;=key)&#123;</span><br><span class="line">                 int temp = a[start];</span><br><span class="line">                 a[start] = a[end];</span><br><span class="line">                 a[end] = temp;</span><br><span class="line">             &#125;</span><br><span class="line">         //此时第一次循环比较结束，关键值的位置已经确定了。左边的值都比关键值小，右边的值都比关键值大，但是两边的顺序还有可能是不一样的，进行下面的递归调用</span><br><span class="line">         &#125;</span><br><span class="line">         //递归</span><br><span class="line">         if(start&gt;low) sort(a,low,start-1);//左边序列。第一个索引位置到关键值索引-1</span><br><span class="line">         if(end&lt;high) sort(a,end+1,high);//右边序列。从关键值索引+1到最后一个</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>C++代码：<br><a href="https://blog.csdn.net/liuchen1206/article/details/6954074" target="_blank" rel="noopener">cankao</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int array[]=&#123;34,65,12,43,67,5,78,10,3,70&#125;,k;</span><br><span class="line">	int len=sizeof(array)/sizeof(int);</span><br><span class="line">	cout&lt;&lt;&quot;The orginal arrayare:&quot;&lt;&lt;endl;</span><br><span class="line">	for(k=0;k&lt;len;k++)</span><br><span class="line">		cout&lt;&lt;array[k]&lt;&lt;&quot;,&quot;;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">	quickSort(array,0,len-1);</span><br><span class="line">	cout&lt;&lt;&quot;The sorted arrayare:&quot;&lt;&lt;endl;</span><br><span class="line">	for(k=0;k&lt;len;k++)</span><br><span class="line">		cout&lt;&lt;array[k]&lt;&lt;&quot;,&quot;;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">void quickSort(int s[], int low, int high)</span><br><span class="line">&#123;</span><br><span class="line">	if (low&lt; high)</span><br><span class="line">	&#123;      </span><br><span class="line">		int i = low, j = high, x = s[low];</span><br><span class="line">		while (i &lt; j)</span><br><span class="line">		&#123;</span><br><span class="line">			while(i &lt; j &amp;&amp; s[j]&gt;= x) // 从右向左找第一个小于x的数</span><br><span class="line">				j--; </span><br><span class="line">			if(i &lt; j)</span><br><span class="line">				s[i++] = s[j];</span><br><span class="line">			while(i &lt; j &amp;&amp; s[i]&lt; x) // 从左向右找第一个大于等于x的数</span><br><span class="line">				i++; </span><br><span class="line">			if(i &lt; j)</span><br><span class="line">				s[j--] = s[i];</span><br><span class="line">		&#125;</span><br><span class="line">		s[i] = x;</span><br><span class="line">		quickSort(s, low, i - 1); // 递归调用</span><br><span class="line">		quickSort(s, i + 1, high);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><blockquote>
+<p>归并排序（MERGE-SORT）是利用归并的思想实现的排序方法，该算法采用经典的分治（divide-and-conquer）策略（分治法将问题分(divide)成一些小的问题然后递归求解，而治(conquer)的阶段则将分的阶段得到的各答案”修补”在一起，即分而治之)。<br><br>分治思想：<br><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/guibing_1.png" alt=""><br>合并步骤如下<br><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/guibing_2.png" alt=""></p>
+</blockquote>
+<p>Java代码：<a href="https://www.cnblogs.com/chengxiao/p/6194356.html" target="_blank" rel="noopener">cankao</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">package sortdemo;</span><br><span class="line"></span><br><span class="line">import java.util.Arrays;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by chengxiao on 2016/12/8.</span><br><span class="line"> */</span><br><span class="line">public class MergeSort &#123;</span><br><span class="line">    public static void main(String []args)&#123;</span><br><span class="line">        int []arr = &#123;9,8,7,6,5,4,3,2,1&#125;;</span><br><span class="line">        sort(arr);</span><br><span class="line">        System.out.println(Arrays.toString(arr));</span><br><span class="line">    &#125;</span><br><span class="line">    public static void sort(int []arr)&#123;</span><br><span class="line">        int []temp = new int[arr.length];//在排序前，先建好一个长度等于原数组长度的临时数组，避免递归中频繁开辟空间</span><br><span class="line">        sort(arr,0,arr.length-1,temp);</span><br><span class="line">    &#125;</span><br><span class="line">    private static void sort(int[] arr,int left,int right,int []temp)&#123;</span><br><span class="line">        if(left&lt;right)&#123;</span><br><span class="line">            int mid = (left+right)/2;</span><br><span class="line">            sort(arr,left,mid,temp);//左边归并排序，使得左子序列有序</span><br><span class="line">            sort(arr,mid+1,right,temp);//右边归并排序，使得右子序列有序</span><br><span class="line">            merge(arr,left,mid,right,temp);//将两个有序子数组合并操作</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    private static void merge(int[] arr,int left,int mid,int right,int[] temp)&#123;</span><br><span class="line">        int i = left;//左序列指针</span><br><span class="line">        int j = mid+1;//右序列指针</span><br><span class="line">        int t = 0;//临时数组指针</span><br><span class="line">        while (i&lt;=mid &amp;&amp; j&lt;=right)&#123;</span><br><span class="line">            if(arr[i]&lt;=arr[j])&#123;</span><br><span class="line">                temp[t++] = arr[i++];</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                temp[t++] = arr[j++];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        while(i&lt;=mid)&#123;//将左边剩余元素填充进temp中</span><br><span class="line">            temp[t++] = arr[i++];</span><br><span class="line">        &#125;</span><br><span class="line">        while(j&lt;=right)&#123;//将右序列剩余元素填充进temp中</span><br><span class="line">            temp[t++] = arr[j++];</span><br><span class="line">        &#125;</span><br><span class="line">        t = 0;</span><br><span class="line">        //将temp中的元素全部拷贝到原数组中</span><br><span class="line">        while(left &lt;= right)&#123;</span><br><span class="line">            arr[left++] = temp[t++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>C++代码：<a href="https://www.cnblogs.com/orion7/p/8242774.html" target="_blank" rel="noopener">cankao</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int maxn=500000,INF=0x3f3f3f3f;</span><br><span class="line">int L[maxn/2+2],R[maxn/2+2];</span><br><span class="line">void merge(int a[],int n,int left,int mid,int right)</span><br><span class="line">&#123;</span><br><span class="line">    int n1=mid-left,n2=right-mid;</span><br><span class="line">    for(int i=0;i&lt;n1;i++)</span><br><span class="line">        L[i]=a[left+i];</span><br><span class="line">    for(int i=0;i&lt;n2;i++)</span><br><span class="line">        R[i]=a[mid+i];</span><br><span class="line">    L[n1]=R[n2]=INF;</span><br><span class="line">    int i=0,j=0;</span><br><span class="line">    for(int k=left;k&lt;right;k++)</span><br><span class="line">    &#123;</span><br><span class="line">        if(L[i]&lt;=R[j])</span><br><span class="line">            a[k]=L[i++];</span><br><span class="line">        else</span><br><span class="line">            a[k]=R[j++];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">void mergesort(int a[],int n,int left,int right)</span><br><span class="line">&#123;</span><br><span class="line">    if(left+1&lt;right)</span><br><span class="line">    &#123;</span><br><span class="line">        int mid=(left+right)/2;</span><br><span class="line">        mergesort(a,n,left,mid);</span><br><span class="line">        mergesort(a,n,mid,right);</span><br><span class="line">        merge(a,n,left,mid,right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int a[maxn],n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    for(int i=0;i&lt;n;i++)</span><br><span class="line">        cin&gt;&gt;a[i];</span><br><span class="line">    mergesort(a,n,0,n);</span><br><span class="line">    for(int i=0;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if(i)</span><br><span class="line">            cout&lt;&lt;&quot; &quot;;</span><br><span class="line">        cout&lt;&lt;a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p> <a href="http://www.cnblogs.com/MOBIN/p/5374217.html" target="_blank" rel="noopener">http://www.cnblogs.com/MOBIN/p/5374217.html</a></p>
+<blockquote>
+<p>堆排序主要在于理解堆的构造过程和在输出最大元素后如何对堆进行重新调整</p>
+</blockquote>
+<p>大顶堆：父结点始终&gt;子节点<br><img src="https://images2015.cnblogs.com/blog/776259/201604/776259-20160410150915593-1435777167.png" alt="大顶堆"> </p>
+<p>小顶堆：父结点始终&lt;子节点<br><img src="https://images2015.cnblogs.com/blog/776259/201604/776259-20160410150948406-1525110244.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">算法思想(以大顶堆为例)：</span><br><span class="line">1.将长度为n的待排序的数组进行堆有序化构造成一个大顶堆</span><br><span class="line">2.将根节点与尾节点交换并输出此时的尾节点</span><br><span class="line">3.将剩余的n -1个节点重新进行堆有序化</span><br><span class="line">4.重复步骤2，步骤3直至构造成一个有序序列</span><br></pre></td></tr></table></figure></p>
+<p>我们开始只需要扫描一半的元素（n/2-1 ~ 0）,因为(n/2-1)~0的节点才有子节点<br><img src="https://images2015.cnblogs.com/blog/776259/201604/776259-20160410151057625-469827986.png" alt=""></p>
+<p>构建有序堆：<br>1、第一次for循环将节点3和它的子节点7 8的元素进行比较，最大者作为父节点（即元素60作为父节点）<br>红色表示交换后的状态<br><img src="https://images2015.cnblogs.com/blog/776259/201604/776259-20160410151437250-974257904.png" alt=""><br>2、第二次for循环将节点2和它的子节点5 6的元素进行比较，最大者为父节点（元素80作为父节点）<br><img src="https://images2015.cnblogs.com/blog/776259/201604/776259-20160410151453015-690847102.png" alt=""><br>3、第三次for循环将节点1和它的子节点3 4的元素进行比较，最大者为父节点（元素70作为父节点）<br><img src="https://images2015.cnblogs.com/blog/776259/201604/776259-20160410151523218-139482913.png" alt=""></p>
+<p>调整堆<br>1、堆顶元素80和尾40交换后—&gt;调整堆<br><img src="https://images2015.cnblogs.com/blog/776259/201604/776259-20160410151713156-328299797.png" alt=""><br>2、堆顶元素70和尾30交换后—&gt;调整堆<br><img src="https://images2015.cnblogs.com/blog/776259/201604/776259-20160410151728406-2042556892.png" alt=""><br>。。。<br>完成调整<br><img src="https://images2015.cnblogs.com/blog/776259/201604/776259-20160410151755062-2073568164.png" alt=""></p>
+<p>左右父节点下标:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">左：i*2+1</span><br><span class="line">右：i*2+2</span><br><span class="line">父：(i-1)/2</span><br></pre></td></tr></table></figure></p>
+<p>Java代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">public class HeapSort &#123;</span><br><span class="line">private static void heapSort(int[] arr) &#123;</span><br><span class="line">int len = arr.length -1;</span><br><span class="line">//堆构造，调整结构，符合大顶堆或者小顶堆</span><br><span class="line">for(int i = len/2 ; i &gt;=0; i --)&#123; </span><br><span class="line">heapAdjust(arr,i,len);</span><br><span class="line">&#125;</span><br><span class="line">while (len &gt;=0)&#123;</span><br><span class="line">swap(arr,0,len--); //将堆顶元素与尾节点交换后，长度减1，尾元素最大</span><br><span class="line">heapAdjust(arr,0,len); //再次对堆进行调整</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void heapAdjust(int[] arr,int i,int len)&#123;</span><br><span class="line">int left = 2*i+1,right = 2*i+2,largest = i;</span><br><span class="line">if(left &lt;= len &amp;&amp; arr[left] &gt; arr[i])</span><br><span class="line">largest = left;</span><br><span class="line">if(right &lt;= len &amp;&amp; arr[right] &gt; arr[largest])</span><br><span class="line">largest = right;</span><br><span class="line">if(largest != i) &#123;</span><br><span class="line">swap(arr, i, largest);</span><br><span class="line">heapAdjust(arr,largest,len);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">public static void swap(int[] arr,int i,int len)&#123;</span><br><span class="line">int temp = arr[i];</span><br><span class="line">arr[i] = arr[len];</span><br><span class="line">arr[len] = temp;</span><br><span class="line">&#125;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">int array[] = &#123;20,50,20,40,70,10,80,30,60&#125;;</span><br><span class="line">System.out.println(&quot;排序之前：&quot;);</span><br><span class="line">for(int element : array)&#123;</span><br><span class="line">System.out.print(element+&quot; &quot;);</span><br><span class="line">&#125;</span><br><span class="line">heapSort(array);</span><br><span class="line">System.out.println(&quot;\n排序之后：&quot;);</span><br><span class="line">for(int element : array)&#123;</span><br><span class="line">System.out.print(element+&quot; &quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>C++代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">待补充</span><br></pre></td></tr></table></figure></p>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>Java代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">待补充</span><br></pre></td></tr></table></figure></p>
+<p>C++代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">待补充</span><br></pre></td></tr></table></figure></p>
+<h3 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h3><p>需要求数组中的最大数<br>1、桶排序不在是一种基于比较的排序方法，而是需要待排序列满足以下两个条件：</p>
+<blockquote>
+<p>1、待排序列的值处于一个可枚举的范围内<br><br>2、待排序列所在可枚举范围不应太大，不然开销会很大。</p>
+</blockquote>
+<p>原理：</p>
+<blockquote>
+<p>假设待排序的数组a中共有N个整数，并且已知数组a中数据的范围[0, MAX)。在桶排序时，创建容量为MAX的桶数组r，并将桶数组元素都初始化为0；将容量为MAX的桶数组中的每一个单元都看作一个”桶”。<br>在排序时，逐个遍历数组a，将数组a的值，作为”桶数组r”的下标。当a中数据被读取时，就将桶的值加1。例如，读取到数组a[3]=5，则将r[5]的值+1。</p>
+</blockquote>
+<p>桶排序适用场景:<br><br>根据桶排序的特点，桶排序一般适用于一些特定的环境，比如数据范围较为局限或者有一些特定的要求，比如需要通过哈希映射快速获取某些值，需要统计每个数的数量。但是这一切都以确认数据的范围为前提，如果范围跨度过大，则考虑用其他算法。</p>
+<p>Java代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 桶排序</span><br><span class="line">///</span><br><span class="line">///如果有重复的数字,则需要 List&lt;int&gt;数组,这里举的例子没有重复的数字</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">/// &lt;param name=&quot;unsorted&quot;&gt;待排数组&lt;/param&gt;</span><br><span class="line">/// &lt;param name=&quot;maxNumber&quot;&gt;待排数组中的最大数,如果可以提供的话&lt;/param&gt;</span><br><span class="line">/// &lt;returns&gt;&lt;/returns&gt;</span><br><span class="line">static int[] bucket_sort(int[] unsorted, int maxNumber = 97)</span><br><span class="line">&#123;</span><br><span class="line"> int[] sorted = new int[maxNumber + 1];</span><br><span class="line"> for (int i = 0; i &lt; unsorted.Length; i++)</span><br><span class="line"> &#123;</span><br><span class="line">  sorted[unsorted[i]] = unsorted[i];</span><br><span class="line"> &#125;</span><br><span class="line"> return sorted;</span><br><span class="line">&#125;</span><br><span class="line">static void Main(string[] args)</span><br><span class="line">&#123;</span><br><span class="line"> int[] x = &#123;49、 38 、 35、 97 、 76、 73 、 27、 49 &#125;;</span><br><span class="line"> var sorted = bucket_sort(x, 97);</span><br><span class="line"> for (int i = 0; i &lt; sorted.Length; i++)</span><br><span class="line"> &#123;</span><br><span class="line">  if (sorted[i] &gt; 0)</span><br><span class="line">   Console.WriteLine(sorted[i]);</span><br><span class="line"> &#125;</span><br><span class="line"> Console.ReadLine();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>C++代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">待补充</span><br></pre></td></tr></table></figure></p>
+<p>Java代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">待补充</span><br></pre></td></tr></table></figure></p>
+<p>C++代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">待补充</span><br></pre></td></tr></table></figure></p>
+<p>Java代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">待补充</span><br></pre></td></tr></table></figure></p>
+<p>C++代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">待补充</span><br></pre></td></tr></table></figure></p>
+<p>Java代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">待补充</span><br></pre></td></tr></table></figure></p>
+<p>C++代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">待补充</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/16/剑指Offer算法Code_Java_C++/" rel="next" title="剑指Offer算法Code_Java_C++(0820更新)">
+                <i class="fa fa-chevron-left"></i> 剑指Offer算法Code_Java_C++(0820更新)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/16/leetcode_sum/" rel="prev" title="leetcode题解">
+                leetcode题解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">AomanHao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">86</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/aomanhao" title="GitHub &rarr; https://github.com/aomanhao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:1014325364@qq.com" title="E-Mail &rarr; mailto:1014325364@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/2831714980" title="Weibo &rarr; https://weibo.com/u/2831714980" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#冒泡排序"><span class="nav-number">1.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择排序"><span class="nav-number">2.</span> <span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速排序及其改进算法C-实现"><span class="nav-number">3.</span> <span class="nav-text">快速排序及其改进算法C++实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#归并排序"><span class="nav-number">4.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆排序"><span class="nav-number">5.</span> <span class="nav-text">堆排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入排序"><span class="nav-number">6.</span> <span class="nav-text">插入排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#桶排序"><span class="nav-number">7.</span> <span class="nav-text">桶排序</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AomanHao</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":75,"height":150},"mobile":{"show":true},"log":false});</script></body>
+</html>

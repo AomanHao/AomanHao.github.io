@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一、 mysql常用命令">
+<meta name="keywords" content="Mysql,Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库Mysql_3_4">
+<meta property="og:url" content="http://www.aomanhao.top/2018/03/04/database_1/index.html">
+<meta property="og:site_name" content="AomanHao的个人博客">
+<meta property="og:description" content="一、 mysql常用命令">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-28T01:16:31.242Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库Mysql_3_4">
+<meta name="twitter:description" content="一、 mysql常用命令">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.aomanhao.top/2018/03/04/database_1/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>数据库Mysql_3_4 | AomanHao的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AomanHao的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">唯有梦想与好姑娘不可辜负</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2018/03/04/database_1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AomanHao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AomanHao的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据库Mysql_3_4
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-03-04 10:59:59" itemprop="dateCreated datePublished" datetime="2018-03-04T10:59:59+08:00">2018-03-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 09:16:31" itemprop="dateModified" datetime="2019-01-28T09:16:31+08:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="一、-mysql常用命令"><a href="#一、-mysql常用命令" class="headerlink" title="一、 mysql常用命令"></a>一、 mysql常用命令</h2><a id="more"></a>
+<h3 id="1-1-管理"><a href="#1-1-管理" class="headerlink" title="1.1 管理"></a>1.1 管理</h3><pre><code>CREATE DATABASE Aoman_OS -- 创建数据库
+USE  Aoman_OS -- 使用数据库
+DROP DATABASE Aoman_OS  -- 删除数据库
+</code></pre><h3 id="1-2-数据库内容"><a href="#1-2-数据库内容" class="headerlink" title="1.2 数据库内容"></a>1.2 数据库内容</h3><pre><code>CREATE TABLE employee(  -- 创建数据库表格
+id INT,NAME VARCHAR(20),gender VARCHAR(2),title VARCHAR(10),email VARCHAR(20)
+);
+SELECT * FROM employee -- 查看数据库表格
+</code></pre><h3 id="2-1-增加数据库内容"><a href="#2-1-增加数据库内容" class="headerlink" title="2.1 增加数据库内容"></a>2.1 增加数据库内容</h3><pre><code>INSERT INTO employee VALUES(1,&#39;依依&#39;,&#39;女&#39;,&#39;程序员鼓励师&#39;,&#39;123@163.com&#39;);
+INSERT INTO employee VALUES(2,&#39;尔尔&#39;,&#39;男&#39;,&#39;程序开发工程师&#39;,&#39;124@163.com&#39;);
+INSERT INTO employee VALUES(3,&#39;散散&#39;,&#39;男&#39;,&#39;程序维护工程师&#39;,&#39;125@163.com&#39;);
+</code></pre><h3 id="2-2-插入部分数据"><a href="#2-2-插入部分数据" class="headerlink" title="2.2 插入部分数据"></a>2.2 插入部分数据</h3><pre><code>    INSERT INTO employee (id,NAME) VALUES (4,&#39;思思&#39;);
+</code></pre><h3 id="2-3-修改数据"><a href="#2-3-修改数据" class="headerlink" title="2.3 修改数据"></a>2.3 修改数据</h3><pre><code>UPDATE employee SET gender=&#39;女&#39;,title=&#39;文秘&#39; WHERE id =4;
+</code></pre><h3 id="2-4-删除表中所有数据"><a href="#2-4-删除表中所有数据" class="headerlink" title="2.4 删除表中所有数据"></a>2.4 删除表中所有数据</h3><pre><code>DELETE     * FROM employee
+</code></pre><h3 id="2-5-删除数据表"><a href="#2-5-删除数据表" class="headerlink" title="2.5 删除数据表"></a>2.5 删除数据表</h3><pre><code>DROP FROM employee
+</code></pre><h3 id="3-1-查询"><a href="#3-1-查询" class="headerlink" title="3.1 查询"></a>3.1 查询</h3><pre><code>SELECT id AS &#39;1&#39; FROM employee
+SELECT id AS &#39;1&#39; ，NAME AS &#39;尔尔&#39; FROM employee
+</code></pre><h3 id="3-2-不重复的查询"><a href="#3-2-不重复的查询" class="headerlink" title="3.2 不重复的查询"></a>3.2 不重复的查询</h3><pre><code>SELECT DISTINCT email FROM employee
+</code></pre><h3 id="3-3-条件查询"><a href="#3-3-条件查询" class="headerlink" title="3.3 条件查询"></a>3.3 条件查询</h3><pre><code>SELECT * FROM employee WHERE id=1 OR NAME = &#39;思思&#39; ; -- or 并集
+SELECT * FROM employee WHERE id=1 AND NAME = &#39;思思&#39; ; -- and 交集
+</code></pre><h3 id="3-4-判断查询"><a href="#3-4-判断查询" class="headerlink" title="3.4 判断查询"></a>3.4 判断查询</h3><pre><code>大于 &gt; ,小于 &lt; ,等于 = 
+不等于 ！= 或者 &lt;&gt;， 在什么之间 between 1 and 2，
+非空 isnot null 或者 不等于 &#39;&#39;
+</code></pre><h3 id="3-5-模糊查询"><a href="#3-5-模糊查询" class="headerlink" title="3.5 模糊查询"></a>3.5 模糊查询</h3><pre><code>SELECT * FROM studet WHERE NAME LIKE &#39;思%&#39;
+%代替任何字符，任何长度的字符
+-仅仅代替一个字符
+</code></pre><h3 id="3-6-asc-升序-desc-降序"><a href="#3-6-asc-升序-desc-降序" class="headerlink" title="3.6 asc 升序 desc 降序"></a>3.6 asc 升序 desc 降序</h3><pre><code>默认情况下:是按照插入顺序进行排序
+SELECT * FROM student ORDER BY id ASC ;
+需求:servlet成绩是一个降序排序
+SELECT * FROM student ORDER BY servlet DESC ;
+</code></pre><h2 id="二、小练习"><a href="#二、小练习" class="headerlink" title="二、小练习"></a>二、小练习</h2><pre><code>CREATE TABLE student2(
+    id INT,
+    NAME VARCHAR(20),
+    chinese FLOAT,
+    english FLOAT,
+    math FLOAT
+);
+
+INSERT INTO student2(id,NAME,chinese,english,math) VALUES(1,&#39;张小明&#39;,89,78,90);
+INSERT INTO student2(id,NAME,chinese,english,math) VALUES(2,&#39;李进&#39;,67,53,95);
+INSERT INTO student2(id,NAME,chinese,english,math) VALUES(3,&#39;王五&#39;,87,78,77);
+INSERT INTO student2(id,NAME,chinese,english,math) VALUES(4,&#39;李一&#39;,88,98,92);
+INSERT INTO student2(id,NAME,chinese,english,math) VALUES(5,&#39;李来财&#39;,82,84,67);
+INSERT INTO student2(id,NAME,chinese,english,math) VALUES(6,&#39;张进宝&#39;,55,85,45);
+INSERT INTO student2(id,NAME,chinese,english,math) VALUES(7,&#39;黄蓉&#39;,75,65,30)
+</code></pre><h4 id="查询操作练习-在学生表数据基础上：student-sql"><a href="#查询操作练习-在学生表数据基础上：student-sql" class="headerlink" title="查询操作练习(在学生表数据基础上：student.sql)"></a>查询操作练习(在学生表数据基础上：student.sql)</h4><p>—     查询表中所有学生的信息。</p>
+<pre><code>SELECT * FROM student2 ;
+</code></pre><p>— 查询表中所有学生的姓名和对应的英语成绩。</p>
+<pre><code>SELECT  NAME ,english FROM student2
+</code></pre><p>—     使用别名表示学生分数。</p>
+<pre><code>SELECT id AS &#39;编号&#39;,NAME AS &#39;姓名&#39;,chinese AS &#39;语文&#39;,english AS &#39;英语&#39;,math AS &#39;数学&#39; FROM student2 ;
+</code></pre><p>—     查询姓名为李一的学生成绩</p>
+<pre><code>SELECT * FROM student2 WHERE NAME = &#39;李一&#39;;
+</code></pre><p>—     查询英语成绩大于等于90分的同学</p>
+<pre><code>SELECT * FROM student2 WHERE english &gt;=90
+</code></pre><p>—     查询总分大于200分的所有同学</p>
+<pre><code>SELECT * FROM student2 WHERE (chinese+english+math)&gt;200;
+</code></pre><p>—     查询所有姓李的学生英语成绩。</p>
+<pre><code>SELECT NAME,english FROM student2 WHERE NAME LIKE &#39;李%&#39;
+</code></pre><p>—     查询英语&gt;80或者总分&gt;200的同学</p>
+<pre><code>SELECT * FROM student2 WHERE english &gt;80 OR (chinese+english+math)&gt;200;
+</code></pre>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mysql/" rel="tag"># Mysql</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/08/hexo_3/" rel="next" title="hexo博客yilia主题_缺失模块_解决方案">
+                <i class="fa fa-chevron-left"></i> hexo博客yilia主题_缺失模块_解决方案
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/04/database_2/" rel="prev" title="数据库Mysql_3_4">
+                数据库Mysql_3_4 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">AomanHao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">86</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/aomanhao" title="GitHub &rarr; https://github.com/aomanhao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:1014325364@qq.com" title="E-Mail &rarr; mailto:1014325364@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/2831714980" title="Weibo &rarr; https://weibo.com/u/2831714980" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、-mysql常用命令"><span class="nav-number">1.</span> <span class="nav-text">一、 mysql常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-管理"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-数据库内容"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 数据库内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-增加数据库内容"><span class="nav-number">1.3.</span> <span class="nav-text">2.1 增加数据库内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-插入部分数据"><span class="nav-number">1.4.</span> <span class="nav-text">2.2 插入部分数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-修改数据"><span class="nav-number">1.5.</span> <span class="nav-text">2.3 修改数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-删除表中所有数据"><span class="nav-number">1.6.</span> <span class="nav-text">2.4 删除表中所有数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-删除数据表"><span class="nav-number">1.7.</span> <span class="nav-text">2.5 删除数据表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-查询"><span class="nav-number">1.8.</span> <span class="nav-text">3.1 查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-不重复的查询"><span class="nav-number">1.9.</span> <span class="nav-text">3.2 不重复的查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-条件查询"><span class="nav-number">1.10.</span> <span class="nav-text">3.3 条件查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-判断查询"><span class="nav-number">1.11.</span> <span class="nav-text">3.4 判断查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-模糊查询"><span class="nav-number">1.12.</span> <span class="nav-text">3.5 模糊查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-asc-升序-desc-降序"><span class="nav-number">1.13.</span> <span class="nav-text">3.6 asc 升序 desc 降序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、小练习"><span class="nav-number">2.</span> <span class="nav-text">二、小练习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询操作练习-在学生表数据基础上：student-sql"><span class="nav-number">2.0.1.</span> <span class="nav-text">查询操作练习(在学生表数据基础上：student.sql)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AomanHao</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":75,"height":150},"mobile":{"show":true},"log":false});</script></body>
+</html>

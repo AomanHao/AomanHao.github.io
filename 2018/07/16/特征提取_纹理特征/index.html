@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="特征提取——纹理特征">
+<meta name="keywords" content="图像处理,特征提取">
+<meta property="og:type" content="article">
+<meta property="og:title" content="特征提取——纹理特征">
+<meta property="og:url" content="http://www.aomanhao.top/2018/07/16/特征提取_纹理特征/index.html">
+<meta property="og:site_name" content="AomanHao的个人博客">
+<meta property="og:description" content="特征提取——纹理特征">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-28T01:16:31.499Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="特征提取——纹理特征">
+<meta name="twitter:description" content="特征提取——纹理特征">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.aomanhao.top/2018/07/16/特征提取_纹理特征/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>特征提取——纹理特征 | AomanHao的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AomanHao的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">唯有梦想与好姑娘不可辜负</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2018/07/16/特征提取_纹理特征/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AomanHao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AomanHao的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">特征提取——纹理特征
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-16 09:39:40" itemprop="dateCreated datePublished" datetime="2018-07-16T09:39:40+08:00">2018-07-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 09:16:31" itemprop="dateModified" datetime="2019-01-28T09:16:31+08:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>特征提取——纹理特征<br><a id="more"></a></p>
+<h3 id="LBP图像特征"><a href="#LBP图像特征" class="headerlink" title="LBP图像特征"></a>LBP图像特征</h3><p>图像处理之特征提取（二）之LBP特征简单梳理<br><br><a href="https://blog.csdn.net/coming_is_winter/article/details/72859957" target="_blank" rel="noopener">https://blog.csdn.net/coming_is_winter/article/details/72859957</a><br><br><a href="https://blog.csdn.net/zouxy09/article/details/7929531" target="_blank" rel="noopener">https://blog.csdn.net/zouxy09/article/details/7929531</a><br><br>LBP特征理解。<br><br><a href="http://blog.csdn.net/hqh45/article/details/24501097" target="_blank" rel="noopener">http://blog.csdn.net/hqh45/article/details/24501097</a><br>LBP（Local Binary Pattern，局部二值模式）是一种用来描述图像局部纹理特征的算子；它具有旋转不变性和灰度不变性等显著的优点。它是首先由T. Ojala, M.Pietikäinen, 和 D. Harwood 在1994年提出，用于纹理特征提取。而且，提取的特征是图像的局部的纹理特征；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lbp理论：</span><br><span class="line">原始的LBP算子定义为在3*3的窗口内，以窗口中心像素为阈值，将相邻的8个像素的灰度值与其进行比较，若周围像素值大于中心像素值，则该像素点的位置被标记为1，否则为0。这样，3*3邻域内的8个点经比较可产生8位二进制数（通常转换为十进制数即LBP码，共256种），即得到该窗口中心像素点的LBP值，并用这个值来反映该区域的纹理信息。</span><br></pre></td></tr></table></figure></p>
+<p>圆形LBP算子： 半径为R<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">基本的 LBP算子的最大缺陷在于它只覆盖了一个固定半径范围内的小区域，这显然不能满足不同尺寸和频率纹理的需要。为了适应不同尺度的纹理特征，并达到灰度和旋转不变性的要求，Ojala等对 LBP 算子进行了改进，将 3×3邻域扩展到任意邻域，并用圆形邻域代替了正方形邻域，改进后的 LBP 算子允许在半径为 R 的圆形邻域内有任意多个像素点。从而得到了诸如半径为R的圆形区域内含有P个采样点的LBP算子；</span><br></pre></td></tr></table></figure></p>
+<p>即不断旋转圆形邻域得到一系列初始定义的 LBP值，取其最小值作为该邻域的 LBP 值。</p>
+<h3 id="灰度共生矩阵（GLCM，Gray-Level-Co-occurrence-Matrix）"><a href="#灰度共生矩阵（GLCM，Gray-Level-Co-occurrence-Matrix）" class="headerlink" title="灰度共生矩阵（GLCM，Gray-Level Co-occurrence Matrix）"></a>灰度共生矩阵（GLCM，Gray-Level Co-occurrence Matrix）</h3><p>概念：</p>
+<blockquote>
+<p>灰度共生矩阵是涉及像素距离和角度的矩阵函数，它通过计算图像中一定距离和一定方向的两点灰度之间的相关性，来反映图像在<font color="red">方向、间隔、变化幅度及快慢</font>上的综合信息。<br><br>灰度直方图是对图像上单个像素具有某个灰度进行统计的结果，而<font color="red">灰度共生矩阵是对图像上保持某距离的两像素分别具有某灰度的状况进行统计得到的。</font></p>
+</blockquote>
+<p>含义：<br>以（1，1）点为例，GLCM（1，1）值为1说明左侧原图只有一对灰度为1的像素水平相邻。GLCM（1，2）值为2，是因为原图有两对灰度为1和2的像素水平相邻。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">矩阵</span><br><span class="line">|1 2 1|</span><br><span class="line">|2 2 2| </span><br><span class="line">|1 2 2|</span><br><span class="line">对应GLMC矩阵（最大是2，所以是2*2矩阵）</span><br><span class="line"></span><br><span class="line">GLCM矩阵:</span><br><span class="line">  1 2</span><br><span class="line">1|0 2| </span><br><span class="line">2|1 6|</span><br><span class="line">0(1,1)相邻， 2(1,2)水平相邻， 2(2,1)垂直相邻， 6(2,2)相邻</span><br></pre></td></tr></table></figure>
+<p>灰度共生矩阵的特征</p>
+<p>1) 角二阶矩（Angular Second Moment, ASM)<br><br>公式：$ASM = sum(p(i,j)^2)$，其中  $p(i,j) $表示归一后的灰度共生矩阵<br>意义：角二阶矩是图像灰度分布均匀程度和纹理粗细的一个度量，当图像纹理绞细致、灰度分布均匀时，能量值较大，反之，较小。<br></p>
+<font color="red">结论：值大，灰度分布均匀</font>
+
+<p>2) 熵（Entropy, ENT)<br><br>公式：$ENT=sum[-p(i,j)log(p(i,j))] $<br>意义：描述图像具有的信息量的度量，表明图像的复杂程度，当复杂程度高时，熵值较大，反之则较小。<br></p>
+<font color="red">结论：值大，复杂程度高</font>
+
+<p>3) 反差分矩阵（Inverse Differential Moment, IDM)<br>公式：$IDM=sum[p(i,j)/(1+(i-j)^2)]$<br>意义：反映了纹理的清晰程度和规则程度，纹理清晰、规律性较强、易于描述的，值较大；杂乱无章的，难于描述的，值较小。</p>
+<font color="red">结论：值大，纹理清晰、规律性较强</font>
+
+
+
+<h3 id="Gabor小波"><a href="#Gabor小波" class="headerlink" title="Gabor小波"></a>Gabor小波</h3><p>Gabor函数是一个用于边缘提取的线性滤波器</p>
+<p>作用：<br>Gabor小波可以方便的提取图像在<font color="red">各个尺度和方向上的纹理信息</font>，同时在一定程度上降低了图像中光照变化和噪声的影响。<br>提取目标的<font color="red">局部空间和频率域信息</font>方面具有良好的特性。<br><br>特点：<br>1、Gabor小波对于图像的边缘敏感<br>2、对光照不敏感<br>3、对图像旋转有一定适应性</p>
+<h5 id="灰度共生矩阵opencv代码："><a href="#灰度共生矩阵opencv代码：" class="headerlink" title="灰度共生矩阵opencv代码："></a>灰度共生矩阵opencv代码：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line">// 0°灰度共生矩阵</span><br><span class="line">void getGLCM0(Mat&amp; src, Mat&amp; dst, int gray_level)// 0度灰度共生矩阵</span><br><span class="line">&#123;</span><br><span class="line">	CV_Assert(1 == src.channels());</span><br><span class="line"> </span><br><span class="line">	int height = src.rows;</span><br><span class="line">	int width = src.cols;</span><br><span class="line"> </span><br><span class="line">	dst.create(gray_level, gray_level, CV_32SC1);</span><br><span class="line">	dst = Scalar::all(0);</span><br><span class="line"> </span><br><span class="line">	for (int i = 0; i &lt; height; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		int*srcdata = src.ptr&lt;int&gt;(i);</span><br><span class="line">		for (int j = 0; j &lt; width - 1; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			// 同样的像素对，水平相邻</span><br><span class="line">			int rows = srcdata[j];</span><br><span class="line">			int cols = srcdata[j + 1];</span><br><span class="line">			dst.ptr&lt;int&gt;(rows)[cols]++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">// 90°灰度共生矩阵</span><br><span class="line">void getGLCM90(Mat&amp; src, Mat&amp; dst, int gray_level)</span><br><span class="line">&#123;</span><br><span class="line">	CV_Assert(1 == src.channels());</span><br><span class="line"> </span><br><span class="line">	int height = src.rows;</span><br><span class="line">	int width = src.cols;</span><br><span class="line"> </span><br><span class="line">	dst = Mat(gray_level, gray_level, CV_32SC1, Scalar(0));</span><br><span class="line"> </span><br><span class="line">	for (int i = 0; i &lt; height - 1; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		int*srcdata = src.ptr&lt;int&gt;(i);</span><br><span class="line">		int*srcdata1 = src.ptr&lt;int&gt;(i + 1);</span><br><span class="line">		for (int j = 0; j &lt; width; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			// 同样的像素对，垂直相邻</span><br><span class="line">			int rows = srcdata[j];</span><br><span class="line">			int cols = srcdata1[j];</span><br><span class="line">			dst.ptr&lt;int&gt;(rows)[cols]++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">// 45°灰度共生矩阵</span><br><span class="line">void getGLCM45(Mat&amp; src, Mat&amp; dst, int gray_level)</span><br><span class="line">&#123;</span><br><span class="line">	CV_Assert(1 == src.channels());</span><br><span class="line"> </span><br><span class="line">	int height = src.rows;</span><br><span class="line">	int width = src.cols;</span><br><span class="line"> </span><br><span class="line">	dst = Mat(gray_level, gray_level, CV_32SC1, Scalar(0));</span><br><span class="line"> </span><br><span class="line">	for (int i = 0; i &lt; height - 1; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		int*srcdata = src.ptr&lt;int&gt;(i);</span><br><span class="line">		int*srcdata1 = src.ptr&lt;int&gt;(i + 1);</span><br><span class="line">		for (int j = 0; j &lt; width - 1; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			// 同样的像素对，45°相邻</span><br><span class="line">			int rows = srcdata[j];</span><br><span class="line">			int cols = srcdata1[j + 1];</span><br><span class="line">			dst.ptr&lt;int&gt;(rows)[cols]++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">// 135°灰度共生矩阵</span><br><span class="line">void getGLCM135(Mat&amp; src, Mat&amp; dst, int gray_level)</span><br><span class="line">&#123;</span><br><span class="line">	CV_Assert(1 == src.channels());</span><br><span class="line"> </span><br><span class="line">	int height = src.rows;</span><br><span class="line">	int width = src.cols;</span><br><span class="line"> </span><br><span class="line">	dst = Mat(gray_level, gray_level, CV_32SC1, Scalar(0));</span><br><span class="line"> </span><br><span class="line">	for (int i = 0; i &lt; height - 1; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		int*srcdata = src.ptr&lt;int&gt;(i);</span><br><span class="line">		int*srcdata1 = src.ptr&lt;int&gt;(i + 1);</span><br><span class="line">		for (int j = 1; j &lt; width; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			// 同样的像素对，135°相邻</span><br><span class="line">			int rows = srcdata[j];</span><br><span class="line">			int cols = srcdata1[j - 1];</span><br><span class="line">			dst.ptr&lt;int&gt;(rows)[cols]++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">// 计算特征值</span><br><span class="line">void featureGLCM(Mat&amp;src, double&amp; Asm, double&amp; Ent, double&amp; Con, double&amp; Idm)</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	CV_Assert(src.channels() == 1);</span><br><span class="line">	</span><br><span class="line">	int height = src.rows;</span><br><span class="line">	int width = src.cols;</span><br><span class="line">	int total = 0;</span><br><span class="line"> </span><br><span class="line">	//求图像所有像素的灰度值的和</span><br><span class="line">	for (int i = 0; i &lt; height; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		int*srcdata = src.ptr&lt;int&gt;(i);</span><br><span class="line">		for (int j = 0; j &lt; width; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			total += srcdata[j];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	//图像每一个像素的的值除以像素总和</span><br><span class="line">	Mat mean;</span><br><span class="line">	mean.create(height, width, CV_64FC1);</span><br><span class="line">	for (int i = 0; i &lt; height; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		int*srcdata = src.ptr&lt;int&gt;(i);</span><br><span class="line">		double*copydata = mean.ptr&lt;double&gt;(i);</span><br><span class="line">		for (int j = 0; j &lt; width; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			copydata[j] = (double)srcdata[j] / (double)total;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	for (int i = 0; i &lt; height; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		double*srcdata = mean.ptr&lt;double&gt;(i);</span><br><span class="line">		for (int j = 0; j &lt; width; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			// 能量</span><br><span class="line">			Asm += srcdata[j] * srcdata[j];</span><br><span class="line"> </span><br><span class="line">			// 熵(Entropy) </span><br><span class="line">			if (srcdata[j]&gt;0)</span><br><span class="line">				Ent -= srcdata[j] * log(srcdata[j]);</span><br><span class="line"> </span><br><span class="line">			// 对比度</span><br><span class="line">			Con += (double)(i - j)*(double)(i - j)*srcdata[j];</span><br><span class="line"> </span><br><span class="line">			// 逆差矩</span><br><span class="line">			Idm += srcdata[j] / (1 + (double)(i - j)*(double)(i - j));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/图像处理/" rel="tag"># 图像处理</a>
+          
+            <a href="/tags/特征提取/" rel="tag"># 特征提取</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/16/特征提取_局部特征_SIFT/" rel="next" title="特征提取——局部特征-SIFT算法尺度不变性的理解">
+                <i class="fa fa-chevron-left"></i> 特征提取——局部特征-SIFT算法尺度不变性的理解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/16/特征提取_颜色特征/" rel="prev" title="特征提取——颜色特征">
+                特征提取——颜色特征 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">AomanHao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">86</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/aomanhao" title="GitHub &rarr; https://github.com/aomanhao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:1014325364@qq.com" title="E-Mail &rarr; mailto:1014325364@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/2831714980" title="Weibo &rarr; https://weibo.com/u/2831714980" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#LBP图像特征"><span class="nav-number">1.</span> <span class="nav-text">LBP图像特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#灰度共生矩阵（GLCM，Gray-Level-Co-occurrence-Matrix）"><span class="nav-number">2.</span> <span class="nav-text">灰度共生矩阵（GLCM，Gray-Level Co-occurrence Matrix）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gabor小波"><span class="nav-number">3.</span> <span class="nav-text">Gabor小波</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#灰度共生矩阵opencv代码："><span class="nav-number">3.0.1.</span> <span class="nav-text">灰度共生矩阵opencv代码：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AomanHao</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":75,"height":150},"mobile":{"show":true},"log":false});</script></body>
+</html>

@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="机器学习分类决策树">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习_分类_决策树">
+<meta property="og:url" content="http://www.aomanhao.top/2018/07/18/机器学习_分类_决策树/index.html">
+<meta property="og:site_name" content="AomanHao的个人博客">
+<meta property="og:description" content="机器学习分类决策树">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://p3qhnc0eg.bkt.clouddn.com/blog/img/tree_1.png">
+<meta property="og:image" content="http://p3qhnc0eg.bkt.clouddn.com/blog/img/tree_ID3.png">
+<meta property="og:image" content="http://p3qhnc0eg.bkt.clouddn.com/blog/img/tree_C4.5.png">
+<meta property="og:updated_time" content="2019-01-28T01:16:31.436Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习_分类_决策树">
+<meta name="twitter:description" content="机器学习分类决策树">
+<meta name="twitter:image" content="http://p3qhnc0eg.bkt.clouddn.com/blog/img/tree_1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.aomanhao.top/2018/07/18/机器学习_分类_决策树/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>机器学习_分类_决策树 | AomanHao的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AomanHao的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">唯有梦想与好姑娘不可辜负</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2018/07/18/机器学习_分类_决策树/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AomanHao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AomanHao的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习_分类_决策树
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-18 09:39:40" itemprop="dateCreated datePublished" datetime="2018-07-18T09:39:40+08:00">2018-07-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 09:16:31" itemprop="dateModified" datetime="2019-01-28T09:16:31+08:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>机器学习<em>分类</em>决策树</p>
+<a id="more"></a>
+<p>决策树算法是借助于树的分支结构实现分类。</p>
+<p>叶子节点：存放决策结果<br>非叶子节点：特征属性，及其对应输出，按照输出选择分支<br>决策过程：从根节点出发，根据数据的各个属性，计算结果，选择对应的输出分支，直到到达叶子节点，得到结果</p>
+<p>决策树使用自顶向下递归分治法，并采用不回溯的贪心策略。分裂属性的选择算法很多，这里介绍3种常用的算法：信息增益（Information gain）、增益比率（gain ratio）、基尼指数（Gini index）。<br></p>
+<blockquote>
+<p>我们通过<strong>基尼不纯度</strong>或者<strong>熵</strong>来对一个集合进行的有序程度进行量化，然后引入<strong>信息增益</strong>概念对一次拆分进行量化评价</p>
+</blockquote>
+<p><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/tree_1.png" alt=""></p>
+<h3 id="基尼不纯度"><a href="#基尼不纯度" class="headerlink" title="基尼不纯度"></a>基尼不纯度</h3><p>基尼不纯度是指将来自集合中的某种结果随机应用于集合中某一数据项的预期误差率。该值越高，说明拆分的越不理想，如果该值为 0，说明完美拆分。</p>
+<script type="math/tex; mode=display">Gini(D)=1−∑_i=(1^m)p_i^2</script><h3 id="熵"><a href="#熵" class="headerlink" title="熵"></a>熵</h3><p>用来表示集合的无序程度，熵越大表示集合越混乱<br></p>
+<script type="math/tex; mode=display">E = -P * log2P</script><blockquote>
+<p>基尼不纯度与熵对比<br><br>两者主要区别在于，熵到达峰值的过程相对慢一些。因此熵对混乱集合的「判罚」往往更重一些。通常情况下，熵的使用更加频繁。</p>
+</blockquote>
+<h3 id="信息增益（Information-Gain）"><a href="#信息增益（Information-Gain）" class="headerlink" title="信息增益（Information Gain）"></a>信息增益（Information Gain）</h3><p>基于香浓的信息论，<strong>信息熵</strong>表示不确定度，均匀分布时，不确定度最大，此时熵就最大。<br>当选择某个特征对数据集进行分类时，数据集分类后的信息熵会比分类前的小，其差值即为信息增益。<br><strong>信息增益</strong>可以衡量某个特征对分类结果的影响大小，<strong>越大越好</strong>。</p>
+<blockquote>
+<p>信息增益=abs(信息熵（分类后）-信息熵（分类前）)</p>
+<script type="math/tex; mode=display">Gain(R)=Info(D)−InfoR(D)</script></blockquote>
+<h3 id="决策树降剪枝"><a href="#决策树降剪枝" class="headerlink" title="决策树降剪枝"></a>决策树降剪枝</h3><blockquote>
+<p>为什么要剪枝<br>训练出得决策树存在过度拟合现象——决策树过于针对训练的数据，专门针对训练集创建出来的分支，其熵值可能会比真实情况有所降低。</p>
+<p>如何剪枝<br>人工设置一个信息增益的阀值，自下而上遍历决策树，将信息增益低于该阀值的拆分进行合并</p>
+</blockquote>
+<h3 id="处理缺失数据"><a href="#处理缺失数据" class="headerlink" title="处理缺失数据"></a>处理缺失数据</h3><blockquote>
+<p>决策树模型还有一个很大的优势，就是可以容忍缺失数据。如果决策树中某个条件缺失，可以按一定的权重分配继续往以后的分支走，最终的结果可能有多个，每个结果又一定的概率，即：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">最终结果=某个分支的结果 x 该分支的权重(该分支下的结果数/总结果数)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="生成算法：ID3和C4-5。"><a href="#生成算法：ID3和C4-5。" class="headerlink" title="生成算法：ID3和C4.5。"></a>生成算法：ID3和C4.5。</h3><h4 id="1、ID3算法"><a href="#1、ID3算法" class="headerlink" title="1、ID3算法"></a>1、ID3算法</h4><p>ID3算法可用于划分标称型数据集，没有剪枝的过程，为了去除过度数据匹配的问题，可通过裁剪合并相邻的无法产生大量信息增益的叶子节点（例如设置信息增益阀值）。<br>考虑某个特征后，信息熵减小的多，这个特征就是好的特征(在每层分裂时，选择使得Gain(R)最大的属性作为分裂属性)<br>ID3算法中根据信息增益评估和选择特征，每次选择信息增益最大的特征作为判断模块建立子结点</p>
+<blockquote>
+<p>缺点：1、此公式偏向数据量多的属性，如果样本分布不均，则会导致过拟合。<br>2、不能处理连续分布的数据特征</p>
+</blockquote>
+<p><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/tree_ID3.png" alt=""></p>
+<h4 id="2、C4-5算法"><a href="#2、C4-5算法" class="headerlink" title="2、C4.5算法"></a>2、C4.5算法</h4><p>C4.5算法用<strong>信息增益率</strong>来选择属性，继承了ID3算法的优点<br>优点：</p>
+<blockquote>
+<p>1、克服了用信息增益选择属性时偏向选择取值多的属性的不足；<br>2、在树构造过程中进行剪枝；<br>3、能够完成对连续属性的离散化处理；<br>4、能够对不完整数据进行处理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C4.5算法产生的分类规则易于理解、准确率较高；但效率低，因树构造过程中，需要对数据集进行多次的顺序扫描和排序C4.5算法在结构与递归上与ID3完全相同，区别只在于选取决决策特征时的决策依据不同，二者都有贪心性质：即通过局部最优构造全局最优</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/tree_C4.5.png" alt=""></p>
+<p>svm:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">模型在真实世界中也应用场景 </span><br><span class="line">支撑向量机用于文本和超文本的分类；</span><br><span class="line">用于图像分类；</span><br><span class="line">用于手写体识别；</span><br><span class="line"></span><br><span class="line">这个模型的优势是什么？</span><br><span class="line"></span><br><span class="line">分类效果好；</span><br><span class="line">可以有效地处理高维空间的数据；</span><br><span class="line">可以有效地处理变量个数大于样本个数的数据；</span><br><span class="line">只是使用了一部分子集来进行训练模型，所以SVM模型不需要太大的内存；</span><br><span class="line">可以提高泛化能力；</span><br><span class="line">无局部极小值问题；</span><br><span class="line">他什么情况下表现最好？</span><br><span class="line"></span><br><span class="line">数据的维度较高；</span><br><span class="line">需要模型具有非常强的泛化能力；</span><br><span class="line">样本数据量较小时；</span><br><span class="line">解决非线性问题；</span><br><span class="line">这个模型的缺点是什么？</span><br><span class="line"></span><br><span class="line">无法处理大规模的数据集，因为该算法需要较长的训练时间；</span><br><span class="line">无法有效地处理包含噪声太多的数据集；</span><br><span class="line">SVM模型没有直接给出概率的估计值，而是利用交叉验证的方式估计，这种方式耗时较长；</span><br><span class="line">对缺失数据非常敏感；</span><br><span class="line">对于非线性问题，有时很难找到一个合适的核函数。</span><br><span class="line">什么条件下它表现很差？</span><br><span class="line"></span><br><span class="line">数据集的数据量过大；</span><br><span class="line">数据集中的含有噪声；</span><br><span class="line">数据集中的缺失较多的数据；</span><br><span class="line">对算法的训练效率要求较高；</span><br><span class="line">根据我们当前数据集的特点，为什么这个模型适合这个问题。 </span><br><span class="line">该项目所提供的样本数据相对较少；</span><br><span class="line">该问题是属于非线性问题；</span><br><span class="line">数据集经过“独热编码”后，维度较高</span><br></pre></td></tr></table></figure></p>
+<p>决策树：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">这个模型的优势是什么？</span><br><span class="line"></span><br><span class="line">决策树易于实现和理解；</span><br><span class="line">对于决策树，数据的准备工作一般比较简单；</span><br><span class="line">能够同时处理多种数据类型</span><br><span class="line">给定一个决策树模型，可以根据产生的决策树推出相应的逻辑表达式；</span><br><span class="line">通过静态测试来对模型的表现进行评价；</span><br><span class="line">在相对较短的时间内可以对大量的数据做出非常好的结果；</span><br><span class="line">决策树可以很好地扩展到大型数据中，同时决策树的大小独立于数据库的大小；</span><br><span class="line">计算复杂度相对较低，结果的输出易于理解，对部分的数据缺失不敏感。</span><br><span class="line">他什么情况下表现最好？</span><br><span class="line"></span><br><span class="line">实例是由“属性-值”对表示的；</span><br><span class="line">目标函数具有离散的输出值；</span><br><span class="line">训练数据集包含部分错误(决策树对错误有适应性)；</span><br><span class="line">训练数据缺少少量属性的实例。</span><br><span class="line">这个模型的缺点是什么？</span><br><span class="line"></span><br><span class="line">易于出现过拟合问题；</span><br><span class="line">忽略了数据集中属性之间的相关性；</span><br><span class="line">对于类比不一致的样本，决策树的信息增益倾向于那些数据值较多的特征</span><br><span class="line">什么条件下它表现很差？</span><br><span class="line"></span><br><span class="line">决策树匹配的数据过多时；</span><br><span class="line">分类的类别过于复杂；</span><br><span class="line">数据的属性之间具有非常强的关联。</span><br><span class="line">根据我们当前数据集的特点，为什么这个模型适合这个问题。</span><br><span class="line"></span><br><span class="line">不需要准备太多的训练数据，不需要对数据过多的处理如删除空白值等；</span><br><span class="line">易于编码；</span><br><span class="line">该问题是非线性问题，决策树能够很好地解决非线性问题；</span><br><span class="line">算法的执行效率高，对机器的要求较小。</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/16/阈值分割_大津法_分水岭/" rel="next" title="阈值分割_大津法_分水岭">
+                <i class="fa fa-chevron-left"></i> 阈值分割_大津法_分水岭
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/19/机器学习推荐书/" rel="prev" title="机器学习推荐书">
+                机器学习推荐书 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">AomanHao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">86</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/aomanhao" title="GitHub &rarr; https://github.com/aomanhao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:1014325364@qq.com" title="E-Mail &rarr; mailto:1014325364@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/2831714980" title="Weibo &rarr; https://weibo.com/u/2831714980" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基尼不纯度"><span class="nav-number">1.</span> <span class="nav-text">基尼不纯度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#熵"><span class="nav-number">2.</span> <span class="nav-text">熵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息增益（Information-Gain）"><span class="nav-number">3.</span> <span class="nav-text">信息增益（Information Gain）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#决策树降剪枝"><span class="nav-number">4.</span> <span class="nav-text">决策树降剪枝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理缺失数据"><span class="nav-number">5.</span> <span class="nav-text">处理缺失数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成算法：ID3和C4-5。"><span class="nav-number">6.</span> <span class="nav-text">生成算法：ID3和C4.5。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、ID3算法"><span class="nav-number">6.1.</span> <span class="nav-text">1、ID3算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、C4-5算法"><span class="nav-number">6.2.</span> <span class="nav-text">2、C4.5算法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AomanHao</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":75,"height":150},"mobile":{"show":true},"log":false});</script></body>
+</html>

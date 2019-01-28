@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="机器学习-最优化-梯度下降-牛顿法等(梯度消失爆炸))">
+<meta name="keywords" content="机器学习,最优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习_最优化">
+<meta property="og:url" content="http://www.aomanhao.top/2018/07/16/机器学习_最优化/index.html">
+<meta property="og:site_name" content="AomanHao的个人博客">
+<meta property="og:description" content="机器学习-最优化-梯度下降-牛顿法等(梯度消失爆炸))">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://p3qhnc0eg.bkt.clouddn.com/blog/img/zyh_haise.png">
+<meta property="og:image" content="http://p3qhnc0eg.bkt.clouddn.com/blog/img/lagelangri1.png">
+<meta property="og:image" content="http://p3qhnc0eg.bkt.clouddn.com/blog/img/lagelangri2png.png">
+<meta property="og:image" content="http://p3qhnc0eg.bkt.clouddn.com/blog/img/lagelangri3.png">
+<meta property="og:image" content="http://p3qhnc0eg.bkt.clouddn.com/blog/imgrelu.png">
+<meta property="og:image" content="http://p3qhnc0eg.bkt.clouddn.com/blog/imgrelu_leak.png">
+<meta property="og:updated_time" content="2019-01-28T01:16:31.452Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习_最优化">
+<meta name="twitter:description" content="机器学习-最优化-梯度下降-牛顿法等(梯度消失爆炸))">
+<meta name="twitter:image" content="http://p3qhnc0eg.bkt.clouddn.com/blog/img/zyh_haise.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.aomanhao.top/2018/07/16/机器学习_最优化/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>机器学习_最优化 | AomanHao的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AomanHao的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">唯有梦想与好姑娘不可辜负</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2018/07/16/机器学习_最优化/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AomanHao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AomanHao的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习_最优化
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-16 09:39:40" itemprop="dateCreated datePublished" datetime="2018-07-16T09:39:40+08:00">2018-07-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 09:16:31" itemprop="dateModified" datetime="2019-01-28T09:16:31+08:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>机器学习-最优化-梯度下降-牛顿法等(梯度消失爆炸))</p>
+<a id="more"></a>
+<h3 id="铺垫"><a href="#铺垫" class="headerlink" title="铺垫"></a>铺垫</h3><p>微分意义<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、函数图像中，某点的切线的斜率</span><br><span class="line">2、函数的变化率</span><br></pre></td></tr></table></figure></p>
+<p>梯度意义<br></p>
+<blockquote>
+<p>梯度就是分别对每个变量进行微分，然后用逗号分割开，梯度是用&lt;&gt;包括起来，说明梯度其实一个向量。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、在单变量的函数中，梯度其实就是函数的微分，代表着函数在某个给定点的切线的斜率</span><br><span class="line">2、在多变量函数中，梯度是一个向量，向量有方向，梯度的方向就指出了函数在给定点的上升最快的方向</span><br></pre></td></tr></table></figure></p>
+<p>梯度的方向实际就是函数在此点上升最快的方向！而我们需要朝着下降最快的方向走，自然就是负的梯度的方向，所以此处需要加上负号</p>
+</blockquote>
+<h3 id="梯度下降法（Gradient-Descent）"><a href="#梯度下降法（Gradient-Descent）" class="headerlink" title="梯度下降法（Gradient Descent）"></a>梯度下降法（Gradient Descent）</h3><blockquote>
+<p>梯度下降法的优化思想是用当前位置负梯度方向作为搜索方向，因为该方向为当前位置的最快下降方向，所以也被称为是”最速下降法“。最速下降法越接近目标值，步长越小，前进越慢</p>
+</blockquote>
+<p>梯度下降法的缺点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">（1）靠近极小值时收敛速度减慢，；</span><br><span class="line"></span><br><span class="line">（2）直线搜索时可能会产生一些问题；</span><br><span class="line"></span><br><span class="line">（3）可能会“之字形”地下降。</span><br></pre></td></tr></table></figure></p>
+<script type="math/tex; mode=display">\theta^1=\theta^0 - \alpha\nabla(j(\theta)</script><p>是关于Θ的一个函数，我们当前所处的位置为Θ0点，要从这个点走到J的最小值点<br>$\nabla$ 是梯度,$\alpha$是学习率或者步长</p>
+<h4 id="批量梯度下降法"><a href="#批量梯度下降法" class="headerlink" title="批量梯度下降法"></a>批量梯度下降法</h4><p>将$j(\theta)$对$\theta$求偏导，得到每个$\theta$对应的的梯度：每个参数$\theta$的梯度负方向，来更新每个$\theta$</p>
+<blockquote>
+<p>优点：它得到的是一个全局最优解<br>缺点：数据量大，计算缓慢</p>
+</blockquote>
+<h4 id="随机梯度下降"><a href="#随机梯度下降" class="headerlink" title="随机梯度下降"></a>随机梯度下降</h4><p>随机梯度下降是通过每个样本来迭代更新一次，如果样本量很大的情况（例如几十万），那么可能只用其中几万条或者几千条的样本</p>
+<blockquote>
+<p>优点：只用部分数据继续优化，运算量小<br>缺点：损失一部分进度，增加迭代次数</p>
+</blockquote>
+<p>两者关系：</p>
+<blockquote>
+<p>随机梯度下降方法以损失很小的一部分精确度和增加一定数量的迭代次数为代价，换取了总体的优化效率的提升。增加的迭代次数远远小于样本的数量。</p>
+</blockquote>
+<p>总结：</p>
+<blockquote>
+<p><em>批量梯度下降</em>—最小化所有训练样本的损失函数，使得最终求解的是<strong>全局的最优解</strong>，即求解的参数是使得风险函数最小，但是对于大规模样本问题效率低下。</p>
+<p><em>随机梯度下降</em>—最小化每条样本的损失函数，虽然不是每次迭代得到的损失函数都向着全局最优方向， 但是大的整体的方向是向全局最优解的，最终的结果往往是在全局最优解附近，适用于<strong>大规模训练样本</strong>情况。</p>
+</blockquote>
+<h3 id="牛顿法和拟牛顿法"><a href="#牛顿法和拟牛顿法" class="headerlink" title="牛顿法和拟牛顿法"></a>牛顿法和拟牛顿法</h3><p>牛顿法是一种在实数域和复数域上近似求解方程的方法。牛顿法最大的特点就在于它的<strong>收敛速度很快</strong>。</p>
+<h4 id="单变量"><a href="#单变量" class="headerlink" title="单变量"></a>单变量</h4><p>例如：方法使用函数$f(x)$的泰勒级数的前面几项来寻找方程$f(x)= 0$的根。</p>
+<p>1、选择一个接近函数$ f (x)$零点的 $x_0$，计算相应的$ f (x_0)$ 和切线斜率$f  ‘ (x_0)$（这里$f ‘ $表示函数$ f $ 的导数）。然后我们计算穿过点$(x_0,  f  (x_0))$ 并且斜率为$f ‘(x_0)$的直线和 $x $轴的交点的$x$坐标，也就是求如下方程的解：</p>
+<script type="math/tex; mode=display">x*f'(x_0)+f(x_0)-x_0*f'(x_0)=0</script><p>求得新的$x$坐标$x_1$,$x_1$比$x_0$更加接近收敛值的解，也就是使得$f(x)=0$，单变量迭代公式：</p>
+<script type="math/tex; mode=display">x_n+1=x_n-f(x_n)/f'(x_n)</script><blockquote>
+<p>如果$f ‘$ 是连续的，牛顿法必定收敛</p>
+</blockquote>
+<h4 id="多变量的话，需要用到雅可比矩阵和海森矩阵。"><a href="#多变量的话，需要用到雅可比矩阵和海森矩阵。" class="headerlink" title="多变量的话，需要用到雅可比矩阵和海森矩阵。"></a>多变量的话，需要用到雅可比矩阵和海森矩阵。</h4><p><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/zyh_haise.png" alt="海森矩阵"></p>
+<p>总结：</p>
+<blockquote>
+<p>牛顿法的优缺点<br>优点：二阶收敛，收敛速度快；<br>缺点：牛顿法是一种迭代算法，每一步都需要求解目标函数的Hessian矩阵的逆矩阵，计算比较复杂。</p>
+</blockquote>
+<h3 id="牛顿法是二阶收敛，梯度下降是一阶收敛，所以牛顿法就更快"><a href="#牛顿法是二阶收敛，梯度下降是一阶收敛，所以牛顿法就更快" class="headerlink" title="牛顿法是二阶收敛，梯度下降是一阶收敛，所以牛顿法就更快"></a><font color="red">牛顿法是二阶收敛，梯度下降是一阶收敛，所以牛顿法就更快</font></h3><blockquote>
+<p>牛顿法就是用一个二次曲面去拟合你当前所处位置的局部曲面，而梯度下降法是用一个平面去拟合当前的局部曲面，通常情况下，二次曲面的拟合会比平面更好，所以牛顿法选择的下降路径会更符合真实的最优下降路径。</p>
+<p>Hessian 矩阵非正定（非凸）导致无法收敛；<br>Hessian 矩阵维度过大带来巨大的计算量。</p>
+</blockquote>
+<h3 id="拟牛顿法（Quasi-Newton-Methods）"><a href="#拟牛顿法（Quasi-Newton-Methods）" class="headerlink" title="拟牛顿法（Quasi-Newton Methods）"></a>拟牛顿法（Quasi-Newton Methods）</h3><p>拟牛顿法是求解非线性优化问题最有效的方法之一。</p>
+<p>拟牛顿法的本质思想是改善牛顿法每次需要求解复杂的Hessian矩阵的逆矩阵的缺陷，它使用<font color="red">正定矩阵来近似Hessian矩阵的逆</font>，从而简化了运算的复杂度。只需要用到一阶导数，不需要计算Hessian矩阵 以及逆矩阵，因此能够更快收敛</p>
+<p>正定矩阵：<br>如果$X^TAX&gt;0$<br>判定定理1：对称阵A为正定的充分必要条件是：A的特征值全为正。 　<br>判定定理2：对称阵A为正定的充分必要条件是：A的各阶顺序主子式都为正。 　<br>判定定理3：任意阵A为正定的充分必要条件是：A合同于单位阵。</p>
+<h3 id="拉格朗日乘子法"><a href="#拉格朗日乘子法" class="headerlink" title="拉格朗日乘子法"></a>拉格朗日乘子法</h3><p>作为一种优化算法，拉格朗日乘子法主要用于解决约束优化问题，它的基本思想就是通过引入拉格朗日乘子来将含有n个变量和k个约束条件的约束优化问题转化为含有（n+k）个变量的无约束优化问题。拉格朗日乘子背后的数学意义是其为约束方程梯度线性组合中每个向量的系数。</p>
+<p>典型：<br>求函数$z=f(x,y)$在满足$b(x,y)=0$下的条件极值<br><br>转化为函数$F(x,y,\alpha)=f(x,y)+\alpha b(x,y)$的无条件极值问题</p>
+<p>列题：<br>给定椭球：$x^2/a^2+y^2/b^2+z^2/c^2=1$(约束条件),求内接长方体最大体积，求极值问题，求$f(x,y,z)=8xyz$的最大值<br>用拉格朗日乘子法：转化为</p>
+<script type="math/tex; mode=display">F(x,y,z,\alpha)=f(x,y,z)+\alpha b(x,y,z)</script><script type="math/tex; mode=display">=8xyz+\alpha(x^2/a^2+y^2/b^2+z^2/c^2-1)</script><p>对<script type="math/tex">F(x,y,z,\alpha)</script>求偏导得<br><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/lagelangri1.png" alt=""><br>然后联立三个方程的$bx=ay,az=cx$，带入第四个方程解<br><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/lagelangri2png.png" alt=""><br>解为：<br><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/lagelangri3.png" alt=""></p>
+<h3 id="共轭梯度法"><a href="#共轭梯度法" class="headerlink" title="共轭梯度法"></a>共轭梯度法</h3><p>共轭梯度法是介于最速下降法与牛顿法之间的一个方法，它仅需利用一阶导数信息，但克服了最速下降法收敛慢的缺点，又避免了牛顿法需要存储和计算Hesse矩阵并求逆的缺点，共轭梯度法不仅是解决大型线性方程组最有用的方法之一，也是解大型非线性最优化最有效的算法之一。 在各种优化算法中，共轭梯度法是非常重要的一种。其优点是所需存储量小，具有步收敛性，稳定性高，而且不需要任何外来参数。</p>
+<p><a href="http://www.cnblogs.com/maybe2030/p/4946256.html" target="_blank" rel="noopener">参考文章</a><br><a href="https://www.cnblogs.com/shixiangwan/p/7532830.html" target="_blank" rel="noopener">参考文章</a></p>
+<h3 id="梯度不稳定"><a href="#梯度不稳定" class="headerlink" title="梯度不稳定"></a>梯度不稳定</h3><p>什么是梯度不稳定问题：深度神经网络中的梯度不稳定性，前面层中的梯度或会消失，或会爆炸。</p>
+<p>原因：前面层上的梯度是来自于后面层上梯度的乘乘积。当存在过多的层次时，就出现了内在本质上的不稳定场景，如梯度消失和梯度爆炸。</p>
+<p>后果：训练很难进行，不收敛了<br>1、loss过早地不再下降<br>2、精确度过早地不在提高</p>
+<h4 id="梯度消失"><a href="#梯度消失" class="headerlink" title="梯度消失"></a>梯度消失</h4><p>梯度消失：<br>一是在深层网络中；<br>二是采用了不合适的损失函数，比如sigmoid。sigmoid导数最大为1/4，故只有当abs(w)&gt;4时才可能出现。先前传递误差就很小，前端网络w几乎没什么变化，等于这一层没能学习什么东西，网络层数越多就浪费了</p>
+<p>解决方法：<br>1、初始化一个合适的w<br>2、选合适的激励函数</p>
+<blockquote>
+<p>relu、leakrelu、elu等激活函数</p>
+</blockquote>
+<p>relu函数：目前使用最多的激活函数</p>
+<script type="math/tex; mode=display">Relu(x)=max(x,0)</script><p>函数图像：<br><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/imgrelu.png" alt=""></p>
+<blockquote>
+<p>relu的主要贡献在于：<br><br>优点：<br><br>1、— 解决了梯度消失、爆炸的问题<br><br>2、— 计算方便，计算速度快<br><br>3、— 加速了网络的训练<br><br>缺点：<br><br>1、由于负数部分恒为0，会导致一些神经元无法激活（可通过设置小学习率部分解决）<br><br>2、输出不是以0为中心的<br></p>
+</blockquote>
+<p>leakrelu:leakrelu就是为了解决relu的0区间带来的影响</p>
+<script type="math/tex; mode=display">leakrelu=max(k*x,x)</script><p>函数图像：<br><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/imgrelu_leak.png" alt=""></p>
+<h4 id="爆炸问题"><a href="#爆炸问题" class="headerlink" title="爆炸问题"></a>爆炸问题</h4><p>梯度爆炸：<br><br>一般出现在深层网络和权值初始化值太大的情况下。当权值过大，前面层比后面层梯度变化更快，会引起梯度爆炸问题。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/最优化/" rel="tag"># 最优化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/16/图像处理_图像滤波/" rel="next" title="图像处理_图像滤波">
+                <i class="fa fa-chevron-left"></i> 图像处理_图像滤波
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/16/边缘检测/" rel="prev" title="图像处理_边缘检测">
+                图像处理_边缘检测 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">AomanHao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">86</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/aomanhao" title="GitHub &rarr; https://github.com/aomanhao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:1014325364@qq.com" title="E-Mail &rarr; mailto:1014325364@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/2831714980" title="Weibo &rarr; https://weibo.com/u/2831714980" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#铺垫"><span class="nav-number">1.</span> <span class="nav-text">铺垫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#梯度下降法（Gradient-Descent）"><span class="nav-number">2.</span> <span class="nav-text">梯度下降法（Gradient Descent）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#批量梯度下降法"><span class="nav-number">2.1.</span> <span class="nav-text">批量梯度下降法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#随机梯度下降"><span class="nav-number">2.2.</span> <span class="nav-text">随机梯度下降</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#牛顿法和拟牛顿法"><span class="nav-number">3.</span> <span class="nav-text">牛顿法和拟牛顿法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单变量"><span class="nav-number">3.1.</span> <span class="nav-text">单变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多变量的话，需要用到雅可比矩阵和海森矩阵。"><span class="nav-number">3.2.</span> <span class="nav-text">多变量的话，需要用到雅可比矩阵和海森矩阵。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#牛顿法是二阶收敛，梯度下降是一阶收敛，所以牛顿法就更快"><span class="nav-number">4.</span> <span class="nav-text">牛顿法是二阶收敛，梯度下降是一阶收敛，所以牛顿法就更快</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拟牛顿法（Quasi-Newton-Methods）"><span class="nav-number">5.</span> <span class="nav-text">拟牛顿法（Quasi-Newton Methods）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拉格朗日乘子法"><span class="nav-number">6.</span> <span class="nav-text">拉格朗日乘子法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共轭梯度法"><span class="nav-number">7.</span> <span class="nav-text">共轭梯度法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#梯度不稳定"><span class="nav-number">8.</span> <span class="nav-text">梯度不稳定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#梯度消失"><span class="nav-number">8.1.</span> <span class="nav-text">梯度消失</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#爆炸问题"><span class="nav-number">8.2.</span> <span class="nav-text">爆炸问题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AomanHao</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":75,"height":150},"mobile":{"show":true},"log":false});</script></body>
+</html>

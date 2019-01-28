@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="面经—机器学习">
+<meta name="keywords" content="笔面试,C++,机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面经—机器学习">
+<meta property="og:url" content="http://www.aomanhao.top/2018/08/15/面经—机器学习/index.html">
+<meta property="og:site_name" content="AomanHao的个人博客">
+<meta property="og:description" content="面经—机器学习">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-28T01:16:31.525Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面经—机器学习">
+<meta name="twitter:description" content="面经—机器学习">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.aomanhao.top/2018/08/15/面经—机器学习/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>面经—机器学习 | AomanHao的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AomanHao的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">唯有梦想与好姑娘不可辜负</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2018/08/15/面经—机器学习/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AomanHao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AomanHao的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">面经—机器学习
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-15 09:39:40" itemprop="dateCreated datePublished" datetime="2018-08-15T09:39:40+08:00">2018-08-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 09:16:31" itemprop="dateModified" datetime="2019-01-28T09:16:31+08:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>面经—机器学习</p>
+<a id="more"></a>
+<h2 id="CVTE面经"><a href="#CVTE面经" class="headerlink" title="CVTE面经"></a>CVTE面经</h2><p>作者：一一后<br>链接：<a href="https://www.nowcoder.com/discuss/88069" target="_blank" rel="noopener">https://www.nowcoder.com/discuss/88069</a><br>来源：牛客网</p>
+<p>1.解释方差</p>
+<p>2.PCA的实现过程；推导PCA</p>
+<p>3.传统的图像特征有哪些</p>
+<p>4.Sift特征为什么能实现尺度不变性（讲sift原理到一半，我发现完全解释不了为啥尺度不变，就停了，尴尬）<br>[参考](<a href="https://blog.csdn.net/u014485485/article/details/78681086?locationNum=1&amp;fps=1）" target="_blank" rel="noopener">https://blog.csdn.net/u014485485/article/details/78681086?locationNum=1&amp;fps=1）</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">尺度不变性：</span><br><span class="line">不管原图尺度是多少，在包含了所有尺度的尺度空间下都能找到那些稳定的极值点，这样就做到了尺度不变！</span><br><span class="line">高斯函数是唯一可行的尺度空间核</span><br></pre></td></tr></table></figure></p>
+<p>5.Hough直线检测的原理</p>
+<p>6.梯度下降和牛顿法的区别<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">牛顿法的优缺点</span><br><span class="line">优点：二阶收敛，收敛速度快；</span><br><span class="line">缺点：牛顿法是一种迭代算法，每一步都需要求解目标函数的Hessian矩阵的逆矩阵，计算比较复杂。</span><br><span class="line"></span><br><span class="line">梯度下降法的优化思想是用当前位置负梯度方向作为搜索方向，因为该方向为当前位置的最快下降方向，所以也被称为是”最速下降法“。最速下降法越接近目标值，步长越小，前进越慢</span><br><span class="line">梯度下降法的缺点：</span><br><span class="line">靠近极小值时收敛速度减慢，；</span><br><span class="line">直线搜索时可能会产生一些问题；</span><br><span class="line">可能会“之字形”地下降。</span><br><span class="line"></span><br><span class="line">牛顿法是二阶收敛，梯度下降是一阶收敛，所以牛顿法就更快</span><br></pre></td></tr></table></figure></p>
+<p>7.SVM和Lr的共同点和不同点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">LR和SVM都是分类算法</span><br><span class="line">LR和SVM都是线性分类算法</span><br><span class="line">LR和SVM都是监督学习算法</span><br><span class="line">LR和SVM都是判别模型</span><br><span class="line">LR和SVM在学术界和工业界都广为人知并且应用广泛</span><br><span class="line"></span><br><span class="line">不同：</span><br><span class="line">损失函数</span><br><span class="line">LR：逻辑回归方法基于概率理论</span><br><span class="line">逻辑回归考虑全局（远离的点对边界线的确定也起作用）</span><br><span class="line">对数据不做处理</span><br><span class="line">LR必须另外在损失函数上添加正则项</span><br><span class="line"></span><br><span class="line">SVM：几何间隔最大化原理</span><br><span class="line">支持向量机只考虑局部的边界线附近的点，线性SVM不直接依赖于数据分布</span><br><span class="line">线性SVM依赖数据表达的距离测度，所以需要对数据先做归一化</span><br><span class="line">SVM的损失函数就自带正则</span><br></pre></td></tr></table></figure></p>
+<p>8.rf和Adaboost的异同(优秀的基于决策树的组合算法)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1，相同：二者都是bootsrap自助法选取样本。 </span><br><span class="line">2，相同：二者都是要训练很多棵决策树。 </span><br><span class="line">3，不同：adaboost后面树的训练，其在变量抽样选取的时候，对于上一棵树分错的样本，抽中的概率会加大。 </span><br><span class="line">4，不同：随机森林在训练每一棵树的时候，随机挑选了部分变量作为拆分变量，而不是所有的变量都去作为拆分变量。 </span><br><span class="line">5，不同：在预测新数据时，adaboost中所有的树加权投票来决定因变量的预测值，每棵树的权重和错误率有关；随机森林按照所有树中少数服从多数树的分类值来决定因变量的预测值。</span><br></pre></td></tr></table></figure></p>
+<p>9.给出一堆大小不一的矩形框，快速求矩形框的灰度值之和（当时没理解，这不是肯定要遍历么…后来结束后我想这些矩形框可能是重叠的，估计是要问我关于Bing中快速求梯度的算法）</p>
+<p>10.有什么要问他的</p>
+<h3 id="作业帮提前批机器学习算法岗"><a href="#作业帮提前批机器学习算法岗" class="headerlink" title="作业帮提前批机器学习算法岗"></a>作业帮提前批机器学习算法岗</h3><p>作者：编程一头牛<br>链接：<a href="https://www.nowcoder.com/discuss/90245" target="_blank" rel="noopener">https://www.nowcoder.com/discuss/90245</a><br>来源：牛客网</p>
+<p>对数据预处理怎么填充的缺失值，哪些判定为异常值，对连续属性进行离散化有什么好处，Logistic回归能处理浮点数吗？多项式组合特征对哪个模型中效果提升最大。这个没答上来，问了面试官，面试官说是Logistic回归里面提升最大，而且组合起来的两个特征也是想出来的，没什么理论支撑。还问了模型的评价指标AUC是如何计算的，ROC曲线的横纵坐标代表了什么含义。XGBoost模型里面参数有哪些？如何发现过拟合。XGBoost模型中对数据进行采样的好处？</p>
+<p>如何最快的找出两个集合中的交集，提出用哈希表的方法，问了这种方法的复杂度，然后又问如果这两个集合都特别大，不能再内存中构建哈希表该如何做？可能是想让我回答多线程相关的内容，但是我不会。如何设计哈希表？期间也问过有编过多线程多进程的代码吗</p>
+<h3 id="深信服【机器学习】一面"><a href="#深信服【机器学习】一面" class="headerlink" title="深信服【机器学习】一面"></a>深信服【机器学习】一面</h3><p>作者：Rnanprince<br>链接：<a href="https://www.nowcoder.com/discuss/87283" target="_blank" rel="noopener">https://www.nowcoder.com/discuss/87283</a><br>来源：牛客网</p>
+<p>【机器学习】一面：<br>1.项目介绍，研究的最成功的地方，我以写的文章为例，涉及到的知识点就问<br>2.笔试的数组求和100怎么做的？<br>没抽到这个题，但是做过；接着我说做了查找重复字符串最大长度，深搜，过了就没想别的方法<br>一个数组，求最长的连续子序列的起始下标，当时没理解明白，其实有歧义，简单说了一下<br>3.自己的哪些方面的优点没有涉及到，介绍一下<br>提到了SVM和决策树，介绍一下什么情况下使用？<br>svm:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">这个模型的优势是什么？</span><br><span class="line"></span><br><span class="line">分类效果好；</span><br><span class="line">可以有效地处理高维空间的数据；</span><br><span class="line">可以有效地处理变量个数大于样本个数的数据；</span><br><span class="line">只是使用了一部分子集来进行训练模型，所以SVM模型不需要太大的内存；</span><br><span class="line">可以提高泛化能力；</span><br><span class="line">无局部极小值问题；</span><br><span class="line">他什么情况下表现最好？</span><br><span class="line"></span><br><span class="line">数据的维度较高；</span><br><span class="line">需要模型具有非常强的泛化能力；</span><br><span class="line">样本数据量较小时；</span><br><span class="line">解决非线性问题；</span><br><span class="line">这个模型的缺点是什么？</span><br><span class="line"></span><br><span class="line">无法处理大规模的数据集，因为该算法需要较长的训练时间；</span><br><span class="line">无法有效地处理包含噪声太多的数据集；</span><br><span class="line">SVM模型没有直接给出概率的估计值，而是利用交叉验证的方式估计，这种方式耗时较长；</span><br><span class="line">对缺失数据非常敏感；</span><br><span class="line">对于非线性问题，有时很难找到一个合适的核函数。</span><br><span class="line">什么条件下它表现很差？</span><br><span class="line"></span><br><span class="line">数据集的数据量过大；</span><br><span class="line">数据集中的含有噪声；</span><br><span class="line">数据集中的缺失较多的数据；</span><br><span class="line">对算法的训练效率要求较高；</span><br><span class="line">根据我们当前数据集的特点，为什么这个模型适合这个问题。 </span><br><span class="line">该项目所提供的样本数据相对较少；</span><br><span class="line">该问题是属于非线性问题；</span><br><span class="line">数据集经过“独热编码”后，维度较高</span><br></pre></td></tr></table></figure></p>
+<p>决策树：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">这个模型的优势是什么？</span><br><span class="line"></span><br><span class="line">决策树易于实现和理解；</span><br><span class="line">对于决策树，数据的准备工作一般比较简单；</span><br><span class="line">能够同时处理多种数据类型</span><br><span class="line">给定一个决策树模型，可以根据产生的决策树推出相应的逻辑表达式；</span><br><span class="line">通过静态测试来对模型的表现进行评价；</span><br><span class="line">在相对较短的时间内可以对大量的数据做出非常好的结果；</span><br><span class="line">决策树可以很好地扩展到大型数据中，同时决策树的大小独立于数据库的大小；</span><br><span class="line">计算复杂度相对较低，结果的输出易于理解，对部分的数据缺失不敏感。</span><br><span class="line">他什么情况下表现最好？</span><br><span class="line"></span><br><span class="line">实例是由“属性-值”对表示的；</span><br><span class="line">目标函数具有离散的输出值；</span><br><span class="line">训练数据集包含部分错误(决策树对错误有适应性)；</span><br><span class="line">训练数据缺少少量属性的实例。</span><br><span class="line">这个模型的缺点是什么？</span><br><span class="line"></span><br><span class="line">易于出现过拟合问题；</span><br><span class="line">忽略了数据集中属性之间的相关性；</span><br><span class="line">对于类比不一致的样本，决策树的信息增益倾向于那些数据值较多的特征</span><br><span class="line">什么条件下它表现很差？</span><br><span class="line"></span><br><span class="line">决策树匹配的数据过多时；</span><br><span class="line">分类的类别过于复杂；</span><br><span class="line">数据的属性之间具有非常强的关联。</span><br><span class="line">根据我们当前数据集的特点，为什么这个模型适合这个问题。</span><br><span class="line"></span><br><span class="line">不需要准备太多的训练数据，不需要对数据过多的处理如删除空白值等；</span><br><span class="line">易于编码；</span><br><span class="line">该问题是非线性问题，决策树能够很好地解决非线性问题；</span><br><span class="line">算法的执行效率高，对机器的要求较小。</span><br></pre></td></tr></table></figure></p>
+<h3 id="360浏览器事业部-推荐算法工程师"><a href="#360浏览器事业部-推荐算法工程师" class="headerlink" title="360浏览器事业部 推荐算法工程师"></a>360浏览器事业部 推荐算法工程师</h3><p>作者：泡了个泡<br>链接：<a href="https://www.nowcoder.com/discuss/77924" target="_blank" rel="noopener">https://www.nowcoder.com/discuss/77924</a><br>来源：牛客网</p>
+<p>二面</p>
+<p>1.项目</p>
+<p>2.SVM原始问题为什么要转化为对偶问题，为什么对偶问题就好求解，原始问题不能求解么</p>
+<p>3.K-means 中我想聚成100类 结果发现只能聚成98类，为什么</p>
+<p>4.进程中的内存分段是怎样的</p>
+<p>5.每个线程有哪些东西是自己独享的</p>
+<p>6.一枚不均匀的硬币，我抛了100次，有70次朝上，那么第101次朝上的概率是多少</p>
+<p>这个概率怎么样，公示是如何推导出来的</p>
+<p>7.给你个字符串，字符串是个数字，怎么转换为int型，不用库函数的话</p>
+<p>8.4个海盗，100个金币，每个人轮流提方案，如果你的方案有半数以上通过，那么久可以，否则就会被杀掉，如果你是第一个人，那么你怎么提方案比较好</p>
+<p>9.你的优点是什么</p>
+<h3 id="腾讯沈阳现场一面"><a href="#腾讯沈阳现场一面" class="headerlink" title="腾讯沈阳现场一面"></a>腾讯沈阳现场一面</h3><p>1.项目</p>
+<p>2.特征选择方法都有用过哪些</p>
+<p>3.随机森林怎么进行特征选择</p>
+<p>4.用过哪些机器学习算法</p>
+<p>5.加密方法知道哪些</p>
+<p>6.MD5可逆么</p>
+<p>7.word2vec用过么</p>
+<p>8.极大似然估计是什么意思</p>
+<p>9.上过哪些课</p>
+<p>10.排序算法哪些时间复杂度比较低</p>
+<p>11.计算机网络了解多少</p>
+<h3 id="阿里-新零售-天猫-算法工程师-机器学习"><a href="#阿里-新零售-天猫-算法工程师-机器学习" class="headerlink" title="阿里 新零售 天猫 算法工程师-机器学习"></a>阿里 新零售 天猫 算法工程师-机器学习</h3><p>一面<br>先是一个简单的自我介绍；<br>1.然后介绍了项目的框架和主要创新点；</p>
+<p>2.说一下随机森林和Adaboost，以及区别</p>
+<p>3.说一下GBDT和Adaboost，以及区别</p>
+<p>4.说一下LDA的原理</p>
+<p>5.对于PCA，会有第一主成分、第二主成分，怎么为什么第一主成分是第一，原因是什么？</p>
+<p>6.PCA的主成分是怎么得到的</p>
+<p>3.面向对象的三要素</p>
+<p>4.对深度学习了解多少</p>
+<p>5.你觉得深度学习的方法和传统机器学习比，有什么大的优势</p>
+<h3 id="腾讯提前批"><a href="#腾讯提前批" class="headerlink" title="腾讯提前批"></a>腾讯提前批</h3><p>作者：IamBright<br>链接：<a href="https://www.nowcoder.com/discuss/75166" target="_blank" rel="noopener">https://www.nowcoder.com/discuss/75166</a><br>来源：牛客网</p>
+<p>女朋友在广州又不想换工作的情况下，微信的机器学习算法工程师是最适合我实习的岗位了，因此最先让腾讯的同学内推了一波，在基本没有准备的情况下，接到了提前批电话一面二面，毫无意外的挂了。</p>
+<p>电话一面<br>聊论文，但多数听我在说，没插话什么问题。最后问我第二篇论文里RNN实现的时候有什么trick。<br>问了问凸优化了解吗？传统机器学习了解吗？我答机器学习基本知识都学过，凸优化只了解和机器学习优化算法相关的。也没有继续问细节了。<br>编程题：打印所有子集，我用了迭代，但是写的比较蠢，好在不用调试运行<br>电话二面<br>聊论文，最后问了我跟什么算法做了对比，问我研究的实际意义，产业界现在的水平<br>编程题：打印螺旋矩阵，要我给一个可运行的结果。很简单的题，我一个符号错误调了很久都没发现，这里应该就印象很差了。<br>linux里查看端口被占用的命令，linux不熟，没答上。<br>AUC是什么？我说了是ROC曲线下面积，但是想不起来ROC是啥。我都是做序列数据，没做过二分类问题。<br>LR和SVM的区别。我说了损失函数不同，然后说了SVM通过核技巧可以更好的应对非线性，但是前面好差，这里也没好好组织语言了。<br>提前批挂的没什么话说，就是没准备，好久没做过算法题的情况下，突然出题做就很不顺手。而且机器学习的基础知识都有点忘了，像AUC这种没用过的，基本一问就懵逼。</p>
+<p>之后跟工作的同学聊了一下，来牛客刷了刷面经，制定了简单的复习内容和刷题计划。花了一周时间，复习了一下西瓜书前11章和deep learning book前11章，刷了leetcode上三四十道medium的题吧（链表、字符串、迭代、dfs、堆、树、动态规划等每天刷一类题练练手），并且给自己做完2篇论文都准备了面试介绍版，又让同学推了阿里和网易，并进入腾讯笔试流程。</p>
+<h3 id="算法、数据挖掘岗面经"><a href="#算法、数据挖掘岗面经" class="headerlink" title="算法、数据挖掘岗面经"></a>算法、数据挖掘岗面经</h3><p>作者：胖胖胖子<br>链接：<a href="https://www.nowcoder.com/discuss/81814" target="_blank" rel="noopener">https://www.nowcoder.com/discuss/81814</a><br>来源：牛客网</p>
+<p>1.华为<br>回国之后参加的第一次面试就是华为的留学生专场招聘，岗位是大数据开放（华为好像填什么岗位都没差吧~），一共只有两面<br>一面：介绍我的项目经历，我介绍完面试官尴尬的笑了笑说他不是做大数据方向的，也就没问我什么，聊了聊天愉快的过了<br>二面：可能会针对笔试提问，因为面试官问我为什么没参加笔试，然后就问了问职业规划，说大数据方向都在深圳工作，然后就一直问怎么看待华为的加班文化，怎么看待压力之类的<br>大概10天之后就直接把offer发到了邮箱里<br>2.第四范式（二面挂）<br>刚面完华为就参加了第四范式的面试，以为面试就是聊聊天，后来发现真是naive，第四范式的岗位是nlp研究员<br>一面：就写了两个代码，一个是逆时针打印矩阵，一个是leetcode原题count and say，虽然当时还没刷过题但写的都是easy难度，就过了<br>二面：二面面试官是牛津大学的phd，问我是不是distinction我说不是，就感受到了一股失望~讲了讲项目，问的很细，但是都在自己的项目范围内，问完之后又是写代码，一个字符串如何删除不匹配的括号然后输出括号匹配的字符串，比如（abc（），输出（abc）和abc（），哼哼唧唧没写出来就跪了<br>3.招银网络<br>招银网络面试岗位是算法工程师，一共两轮技术面，一轮hr面<br>一面：讲项目，问了决策树ID3，C4.5，CART的区别，讲了SVM的原理，然后写了找两个数的最小公倍数的代码<br>二面：讲项目，然后面试官说他是做C++开发的，问我会不会C++，我说学过但很久没用了，就聊了聊天愉快的过了<br>hr面：略（就谈人生谈理想接不接受调岗）</p>
+<ol>
+<li>平安科技<br>招银网络面试岗位是算法工程师，一共两轮技术面，一轮hr面<br>一面：讲项目，问了问当时爬虫有没有用什么框架，然后问为什么文本分类我选择了朴素贝叶斯，然后让我说了一下对word2vec的理解<br>二面：最痛的一次面试，三个面试官，一个问数据结构和数据库：问我知道的数据结构和使用场景，然后口述怎么把单链表变双向链表，讲了一下红黑树，以及红黑树的应用，数据的范式，索引失效的情况，如何优化数据库性能等等。第二个面试官问操作系统和计算机网络：TCP三次握手，四次挥手，第二次挥手和第三次挥手的时间间隔如何界定，TCP拥塞控制，OSI五层模型，每层有什么协议，TCP和UDP的区别，UDP的应用（这个问题我没太理解），ARP协议，python多线程，python3对python2是否有改进。第三个面试官问设计模式和算法：python闭包，bagging/boosting的区别，XGboost特点，tf-idf缺点，单例模式（设计模式我完全不会），怎样设计一个分布式的爬虫。<br>hr面：大概聊了聊对薪资的期望，和工作的部门<br>5.链家<br>链家是参加了牛客的留学生专场，感觉链家的面试官人真的好~岗位是机器学习/数据挖掘工程师，不过链家面试有点坎坷面完前两面才发现我面的大数据开发，其实我想去的是数据挖掘，然后就开始了第三轮面试<br>一面：先写了一个很简单的判断两个二叉树是不是一样的树，然后就说给一台机器内存有限制，然后10台服务器，每个服务器上有一个1G文件，假设文件里单词，如何给这些单词按频率排序，又问了求数据流的中位数，最后是智力题，给你两个一模一样的杯子，假设一共有10层楼，怎样找到杯子摔下来能不碎的最高楼层。<br>二面：面试官先问我职业规划，我说数据挖掘，他就比较懵说他们是大数据开发部门，问我考不考虑，我说还是倾向于做数据挖掘，就开始了面试，问了数据库索引的优缺点，索引失效的情况，然后复合索引如何引用会失效，然后问了ACID，剩下的记不清了，说我基础不错去给我联系数据挖掘的面试官<br>三面：手写LR损失函数，LR/SVM区别，手画word2vec网络结构，bagging，boosting，stacking的区别和联系，如果RF和GBDT达到同样的准确度哪个分裂的树更少为什么，随机梯度下降和梯度下降哪一个更快，XGBoost特点，XGBoost的L1和L2正则化怎么体现，特征工程相关的卡方统计和互信息计算公式，然后写了一个如何用最少的硬币找钱。<br>HR面：介绍了一下链家的福利和部门的发展。<br>6.快手<br>快手4.18的笔试，5.5面试大概是备胎池捞起来了，三轮技术面，一轮hr面<br>一面：介绍项目，边讲项目边提问，然后写了个代码，判断有向图中是否有环<br>二面：介绍项目，边讲项目边提问，问了文本分类问什么朴素贝叶斯比SVM，决策树效果更好，然后分类性能度量，precision，recall，F1 score和ROC AUC对比，写了一个leetcode的flatten nested list iterator<br>三面：只写代码，第一个AABB的字符串输出AB，第二个找数组的最长递增子序列，然后介绍了一下他们做的东西<br>HR面：谈了谈offer</li>
+</ol>
+<h3 id="顺丰提前批人工智能岗技术面面经"><a href="#顺丰提前批人工智能岗技术面面经" class="headerlink" title="顺丰提前批人工智能岗技术面面经"></a>顺丰提前批人工智能岗技术面面经</h3><p>作者：撒泼打滚求Offer<br>链接：<a href="https://www.nowcoder.com/discuss/92370" target="_blank" rel="noopener">https://www.nowcoder.com/discuss/92370</a><br>来源：牛客网</p>
+<ol>
+<li>目标检测了解吗，（了解一点）Faster RCNN跟RCNN有什么区别</li>
+<li>SPP， YOLO了解吗（不了解）（后悔没去看看= =）</li>
+<li>梯度消失梯度爆炸怎么解决</li>
+<li>RNN容易梯度消失，怎么解决（LSTM）</li>
+<li>LSTM跟RNN有啥区别</li>
+<li>传统的机器学习算法了解吗（不怎么了解，说了个KMeans）</li>
+<li>KMeans讲讲，KMeans有什么缺点，K怎么确定（不会）</li>
+<li>卷积层和池化层有什么区别（不是很懂这个问题的点）</li>
+<li><p>防止过拟合有哪些方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1、正则化，即在对模型的目标函数（objective function）或代价函数（cost function）加上正则项</span><br><span class="line">  随着模型训练的进行，模型的复杂度会增加，此时模型在训练数据集上的训练误差会逐渐减小，但是在模型的复杂度达到一定程度时，模型在验证集上的误差反而随着模型的复杂度增加而增大。此时便发生了过拟合，即模型的复杂度升高。</span><br><span class="line"></span><br><span class="line">1、early stopping、</span><br><span class="line">    迭代次数（epochs）截断的方法（常用 梯度下降法）；</span><br><span class="line">    训练数据一次遍历结束，计算指标，指标不增加，停止训练；</span><br><span class="line">    记录一个最好的指标，如果之后的10次，20次训练达到的指标都没有之前最好的高，则停止训练。</span><br><span class="line">2、数据增强（Data augmentation）、</span><br><span class="line">    从数据源采集更多数据 </span><br><span class="line">    复制原有数据并加上随机噪声 </span><br><span class="line">    重采样 </span><br><span class="line">    根据当前数据集估计数据分布参数，使用该分布产生更多数据等</span><br><span class="line">3、正则化（Regularization）、</span><br><span class="line">    正则化方法是指在进行目标函数或代价函数优化时，在目标函数或代价函数后面加上一个正则项，一般有L1正则与L2正则等。</span><br><span class="line">4、Dropout</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>dropout咋回事讲讲</p>
+</li>
+<li>你有什么要问我的吗</li>
+</ol>
+<h3 id="联影医疗-Offer"><a href="#联影医疗-Offer" class="headerlink" title="联影医疗  Offer"></a>联影医疗  Offer</h3><p>作者：吃饭睡觉编论文<br>链接：<a href="https://www.nowcoder.com/discuss/52357" target="_blank" rel="noopener">https://www.nowcoder.com/discuss/52357</a><br>来源：牛客网</p>
+<p>联影医疗  Offer<br>一面<br>1、GBDT和xgboost的区别<br>2、GBDT和LR的区别<br>3、讲项目（为什么用GBDT LR？）<br>4、随便讲一个熟悉的传统图像处理中的特征提取和描述子（sift和sift描述子）<br>二面<br>1、写代码：实现统计图像灰度直方图的代码<br>2、熟悉的聚类算法、k-means原理、混合高斯模型原理<br>3、PCA原理、数学解释（应该是一个最优的线性子空间）<br>4、surf相比sift特征点的优化之处<br>5、写代码：dijkstra最短路径算法<br>6、SVM原理、过拟合怎么解决<br>7、霍夫变换检测直线和圆的原理<br>HR面<br>个人优缺点、拿到的offer、期望薪资、是不是独生子、对联影医疗的了解</p>
+<h3 id="VIVO算法"><a href="#VIVO算法" class="headerlink" title="VIVO算法"></a>VIVO算法</h3><p>作者：MadCoder<br>链接：<a href="https://www.nowcoder.com/discuss/94110" target="_blank" rel="noopener">https://www.nowcoder.com/discuss/94110</a><br>来源：牛客网</p>
+<p>1.评估指标<br>2.在AUC值大时，Log损失也大。请问可能的原因<br>3.梯度消失，梯度爆炸原因及解决<br>4.概率题：8支球队循环赛，前四名晋级。求晋级可能性<br>5.Spark和hadoop实现K-MEANS，及优劣比较</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/笔面试/" rel="tag"># 笔面试</a>
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/01/git_update_error1/" rel="next" title="git_update_error1">
+                <i class="fa fa-chevron-left"></i> git_update_error1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/16/机器学习-梯度消失爆炸/" rel="prev" title="机器学习-梯度消失爆炸">
+                机器学习-梯度消失爆炸 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">AomanHao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">86</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/aomanhao" title="GitHub &rarr; https://github.com/aomanhao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:1014325364@qq.com" title="E-Mail &rarr; mailto:1014325364@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/2831714980" title="Weibo &rarr; https://weibo.com/u/2831714980" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CVTE面经"><span class="nav-number">1.</span> <span class="nav-text">CVTE面经</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#作业帮提前批机器学习算法岗"><span class="nav-number">1.1.</span> <span class="nav-text">作业帮提前批机器学习算法岗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深信服【机器学习】一面"><span class="nav-number">1.2.</span> <span class="nav-text">深信服【机器学习】一面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#360浏览器事业部-推荐算法工程师"><span class="nav-number">1.3.</span> <span class="nav-text">360浏览器事业部 推荐算法工程师</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#腾讯沈阳现场一面"><span class="nav-number">1.4.</span> <span class="nav-text">腾讯沈阳现场一面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阿里-新零售-天猫-算法工程师-机器学习"><span class="nav-number">1.5.</span> <span class="nav-text">阿里 新零售 天猫 算法工程师-机器学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#腾讯提前批"><span class="nav-number">1.6.</span> <span class="nav-text">腾讯提前批</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法、数据挖掘岗面经"><span class="nav-number">1.7.</span> <span class="nav-text">算法、数据挖掘岗面经</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#顺丰提前批人工智能岗技术面面经"><span class="nav-number">1.8.</span> <span class="nav-text">顺丰提前批人工智能岗技术面面经</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#联影医疗-Offer"><span class="nav-number">1.9.</span> <span class="nav-text">联影医疗  Offer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VIVO算法"><span class="nav-number">1.10.</span> <span class="nav-text">VIVO算法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AomanHao</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":75,"height":150},"mobile":{"show":true},"log":false});</script></body>
+</html>

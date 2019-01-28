@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="图像处理灰度变换直方图">
+<meta name="keywords" content="Opencv,图像处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图像处理_灰度变换_直方图">
+<meta property="og:url" content="http://www.aomanhao.top/2018/09/07/图像处理_灰度变换_直方图/index.html">
+<meta property="og:site_name" content="AomanHao的个人博客">
+<meta property="og:description" content="图像处理灰度变换直方图">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://p3qhnc0eg.bkt.clouddn.com/blog/img/huidu_junheng1.png">
+<meta property="og:image" content="http://p3qhnc0eg.bkt.clouddn.com/blog/img/huidu_guiding1.png">
+<meta property="og:updated_time" content="2019-01-28T01:16:31.394Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图像处理_灰度变换_直方图">
+<meta name="twitter:description" content="图像处理灰度变换直方图">
+<meta name="twitter:image" content="http://p3qhnc0eg.bkt.clouddn.com/blog/img/huidu_junheng1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.aomanhao.top/2018/09/07/图像处理_灰度变换_直方图/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>图像处理_灰度变换_直方图 | AomanHao的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AomanHao的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">唯有梦想与好姑娘不可辜负</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2018/09/07/图像处理_灰度变换_直方图/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AomanHao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AomanHao的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">图像处理_灰度变换_直方图
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-07 09:39:40" itemprop="dateCreated datePublished" datetime="2018-09-07T09:39:40+08:00">2018-09-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 09:16:31" itemprop="dateModified" datetime="2019-01-28T09:16:31+08:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>图像处理<em>灰度变换</em>直方图</p>
+<a id="more"></a>
+<h2 id="直方图均衡化-Histogram-Equalization"><a href="#直方图均衡化-Histogram-Equalization" class="headerlink" title="直方图均衡化 Histogram Equalization"></a>直方图均衡化 Histogram Equalization</h2><p>假如图像的灰度分布不均匀，其灰度分布集中在较窄的范围内，使图像的细节不够清晰，对比度较低。通常采用<strong>直方图均衡化</strong>及<strong>直方图规定化</strong>两种变换，使图像的灰度范围拉开或使灰度均匀分布，从而增大反差，使图像细节清晰，以达到增强的目的。<br>直方图均衡化，对图像进行非线性拉伸，重新分配图像的灰度值，使一定范围内图像的灰度值大致相等。这样，原来直方图中间的峰值部分对比度得到增强，而两侧的谷底部分对比度降低，输出图像的直方图是一个较为平坦的直方图。</p>
+<h3 id="均衡化算法"><a href="#均衡化算法" class="headerlink" title="均衡化算法"></a>均衡化算法</h3><p>直方图的均衡化实际也是一种灰度的变换过程，将当前的灰度分布通过一个变换函数，变换为范围更宽、灰度分布更均匀的图像。也就是将原图像的直方图修改为在整个灰度区间内大致均匀分布，因此扩大了图像的动态范围，增强图像的对比度。通常均衡化选择的变换函数是灰度的累积概率，直方图均衡化算法的步骤：</p>
+<p>1、计算原图像的灰度直方图 P(Sk)=nkn，其中n为像素总数，nk为灰度级Sk的像素个数</p>
+<p>2、计算原始图像的累积直方图 CDF(Sk)=∑i=0knin=∑i=0kPs(Si)<br>Dj=L⋅CDF(Si)，其中 Dj是目的图像的像素，CDF(Si)是源图像灰度为i的累积分布，L是图像中最大灰度级（灰度图为255）直接应用该方法得到图像的灰度直方图</p>
+<p>3\将灰度直方图进行归一化，计算灰度的累积概率；<br>创建灰度变化的查找表<br>应用查找表，将原图像变换为灰度均衡的图像</p>
+<h4 id="均衡化过程中，必须要保证两个条件"><a href="#均衡化过程中，必须要保证两个条件" class="headerlink" title="均衡化过程中，必须要保证两个条件"></a>均衡化过程中，必须要保证两个条件</h4><blockquote>
+<p>1、像素无论怎么映射，一定要保证原来的大小关系不变，较亮的区域，依旧是较亮的，较暗依旧暗，只是对比度增大，绝对不能明暗颠倒；<br><br>2、如果是八位图像，那么像素映射函数的值域应在0和255之间的，不能越界。</p>
+</blockquote>
+<p>综合以上两个条件，累积分布函数是个好的选择，因为<strong>累积分布函数</strong>是<strong>单调增函数</strong>（控制大小关系），并且值域是0到1（控制越界问题），所以直方图均衡化中使用的是累积分布函数。</p>
+<h4 id="累积分布函数"><a href="#累积分布函数" class="headerlink" title="累积分布函数"></a>累积分布函数</h4><p>累积分布函数具有一些好的性质，那么如何运用累积分布函数使得直方图均衡化？比较概率分布函数和累积分布函数，前者的二维图像是参差不齐的，后者是单调递增的。直方图均衡化过程中，映射方法是</p>
+<script type="math/tex; mode=display">S_k = \sum_{j=0}^k\frac{n_j}{n} . k=0,1...,L-1</script><p>$n$是图像素总和，$n_k$是当前灰度级的像素个数，$L$是图像中灰度级总数</p>
+<p>操作步骤有:<br><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/huidu_junheng1.png" alt=""></p>
+<h3 id="直方图规定化"><a href="#直方图规定化" class="headerlink" title="直方图规定化"></a>直方图规定化</h3><p>直方图规定化，就是对原始图像做变换，使得变换后的图像的直方图跟我们规定的一样。</p>
+<p>具体步骤如下：</p>
+<p>1、首先对原始图像做直方图均衡化，得到每个像素s和累积分布T(s);</p>
+<p>2、根据需要的规定化直方图，求累积分布G(Z)；</p>
+<p>3、显然，如果累积直方图中有0值，那么是不会分配像素值的，因为0乘以255还是零。</p>
+<p>4、对于每一个T（s）（假设其像素值为ss）,找到在G（Z）中与其差值最小的那个G（z）值（假设对应的像素值为zz），那么规定化后就把ss变换为zz。</p>
+<p>直方图规定化流程下图：<br><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/huidu_guiding1.png" alt=""></p>
+<p>1、计算原图像的累积直方图</p>
+<p>2、计算规定直方图的累积直方图</p>
+<p>3、计算两累积直方图的差值的绝对值</p>
+<p>4、根据累积直方图差值建立灰度级的映射</p>
+<h3 id="局部直方图处理-amp-直方图统计"><a href="#局部直方图处理-amp-直方图统计" class="headerlink" title="局部直方图处理&amp;直方图统计"></a>局部直方图处理&amp;直方图统计</h3><h3 id="Opencv代码"><a href="#Opencv代码" class="headerlink" title="Opencv代码"></a>Opencv代码</h3><h4 id="灰度直方图均衡"><a href="#灰度直方图均衡" class="headerlink" title="灰度直方图均衡"></a>灰度直方图均衡</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line">// HistogramGrayEqualizeHist.cpp : 定义控制台应用程序的入口点。</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#include &quot;stdafx.h&quot;</span><br><span class="line"></span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;opencv2/core/core.hpp&gt;   //cvGetSize  cvCreateImage</span><br><span class="line">#include &lt;opencv2/highgui/highgui.hpp&gt;</span><br><span class="line">#include &lt;opencv2/opencv.hpp&gt;  //cvResize cvInitMatHeader cvGetMinMaxHistValue cvCvtColor</span><br><span class="line">#include &lt;opencv2/imgproc/imgproc.hpp&gt;</span><br><span class="line"></span><br><span class="line">#ifdef _DEBUG</span><br><span class="line">#pragma comment(lib, &quot;opencv_core244d&quot;)</span><br><span class="line">#pragma comment(lib, &quot;opencv_highgui244d&quot;)</span><br><span class="line">#pragma comment(lib, &quot;opencv_imgproc244d&quot;)  //cvResize</span><br><span class="line">#else</span><br><span class="line">#pragma comment(lib, &quot;opencv_core244d&quot;)</span><br><span class="line">#pragma comment(lib, &quot;opencv_highgui244d&quot;)</span><br><span class="line">#pragma comment(lib, &quot;opencv_imgproc244d&quot;)  //cvResize</span><br><span class="line">#endif</span><br><span class="line">#define cvQueryHistValue_1D(hist,idx0) ((float)cvGetReal1D( (hist)-&gt;bins, (idx0)))</span><br><span class="line"></span><br><span class="line">using namespace std;  </span><br><span class="line">#pragma comment(linker, &quot;/subsystem:\&quot;windows\&quot; /entry:\&quot;mainCRTStartup\&quot;&quot;)  </span><br><span class="line">void FillWhite(IplImage *pImage)  </span><br><span class="line">&#123;  </span><br><span class="line">    cvRectangle(pImage, cvPoint(0, 0), cvPoint(pImage-&gt;width, pImage-&gt;height), CV_RGB(255, 255, 255), CV_FILLED);  </span><br><span class="line">&#125;  </span><br><span class="line">// 创建灰度图像的直方图  </span><br><span class="line">CvHistogram* CreateGrayImageHist(IplImage **ppImage)  </span><br><span class="line">&#123;  </span><br><span class="line">    int nHistSize = 256;  </span><br><span class="line">    float fRange[] = &#123;0, 255&#125;;  //灰度级的范围    </span><br><span class="line">    float *pfRanges[] = &#123;fRange&#125;;    </span><br><span class="line">    CvHistogram *pcvHistogram = cvCreateHist(1, &amp;nHistSize, CV_HIST_ARRAY, pfRanges);  </span><br><span class="line">    cvCalcHist(ppImage, pcvHistogram);  </span><br><span class="line">    return pcvHistogram;  </span><br><span class="line">&#125;  </span><br><span class="line">// 根据直方图创建直方图图像  </span><br><span class="line">IplImage* CreateHisogramImage(int nImageWidth, int nScale, int nImageHeight, CvHistogram *pcvHistogram)  </span><br><span class="line">&#123;  </span><br><span class="line">    IplImage *pHistImage = cvCreateImage(cvSize(nImageWidth * nScale, nImageHeight), IPL_DEPTH_8U, 1);  </span><br><span class="line">    FillWhite(pHistImage);  </span><br><span class="line">  </span><br><span class="line">    //统计直方图中的最大直方块  </span><br><span class="line">    float fMaxHistValue = 0;  </span><br><span class="line">    cvGetMinMaxHistValue(pcvHistogram, NULL, &amp;fMaxHistValue, NULL, NULL);  </span><br><span class="line">  </span><br><span class="line">    //分别将每个直方块的值绘制到图中  </span><br><span class="line">    int i;  </span><br><span class="line">    for(i = 0; i &lt; nImageWidth; i++)  </span><br><span class="line">    &#123;  </span><br><span class="line">        float fHistValue = cvQueryHistValue_1D(pcvHistogram, i); //像素为i的直方块大小  </span><br><span class="line">        int nRealHeight = cvRound((fHistValue / fMaxHistValue) * nImageHeight);  //要绘制的高度  </span><br><span class="line">        cvRectangle(pHistImage,  </span><br><span class="line">            cvPoint(i * nScale, nImageHeight - 1),  </span><br><span class="line">            cvPoint((i + 1) * nScale - 1, nImageHeight - nRealHeight),  </span><br><span class="line">            cvScalar(i, 0, 0, 0),   </span><br><span class="line">            CV_FILLED  </span><br><span class="line">            );   </span><br><span class="line">    &#125;  </span><br><span class="line">    return pHistImage;  </span><br><span class="line">&#125;  </span><br><span class="line">int main( int argc, char** argv )  </span><br><span class="line">&#123;     </span><br><span class="line">    const char *pstrWindowsSrcTitle = &quot;原图&quot;;  </span><br><span class="line">    const char *pstrWindowsGrayTitle = &quot;灰度图&quot;;  </span><br><span class="line">    const char *pstrWindowsHistTitle = &quot;直方图&quot;;  </span><br><span class="line">    const char *pstrWindowsGrayEqualizeTitle = &quot;灰度图-均衡化后&quot;;  </span><br><span class="line">    const char *pstrWindowsHistEqualizeTitle = &quot;直方图-均衡化后&quot;;  </span><br><span class="line">      </span><br><span class="line">    // 从文件中加载原图  </span><br><span class="line">    // IplImage *pSrcImage = cvLoadImage(&quot;./images/yangmi.jpg&quot;, CV_LOAD_IMAGE_UNCHANGED);  </span><br><span class="line">    IplImage *pSrcImage = cvLoadImage(&quot;./images/beauty.png&quot;, CV_LOAD_IMAGE_UNCHANGED);  </span><br><span class="line">    IplImage *pGrayImage = cvCreateImage(cvGetSize(pSrcImage), IPL_DEPTH_8U, 1);  </span><br><span class="line">    IplImage *pGrayEqualizeImage = cvCreateImage(cvGetSize(pSrcImage), IPL_DEPTH_8U, 1);  </span><br><span class="line">      </span><br><span class="line">    // 灰度图  </span><br><span class="line">    cvCvtColor(pSrcImage, pGrayImage, CV_BGR2GRAY);  </span><br><span class="line">    // 直方图图像数据  </span><br><span class="line">    int nHistImageWidth = 255;  </span><br><span class="line">    int nHistImageHeight = 150;   </span><br><span class="line">    int nScale = 2;    </span><br><span class="line">  </span><br><span class="line">    // 灰度直方图及直方图图像  </span><br><span class="line">    CvHistogram *pcvHistogram = CreateGrayImageHist(&amp;pGrayImage);  </span><br><span class="line">    IplImage *pHistImage = CreateHisogramImage(nHistImageWidth, nScale, nHistImageHeight, pcvHistogram);  </span><br><span class="line">  </span><br><span class="line">    // 均衡化 </span><br><span class="line">    //函数功能：直方图均衡化，该函数能归一化图像亮度和增强对比度</span><br><span class="line">    //第一个参数表示输入图像，必须为灰度图（8位，单通道图）</span><br><span class="line">    //第二个参数表示输出图像</span><br><span class="line">    //该函数采用如下法则对输入图像进行直方图均衡化：</span><br><span class="line">        //1：计算输入图像的直方图H。</span><br><span class="line">        //2：直方图归一化，因此直方块和为255。</span><br><span class="line">        //3：计算直方图积分，H&apos;(i) = Sum(H(j)) (0&lt;=j&lt;=i)。</span><br><span class="line">        //4：采用H&apos;作为查询表：dst(x, y) = H&apos;(src(x, y))进行图像变换。</span><br><span class="line">    cvEqualizeHist(pGrayImage, pGrayEqualizeImage);  </span><br><span class="line">  </span><br><span class="line">    // 均衡化后的灰度直方图及直方图图像  </span><br><span class="line">    CvHistogram *pcvHistogramEqualize = CreateGrayImageHist(&amp;pGrayEqualizeImage);         </span><br><span class="line">    IplImage *pHistEqualizeImage = CreateHisogramImage(nHistImageWidth, nScale, nHistImageHeight, pcvHistogramEqualize);  </span><br><span class="line">  </span><br><span class="line">    // 显示  </span><br><span class="line">    cvNamedWindow(pstrWindowsSrcTitle); </span><br><span class="line">    cvNamedWindow(pstrWindowsGrayTitle); </span><br><span class="line">    cvNamedWindow(pstrWindowsGrayEqualizeTitle); </span><br><span class="line">    cvNamedWindow(pstrWindowsHistTitle); </span><br><span class="line">    cvNamedWindow(pstrWindowsHistEqualizeTitle); </span><br><span class="line">    cvShowImage(pstrWindowsSrcTitle,pSrcImage);</span><br><span class="line">    cvShowImage(pstrWindowsGrayTitle,pGrayImage);</span><br><span class="line">    cvShowImage(pstrWindowsGrayEqualizeTitle,pGrayEqualizeImage);</span><br><span class="line">    cvShowImage(pstrWindowsHistTitle,pHistImage);</span><br><span class="line">    cvShowImage(pstrWindowsHistEqualizeTitle,pHistEqualizeImage);</span><br><span class="line">    cvWaitKey(0);  </span><br><span class="line">    //回收资源代码…  </span><br><span class="line">    cvDestroyWindow(pstrWindowsSrcTitle);</span><br><span class="line">    cvDestroyWindow(pstrWindowsGrayTitle);</span><br><span class="line">    cvDestroyWindow(pstrWindowsGrayEqualizeTitle);</span><br><span class="line">    cvDestroyWindow(pstrWindowsHistTitle);</span><br><span class="line">    cvDestroyWindow(pstrWindowsHistEqualizeTitle);</span><br><span class="line">    cvReleaseImage(&amp;pSrcImage);</span><br><span class="line">    cvReleaseImage(&amp;pGrayImage);</span><br><span class="line">    cvReleaseImage(&amp;pGrayEqualizeImage);</span><br><span class="line">    cvReleaseImage(&amp;pHistImage);</span><br><span class="line">    cvReleaseImage(&amp;pHistEqualizeImage);</span><br><span class="line">    return 0;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="直方图规定化-1"><a href="#直方图规定化-1" class="headerlink" title="直方图规定化"></a>直方图规定化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">void hist_specify(const Mat &amp;src, const Mat &amp;dst,Mat &amp;result)</span><br><span class="line">&#123;</span><br><span class="line">    Histogram1D hist1D;</span><br><span class="line">    MatND src_hist = hist1D.getHistogram(src);</span><br><span class="line">    MatND dst_hist = hist1D.getHistogram(dst);</span><br><span class="line"></span><br><span class="line">    float src_cdf[256] = &#123; 0 &#125;;</span><br><span class="line">    float dst_cdf[256] = &#123; 0 &#125;;</span><br><span class="line"></span><br><span class="line">    // 源图像和目标图像的大小不一样，要将得到的直方图进行归一化处理</span><br><span class="line">    src_hist /= (src.rows * src.cols);</span><br><span class="line">    dst_hist /= (dst.rows * dst.cols);</span><br><span class="line"></span><br><span class="line">    // 计算原始直方图和规定直方图的累积概率</span><br><span class="line">    for (int i = 0; i &lt; 256; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (i == 0)</span><br><span class="line">        &#123;</span><br><span class="line">            src_cdf[i] = src_hist.at&lt;float&gt;(i);</span><br><span class="line">            dst_cdf[i] = dst_hist.at&lt;float&gt;(i);</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            src_cdf[i] = src_cdf[i - 1] + src_hist.at&lt;float&gt;(i);</span><br><span class="line">            dst_cdf[i] = dst_cdf[i - 1] + dst_hist.at&lt;float&gt;(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 累积概率的差值</span><br><span class="line">    float diff_cdf[256][256];</span><br><span class="line">    for (int i = 0; i &lt; 256; i++)</span><br><span class="line">        for (int j = 0; j &lt; 256; j++)</span><br><span class="line">            diff_cdf[i][j] = fabs(src_cdf[i] - dst_cdf[j]);</span><br><span class="line"></span><br><span class="line">    // 构建灰度级映射表</span><br><span class="line">    Mat lut(1, 256, CV_8U);</span><br><span class="line">    for (int i = 0; i &lt; 256; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        // 查找源灰度级为ｉ的映射灰度</span><br><span class="line">        //　和ｉ的累积概率差值最小的规定化灰度</span><br><span class="line">        float min = diff_cdf[i][0];</span><br><span class="line">        int index = 0;</span><br><span class="line">        for (int j = 1; j &lt; 256; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            if (min &gt; diff_cdf[i][j])</span><br><span class="line">            &#123;</span><br><span class="line">                min = diff_cdf[i][j];</span><br><span class="line">                index = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        lut.at&lt;uchar&gt;(i) = static_cast&lt;uchar&gt;(index);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 应用查找表，做直方图规定化</span><br><span class="line">    LUT(src, lut, result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Opencv/" rel="tag"># Opencv</a>
+          
+            <a href="/tags/图像处理/" rel="tag"># 图像处理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/04/机器学习面试精华/" rel="next" title="机器学习面试">
+                <i class="fa fa-chevron-left"></i> 机器学习面试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/19/VScode配置/" rel="prev" title="VScode配置">
+                VScode配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">AomanHao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">86</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/aomanhao" title="GitHub &rarr; https://github.com/aomanhao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:1014325364@qq.com" title="E-Mail &rarr; mailto:1014325364@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/2831714980" title="Weibo &rarr; https://weibo.com/u/2831714980" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#直方图均衡化-Histogram-Equalization"><span class="nav-number">1.</span> <span class="nav-text">直方图均衡化 Histogram Equalization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#均衡化算法"><span class="nav-number">1.1.</span> <span class="nav-text">均衡化算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#均衡化过程中，必须要保证两个条件"><span class="nav-number">1.1.1.</span> <span class="nav-text">均衡化过程中，必须要保证两个条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#累积分布函数"><span class="nav-number">1.1.2.</span> <span class="nav-text">累积分布函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直方图规定化"><span class="nav-number">1.2.</span> <span class="nav-text">直方图规定化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部直方图处理-amp-直方图统计"><span class="nav-number">1.3.</span> <span class="nav-text">局部直方图处理&amp;直方图统计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Opencv代码"><span class="nav-number">1.4.</span> <span class="nav-text">Opencv代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#灰度直方图均衡"><span class="nav-number">1.4.1.</span> <span class="nav-text">灰度直方图均衡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#直方图规定化-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">直方图规定化</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AomanHao</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":75,"height":150},"mobile":{"show":true},"log":false});</script></body>
+</html>

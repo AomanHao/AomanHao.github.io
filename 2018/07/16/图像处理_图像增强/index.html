@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="图像处理_图像增强">
+<meta name="keywords" content="图像处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图像处理_图像增强">
+<meta property="og:url" content="http://www.aomanhao.top/2018/07/16/图像处理_图像增强/index.html">
+<meta property="og:site_name" content="AomanHao的个人博客">
+<meta property="og:description" content="图像处理_图像增强">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdn.net/20161229163907449?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRWJvd1Rhbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://img-blog.csdn.net/20131014153326875?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdGhuaDE2OQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://p3qhnc0eg.bkt.clouddn.com/blog/img/img_fft.png">
+<meta property="og:image" content="https://img-blog.csdn.net/20180515114639532?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTI2Nzk3MDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180515114758843?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTI2Nzk3MDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180515114917692?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTI2Nzk3MDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20171029101506855?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcGlhb3h1ZXpob25n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:updated_time" content="2019-01-28T01:16:31.381Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图像处理_图像增强">
+<meta name="twitter:description" content="图像处理_图像增强">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20161229163907449?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRWJvd1Rhbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.aomanhao.top/2018/07/16/图像处理_图像增强/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>图像处理_图像增强 | AomanHao的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AomanHao的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">唯有梦想与好姑娘不可辜负</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2018/07/16/图像处理_图像增强/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AomanHao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AomanHao的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">图像处理_图像增强
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-16 09:39:40" itemprop="dateCreated datePublished" datetime="2018-07-16T09:39:40+08:00">2018-07-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 09:16:31" itemprop="dateModified" datetime="2019-01-28T09:16:31+08:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>图像处理_图像增强</p>
+<a id="more"></a>
+<h2 id="图像增强前期知识"><a href="#图像增强前期知识" class="headerlink" title="图像增强前期知识"></a>图像增强前期知识</h2><p>图像增强是图像模式识别中非常重要的图像预处理过程。<br>图像增强的目的是通过对图像中的信息进行处理，使得有利于模式识别的信息得到增强，不利于模式识别的信息被抑制，扩大图像中不同物体特征之间的差别，为图像的信息提取及其识别奠定良好的基础。图像增强按实现方法不同可分为点增强、空域增强和频域增强。</p>
+<p>1、点增强<br>点增强主要指图像灰度变换和几何变换。图像的灰度变换也称为点运算、对比度增强或对比度拉伸，它是图像数字化软件和图像显示软件的重要组成部分。灰度变换是一种既简单又重要的技术，它能让用户改变图像数据占据的灰度范围。一幅输入图像经过灰度变换后将产生一幅新的输出图像，由输入像素点的灰度值决定相应的输出像素点的灰度值。灰度变换不会改变图像内的空间关系。图像的几何变换是图像处理中的另一种基本变换。它通常包括图像的平移、图像的镜像变换、图像的缩放和图像的旋转。通过图像的几何变换可以实现图像的最基本的坐标变换及缩放功能。</p>
+<p>2、空域增强<br>图像的空间信息可以反映图像中物体的位置 、形状、大小等特征，而这些特征可以通过一定的物理模式来描述。例如，物体的边缘轮廓由于灰度值变化剧烈一般出现高频率特征，而一个比较平滑的物体内部由于灰度值比较均一则呈现低频率特征。因此，根据需要可以分别增强图像的高频和低频特征。对图像的高频增强可以突出物体的边缘轮廓，从而起到锐化图像的作用。例如，对于人脸的比对查询，就需要通过高频增强技术来突出五宫的轮廓。相应地，对图像的低频部分进行增强可以对图像进行平滑处理，一般用于图像的噪声消除。</p>
+<p>3、频域增强<br>图像的空域增强一般只是对数字图像进行局部增强，而图像的频域增强可以对图像进行全局增强。频域增强技术是在数字图像的频率域空间对图像进行滤波，因此需要将图像从空间域变换到频率域，一般通过傅里叶变换实现。在频率域空间的滤波与空域滤波一样可以通过卷积实现，因此傅里叶变换和和卷积理论是频域滤波技术的基础。</p>
+<h3 id="图像增强的方法分类："><a href="#图像增强的方法分类：" class="headerlink" title="图像增强的方法分类："></a>图像增强的方法分类：</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>图像增强方法</th>
+<th>实现方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>处理对象</td>
+<td>灰度图</td>
+</tr>
+<tr>
+<td></td>
+<td>（伪）彩色图</td>
+</tr>
+<tr>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>处理策略</td>
+<td>全局处理</td>
+</tr>
+<tr>
+<td></td>
+<td>局部处理（ROI ROI，Region of Interest Interest）</td>
+</tr>
+<tr>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>处理方法</td>
+<td>空间域（点域运算，即灰度变换）</td>
+</tr>
+<tr>
+<td></td>
+<td>空间域（邻域方法，即空域滤波）</td>
+</tr>
+<tr>
+<td></td>
+<td>频域方法</td>
+</tr>
+<tr>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>处理目的</td>
+<td>图像锐化</td>
+</tr>
+<tr>
+<td></td>
+<td>平滑去噪</td>
+</tr>
+<tr>
+<td></td>
+<td>灰度调整（对比度增强）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="图像增强的方法之对比度增强"><a href="#图像增强的方法之对比度增强" class="headerlink" title="图像增强的方法之对比度增强"></a>图像增强的方法之对比度增强</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>图像增强方法</th>
+<th>实现方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>灰度变换法</td>
+<td>线性变换（已实现）</td>
+</tr>
+<tr>
+<td></td>
+<td>对数变换（已实现）</td>
+</tr>
+<tr>
+<td></td>
+<td>指数变换（已实现）</td>
+</tr>
+<tr>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>直方图调整法</td>
+<td>直方图均衡化（已实现）</td>
+</tr>
+<tr>
+<td></td>
+<td>直方图匹配（未实现）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>图像对比度增强</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>图像对比度增强</td>
+<td>直接</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>间接</td>
+<td>直方图拉伸</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>直方图均衡化</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">直方图拉伸</span><br><span class="line">    是通过对比度拉伸对直方图进行调整，从而“扩大”前景和背景灰度的差别，以达到增强对比度的目的，这种方法可以利用线性或非线性的方法来实现;直方图均衡化则通过使用累积函数对灰度值进行“调整”以实现对比度的增强。</span><br><span class="line">直方图均衡化处理</span><br><span class="line">    “中心思想”是把原始图像的灰度直方图从比较集中的某个灰度区间变成在全部灰度范围内的均匀分布。直方图均衡化就是对图像进行非线性拉伸，重新分配图像像素值，使一定灰度范围内的像素数量大致相同。直方图均衡化就是把给定图像的直方图分布改变成“均匀”分布直方图分布。</span><br></pre></td></tr></table></figure>
+<h2 id="常用图像增强"><a href="#常用图像增强" class="headerlink" title="常用图像增强"></a>常用图像增强</h2><h3 id="直方图均衡化"><a href="#直方图均衡化" class="headerlink" title="直方图均衡化"></a>直方图均衡化</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>直方图均衡化</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>优点</td>
+<td>处理过亮过暗图像很有效(曝光过度或者曝光不足),刻画更多细节</td>
+</tr>
+<tr>
+<td></td>
+<td>是一个相当直观的技术并且是可逆操作，如果已知均衡化函数，那么就可以恢复原始的直方图，并且计算量也不大</td>
+</tr>
+<tr>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>处理数据随机，可能会降低信噪比(会增加背景噪声对比度，降低有用信号对比度)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>c语言代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &quot;fftw3.h&quot;</span><br><span class="line">#include &quot;string&quot;</span><br><span class="line">#include &quot;vector&quot;</span><br><span class="line">#include &lt;windows.h&gt;</span><br><span class="line">#include &lt;opencv2/legacy/legacy.hpp&gt;</span><br><span class="line">#include &lt;opencv2/nonfree/nonfree.hpp&gt;//opencv_nonfree模块：包含一些拥有专利的算法，如SIFT、SURF函数源码。 </span><br><span class="line">#include &quot;opencv2/core/core.hpp&quot;</span><br><span class="line">#include &quot;opencv2/features2d/features2d.hpp&quot;</span><br><span class="line">#include &quot;opencv2/highgui/highgui.hpp&quot;</span><br><span class="line">#include &lt;opencv2/nonfree/features2d.hpp&gt;</span><br><span class="line"> </span><br><span class="line">using namespace cv;</span><br><span class="line">using namespace std;</span><br><span class="line"> </span><br><span class="line">class hisEqt</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	hisEqt::hisEqt();</span><br><span class="line">	hisEqt::~hisEqt();</span><br><span class="line">public:</span><br><span class="line">	int w;</span><br><span class="line">	int h;</span><br><span class="line">	int nlen;</span><br><span class="line"> </span><br><span class="line">	int *pHis;</span><br><span class="line">	float *pdf;</span><br><span class="line"> </span><br><span class="line">	//=====求像素分布概率密度====  </span><br><span class="line">	void  getPdf();</span><br><span class="line"> </span><br><span class="line">	//======统计像素个数=======  </span><br><span class="line">	void getHis(unsigned char*imgdata);</span><br><span class="line"> </span><br><span class="line">	//==========画统计分布直方图===============  </span><br><span class="line">	void drawHistogram(const float*pdf,Mat &amp;hist1);  </span><br><span class="line"> </span><br><span class="line">	//===========直方图均衡化==========  </span><br><span class="line">	void hisBal();</span><br><span class="line"> </span><br><span class="line">	//====直方图均衡化后的图像===  </span><br><span class="line">	void imgBal(unsigned char* img);</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">hisEqt::hisEqt() :nlen(0)&#123;</span><br><span class="line">	pHis = new int[256 * sizeof(int)];</span><br><span class="line">	memset(pHis, 0, 256 * sizeof(int));</span><br><span class="line">	pdf = new float[255 * sizeof(float)];</span><br><span class="line">	memset(pdf, 0, 255 * sizeof(float));</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">hisEqt::~hisEqt()&#123;</span><br><span class="line">	delete[]pHis;</span><br><span class="line">	delete[]pdf;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">//======统计像素个数=======  </span><br><span class="line">void hisEqt::getHis(unsigned char*imgdata)&#123;</span><br><span class="line">	for (int i = 0; i&lt;nlen; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		pHis[imgdata[i]]++;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">//=====求像素分布概率密度====  </span><br><span class="line">void hisEqt::getPdf()&#123;</span><br><span class="line">	for (int k = 0; k&lt;256; k++)</span><br><span class="line">	&#123;</span><br><span class="line">		pdf[k] = pHis[k] / float(nlen);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">//===========直方图均衡化==========  </span><br><span class="line">void hisEqt::hisBal()&#123;</span><br><span class="line">	for (int k = 1; k&lt;256; k++)</span><br><span class="line">	&#123;</span><br><span class="line">		pdf[k] += pdf[k - 1];</span><br><span class="line">	&#125;</span><br><span class="line">	for (int k = 0; k&lt;256; k++)</span><br><span class="line">	&#123;</span><br><span class="line">		pHis[k] = 255 * pdf[k];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">//====直方图均衡化  </span><br><span class="line">void hisEqt::imgBal(unsigned char* img)&#123;</span><br><span class="line">	for (int i = 0; i&lt;nlen; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		img[i] = pHis[img[i]];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">void hisEqt::drawHistogram(const float *pdf, Mat&amp; hist1)&#123;</span><br><span class="line">	for (int k = 0; k&lt;256; k++)</span><br><span class="line">	&#123;</span><br><span class="line">		if (k % 2 == 0)</span><br><span class="line">		&#123;</span><br><span class="line">			Point a(k, 255), b(k, 255 - pdf[k] * 2550);</span><br><span class="line">			line(hist1,</span><br><span class="line">				a,</span><br><span class="line">				b,</span><br><span class="line">				Scalar(0, 0, 255),</span><br><span class="line">				1);</span><br><span class="line">		&#125;</span><br><span class="line">		else</span><br><span class="line">		&#123;</span><br><span class="line">			Point a(k, 255), b(k, 255 - pdf[k] * 2550);</span><br><span class="line">			line(hist1,</span><br><span class="line">				a,</span><br><span class="line">				b,</span><br><span class="line">				Scalar(0, 255, 0),</span><br><span class="line">				1);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	Mat image = imread(&quot;Fig0651(a)(flower_no_compression).tif&quot;);</span><br><span class="line">	if (!image.data)</span><br><span class="line">		return -1;</span><br><span class="line"> </span><br><span class="line">	Mat hist2(256, 256, CV_8UC3, Scalar(0, 0, 0));</span><br><span class="line">	Mat hist1(256, 256, CV_8UC3, Scalar(0, 0, 0));</span><br><span class="line"> </span><br><span class="line">	Mat imgOut = Mat(image.rows, image.cols, CV_8UC3, Scalar(0, 0, 0));</span><br><span class="line">	vector&lt;Mat&gt; planes;</span><br><span class="line">	int chn = image.channels();</span><br><span class="line">	if (chn == 3)</span><br><span class="line">	&#123;</span><br><span class="line">		split(image, planes);</span><br><span class="line">	&#125;</span><br><span class="line">	while (chn)</span><br><span class="line">	&#123;</span><br><span class="line">		chn--;</span><br><span class="line">		unsigned char* imageData = new unsigned char[sizeof(unsigned char)*(image.cols*image.rows)];</span><br><span class="line">		memcpy(imageData, planes[chn].data, planes[chn].cols*planes[chn].rows);</span><br><span class="line">		hisEqt his;//自定义的类</span><br><span class="line">		his.nlen = image.rows*image.cols;</span><br><span class="line">		his.getHis(imageData);</span><br><span class="line">		his.getPdf();</span><br><span class="line"> </span><br><span class="line">		//  //======画原图直方图并保存============  </span><br><span class="line">		his.drawHistogram(his.pdf, hist1);</span><br><span class="line">		string pic_name = &quot;hisline&quot;;</span><br><span class="line">		pic_name = pic_name + to_string(chn);</span><br><span class="line">		pic_name=pic_name+	&quot;.jpg&quot;;</span><br><span class="line">		imwrite(pic_name, hist1);</span><br><span class="line"> </span><br><span class="line">		his.hisBal();</span><br><span class="line">		his.getPdf();</span><br><span class="line">		//  //======画均衡化后直方图并保存============  </span><br><span class="line">		his.drawHistogram(his.pdf, hist2);</span><br><span class="line">		string pic_name0 = &quot;his_balanceline&quot;;</span><br><span class="line">		pic_name0 = pic_name0 + to_string(chn);</span><br><span class="line">		pic_name0 = pic_name0 + &quot;.jpg&quot;;</span><br><span class="line">		imwrite(pic_name0, hist2);</span><br><span class="line"> </span><br><span class="line">		//  //=====图像均衡化===  </span><br><span class="line">		his.imgBal(imageData);</span><br><span class="line">		memcpy(planes[chn].data, imageData, planes[chn].cols*planes[chn].rows);</span><br><span class="line">		delete[] imageData;</span><br><span class="line">		imageData = NULL;</span><br><span class="line">	&#125;</span><br><span class="line">	merge(planes, imgOut);//单通道合并</span><br><span class="line">	imwrite(&quot;result.jpg&quot;, imgOut);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="指数变换"><a href="#指数变换" class="headerlink" title="指数变换"></a>指数变换</h3><blockquote>
+<p>先做归一化，再指数变换，最后反归一化</p>
+</blockquote>
+<script type="math/tex; mode=display">S=c*R^r</script><p>通过合理的选择c和r可以压缩灰度范围，算法以c=1.0/255.0, r=2实现</p>
+<p><img src="https://img-blog.csdn.net/20161229163907449?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRWJvd1Rhbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>Opencv代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">void ExpEnhance(IplImage* img, IplImage* dst)</span><br><span class="line">&#123;</span><br><span class="line">	// 由于oldPixel:[1,256],则可以先保存一个查找表</span><br><span class="line">	uchar lut[256] =&#123;0&#125;;</span><br><span class="line"> </span><br><span class="line">	double temp = 1.0/255.0;</span><br><span class="line"> </span><br><span class="line">	for ( int i =0; i&lt;255; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		lut[i] = (uchar)(temp*i*i+0.5);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	for( int row =0; row &lt;img-&gt;height; row++)</span><br><span class="line">	&#123;</span><br><span class="line">		uchar *data = (uchar*)img-&gt;imageData+ row* img-&gt;widthStep;</span><br><span class="line">		uchar *dstData = (uchar*)dst-&gt;imageData+ row* dst-&gt;widthStep;</span><br><span class="line"> </span><br><span class="line">		for ( int col = 0; col&lt;img-&gt;width; col++)</span><br><span class="line">		&#123;</span><br><span class="line">			for( int k=0; k&lt;img-&gt;nChannels; k++)</span><br><span class="line">			&#123;</span><br><span class="line">				uchar t1 = data[col*img-&gt;nChannels+k];				</span><br><span class="line">				dstData[col*img-&gt;nChannels+k] = lut[t1];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="对数变换"><a href="#对数变换" class="headerlink" title="对数变换"></a>对数变换</h3><blockquote>
+<p>低灰度值部分扩展，高灰度值部分压缩,来强调图像低灰度部分</p>
+</blockquote>
+<script type="math/tex; mode=display">s=c*log_{v+1}(1+v*r)</script><p>底数为（v+1），实际输入范围为归一化的【0-1】，其输出也为【0-1】。底数越大，对低灰度部分的强调就越强，对高灰度部分的压缩也就越强</p>
+<p><img src="https://img-blog.csdn.net/20131014153326875?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdGhuaDE2OQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p>matlab代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function dst_img=myLogEnhance(src_img,v)   </span><br><span class="line">c=1.0;  </span><br><span class="line">src_img = mat2gray(src_img,[0 255]);  </span><br><span class="line">g =c*log2(1 + v*src_img)/log2(v+1);  </span><br><span class="line">%反归一化  </span><br><span class="line">max=255;  </span><br><span class="line">min=0;  </span><br><span class="line">dst_img=uint8(g*(max-min)+min);</span><br></pre></td></tr></table></figure></p>
+<h3 id="灰度拉伸"><a href="#灰度拉伸" class="headerlink" title="灰度拉伸"></a>灰度拉伸</h3><blockquote>
+<p>灰度拉升可以改善图像的动态范围</p>
+</blockquote>
+<script type="math/tex; mode=display">s=\frac{1}{1+\frac{m}{r+eps}^E}</script><p>输入r为【0-1】，其输出s也为【0-1】</p>
+<h3 id="线性拉伸"><a href="#线性拉伸" class="headerlink" title="线性拉伸"></a>线性拉伸</h3><p>三段线性变换</p>
+<blockquote>
+<p>突出感兴趣的目标或者灰度区间，相对抑制那些不感兴趣的灰度区域</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">范围吧</span><br><span class="line">%横轴</span><br><span class="line">fa=20; fb=80;</span><br><span class="line">%纵轴</span><br><span class="line">ga=50; gb=230;</span><br><span class="line"></span><br><span class="line">function dst_img=myLinearEnhance(src_img,fa,fb,ga,gb)  </span><br><span class="line"> </span><br><span class="line">[height,width] = size(src_img);</span><br><span class="line">dst_img=uint8(zeros(height,width));</span><br><span class="line"> </span><br><span class="line">src_img=double(src_img);</span><br><span class="line"> </span><br><span class="line">%三段斜率</span><br><span class="line">k1=ga/fa; </span><br><span class="line">k2=(gb- ga)/(fb- fa);</span><br><span class="line">k3=(255- gb)/(255- fb);</span><br><span class="line">for i=1:height</span><br><span class="line">    for j=1:width</span><br><span class="line">            if src_img(i,j) &lt;= fa</span><br><span class="line">                dst_img(i,j)= k1*src_img(i,j);</span><br><span class="line">            elseif fa &lt; src_img(i,j) &amp;&amp; src_img(i,j) &lt;= fb</span><br><span class="line">                dst_img(i,j)= k2*( src_img(i,j)- fa)+ ga;</span><br><span class="line">            else</span><br><span class="line">                dst_img(i,j)= k3*( src_img(i,j)- fb)+ gb;</span><br><span class="line">            end</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line">dst_img=uint8(dst_img);</span><br></pre></td></tr></table></figure>
+<h2 id="频率域图像增强"><a href="#频率域图像增强" class="headerlink" title="频率域图像增强"></a>频率域图像增强</h2><blockquote>
+<p>傅里叶变换提供了一种从空间域到频域的转换手段，且用傅里叶反变换可以实现从频域到空间域的无损转换，不丢失任何信息</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>频域图像增强</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>高通滤波器</td>
+<td>突出图像的边界</td>
+</tr>
+<tr>
+<td>低通滤波器</td>
+<td>抑制图像噪声，改善图像质量</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="分析频谱图"><a href="#分析频谱图" class="headerlink" title="分析频谱图"></a>分析频谱图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">clc;  %清空命令行</span><br><span class="line">clear;%清空变量</span><br><span class="line"> </span><br><span class="line">I1=imread(&apos;beauty.jpg&apos;);</span><br><span class="line">subplot(1,2,1);</span><br><span class="line">imshow(I1);</span><br><span class="line">title(&apos;beauty.jpg&apos;);</span><br><span class="line"> </span><br><span class="line">I2=fft2(I1);%计算二维FFT</span><br><span class="line">spectrum =fftshift(I2);%将零点移到中心</span><br><span class="line">temp= log(1+ abs(spectrum) ); %对幅值做 对数变换 以压缩动态范围</span><br><span class="line">subplot(1,2,2);</span><br><span class="line">imshow(temp,[]);</span><br><span class="line">title(&apos;FFT&apos;);</span><br></pre></td></tr></table></figure>
+<p><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/img_fft.png" alt=""></p>
+<blockquote>
+<p>低频分量:主要对整副图像的强度的综合度量.灰度变化缓慢的特性<br>高频分量:主要是对图像边缘和轮廓的度量.灰度变化快的特性</p>
+</blockquote>
+<p>幅度图，看图像的频率分布，哪里亮那里暗，低频一般在图像中央<br>如果只保留图像的中心点，则图像的细节会丢失，大致轮廓还在，不同区域好友不同的灰度<br>如果保留远离中心的点，而去掉中心的幅度，则保留着图像的细节，而不同区域的灰度一样</p>
+<h3 id="频域低通滤波"><a href="#频域低通滤波" class="headerlink" title="频域低通滤波"></a>频域低通滤波</h3><h4 id="理想低通滤波器"><a href="#理想低通滤波器" class="headerlink" title="理想低通滤波器"></a>理想低通滤波器</h4><p>理想低通滤波器并不能很好的兼顾 滤除噪声 与 保留细节 这两个方面</p>
+<p>理想低通滤波器：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">% 频域低通滤波器 imidealflpf.m</span><br><span class="line">%&#123;</span><br><span class="line">函数：    function ff=imidealflpf(I,freq)</span><br><span class="line">函数说明：构造理想的频域低通滤波器（即 滤镜）</span><br><span class="line">参数说明：I：为输入原图像</span><br><span class="line">         freq:为截止频率</span><br><span class="line">返回值： 与I等大的频域滤镜</span><br><span class="line"> %&#125;</span><br><span class="line"> </span><br><span class="line"> function ff=imidealflpf(I,freq)</span><br><span class="line"> </span><br><span class="line"> [M,N]=size(I);</span><br><span class="line"> ff=ones(M,N);</span><br><span class="line"> for i=1:M</span><br><span class="line">     for j=1:N</span><br><span class="line">         if (sqrt ((i-M/2)^2+ (j-N/2)^2 ) &gt;freq)  ff(i,j)=0; %高于截止频率 设为0</span><br><span class="line">         end</span><br><span class="line">     end</span><br><span class="line"> end</span><br></pre></td></tr></table></figure></p>
+<p>不同截止频率的滤波结果：<br><img src="https://img-blog.csdn.net/20180515114639532?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTI2Nzk3MDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
+<h4 id="高斯低通滤波器"><a href="#高斯低通滤波器" class="headerlink" title="高斯低通滤波器"></a>高斯低通滤波器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">%高斯低通滤波器滤镜 imgaussflpf.m</span><br><span class="line">%&#123;</span><br><span class="line">函数： function ff=imgaussflpf(I,sigma)</span><br><span class="line">函数说明：构造高斯低通滤镜</span><br><span class="line">参数说明：I：输入图像</span><br><span class="line">         sigma：标准差</span><br><span class="line">返回值：与原图像等大的高斯低通滤镜</span><br><span class="line"> </span><br><span class="line">%&#125;</span><br><span class="line">  </span><br><span class="line">function ff=imgaussflpf(I,sigma)</span><br><span class="line">[M,N]=size(I);</span><br><span class="line"> ff=ones(M,N);</span><br><span class="line"> for i=1:M</span><br><span class="line">     for j=1:N</span><br><span class="line">         ff(i,j)= exp( -((i-M/2)^2+(j-N/2)^2) /2/(sigma^2) ); %高斯函数</span><br><span class="line">        </span><br><span class="line">     end</span><br><span class="line"> end</span><br></pre></td></tr></table></figure>
+<p>高斯滤波结果：<br><img src="https://img-blog.csdn.net/20180515114758843?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTI2Nzk3MDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
+<blockquote>
+<p>高斯相比于低通滤波，在有效抑制噪声的同时，图像的模糊程度更低</p>
+</blockquote>
+<p><a href="https://blog.csdn.net/u012679707/article/details/78236474" target="_blank" rel="noopener">cankao</a></p>
+<h3 id="频域高通滤波器"><a href="#频域高通滤波器" class="headerlink" title="频域高通滤波器"></a>频域高通滤波器</h3><blockquote>
+<p>图像锐化可以通过衰减频域中的低频信号来实现</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">%高斯高通滤波器滤镜 imgaussfhpf.m</span><br><span class="line">%&#123;</span><br><span class="line">函数： function ff=imgaussfhpf(I,sigma)</span><br><span class="line">函数说明：构造高斯高通滤镜</span><br><span class="line">参数说明：I：输入图像</span><br><span class="line">         sigma：标准差</span><br><span class="line">返回值：与原图像等大的高斯高通滤镜</span><br><span class="line"> </span><br><span class="line">%&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">function ff=imgaussfhpf(I,sigma)</span><br><span class="line">[M,N]=size(I);</span><br><span class="line"> ff=ones(M,N);</span><br><span class="line"> for i=1:M</span><br><span class="line">     for j=1:N</span><br><span class="line">         ff(i,j)= 1-exp( -((i-M/2)^2+(j-N/2)^2) /2/(sigma^2) ); %  1-(gauss)</span><br><span class="line">        </span><br><span class="line">     end</span><br><span class="line"> end</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180515114917692?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTI2Nzk3MDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
+<blockquote>
+<p>1、高斯高通滤波器可以较好的提取边缘信息；<br>2、sigma越小，Gauss高通的截止频率越低，通过的低频成分越多，边缘提取越不精确，会包含更多的非边缘信息；（要求太低，多了浑水摸鱼者）<br>3、sigma越大，边缘提取越精确，但可能包含不完整的边缘信息。（要求太高，有了漏网之鱼）</p>
+</blockquote>
+<h3 id="拉普拉斯滤波器"><a href="#拉普拉斯滤波器" class="headerlink" title="拉普拉斯滤波器"></a>拉普拉斯滤波器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">%laplace滤波器滤镜 imlapf.m</span><br><span class="line">%&#123;</span><br><span class="line">函数： function ff=imlapf(I)</span><br><span class="line">函数说明：构造laplace滤镜</span><br><span class="line">参数说明：I：输入图像</span><br><span class="line">       </span><br><span class="line">返回值：与原图像等大的laplace滤镜</span><br><span class="line"> </span><br><span class="line">%&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">function ff=imlapf(I)</span><br><span class="line">[M,N]=size(I);</span><br><span class="line"> ff=ones(M,N);</span><br><span class="line"> for i=1:M</span><br><span class="line">     for j=1:N</span><br><span class="line">         ff(i,j)= -((i-M/2)^2+(j-N/2)^2)  % </span><br><span class="line">        </span><br><span class="line">     end</span><br><span class="line"> end</span><br></pre></td></tr></table></figure>
+<h2 id="图像处理评价指标"><a href="#图像处理评价指标" class="headerlink" title="图像处理评价指标"></a>图像处理评价指标</h2><h3 id="基于误差灵敏度评价算法："><a href="#基于误差灵敏度评价算法：" class="headerlink" title="基于误差灵敏度评价算法："></a>基于误差灵敏度评价算法：</h3><p>最简单的质量评价算法就是均方差(Mean Squared Error, MSE)和峰值信噪比(Peak Signal- Noise Ratio, PSNR)。MSE 和 PSNR 计算复杂度小，易于实现，在图像处理领域中广泛应用。但缺点是它们给出的数值与图像的感知质量之间没有必然联系。</p>
+<h4 id="峰值信噪比-PSNR"><a href="#峰值信噪比-PSNR" class="headerlink" title="峰值信噪比-PSNR"></a>峰值信噪比-PSNR</h4><p>图像压缩等领域信号重建质量的评价</p>
+<p><img src="https://img-blog.csdn.net/20171029101506855?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcGlhb3h1ZXpob25n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>MSE为当前图像 X 和参考图像 Y 的均方误差,H、W 分别表示图像的高和宽；n为每像素的比特数，一般取8，即像素灰阶数为256。PSNR的单位是dB，数值越大表示失真越小。</p>
+<p>matlab代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function pnsr_result = psnr(img_ref,img_in)       </span><br><span class="line">    %   img_ref is a high reference quality image   </span><br><span class="line">    %   img_in is the denoise image    </span><br><span class="line">    %   pnsr_result is the PSNR of the denoise image    </span><br><span class="line">    width = size(img_ref,2);    </span><br><span class="line">    heigh = size(img_ref,1);    </span><br><span class="line">    if( width ~= size(img_in,2) || heigh ~= size(img_in,1) )    </span><br><span class="line">        disp(&apos;Please check whether the input image and reference image have same size&apos;);    </span><br><span class="line">        return    </span><br><span class="line">    end    </span><br><span class="line">    [a,b]=size(img_ref);      </span><br><span class="line">    XX=double(img_ref) - double(img_in);      </span><br><span class="line">    mse_value = sum(sum( XX.^2 ))/(a*b);      </span><br><span class="line">    pnsr_result = 10*log10( 255*255 / mse_value );   </span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<h4 id="SSIM"><a href="#SSIM" class="headerlink" title="SSIM"></a>SSIM</h4><h4 id="信噪比（SNR）"><a href="#信噪比（SNR）" class="headerlink" title="信噪比（SNR）"></a>信噪比（SNR）</h4><p>信噪比就是有用信号与噪声信号的比值</p>
+<script type="math/tex; mode=display">snr=10*log_{10}\frac{sigma(I2)}{sigma(I2-I1)}</script><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function snr=SNR2(I,In)</span><br><span class="line">% 计算噪声比</span><br><span class="line">% I :original signal</span><br><span class="line">% In:noisy signal</span><br><span class="line">% snr=10*log10(sigma2(I2)/sigma2(I2-I1))</span><br><span class="line"> </span><br><span class="line">[~,~,nchannel]=size(I);</span><br><span class="line">snr=0;</span><br><span class="line">I=double(I);</span><br><span class="line">In=double(In);</span><br><span class="line">if nchannel==1</span><br><span class="line">    Ps=sum(sum((I-mean(mean(I))).^2));%signal power</span><br><span class="line">    Pn=sum(sum((I-In).^2));%noise power</span><br><span class="line">    snr=10*log10(Ps/Pn);</span><br><span class="line">elseif nchannel==3</span><br><span class="line">    for i=1:3</span><br><span class="line">        Ps=sum(sum((I(:,:,i)-mean(mean(I(:,:,i)))).^2));%signal power</span><br><span class="line">        Pn=sum(sum((I(:,:,i)-In(:,:,i)).^2));%noise power</span><br><span class="line">        snr=snr+10*log10(Ps/Pn);</span><br><span class="line">    end</span><br><span class="line">    snr=snr/3;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h3 id="基于结构相似度评价算法"><a href="#基于结构相似度评价算法" class="headerlink" title="基于结构相似度评价算法"></a>基于结构相似度评价算法</h3><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="曝光过度问题处理"><a href="#曝光过度问题处理" class="headerlink" title="曝光过度问题处理"></a>曝光过度问题处理</h3><p>计算当前图像的反相（255-image)，然后取当前图像和反相图像的较小者为当前像素位置的值。</p>
+<script type="math/tex; mode=display">min(image,(255-image))</script><h3 id="加Masaic算法"><a href="#加Masaic算法" class="headerlink" title="加Masaic算法"></a>加Masaic算法</h3><p>原理：用中心像素来表示邻域像素<br>Opencv代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">uchar getPixel( IplImage* img, int row, int col, int k)</span><br><span class="line">&#123;</span><br><span class="line">	return ((uchar*)img-&gt;imageData + row* img-&gt;widthStep)[col*img-&gt;nChannels +k];</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">void setPixel( IplImage* img, int row, int col, int k, uchar val)</span><br><span class="line">&#123;</span><br><span class="line">	((uchar*)img-&gt;imageData + row* img-&gt;widthStep)[col*img-&gt;nChannels +k] = val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">--</span><br><span class="line"></span><br><span class="line">// nSize:为尺寸大小，奇数</span><br><span class="line">// 将邻域的值用中心像素的值替换</span><br><span class="line">void Masic(IplImage* img, IplImage* dst, int nSize)</span><br><span class="line">&#123;</span><br><span class="line">	int offset = (nSize-1)/2;</span><br><span class="line">	for ( int row = offset; row &lt;img-&gt;height - offset; row= row+offset)</span><br><span class="line">	&#123;</span><br><span class="line">		for( int col= offset; col&lt;img-&gt;width - offset; col = col+offset)</span><br><span class="line">		&#123;</span><br><span class="line">			int val0 = getPixel(img, row, col, 0);</span><br><span class="line">			int val1 = getPixel(img, row, col, 1);</span><br><span class="line">			int val2 = getPixel(img, row, col, 2);</span><br><span class="line">			for ( int m= -offset; m&lt;offset; m++)</span><br><span class="line">			&#123;</span><br><span class="line">				for ( int n=-offset; n&lt;offset; n++)</span><br><span class="line">				&#123;</span><br><span class="line">					setPixel(dst, row+m, col+n, 0, val0);</span><br><span class="line">					setPixel(dst, row+m, col+n, 1, val1);</span><br><span class="line">					setPixel(dst, row+m, col+n, 2, val2);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/图像处理/" rel="tag"># 图像处理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/16/Linux_commnd/" rel="next" title="Linux_常用命令">
+                <i class="fa fa-chevron-left"></i> Linux_常用命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/16/机器学习_概率论_数学基础/" rel="prev" title="机器学习_概率论_数学基础">
+                机器学习_概率论_数学基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">AomanHao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">86</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/aomanhao" title="GitHub &rarr; https://github.com/aomanhao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:1014325364@qq.com" title="E-Mail &rarr; mailto:1014325364@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/2831714980" title="Weibo &rarr; https://weibo.com/u/2831714980" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图像增强前期知识"><span class="nav-number">1.</span> <span class="nav-text">图像增强前期知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图像增强的方法分类："><span class="nav-number">1.1.</span> <span class="nav-text">图像增强的方法分类：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图像增强的方法之对比度增强"><span class="nav-number">1.2.</span> <span class="nav-text">图像增强的方法之对比度增强</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用图像增强"><span class="nav-number">2.</span> <span class="nav-text">常用图像增强</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#直方图均衡化"><span class="nav-number">2.1.</span> <span class="nav-text">直方图均衡化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指数变换"><span class="nav-number">2.2.</span> <span class="nav-text">指数变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对数变换"><span class="nav-number">2.3.</span> <span class="nav-text">对数变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#灰度拉伸"><span class="nav-number">2.4.</span> <span class="nav-text">灰度拉伸</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性拉伸"><span class="nav-number">2.5.</span> <span class="nav-text">线性拉伸</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#频率域图像增强"><span class="nav-number">3.</span> <span class="nav-text">频率域图像增强</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分析频谱图"><span class="nav-number">3.1.</span> <span class="nav-text">分析频谱图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#频域低通滤波"><span class="nav-number">3.2.</span> <span class="nav-text">频域低通滤波</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#理想低通滤波器"><span class="nav-number">3.2.1.</span> <span class="nav-text">理想低通滤波器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高斯低通滤波器"><span class="nav-number">3.2.2.</span> <span class="nav-text">高斯低通滤波器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#频域高通滤波器"><span class="nav-number">3.3.</span> <span class="nav-text">频域高通滤波器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拉普拉斯滤波器"><span class="nav-number">3.4.</span> <span class="nav-text">拉普拉斯滤波器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像处理评价指标"><span class="nav-number">4.</span> <span class="nav-text">图像处理评价指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于误差灵敏度评价算法："><span class="nav-number">4.1.</span> <span class="nav-text">基于误差灵敏度评价算法：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#峰值信噪比-PSNR"><span class="nav-number">4.1.1.</span> <span class="nav-text">峰值信噪比-PSNR</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSIM"><span class="nav-number">4.1.2.</span> <span class="nav-text">SSIM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信噪比（SNR）"><span class="nav-number">4.1.3.</span> <span class="nav-text">信噪比（SNR）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于结构相似度评价算法"><span class="nav-number">4.2.</span> <span class="nav-text">基于结构相似度评价算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">5.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#曝光过度问题处理"><span class="nav-number">5.1.</span> <span class="nav-text">曝光过度问题处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加Masaic算法"><span class="nav-number">5.2.</span> <span class="nav-text">加Masaic算法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AomanHao</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":75,"height":150},"mobile":{"show":true},"log":false});</script></body>
+</html>

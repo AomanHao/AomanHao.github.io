@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="keywords" content="笔面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode题解">
+<meta property="og:url" content="http://www.aomanhao.top/2018/08/16/leetcode_sum/index.html">
+<meta property="og:site_name" content="AomanHao的个人博客">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ph04wnm2q.bkt.clouddn.com/bg/magazine-unlock-01-2.3.971-_c98a796eb65a419dbcfa164bbb6563e7.jpg">
+<meta property="og:updated_time" content="2019-01-28T01:16:31.296Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetcode题解">
+<meta name="twitter:image" content="http://ph04wnm2q.bkt.clouddn.com/bg/magazine-unlock-01-2.3.971-_c98a796eb65a419dbcfa164bbb6563e7.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.aomanhao.top/2018/08/16/leetcode_sum/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>leetcode题解 | AomanHao的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AomanHao的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">唯有梦想与好姑娘不可辜负</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2018/08/16/leetcode_sum/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AomanHao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AomanHao的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">leetcode题解
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-16 09:39:40" itemprop="dateCreated datePublished" datetime="2018-08-16T09:39:40+08:00">2018-08-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 09:16:31" itemprop="dateModified" datetime="2019-01-28T09:16:31+08:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p><img width="800" height="800" src="http://ph04wnm2q.bkt.clouddn.com/bg/magazine-unlock-01-2.3.971-_c98a796eb65a419dbcfa164bbb6563e7.jpg"></p>
+<a id="more"></a>
+<h3 id="三数之和"><a href="#三数之和" class="headerlink" title="三数之和"></a>三数之和</h3><p>给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。</p>
+<p>注意：答案中不可以包含重复的三元组。</p>
+<p>例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，</p>
+<p>满足要求的三元组集合为：<br>[<br>  [-1, 0, 1],<br>  [-1, -1, 2]<br>]</p>
+<h3 id="1-Two-Sum"><a href="#1-Two-Sum" class="headerlink" title="1    Two Sum"></a>1    Two Sum</h3><p>5    array、set    sort、Two Pointers</p>
+<h3 id="8-String-to-Integer-atoi-5-string-Math"><a href="#8-String-to-Integer-atoi-5-string-Math" class="headerlink" title="8    String to Integer (atoi)    5    string    Math"></a>8    String to Integer (atoi)    5    string    Math</h3><h3 id="15-3Sum-5-array-Two-Pointers"><a href="#15-3Sum-5-array-Two-Pointers" class="headerlink" title="15    3Sum    5    array    Two Pointers"></a>15    3Sum    5    array    Two Pointers</h3><h3 id="20-Valid-Parentheses-5-string-Stack"><a href="#20-Valid-Parentheses-5-string-Stack" class="headerlink" title="20    Valid Parentheses    5    string    Stack"></a>20    Valid Parentheses    5    string    Stack</h3><h3 id="21-Merge-Two-Sorted-Lists-5-linked-list-sort、Two-Pointers、merge"><a href="#21-Merge-Two-Sorted-Lists-5-linked-list-sort、Two-Pointers、merge" class="headerlink" title="21    Merge Two Sorted Lists    5    linked list    sort、Two Pointers、merge"></a>21    Merge Two Sorted Lists    5    linked list    sort、Two Pointers、merge</h3><h3 id="28-Implement-strStr-5-string-Two-Pointers、KMP、rolling-hash"><a href="#28-Implement-strStr-5-string-Two-Pointers、KMP、rolling-hash" class="headerlink" title="28    Implement strStr()    5    string    Two Pointers、KMP、rolling hash"></a>28    Implement strStr()    5    string    Two Pointers、KMP、rolling hash</h3><h3 id="50-Pow-x-n-5-Binary-Search、Math"><a href="#50-Pow-x-n-5-Binary-Search、Math" class="headerlink" title="50    Pow(x, n)    5         Binary Search、Math"></a>50    Pow(x, n)    5         Binary Search、Math</h3><h3 id="56-Merge-Intervals-5-array、linked-list、red-black-tree-sort、merge"><a href="#56-Merge-Intervals-5-array、linked-list、red-black-tree-sort、merge" class="headerlink" title="56    Merge Intervals    5    array、linked list、red-black tree    sort、merge"></a>56    Merge Intervals    5    array、linked list、red-black tree    sort、merge</h3><h3 id="57-Insert-Interval-5-array-sort"><a href="#57-Insert-Interval-5-array-sort" class="headerlink" title="57    Insert Interval    5    array    sort"></a>57    Insert Interval    5    array    sort</h3><h3 id="65-Valid-Number-5-string-Math"><a href="#65-Valid-Number-5-string-Math" class="headerlink" title="65    Valid Number    5    string    Math"></a>65    Valid Number    5    string    Math</h3><h3 id="70-Climbing-Stairs-5-DP"><a href="#70-Climbing-Stairs-5-DP" class="headerlink" title="70    Climbing Stairs    5         DP"></a>70    Climbing Stairs    5         DP</h3><h3 id="73-Set-Matrix-Zeroes-5-array"><a href="#73-Set-Matrix-Zeroes-5-array" class="headerlink" title="73    Set Matrix Zeroes    5    array"></a>73    Set Matrix Zeroes    5    array</h3><h3 id="88-Merge-Sorted-Array-5-array-Two-Pointers、merge"><a href="#88-Merge-Sorted-Array-5-array-Two-Pointers、merge" class="headerlink" title="88    Merge Sorted Array    5    array    Two Pointers、merge"></a>88    Merge Sorted Array    5    array    Two Pointers、merge</h3><h3 id="98-Validate-Binary-Search-Tree-5-tree-DFS"><a href="#98-Validate-Binary-Search-Tree-5-tree-DFS" class="headerlink" title="98    Validate Binary Search Tree    5    tree    DFS"></a>98    Validate Binary Search Tree    5    tree    DFS</h3><h3 id="125-Valid-Palindrome-5-string-Two-Pointers"><a href="#125-Valid-Palindrome-5-string-Two-Pointers" class="headerlink" title="125    Valid Palindrome    5    string    Two Pointers"></a>125    Valid Palindrome    5    string    Two Pointers</h3><h3 id="127-Word-Ladder-5-graph-BFS、path"><a href="#127-Word-Ladder-5-graph-BFS、path" class="headerlink" title="127    Word Ladder    5    graph    BFS、path"></a>127    Word Ladder    5    graph    BFS、path</h3><h3 id="2-Add-Two-Numbers-4-linked-list-Two-Pointers、Math"><a href="#2-Add-Two-Numbers-4-linked-list-Two-Pointers、Math" class="headerlink" title="2    Add Two Numbers    4    linked list    Two Pointers、Math"></a>2    Add Two Numbers    4    linked list    Two Pointers、Math</h3><h3 id="12-Integer-to-Roman-4-Math"><a href="#12-Integer-to-Roman-4-Math" class="headerlink" title="12    Integer to Roman    4         Math"></a>12    Integer to Roman    4         Math</h3><h3 id="13-Roman-to-Integer-4-Math"><a href="#13-Roman-to-Integer-4-Math" class="headerlink" title="13    Roman to Integer    4         Math"></a>13    Roman to Integer    4         Math</h3><h3 id="22-Generate-Parentheses-4-string-DFS"><a href="#22-Generate-Parentheses-4-string-DFS" class="headerlink" title="22    Generate Parentheses    4    string    DFS"></a>22    Generate Parentheses    4    string    DFS</h3><h3 id="23-Merge-k-Sorted-Lists-4-linked-list、heap-sort、Two-Pointersmerge"><a href="#23-Merge-k-Sorted-Lists-4-linked-list、heap-sort、Two-Pointersmerge" class="headerlink" title="23    Merge k Sorted Lists    4    linked list、heap    sort、Two Pointersmerge"></a>23    Merge k Sorted Lists    4    linked list、heap    sort、Two Pointersmerge</h3><p>24    Swap Nodes in Pairs    4    linked list<br>27    Remove Element    4    array    Two Pointers<br>46    Permutations    4    array    permutation<br>49    Anagrams    4    string、hashtable<br>67    Add Binary    4    string    Two Pointers、Math<br>69    Sqrt(x)    4         Binary Search<br>77    Combinations    4         combination<br>78    Subsets    4    array    Recursion、combination<br>79    Word Search    4    array    DFS<br>91    Decode Ways    4    string    Recursion、DP<br>102    Binary Tree Level Order Traversal    4    tree    BFS<br>129    Sum Root to Leaf Numbers    4    tree    DFS<br>131    Palindrome Partitioning    4    string    DFS<br>4    Median of Two Sorted Arrays    3    array    Binary Search<br>7    Reverse Integer    3         Math<br>10    Regular Expression Matching    3    string    Recursion、DP<br>17    Letter Combinations of a Phone Number    3    string    DFS<br>19    Remove Nth Node From End of List    3    linked list    Two Pointers<br>26    Remove Duplicates from Sorted Array    3    array    Two Pointers<br>29    Divide Two Integers    3         Binary Search<br>33    Search in Rotated Sorted Array    3    array    Binary Search<br>34    Search for a Range    3    array    Binary Search<br>39    Combination Sum    3    array    combination<br>43    Multiply Strings    3    string    Two Pointers、Math<br>44    Wildcard Matching    3    string    Recursion、DP、greedy<br>51    N-Queens    3    array    DFS<br>52    N-Queens II    3    array    DFS<br>53    Maximum Subarray    3    array    DP<br>62    Unique Paths    3    array    DP<br>63    Unique Paths II    3    array    DP<br>64    Minimum Path Sum    3    array    DP<br>72    Edit Distance    3    string    DP<br>74    Search a 2D Matrix    3    array    Binary Search<br>81    Search in Rotated Sorted Array II    3    array    Binary Search<br>82    Remove Duplicates from Sorted List II    3    linked list    Recursion、Two Pointers<br>83    Remove Duplicates from Sorted List    3    linked list<br>86    Partition List    3    linked list    Two Pointers<br>93    Restore IP Addresses    3    string    DFS<br>94    Binary Tree Inorder Traversal    3    tree、hashtable    Recursion、morris、Stack<br>103    Binary Tree Zigzag Level Order Traversal    3    queue、tree    BFS、Stack<br>105    Construct Binary Tree from Preorder and Inorder Tr    3    array、tree    DFS<br>106    Construct Binary Tree from Inorder and Postorder T    3    array、tree    DFS<br>108    Convert Sorted Array to Binary Search Tree    3    tree    DFS<br>109    Convert Sorted List to Binary Search Tree    3    linked list    Recursion、Two Pointers<br>112    Path Sum    3    tree    DFS<br>114    Flatten Binary Tree to Linked List    3    tree    Recursion、Stack<br>116    Populating Next Right Pointers in Each Node    3    tree    DFS<br>128    Longest Consecutive Sequence    3    array<br>130    Surrounded Regions    3    array    BFS、DFS<br>132    Palindrome Partitioning II    3    string    DP<br>3    Longest Substring Without Repeating Characters    2    string、hashtable    Two Pointers<br>5    Longest Palindromic Substring    2    string<br>9    Palindrome Number    2         Math<br>11    Container With Most Water    2    array    Two Pointers<br>18    4Sum    2    array<br>25    Reverse Nodes in k-Group    2    linked list    Recursion、Two Pointers<br>31    Next Permutation    2    array    permutation<br>35    Search Insert Position    2    array<br>36    Valid Sudoku    2    array<br>37    Sudoku Solver    2    array    DFS<br>38    Count and Say    2    string    Two Pointers<br>40    Combination Sum II    2    array    combination<br>41    First Missing Positive    2    array    sort<br>42    Trapping Rain Water    2    array    Two Pointers、Stack<br>45    Jump Game II    2    array<br>47    Permutations II    2    array    permutation<br>48    Rotate Image    2    array<br>54    Spiral Matrix    2    array<br>55    Jump Game    2    array<br>59    Spiral Matrix II    2    array<br>61    Rotate List    2    linked list    Two Pointers<br>66    Plus One    2    array    Math<br>68    Text Justification    2    string<br>75    Sort Colors    2    array    sort、Two Pointers<br>76    Minimum Window Substring    2    string    Two Pointers<br>80    Remove Duplicates from Sorted Array II    2    array    Two Pointers<br>84    Largest Rectangle in Histogram    2    array    Stack<br>87    Scramble String    2    string    Recursion、DP<br>89    Gray Code    2         combination<br>90    Subsets II    2    array    Recursion、combination<br>92    Reverse Linked List II    2    linked list    Two Pointers<br>97    Interleaving String    2    string    Recursion、DP<br>99    Recover Binary Search Tree    2    tree    DFS<br>101    Symmetric Tree    2    tree    DFS<br>110    Balanced Binary Tree    2    tree    DFS<br>113    Path Sum II    2    tree    DFS<br>115    Distinct Subsequences    2    string    DP<br>117    Populating Next Right Pointers in Each Node II    2    tree    DFS<br>124    Binary Tree Maximum Path Sum    2    tree    DFS<br>6    ZigZag Conversion    1    string<br>14    Longest Common Prefix    1    string<br>16    3Sum Closest    1    array    Two Pointers<br>30    Substring with Concatenation of All Words    1    string    Two Pointers<br>32    Longest Valid Parentheses    1    string    DP<br>58    Length of Last Word    1    string<br>60    Permutation Sequence    1         permutation、Math<br>71    Simplify Path    1    string    Stack<br>85    Maximal Rectangle    1    array    DP、Stack<br>95    Unique Binary Search Trees II    1    tree    DP、DFS<br>96    Unique Binary Search Trees    1    tree    DP<br>100    Same Tree    1    tree    DFS<br>104    Maximum Depth of Binary Tree    1    tree    DFS<br>107    Binary Tree Level Order Traversal II    1    tree    BFS<br>111    Minimum Depth of Binary Tree    1    tree    DFS<br>118    Pascal’s Triangle    1    array<br>119    Pascal’s Triangle II    1    array<br>120    Triangle    1    array    DP<br>121    Best Time to Buy and Sell Stock    1    array    DP<br>122    Best Time to Buy and Sell Stock II    1    array    greedy<br>123    Best Time to Buy and Sell Stock III    1    array    DP<br>126    Word Ladder II    1</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/笔面试/" rel="tag"># 笔面试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/16/10大数据算法排序Java_C++/" rel="next" title="10大数据算法排序Java_C++">
+                <i class="fa fa-chevron-left"></i> 10大数据算法排序Java_C++
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/16/算法_动态规划/" rel="prev" title="算法_动态规划">
+                算法_动态规划 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">AomanHao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">86</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/aomanhao" title="GitHub &rarr; https://github.com/aomanhao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:1014325364@qq.com" title="E-Mail &rarr; mailto:1014325364@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/2831714980" title="Weibo &rarr; https://weibo.com/u/2831714980" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#三数之和"><span class="nav-number">1.</span> <span class="nav-text">三数之和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Two-Sum"><span class="nav-number">2.</span> <span class="nav-text">1    Two Sum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-String-to-Integer-atoi-5-string-Math"><span class="nav-number">3.</span> <span class="nav-text">8    String to Integer (atoi)    5    string    Math</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-3Sum-5-array-Two-Pointers"><span class="nav-number">4.</span> <span class="nav-text">15    3Sum    5    array    Two Pointers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-Valid-Parentheses-5-string-Stack"><span class="nav-number">5.</span> <span class="nav-text">20    Valid Parentheses    5    string    Stack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-Merge-Two-Sorted-Lists-5-linked-list-sort、Two-Pointers、merge"><span class="nav-number">6.</span> <span class="nav-text">21    Merge Two Sorted Lists    5    linked list    sort、Two Pointers、merge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#28-Implement-strStr-5-string-Two-Pointers、KMP、rolling-hash"><span class="nav-number">7.</span> <span class="nav-text">28    Implement strStr()    5    string    Two Pointers、KMP、rolling hash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#50-Pow-x-n-5-Binary-Search、Math"><span class="nav-number">8.</span> <span class="nav-text">50    Pow(x, n)    5         Binary Search、Math</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#56-Merge-Intervals-5-array、linked-list、red-black-tree-sort、merge"><span class="nav-number">9.</span> <span class="nav-text">56    Merge Intervals    5    array、linked list、red-black tree    sort、merge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#57-Insert-Interval-5-array-sort"><span class="nav-number">10.</span> <span class="nav-text">57    Insert Interval    5    array    sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#65-Valid-Number-5-string-Math"><span class="nav-number">11.</span> <span class="nav-text">65    Valid Number    5    string    Math</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#70-Climbing-Stairs-5-DP"><span class="nav-number">12.</span> <span class="nav-text">70    Climbing Stairs    5         DP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#73-Set-Matrix-Zeroes-5-array"><span class="nav-number">13.</span> <span class="nav-text">73    Set Matrix Zeroes    5    array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#88-Merge-Sorted-Array-5-array-Two-Pointers、merge"><span class="nav-number">14.</span> <span class="nav-text">88    Merge Sorted Array    5    array    Two Pointers、merge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#98-Validate-Binary-Search-Tree-5-tree-DFS"><span class="nav-number">15.</span> <span class="nav-text">98    Validate Binary Search Tree    5    tree    DFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#125-Valid-Palindrome-5-string-Two-Pointers"><span class="nav-number">16.</span> <span class="nav-text">125    Valid Palindrome    5    string    Two Pointers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#127-Word-Ladder-5-graph-BFS、path"><span class="nav-number">17.</span> <span class="nav-text">127    Word Ladder    5    graph    BFS、path</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Add-Two-Numbers-4-linked-list-Two-Pointers、Math"><span class="nav-number">18.</span> <span class="nav-text">2    Add Two Numbers    4    linked list    Two Pointers、Math</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-Integer-to-Roman-4-Math"><span class="nav-number">19.</span> <span class="nav-text">12    Integer to Roman    4         Math</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-Roman-to-Integer-4-Math"><span class="nav-number">20.</span> <span class="nav-text">13    Roman to Integer    4         Math</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-Generate-Parentheses-4-string-DFS"><span class="nav-number">21.</span> <span class="nav-text">22    Generate Parentheses    4    string    DFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-Merge-k-Sorted-Lists-4-linked-list、heap-sort、Two-Pointersmerge"><span class="nav-number">22.</span> <span class="nav-text">23    Merge k Sorted Lists    4    linked list、heap    sort、Two Pointersmerge</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AomanHao</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":75,"height":150},"mobile":{"show":true},"log":false});</script></body>
+</html>

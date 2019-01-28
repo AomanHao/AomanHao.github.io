@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="机器学习常见算法总结">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习常见算法总结">
+<meta property="og:url" content="http://www.aomanhao.top/2018/07/19/机器学习常见算法总结/index.html">
+<meta property="og:site_name" content="AomanHao的个人博客">
+<meta property="og:description" content="机器学习常见算法总结">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1996593-3c55ea30ea545a2f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/678">
+<meta property="og:updated_time" content="2019-01-28T01:16:31.470Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习常见算法总结">
+<meta name="twitter:description" content="机器学习常见算法总结">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1996593-3c55ea30ea545a2f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/678">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.aomanhao.top/2018/07/19/机器学习常见算法总结/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>机器学习常见算法总结 | AomanHao的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AomanHao的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">唯有梦想与好姑娘不可辜负</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2018/07/19/机器学习常见算法总结/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AomanHao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AomanHao的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习常见算法总结
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-19 09:39:40" itemprop="dateCreated datePublished" datetime="2018-07-19T09:39:40+08:00">2018-07-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 09:16:31" itemprop="dateModified" datetime="2019-01-28T09:16:31+08:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>机器学习常见算法总结</p>
+<a id="more"></a>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>学习方式</th>
+<th>概念</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>监督式学习</td>
+<td>从给定的训练数据集中学习出一个函数，当新的数据到来时，可以根据此函数预测结果。训练数据集中的目标由人标注的。常见的算法有回归分析和统计分类</td>
+</tr>
+<tr>
+<td>非监督式学习</td>
+<td>与监督式学习相比，训练集没有人为标注的结果，常见的算法有聚类</td>
+</tr>
+<tr>
+<td>半监督式学习</td>
+<td>训练集部分被标识，部分没有被标识。常见的算法有SVM</td>
+</tr>
+<tr>
+<td>强化学习</td>
+<td>输入数据作为模型的反馈，模型对此作出调整。常见的算法有时间差学习</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br><br><br>|机器学习算法分类|概念|<br>|—————-|—-|<br>|决策树算法|根据数据属性，采用树状结构建立决策模型。常用来解决分类和回归问题。<br>常见算法：CART(Classification And Regression Tree)，ID3，C4.5，随机森林等|<br>|回归算法|对连续值预测，如逻辑回归LR等|<br>|分类算法|对离散值预测，事前已经知道分类，如k-近邻算法|<br>|聚类算法|对离散值预测，事前对分类未知，如k-means算法|<br>|神经网络|模拟生物神经网络，可以用来解决分类和回归问题<br>感知器神经网络(Perceptron Neural Network) ，反向传递(Back Propagation)和深度学习（DL）|<br>|集成算法 |集成几种学习模型进行学习，将最终预测结果进行汇总<br>Boosting、Bagging、AdaBoost、随机森林 (Random Forest) 等|</p>
+<h3 id="机器学习算法分类"><a href="#机器学习算法分类" class="headerlink" title="机器学习算法分类"></a>机器学习算法分类</h3><p>决策树算法<br>根据数据属性，采用树状结构建立决策模型。常用来解决分类和回归问题。<br>常见算法：CART(Classification And Regression Tree)，ID3，C4.5，随机森林等<br>回归算法<br>对连续值预测，如逻辑回归LR等<br>分类算法<br>对离散值预测，事前已经知道分类，如k-近邻算法<br>聚类算法<br>对离散值预测，事前对分类未知，如k-means算法<br>神经网络<br>模拟生物神经网络，可以用来解决分类和回归问题<br>感知器神经网络(Perceptron Neural Network) ，反向传递(Back Propagation)和深度学习（DL）<br>集成算法<br>集成几种学习模型进行学习，将最终预测结果进行汇总<br>Boosting、Bagging、AdaBoost、随机森林 (Random Forest) 等</p>
+<h3 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h3><p>1、SVM不太容易过拟合：松弛因子+损失函数形式</p>
+<p>SVM的求解方法叫拉格朗日乘子法</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1996593-3c55ea30ea545a2f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/678" alt=""></p>
+<p>有时候如果你非要很明确地分类，那么结果就会像右边的一样 —— 过拟合。明显左边的两个都比过拟合好多了，可是这样就要求允许一些样本不在正确的类上.</p>
+<blockquote>
+<p>目标：找出总损失值最小并且能大概分类的超平面</p>
+</blockquote>
+<p>2、方法选择<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、如果Feature的数量很大，跟样本数量差不多，这时候选用LR或者是Linear Kernel的SVM</span><br><span class="line">2、如果Feature的数量比较小，样本数量一般，不算大也不算小，选用SVM+Gaussian Kernel</span><br><span class="line">3、如果Feature的数量比较小，而样本数量很多，需要手工添加一些feature变成第一种情况</span><br></pre></td></tr></table></figure></p>
+<p>3、数据维度<br>如果数据特征维度高，svm要使用<strong>核函数</strong>来求解<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Note：拉格朗日对偶没有改变最优解，但改变了算法复杂度：原问题—样本维度；对偶问题–样本数量。</span><br><span class="line">线性分类            样本维度&lt;样本数量：原问题求解（liblinear默认）； </span><br><span class="line">非线性–升维—一般导致 样本维度&gt;样本数量：对偶问题求解</span><br></pre></td></tr></table></figure></p>
+<h3 id="朴素贝叶斯"><a href="#朴素贝叶斯" class="headerlink" title="朴素贝叶斯"></a>朴素贝叶斯</h3><p>朴素贝叶斯的优点：<br>对小规模的数据表现很好，适合多分类任务，适合增量式训练。<br>缺点：<br>对输入数据的表达形式很敏感（离散、连续，值极大极小之类的）</p>
+<h3 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h3><p>线性回归试图学得一个线性模型以尽可能准确地预测实值输出标记。均方误差是回归任务中最常用的性能度量，基于均方误差最小化来进行模型求解的方法成为最小二乘法。在线性回归中，最小二乘法就是试图找到一条直线，使得所有样本到直线上的欧式距离之和最小。这个想法和分类问题是正好相反的，分类问题是找到一个分界面离所有样本尽可能远。</p>
+<p>优化方法</p>
+<p>当x矩阵是列满秩的时候，可以用最小二乘法，但是求矩阵的逆比较慢</p>
+<h2 id="机器学习算法选择"><a href="#机器学习算法选择" class="headerlink" title="机器学习算法选择"></a>机器学习算法选择</h2><blockquote>
+<p>没有最好的分类器，只有最合适的分类器。</p>
+</blockquote>
+<p>数据维度越高，随机森林就比AdaBoost强越多，但是整体不及SVM。</p>
+<p>数据量越大，神经网络就越强。</p>
+<h3 id="1、K近邻"><a href="#1、K近邻" class="headerlink" title="1、K近邻"></a>1、K近邻</h3><p>典型KNN，它的思路就是——对于待判断的点，找到离它最近的几个数据点，根据它们的类型决定待判断点的类型。<br>它的特点是完全跟着数据走，没有数学模型可言。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">适用情景：</span><br><span class="line">需要一个特别容易解释的模型的时候。</span><br><span class="line">比如需要向用户解释原因的推荐算法。</span><br></pre></td></tr></table></figure></p>
+<h3 id="2、贝叶斯"><a href="#2、贝叶斯" class="headerlink" title="2、贝叶斯"></a>2、贝叶斯</h3><p>典型的例子是Naive Bayes，核心思路是根据条件概率计算待判断点的类型。是相对容易理解的一个模型，至今依然被垃圾邮件过滤器使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">适用情景：</span><br><span class="line"></span><br><span class="line">需要一个比较容易解释，而且不同维度之间相关性较小的模型的时候。</span><br><span class="line"></span><br><span class="line">可以高效处理高维数据，虽然结果可能不尽如人意。</span><br></pre></td></tr></table></figure></p>
+<h3 id="3、决策树-Decision-tree"><a href="#3、决策树-Decision-tree" class="headerlink" title="3、决策树 (Decision tree)"></a>3、决策树 (Decision tree)</h3><p>决策树的特点是它总是在沿着特征做切分。随着层层递进，这个划分会越来越细。<br>举个简单的例子，当我们预测一个孩子的身高的时候，决策树的第一层可能是这个孩子的性别。男生走左边的树进行进一步预测，女生则走右边的树。这就说明性别对身高有很强的影响。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">适用情景：</span><br><span class="line">同时它也是相对容易被攻击的分类器。这里的攻击是指人为的改变一些特征，使得分类器判断错误。常见于垃圾邮件躲避检测中。因为决策树最终在底层判断是基于单个条件的，攻击者往往只需要改变很少的特征就可以逃过监测。受限于它的简单性，决策树更大的用处是作为一些更有用的算法的基石。</span><br></pre></td></tr></table></figure>
+<h4 id="随机森林-Random-forest"><a href="#随机森林-Random-forest" class="headerlink" title="随机森林 (Random forest)"></a>随机森林 (Random forest)</h4><p>随机森林其实算是一种集成算法。它首先随机选取不同的特征(feature)和训练样本(training sample)，生成大量的决策树，然后综合这些决策树的结果来进行最终的分类。</p>
+<p>它相对于决策树，在准确性上有了很大的提升，同时一定程度上改善了决策树容易被攻击的特点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">适用情景：</span><br><span class="line"></span><br><span class="line">数据维度相对低（几十维），同时对准确性有较高要求时。</span><br><span class="line"></span><br><span class="line">因为不需要很多参数调整就可以达到不错的效果，基本上不知道用什么方法的时候都可以先试一下随机森林。</span><br></pre></td></tr></table></figure>
+<h3 id="优化问题的求解方法"><a href="#优化问题的求解方法" class="headerlink" title="优化问题的求解方法"></a>优化问题的求解方法</h3><p>大部分的机器学习算法的本质都是建立优化模型，通过最优化方法对目标函数（或损失函数）进行优化，从而训练出最好的模型。常见的最优化方法有梯度下降法、牛顿法和拟牛顿法、共轭梯度法等等。</p>
+<p>1、梯度下降法</p>
+<p>优化思想<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当目标函数是凸函数时，梯度下降法的解是全局解。一般情况下，其解不保证是全局最优解，梯度下降法的速度也未必是最快的。梯度下降法的优化思想是用当前位置负梯度方向作为搜索方向，因为该方向为当前位置的最快下降方向，所以也被称为是”最速下降法“。最速下降法越接近目标值，步长越小，前进越慢。</span><br></pre></td></tr></table></figure></p>
+<p>缺点<br>梯度下降法的最大问题就是会陷入局部最优，靠近极小值时收敛速度减慢。</p>
+<p>2、批量梯度下降法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">最小化所有训练样本的损失函数，使得最终求解的是全局的最优解，即求解的参数是使得风险函数最小，但是对于大规模样本问题效率低下。</span><br></pre></td></tr></table></figure></p>
+<p>3、随机梯度下降法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">最小化每条样本的损失函数，虽然不是每次迭代得到的损失函数都向着全局最优方向， 但是大的整体的方向是向全局最优解的，最终的结果往往是在全局最优解附近，适用于大规模训练样本情况。</span><br></pre></td></tr></table></figure></p>
+<p>随机梯度下降是通过每个样本来迭代更新一次，如果样本量很大的情况（例如几十万），那么可能只用其中几万条或者几千条的样本，就已经将theta迭代到最优解了，对比上面的批量梯度下降，迭代一次需要用到十几万训练样本，一次迭代不可能最优，如果迭代10次的话就需要遍历训练样本10次。但是，SGD伴随的一个问题是噪音较BGD要多，使得SGD并不是每次迭代都向着整体最优化方向。</p>
+<p>4、牛顿法</p>
+<p>牛顿法是一种在实数域和复数域上近似求解方程的方法。方法使用函数f (x)的泰勒级数的前面几项来寻找方程f (x) = 0的根。牛顿法最大的特点就在于它的收敛速度很快。</p>
+<p>牛顿法比梯度下降法快</p>
+<p>牛顿法是二阶收敛，梯度下降是一阶收敛，所以牛顿法就更快。如果更通俗地说的话，比如你想找一条最短的路径走到一个盆地的最底部，梯度下降法每次只从你当前所处位置选一个坡度最大的方向走一步，牛顿法在选择方向时，不仅会考虑坡度是否够大，还会考虑你走了一步之后，坡度是否会变得更大。所以，可以说牛顿法比梯度下降法看得更远一点，能更快地走到最底部。</p>
+<p>但是牛顿法要算hessian矩阵的逆，比较费时间。</p>
+<p>5、拟牛顿法</p>
+<p>拟牛顿法的本质思想是改善牛顿法每次需要求解复杂的Hessian矩阵的逆矩阵的缺陷，它使用正定矩阵来近似Hessian矩阵的逆，从而简化了运算的复杂度。拟牛顿法和最速下降法一样只要求每一步迭代时知道目标函数的梯度。通过测量梯度的变化，构造一个目标函数的模型使之足以产生超线性收敛性。这类方法大大优于最速下降法，尤其对于困难的问题。另外，因为拟牛顿法不需要二阶导数的信息，所以有时比牛顿法更为有效。</p>
+<p>6、拉格朗日法</p>
+<p>拉格朗日乘数法</p>
+<p>拉格朗日乘子法主要用于解决约束优化问题，它的基本思想就是通过引入拉格朗日乘子来将含有n个变量和k个约束条件的约束优化问题转化为含有（n+k）个变量的无约束优化问题。拉格朗日乘子背后的数学意义是其为约束方程梯度线性组合中每个向量的系数。</p>
+<p>通过引入拉格朗日乘子建立极值条件，对n个变量分别求偏导对应了n个方程，然后加上k个约束条件（对应k个拉格朗日乘子）一起构成包含了（n+k）变量的（n+k）个方程的方程组问题，这样就能根据求方程组的方法对其进行求解</p>
+<p>过拟合：</p>
+<blockquote>
+<p>如果一味的去提高训练数据的预测能力，所选模型的复杂度往往会很高，这种现象称为过拟合。所表现的就是模型训练时候的误差很小，但在测试的时候误差很大。</p>
+</blockquote>
+<p>训练模型很好用，测试时候误差较大</p>
+<p><a href="http://kubicode.me/2015/08/16/Machine%20Learning/Algorithm-Summary-for-Interview/#" target="_blank" rel="noopener">参考</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/19/特征提取_图像矩阵变换/" rel="next" title="特征提取_图像矩阵变换">
+                <i class="fa fa-chevron-left"></i> 特征提取_图像矩阵变换
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/19/机器学习-线性回归/" rel="prev" title="机器学习-线性回归">
+                机器学习-线性回归 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">AomanHao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">86</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/aomanhao" title="GitHub &rarr; https://github.com/aomanhao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:1014325364@qq.com" title="E-Mail &rarr; mailto:1014325364@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/2831714980" title="Weibo &rarr; https://weibo.com/u/2831714980" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习算法分类"><span class="nav-number">1.</span> <span class="nav-text">机器学习算法分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVM"><span class="nav-number">2.</span> <span class="nav-text">SVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#朴素贝叶斯"><span class="nav-number">3.</span> <span class="nav-text">朴素贝叶斯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性回归"><span class="nav-number">4.</span> <span class="nav-text">线性回归</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习算法选择"><span class="nav-number"></span> <span class="nav-text">机器学习算法选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、K近邻"><span class="nav-number">1.</span> <span class="nav-text">1、K近邻</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、贝叶斯"><span class="nav-number">2.</span> <span class="nav-text">2、贝叶斯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、决策树-Decision-tree"><span class="nav-number">3.</span> <span class="nav-text">3、决策树 (Decision tree)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#随机森林-Random-forest"><span class="nav-number">3.1.</span> <span class="nav-text">随机森林 (Random forest)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化问题的求解方法"><span class="nav-number">4.</span> <span class="nav-text">优化问题的求解方法</span></a></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AomanHao</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":75,"height":150},"mobile":{"show":true},"log":false});</script></body>
+</html>

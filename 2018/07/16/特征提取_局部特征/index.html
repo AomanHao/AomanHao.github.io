@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="特征提取——局部特征">
+<meta name="keywords" content="图像处理,特征提取">
+<meta property="og:type" content="article">
+<meta property="og:title" content="特征提取——局部特征">
+<meta property="og:url" content="http://www.aomanhao.top/2018/07/16/特征提取_局部特征/index.html">
+<meta property="og:site_name" content="AomanHao的个人博客">
+<meta property="og:description" content="特征提取——局部特征">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdn.net/20160411162902180">
+<meta property="og:image" content="https://img-blog.csdn.net/20160413110610471">
+<meta property="og:updated_time" content="2019-01-28T01:16:31.492Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="特征提取——局部特征">
+<meta name="twitter:description" content="特征提取——局部特征">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20160411162902180">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.aomanhao.top/2018/07/16/特征提取_局部特征/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>特征提取——局部特征 | AomanHao的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AomanHao的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">唯有梦想与好姑娘不可辜负</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2018/07/16/特征提取_局部特征/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AomanHao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AomanHao的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">特征提取——局部特征
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-16 09:39:40" itemprop="dateCreated datePublished" datetime="2018-07-16T09:39:40+08:00">2018-07-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 09:16:31" itemprop="dateModified" datetime="2019-01-28T09:16:31+08:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>特征提取——局部特征</p>
+<a id="more"></a>
+<p>LOG,HOG,DOG微分算子在近圆的斑点检测方面效果很好</p>
+<h3 id="HOG特征"><a href="#HOG特征" class="headerlink" title="HOG特征"></a>HOG特征</h3><p><a href="https://blog.csdn.net/coming_is_winter/article/details/72850511" target="_blank" rel="noopener">https://blog.csdn.net/coming_is_winter/article/details/72850511</a><br><a href="https://blog.csdn.net/zouxy09/article/details/7929348/" target="_blank" rel="noopener">https://blog.csdn.net/zouxy09/article/details/7929348/</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">总结：Dalal提出的Hog特征提取的过程：把样本图像分割为若干个像素的单元（cell），把梯度方向平均划分为9个区间（bin），在每个单元里面对所有像素的梯度方向在各个方向区间进行直方图统计，得到一个9维的特征向量，每相邻的4个单元构成一个块（block），把一个块内的特征向量联起来得到36维的特征向量，用块对样本图像进行扫描，扫描步长为一个单元。最后将所有块的特征串联起来，就得到了人体的特征。</span><br><span class="line"></span><br><span class="line">例如，对于64*128的图像而言，每16*16的像素组成一个cell，每2*2个cell组成一个块，因为每个cell有9个特征，所以每个块内有4*9=36个特征，以8个像素为步长，那么，水平方向将有7个扫描窗口，垂直方向将有15个扫描窗口。也就是说，64*128的图片，总共有36*7*15=3780个特征。</span><br><span class="line"></span><br><span class="line">特征总数： 一个cell有9个特征（9个梯度方向），每个特征cell块里有 num*9个特征，步长像素规格：（列像素数-步长）/步长*（行像素数-步长）/步长，</span><br><span class="line">总特征数:（列像素数-步长）/步长*（行像素数-步长）/步长*num*9</span><br></pre></td></tr></table></figure></p>
+<h3 id="LOG特征"><a href="#LOG特征" class="headerlink" title="LOG特征"></a>LOG特征</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">图像与某一个二维函数进行卷积运算实际就是求取图像与这一函数的相似性。同理，图像与高斯拉普拉斯函数的卷积实际就是求取图像与高斯拉普拉斯函数的相似性。当图像中的斑点尺寸与高斯拉普拉斯函数的形状趋近一致时，图像的拉普拉斯响应达到最大。</span><br></pre></td></tr></table></figure>
+<p>Laplace可以用来检测图像中的局部极值点，但是对噪声敏感，所以在我们对图像进行Laplace卷积之前，我们用一个高斯低通滤波对图像进行卷积，目标是去除图像中的噪声点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">先对图像f(x,y)用方差为σ的高斯核进行高斯滤波，去除图像中的噪点。</span><br><span class="line"></span><br><span class="line">L(x,y;σ)=f(x,y)∗G(x,y;σ)</span><br><span class="line">G(x,y;σ)高斯核</span><br><span class="line">然后对图像的拉普拉斯图像则为：</span><br><span class="line"></span><br><span class="line">∇^2=(∂^2L/∂^x2)+(∂^2L/∂y^2)</span><br><span class="line">而实际上有下面等式：</span><br><span class="line"></span><br><span class="line">∇^2[G(x,y)∗f(x,y)]=∇^2[G(x,y)]∗f(x,y)</span><br><span class="line"></span><br><span class="line">我们可以先求高斯核的拉普拉斯算子，再对图像进行卷积</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>使用LoG虽然能较好的检测到图像中的特征点，但是其运算量过大，通常可使用DoG（差分高斯，Difference of Gaussina）来近似计算LoG</p>
+</blockquote>
+<h3 id="Haar特征"><a href="#Haar特征" class="headerlink" title="Haar特征"></a>Haar特征</h3><p>Haar特征分为三类：边缘特征、线性特征、中心特征和对角线特征，组合成特征模板。特征模板内有白色和黑色两种矩形，并定义该模板的特征值为</p><h3>白色矩形像素和减去黑色矩形像素和</h3><p></p>
+<h3 id="Haar-like特征"><a href="#Haar-like特征" class="headerlink" title="Haar-like特征"></a>Haar-like特征</h3><p><a href="https://blog.csdn.net/zouxy09/article/details/7929570" target="_blank" rel="noopener">https://blog.csdn.net/zouxy09/article/details/7929570</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">积分图就是只遍历一次图像就可以求出图像中所有区域像素和的快速算法，大大的提高了图像特征值计算的效率。</span><br><span class="line"></span><br><span class="line">       积分图主要的思想是将图像从起点开始到各个点所形成的矩形区域像素之和作为一个数组的元素保存在内存中，当要计算某个区域的像素和时可以直接索引数组的元素，不用重新计算这个区域的像素和，从而加快了计算（这有个相应的称呼，叫做动态规划算法）。积分图能够在多种尺度下，使用相同的时间（常数时间）来计算不同的特征，因此大大提高了检测速度。</span><br><span class="line"></span><br><span class="line">       我们来看看它是怎么做到的。</span><br><span class="line"></span><br><span class="line">       积分图是一种能够描述全局信息的矩阵表示方法。积分图的构造方式是位置（i,j）处的值ii(i,j)是原图像(i,j)左上角方向所有像素的和：</span><br></pre></td></tr></table></figure>
+<p>归一化图像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">i¯(x,y)=(i(x,y)−μ)/cσ</span><br><span class="line">公式中i¯(x,y)表示归一化之后的图像，而i(x,y)表示原始的图像，其中μ表示图像的均值，而σ表示图像的标准差</span><br><span class="line">σ2=(1/N)∑x2−μ2   2是平方</span><br></pre></td></tr></table></figure></p>
+<h3 id="SIFT特征"><a href="#SIFT特征" class="headerlink" title="SIFT特征"></a>SIFT特征</h3><p>SIFT的全称是Scale Invariant Feature Transform，尺度不变特征变换(物体怎么转，人都能识别)。SIFT特征对旋转、尺度缩放、亮度变化等保持不变性，是一种非常稳定的局部特征。</p>
+<p>有4个主要步骤</p>
+<p>1、尺度空间的极值检测 搜索所有尺度空间上的图像，通过高斯微分函数来识别潜在的对尺度和选择不变的兴趣点。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$$$L(x,y,σ)=G(x,y,σ)∗I(x,y)$</span><br><span class="line"></span><br><span class="line">为了有效的在尺度空间检测到稳定的关键点，提出了高斯差分尺度空间（DOG scale-space）。利用不同尺度的高斯差分核与图像卷积生成。构造高斯差分尺度空间(DOG scale-space): </span><br><span class="line">$$D(x,y,σ)=(G(x,y,kσ)−G(x,y,σ))∗I(x,y)=L(x,y,kσ)−L(x,y,σ)$$</span><br><span class="line"></span><br><span class="line">σ 是尺度坐标。σ大小决定图像的平滑程度，大尺度对应图像的概貌特征，小尺度对应图像的细节特征。大的σ值对应粗糙尺度(低分辨率)，反之，对应精细尺度(高分辨率)。</span><br><span class="line"></span><br><span class="line">对于一幅图像I，建立其在不同尺度(scale)的图像,后面每个采样都是原图的1/4倍。</span><br><span class="line"></span><br><span class="line">每个点都要与邻域的点，上下相邻尺度的点做比较（9+8+9）26个点作比较（以确保在尺度空间和二维图像空间都检测到极值点）。一个点如果在DOG尺度空间本层以及上下两层的26个领域中是最大或最小值时，就认为该点是图像在该尺度下的一个特征点</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://img-blog.csdn.net/20160411162902180" alt=""></p>
+<p>2、特征点定位 在每个候选的位置上，通过一个拟合精细模型来确定位置尺度，关键点的选取依据他们的稳定程度。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">拟和三维二次函数以精确确定关键点的位置和尺度，同时去除低对比度的关键点和不稳定的边缘响应点(因为DoG算子会产生较强的边缘响应)，以增强匹配稳定性、提高抗噪声能力</span><br></pre></td></tr></table></figure></p>
+<p>用Harris Corner检测<br><a href="https://blog.csdn.net/ws_20100/article/details/51122322" target="_blank" rel="noopener">参考文章</a></p>
+<p>3、特征方向赋值 基于图像局部的梯度方向，分配给每个关键点位置一个或多个方向，后续的所有操作都是对于关键点的方向、尺度和位置进行变换，从而提供这些特征的不变性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">每个特征点计算一个方向，依照这个方向做进一步的计算， *利用关键点邻域像素的梯度方向分布特性为每个关键点指定方向参数，使算子具备旋转不变性。</span><br></pre></td></tr></table></figure></p>
+<script type="math/tex; mode=display">m(x,y)=(L(x+1,y)−L(x−1,y))2+(L(x,y+1)−L(x,y−1))2</script><script type="math/tex; mode=display">√θ(x,y)=atan2(L(x,y+1)−L(x,y−1)L(x+1,y)−L(x−1,y)</script><p>每个关键点有三个信息：位置、所处尺度、方向。由此可以确定一个SIFT特征区域。<br><img src="https://img-blog.csdn.net/20160413110610471" alt="直方图"><br>4、特征点描述 在每个特征点周围的邻域内，在选定的尺度上测量图像的局部梯度，这些梯度被变换成一种表示，这种表示允许比较大的局部形状的变形和光照变换。</p>
+<blockquote>
+<p>高斯函数是唯一可行的尺度空间核</p>
+</blockquote>
+<h3 id="尺度空间"><a href="#尺度空间" class="headerlink" title="尺度空间"></a>尺度空间</h3><p>多分辨率图像金字塔:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、对原始图像进行平滑</span><br><span class="line">2、对处理后的图像进行降采样（通常是水平、垂直方向的1/2）降采样后得到一系列不断尺寸缩小的图像。显然，一个传统的金字塔中，每一层的图像是其上一层图像长、高的各一半。多分辨率的图像金字塔虽然生成简单，但其本质是降采样，图像的局部特征则难以保持，也就是无法保持特征的尺度不变性。</span><br></pre></td></tr></table></figure></p>
+<p>高斯尺度空间：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">图像的模糊程度来模拟人在距离物体由远到近时物体在视网膜上成像过程，距离物体越近其尺寸越大图像也越模糊，这就是高斯尺度空间，使用不同的参数模糊图像（分辨率不变）</span><br><span class="line"></span><br><span class="line">图像和高斯函数进行卷积运算，图像模糊，使用不同的“高斯核”可得到不同模糊程度的图像</span><br><span class="line"></span><br><span class="line">L(x,y,σ)=G(x,y,σ)∗I(x,y)</span><br><span class="line"></span><br><span class="line">其中G(x,y,σ)是高斯核函数</span><br><span class="line">G(x,y,σ)=（1/2Πσ^2）e^((x^2+y^2)/(2σ^2))</span><br></pre></td></tr></table></figure></p>
+<p>构建尺度空间的目的是为了检测出在不同的尺度下都存在的特征点，而检测特征点较好的算子是Δ^2G(高斯拉普拉斯,LoG）</p>
+<h3 id="DoG特征"><a href="#DoG特征" class="headerlink" title="DoG特征"></a>DoG特征</h3><p>使用LoG虽然能较好的检测到图像中的特征点，但是其运算量过大，通常可使用DoG（差分高斯，Difference of Gaussina）来近似计算LoG。</p>
+<p>DOG可以看作为LOG的一个近似，但是它比LOG的效率更高。<br>设k为相邻两个高斯尺度空间的比例因子，则DoG的定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D(x,y,σ)=[G(x,y,kσ)−G(x,y,σ)]∗I(x,y)=L(x,y,kσ)−L(x,y,σ)</span><br></pre></td></tr></table></figure>
+<p>L(x,y,σ) 是图像的高斯尺度空间<br>将相邻的两个高斯空间的图像相减就得到了DoG的响应图像</p>
+<h3 id="Harris角点特征提取"><a href="#Harris角点特征提取" class="headerlink" title="Harris角点特征提取"></a>Harris角点特征提取</h3><font color="red">Harris角点检测是一种基于图像灰度的一阶导数矩阵检测方法。检测器的主要思想是局部自相似性/自相关性，即在某个局部窗口内图像块与在各个方向微小移动后的窗口内图像块的相似性。</font>
+
+<blockquote>
+<p>1、角点可以是两个边缘的角点；&lt;/br&gt;<br>2、角点是邻域内具有两个主方向的特征点；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">人眼对角点的识别通常是在一个局部的小区域或小窗口完成的。如果在各个方向上移动这个特征的小窗口，窗口内区域的灰度发生了较大的变化，那么就认为在窗口内遇到了角点。如果这个特定的窗口在图像各个方向上移动时，窗口内图像的灰度没有发生变化，那么窗口内就不存在角点；如果窗口在某一个方向移动时，窗口内图像的灰度发生了较大的变化，而在另一些方向上没有发生变化，那么，窗口内的图像可能就是一条直线的线段。</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<script type="math/tex; mode=display">x^{y^z}=(1+{\rm e}^x)^{-2xy^w}</script><script type="math/tex; mode=display">sqrt()</script><blockquote>
+<p>结论：1、增大α的值，将减小角点响应值R，降低角点检测的灵性，减少被检测角点的数量；减小α值，将增大角点响应值R，增加角点检测的灵敏性，增加被检测角点的数量。&lt;/br&gt;<br>2、Harris角点检测算子对亮度和对比度的变化不敏感&lt;/br&gt;<br>3、Harris角点检测算子具有旋转不变性&lt;/br&gt;<br>4、Harris角点检测算子不具有尺度不变性&lt;/br&gt;</p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/图像处理/" rel="tag"># 图像处理</a>
+          
+            <a href="/tags/特征提取/" rel="tag"># 特征提取</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/16/opencv_ocr/" rel="next" title="opencv_ocr">
+                <i class="fa fa-chevron-left"></i> opencv_ocr
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/16/图像处理_图像滤波/" rel="prev" title="图像处理_图像滤波">
+                图像处理_图像滤波 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">AomanHao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">86</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/aomanhao" title="GitHub &rarr; https://github.com/aomanhao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:1014325364@qq.com" title="E-Mail &rarr; mailto:1014325364@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/2831714980" title="Weibo &rarr; https://weibo.com/u/2831714980" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HOG特征"><span class="nav-number">1.</span> <span class="nav-text">HOG特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LOG特征"><span class="nav-number">2.</span> <span class="nav-text">LOG特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Haar特征"><span class="nav-number">3.</span> <span class="nav-text">Haar特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">白色矩形像素和减去黑色矩形像素和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Haar-like特征"><span class="nav-number">5.</span> <span class="nav-text">Haar-like特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SIFT特征"><span class="nav-number">6.</span> <span class="nav-text">SIFT特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尺度空间"><span class="nav-number">7.</span> <span class="nav-text">尺度空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DoG特征"><span class="nav-number">8.</span> <span class="nav-text">DoG特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Harris角点特征提取"><span class="nav-number">9.</span> <span class="nav-text">Harris角点特征提取</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AomanHao</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":75,"height":150},"mobile":{"show":true},"log":false});</script></body>
+</html>

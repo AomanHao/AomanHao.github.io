@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="机器学习_分类_KNN_EM">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习_分类_KNN_EM">
+<meta property="og:url" content="http://www.aomanhao.top/2018/07/19/机器学习_分类_KNN_EM/index.html">
+<meta property="og:site_name" content="AomanHao的个人博客">
+<meta property="og:description" content="机器学习_分类_KNN_EM">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-28T01:16:31.418Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习_分类_KNN_EM">
+<meta name="twitter:description" content="机器学习_分类_KNN_EM">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.aomanhao.top/2018/07/19/机器学习_分类_KNN_EM/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>机器学习_分类_KNN_EM | AomanHao的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AomanHao的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">唯有梦想与好姑娘不可辜负</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2018/07/19/机器学习_分类_KNN_EM/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AomanHao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AomanHao的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习_分类_KNN_EM
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-19 09:39:40" itemprop="dateCreated datePublished" datetime="2018-07-19T09:39:40+08:00">2018-07-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 09:16:31" itemprop="dateModified" datetime="2019-01-28T09:16:31+08:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>机器学习_分类_KNN_EM</p>
+<a id="more"></a>
+<h3 id="K最近邻-kNN，k-NearestNeighbor-分类算法"><a href="#K最近邻-kNN，k-NearestNeighbor-分类算法" class="headerlink" title="K最近邻(kNN，k-NearestNeighbor)分类算法"></a>K最近邻(kNN，k-NearestNeighbor)分类算法</h3><p>在KNN中，通过计算对象间距离来作为各个对象之间的非相似性指标，避免了对象之间的匹配问题，在这里距离一般使用欧氏距离或曼哈顿距离：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">步骤：</span><br><span class="line">其算法的描述为：</span><br><span class="line"></span><br><span class="line">1）计算测试数据与各个训练数据之间的距离；</span><br><span class="line"></span><br><span class="line">2）按照距离的递增关系进行排序；</span><br><span class="line"></span><br><span class="line">3）选取距离最小的K个点；</span><br><span class="line"></span><br><span class="line">4）确定前K个点所在类别的出现频率；</span><br><span class="line"></span><br><span class="line">5）返回前K个点中出现频率最高的类别作为测试数据的预测分类。</span><br></pre></td></tr></table></figure>
+<p>KNN算法的优点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1）简单、有效。 </span><br><span class="line">2）重新训练的代价较低（类别体系的变化和训练集的变化，在Web环境和电子商务应用中是很常见的）。 </span><br><span class="line">3）计算时间和空间线性于训练集的规模（在一些场合不算太大）。 </span><br><span class="line">4）由于KNN方法主要靠周围有限的邻近的样本，而不是靠判别类域的方法来确定所属类别的，因此对于类域的交叉或重叠较多的待分样本集来说，KNN方法较其他方法更为适合。 </span><br><span class="line">5）该算法比较适用于样本容量比较大的类域的自动分类，而那些样本容量较小的类域采用这种算法比较容易产生误分。</span><br></pre></td></tr></table></figure></p>
+<p>KNN算法缺点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1）KNN算法是懒散学习方法（lazy learning,基本上不学习），一些积极学习的算法要快很多。 </span><br><span class="line">2）类别评分不是规格化的（不像概率评分）。 </span><br><span class="line">3）输出的可解释性不强，例如决策树的可解释性较强。 </span><br><span class="line">4）该算法在分类时有个主要的不足是，当样本不平衡时，如一个类的样本容量很大，而其他类样本容量很小时，有可能导致当输入一个新样本时，该样本的K个邻居中大容量类的样本占多数。该算法只计算“最近的”邻居样本，某一类的样本数量很大，那么或者这类样本并不接近目标样本，或者这类样本很靠近目标样本。无论怎样，数量并不能影响运行结果。可以采用权值的方法（和该样本距离小的邻居权值大）来改进。 </span><br><span class="line">5）计算量较大。目前常用的解决方法是事先对已知样本点进行剪辑，事先去除对分类作用不大的样本。</span><br></pre></td></tr></table></figure>
+<h3 id="EM算法"><a href="#EM算法" class="headerlink" title="EM算法"></a>EM算法</h3><p>EM的策略就是先随便给一个条件概率p1(x1|thera)，然后找到一个l(thera)的下界函数r(x1|thera),求r的最大值p2(x2|thera)，再找到经过p2点的下界函数r2(x2|thera)，重复该过程直到收敛到局部最大值。</p>
+<p>灰度图分割：<a href="https://blog.csdn.net/u014612806/article/details/65442061" target="_blank" rel="noopener">参考</a></p>
+<p>point.h文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#ifndef POINT_H</span><br><span class="line">#define POINT_H</span><br><span class="line">//point结构主要用来存储图像中节点的横坐标，纵坐标以及灰度值</span><br><span class="line">struct point</span><br><span class="line">&#123;</span><br><span class="line">    int row;</span><br><span class="line">    int col;</span><br><span class="line">    double pixVal;</span><br><span class="line">    point(int row, int col, double pixVal) :row(row),col(col),pixVal(pixVal) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure></p>
+<p>keams.h头文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br></pre></td><td class="code"><pre><span class="line">#ifndef KMEANS_H</span><br><span class="line">#define KMEANS_H</span><br><span class="line"></span><br><span class="line">#include&lt;opencv2\opencv.hpp&gt;</span><br><span class="line">#include&lt;random&gt;</span><br><span class="line">#include&lt;time.h&gt;</span><br><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;stdlib.h&gt;</span><br><span class="line">#include&lt;list&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;math.h&gt;</span><br><span class="line">#include&quot;point.h&quot;</span><br><span class="line"></span><br><span class="line">using namespace cv;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">class Kmeans&#123;</span><br><span class="line">private:</span><br><span class="line">    //存储所有点</span><br><span class="line">    vector&lt;point&gt; points;</span><br><span class="line">    //存储簇的中心点</span><br><span class="line">    vector&lt;point&gt; centers;</span><br><span class="line">    //存储每个点到相应的簇</span><br><span class="line">    vector&lt;point&gt;* clusters;</span><br><span class="line">    //向量的维数</span><br><span class="line">    int dimension;</span><br><span class="line">    //簇的个数</span><br><span class="line">    int k;</span><br><span class="line">public:</span><br><span class="line">    //构造函数</span><br><span class="line">    Kmeans(vector&lt;point&gt; points, vector&lt;point&gt; centers, int k, int dimension)</span><br><span class="line">    &#123;</span><br><span class="line">        this-&gt;points = points;</span><br><span class="line">        this-&gt;centers = centers;</span><br><span class="line">        this-&gt;dimension = dimension;</span><br><span class="line">        this-&gt;k = k;</span><br><span class="line">        clusters = new vector&lt;point&gt;[k];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //析构函数</span><br><span class="line">    ~Kmeans()</span><br><span class="line">    &#123;</span><br><span class="line">        delete clusters;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //获取簇</span><br><span class="line">    vector&lt;point&gt;* getClusters()</span><br><span class="line">    &#123;</span><br><span class="line">        return this-&gt;clusters;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //计算两个向量之间的欧式距离</span><br><span class="line">    double getDistanceBetweenTwoPoints(const point&amp; point1, const point&amp; point2)</span><br><span class="line">    &#123;</span><br><span class="line">        double sum = 0;</span><br><span class="line">        //double tmp;</span><br><span class="line">        //for (int i = 0; i &lt; dimension; i++)</span><br><span class="line">        //&#123;</span><br><span class="line">        //tmp = pow(point1.pixVal - point2.pixVal,2);</span><br><span class="line">        //sum += tmp;</span><br><span class="line">        //&#125;</span><br><span class="line">        sum = pow(point1.pixVal - point2.pixVal, 2);</span><br><span class="line">        return sqrt(sum);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //计算每个点到离它最近的簇中心点，结果保存到vector中</span><br><span class="line">    vector&lt;int&gt; getClosetClusterCenterLabel()</span><br><span class="line">    &#123;</span><br><span class="line">        double min;</span><br><span class="line">        int label;</span><br><span class="line">        vector&lt;int&gt; labels;</span><br><span class="line">        for (int i = 0; i &lt; points.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            label = 0;</span><br><span class="line">            min = getDistanceBetweenTwoPoints(points[i], centers[0]);</span><br><span class="line">            for (int j = 1; j &lt; centers.size(); j++)</span><br><span class="line">            &#123;</span><br><span class="line">                double tmp = getDistanceBetweenTwoPoints(points[i], centers[j]);</span><br><span class="line">                if (tmp &lt; min)</span><br><span class="line">                &#123;</span><br><span class="line">                    min = tmp;</span><br><span class="line">                    label = j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            labels.push_back(label);</span><br><span class="line">        &#125;</span><br><span class="line">        return labels;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //将每个点放入它离的最近的中心点对应的簇中</span><br><span class="line">    void computeClusters(const vector&lt;int&gt;&amp; labels)</span><br><span class="line">    &#123;</span><br><span class="line">        for (int i = 0; i &lt; k; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            clusters[i].clear();</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; labels.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            int label = labels[i];</span><br><span class="line">            clusters[label].push_back(points[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //重新计算所有簇的中心点的灰度值</span><br><span class="line">    void computeCenters()</span><br><span class="line">    &#123;</span><br><span class="line">        centers.clear();</span><br><span class="line">        for (int i = 0; i &lt; k; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            double sum = 0;</span><br><span class="line">            for (int j = 0; j &lt; clusters[i].size(); j++)</span><br><span class="line">            &#123;</span><br><span class="line">                sum += clusters[i][j].pixVal;</span><br><span class="line">            &#125;</span><br><span class="line">            double meanVal = sum / clusters[i].size();</span><br><span class="line">            point cp(-1, -1, meanVal);</span><br><span class="line">            centers.push_back(cp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //确定新的中心点后重新计算一次cost</span><br><span class="line">    double computeCost()</span><br><span class="line">    &#123;</span><br><span class="line">        double sum = 0;</span><br><span class="line">        for (int i = 0; i &lt; k; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            vector&lt;point&gt; tmpVec=clusters[i];</span><br><span class="line">            for (int j = 0; j &lt; tmpVec.size(); j++)</span><br><span class="line">            &#123;</span><br><span class="line">                sum += getDistanceBetweenTwoPoints(tmpVec[j], centers[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return sum / points.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //迭代执行k-means算法的步骤</span><br><span class="line">    void kmeans()</span><br><span class="line">    &#123;</span><br><span class="line">        double oldCost, newCost;</span><br><span class="line">        vector&lt;int&gt; labels=getClosetClusterCenterLabel();</span><br><span class="line">        computeClusters(labels);</span><br><span class="line">        newCost = computeCost();</span><br><span class="line"></span><br><span class="line">        computeCenters();</span><br><span class="line">        labels = getClosetClusterCenterLabel();</span><br><span class="line">        computeClusters(labels);</span><br><span class="line">        oldCost = newCost;</span><br><span class="line">        newCost = computeCost();</span><br><span class="line"></span><br><span class="line">        while (oldCost != newCost)</span><br><span class="line">        &#123;</span><br><span class="line">            oldCost = newCost;</span><br><span class="line">            computeCenters();</span><br><span class="line">            labels = getClosetClusterCenterLabel();</span><br><span class="line">            computeClusters(labels);</span><br><span class="line">            newCost = computeCost();</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt;&quot;Final Cost: &quot;&lt;&lt; newCost &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure></p>
+<p>测试的kmeans.cpp文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;kmeans.h&quot;</span><br><span class="line">//图片的存放位置</span><br><span class="line">const String imageFolder = &quot;F:\\&quot;;</span><br><span class="line">//簇的个数（即k的大小，根据自己需要调整）</span><br><span class="line">const int numOfCluster =4;</span><br><span class="line">//最大像素值</span><br><span class="line">const int MAX_PIX_VALUE = 255;</span><br><span class="line">//存放所有点</span><br><span class="line">vector&lt;point&gt; points;</span><br><span class="line">//存放所有簇中心</span><br><span class="line">vector&lt;point&gt; centers;</span><br><span class="line">//存放所有点颜色特征(i,j)-&gt;i*rows+j</span><br><span class="line">vector&lt;double&gt; pixVec;</span><br><span class="line"></span><br><span class="line">//读取图像</span><br><span class="line">Mat readImage(String imageName)</span><br><span class="line">&#123;</span><br><span class="line">    String imageLoc = imageFolder + imageName;</span><br><span class="line">    Mat image=imread(imageLoc);</span><br><span class="line">    return image;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//初始化k-means聚类中心</span><br><span class="line">void initializeCenters(const Mat&amp; img)</span><br><span class="line">&#123;</span><br><span class="line">    srand((unsigned)time(NULL));</span><br><span class="line">    for (int i = 0; i &lt; numOfCluster; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        int randomX = rand() % img.rows;</span><br><span class="line">        int randomY = rand() % img.cols;</span><br><span class="line">        uchar pixVal = img.at&lt;uchar&gt;(randomX, randomY);</span><br><span class="line">        point cp(randomX, randomY, (double)pixVal);</span><br><span class="line">        centers.push_back(cp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//将图像中的所有点装入points中</span><br><span class="line">void initializePoints(const Mat&amp; img)</span><br><span class="line">&#123;</span><br><span class="line">    for (int i = 0; i &lt; img.rows; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        const uchar* data = img.ptr&lt;uchar&gt;(i);</span><br><span class="line">        for (int j = 0; j &lt; img.cols; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            uchar pixVal = data[j];</span><br><span class="line">            point p(i,j, (double)pixVal);</span><br><span class="line">            points.push_back(p);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    String imageName = &quot;lena.jpg&quot;;</span><br><span class="line">    Mat img = readImage(imageName);</span><br><span class="line">    cvtColor(img, img, CV_RGB2GRAY);//转化为灰度图像</span><br><span class="line">    namedWindow(imageName,WINDOW_NORMAL);</span><br><span class="line">    imshow(imageName, img);</span><br><span class="line">    waitKey(0);</span><br><span class="line">    int rows = img.rows;</span><br><span class="line">    int cols = img.cols;</span><br><span class="line">    initializeCenters(img);</span><br><span class="line">    initializePoints(img);</span><br><span class="line">    Kmeans* km=new Kmeans(points, centers, numOfCluster, 1);</span><br><span class="line">    cout &lt;&lt; &quot;---------------k-means start-------------&quot; &lt;&lt; endl;</span><br><span class="line">    km-&gt;kmeans();</span><br><span class="line">    cout &lt;&lt; &quot;---------------k-means end---------------&quot; &lt;&lt;endl;</span><br><span class="line">    vector&lt;point&gt;* clusters = km-&gt;getClusters();</span><br><span class="line">    Mat res(img.rows,img.cols,img.type());</span><br><span class="line">    double div = MAX_PIX_VALUE / numOfCluster;</span><br><span class="line">    for (int i = 0; i &lt; numOfCluster; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        vector&lt;point&gt; tmpVec = clusters[i];</span><br><span class="line">        for (int j = 0; j &lt; tmpVec.size(); j++)</span><br><span class="line">        &#123;</span><br><span class="line">            res.at&lt;uchar&gt;(tmpVec[j].row, tmpVec[j].col) = i*div;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    namedWindow(&quot;kmeansResult&quot;,WINDOW_NORMAL);</span><br><span class="line">    imshow(&quot;kmeansResult&quot;, res);</span><br><span class="line">    waitKey(0);</span><br><span class="line">    imwrite(&quot;./segment_lena.jpg&quot;, res);</span><br><span class="line">    system(&quot;pause&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>彩色图像分割：<a href="https://blog.csdn.net/owen7500/article/details/51604906" target="_blank" rel="noopener">参考</a></p>
+<p>主函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;clusterImagePixels.hpp&quot;</span><br><span class="line"> </span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	Mat testImage = imread(&quot;E:\\testImage\\board.jpg&quot;);</span><br><span class="line">	if (testImage.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	ClusterPixels clusterPix(testImage,3);</span><br><span class="line"> </span><br><span class="line">	Mat colorResults = clusterPix.clusterColorImageByKmeans();</span><br><span class="line">	Mat grayResult = clusterPix.clusterGrayImageByKmeans();</span><br><span class="line"> </span><br><span class="line">	if (!colorResults.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		hconcat(testImage, colorResults, colorResults);</span><br><span class="line">		imshow(&quot;clusterImage&quot;, colorResults);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	if (!grayResult.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		hconcat(testImage, grayResult, grayResult);</span><br><span class="line">		imshow(&quot;grayCluster&quot;, grayResult);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	if (waitKey() == 27)</span><br><span class="line">		return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;opencv.hpp&gt;</span><br><span class="line">using namespace cv;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">Scalar colorTab[] =     //10个颜色</span><br><span class="line">&#123;</span><br><span class="line">	Scalar(0, 0, 255),</span><br><span class="line">	Scalar(0, 255, 0),</span><br><span class="line">	Scalar(255, 100, 100),</span><br><span class="line">	Scalar(255, 0, 255),</span><br><span class="line">	Scalar(0, 255, 255),</span><br><span class="line">	Scalar(255, 0, 0),</span><br><span class="line">	Scalar(255, 255, 0),</span><br><span class="line">	Scalar(255, 0, 100),</span><br><span class="line">	Scalar(100, 100, 100),</span><br><span class="line">	Scalar(50, 125, 125)</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">class ClusterPixels</span><br><span class="line">&#123;</span><br><span class="line">private:</span><br><span class="line">	Mat image;			//待聚类图像</span><br><span class="line">	Mat labels;			//聚类后的标签</span><br><span class="line">	int clusterCounts;	//分类数,不得大于10，只是颜色定义只有10类，并不是算法限制</span><br><span class="line"> </span><br><span class="line">public:</span><br><span class="line">	ClusterPixels() :clusterCounts(0)&#123;&#125;</span><br><span class="line">	ClusterPixels(const Mat&amp; src, int clusters = 5) :clusterCounts(clusters)&#123; image = src.clone(); &#125;</span><br><span class="line"> </span><br><span class="line">	void setImage(const Mat&amp; src)&#123; image = src.clone(); &#125;;</span><br><span class="line">	void setClusters(int clusters)&#123; clusterCounts = clusters; &#125;</span><br><span class="line"> </span><br><span class="line">	Mat getLabels()	&#123;return labels;	&#125;;		//返回聚类后的标签</span><br><span class="line"> </span><br><span class="line">	Mat clusterGrayImageByKmeans()</span><br><span class="line">	&#123;</span><br><span class="line">		//转换成灰度图</span><br><span class="line">		if (image.channels() != 1)</span><br><span class="line">			cvtColor(image, image, COLOR_BGR2GRAY);</span><br><span class="line"> </span><br><span class="line">		int rows = image.rows;</span><br><span class="line">		int cols = image.cols;</span><br><span class="line">		</span><br><span class="line">		//保存聚类后的图片</span><br><span class="line">		Mat clusteredMat(rows, cols, CV_8UC3);</span><br><span class="line">		clusteredMat.setTo(Scalar::all(0));</span><br><span class="line"> </span><br><span class="line">		Mat pixels(rows*cols, 1, CV_32FC1);	//pixels用于保存所有的灰度像素</span><br><span class="line"> </span><br><span class="line">		for (int i = 0; i &lt; rows;++i)</span><br><span class="line">		&#123;</span><br><span class="line">			const uchar *idata = image.ptr&lt;uchar&gt;(i);</span><br><span class="line">			float *pdata = pixels.ptr&lt;float&gt;(0);</span><br><span class="line">			for (int j = 0; j &lt; cols;++j)</span><br><span class="line">			&#123;</span><br><span class="line">				pdata[i*cols + j] = idata[j];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"> </span><br><span class="line">		kmeans(pixels, clusterCounts, labels, TermCriteria(TermCriteria::EPS + TermCriteria::MAX_ITER, 10, 0), 5, KMEANS_PP_CENTERS);</span><br><span class="line"> </span><br><span class="line">		for (int i = 0; i &lt; rows;++i)</span><br><span class="line">		&#123;</span><br><span class="line">			for (int j = 0; j &lt; cols;++j)</span><br><span class="line">			&#123;</span><br><span class="line">				circle(clusteredMat, Point(j,i), 1, colorTab[labels.at&lt;int&gt;(i*cols + j)]);		//标记像素点的类别，颜色区分</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"> </span><br><span class="line">		return clusteredMat;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	Mat clusterColorImageByKmeans()</span><br><span class="line">	&#123;</span><br><span class="line">		assert(image.channels() != 1);</span><br><span class="line"> </span><br><span class="line">		int rows = image.rows;</span><br><span class="line">		int cols = image.cols;</span><br><span class="line">		int channels = image.channels();</span><br><span class="line"> </span><br><span class="line">		//保存聚类后的图片</span><br><span class="line">		Mat clusteredMat(rows, cols, CV_8UC3);</span><br><span class="line">		clusteredMat.setTo(Scalar::all(0));</span><br><span class="line"> </span><br><span class="line">		Mat pixels(rows*cols, 1, CV_32FC3);	//pixels用于保存所有的灰度像素</span><br><span class="line">		pixels.setTo(Scalar::all(0));</span><br><span class="line"> </span><br><span class="line">		for (int i = 0; i &lt; rows; ++i)</span><br><span class="line">		&#123;</span><br><span class="line">			const uchar *idata = image.ptr&lt;uchar&gt;(i);</span><br><span class="line">			float *pdata = pixels.ptr&lt;float&gt;(0);</span><br><span class="line"> </span><br><span class="line">			for (int j = 0; j &lt; cols*channels; ++j)</span><br><span class="line">			&#123;</span><br><span class="line">					pdata[i*cols*channels + j] = saturate_cast&lt;float&gt;(idata[j]);			</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"> </span><br><span class="line">		kmeans(pixels, clusterCounts, labels, TermCriteria(CV_TERMCRIT_EPS + CV_TERMCRIT_ITER, 10, 0), 5, KMEANS_PP_CENTERS);</span><br><span class="line"> </span><br><span class="line">		for (int i = 0; i &lt; rows; ++i)</span><br><span class="line">		&#123;</span><br><span class="line">			for (int j = 0; j &lt; cols*channels; j += channels)</span><br><span class="line">			&#123;</span><br><span class="line">				circle(clusteredMat, Point(j/channels,i), 1, colorTab[labels.at&lt;int&gt;(i*cols + (j/channels))]);		//标记像素点的类别，颜色区分</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"> </span><br><span class="line">		return clusteredMat;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>opencv3代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;stdafx.h&quot;</span><br><span class="line">#include &quot;opencv2\opencv.hpp&quot;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">using namespace cv;</span><br><span class="line">using namespace cv::ml;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    Mat img = imread(&quot;E:/opencv/opencv/sources/samples/data/digits.png&quot;);</span><br><span class="line">    Mat gray;</span><br><span class="line">    cvtColor(img, gray, CV_BGR2GRAY);</span><br><span class="line">    int b = 20;</span><br><span class="line">    int m = gray.rows / b;   //原图为1000*2000</span><br><span class="line">    int n = gray.cols / b;   //裁剪为5000个20*20的小图块</span><br><span class="line">    Mat data,labels;   //特征矩阵</span><br><span class="line">    for (int i = 0; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        int offsetCol = i*b; //列上的偏移量</span><br><span class="line">        for (int j = 0; j &lt; m; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            int offsetRow = j*b;  //行上的偏移量</span><br><span class="line">            //截取20*20的小块</span><br><span class="line">            Mat tmp;</span><br><span class="line">            gray(Range(offsetRow, offsetRow + b), Range(offsetCol, offsetCol + b)).copyTo(tmp);</span><br><span class="line">            data.push_back(tmp.reshape(0,1));  //序列化后放入特征矩阵</span><br><span class="line">            labels.push_back((int)j / 5);  //对应的标注</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    data.convertTo(data, CV_32F); //uchar型转换为cv_32f</span><br><span class="line">    int samplesNum = data.rows;</span><br><span class="line">    int trainNum = 3000;</span><br><span class="line">    Mat trainData, trainLabels;</span><br><span class="line">    trainData = data(Range(0, trainNum), Range::all());   //前3000个样本为训练数据</span><br><span class="line">    trainLabels = labels(Range(0, trainNum), Range::all());</span><br><span class="line"></span><br><span class="line">    //使用KNN算法</span><br><span class="line">    int K = 5;</span><br><span class="line">    Ptr&lt;TrainData&gt; tData = TrainData::create(trainData, ROW_SAMPLE, trainLabels);</span><br><span class="line">    Ptr&lt;KNearest&gt; model = KNearest::create();</span><br><span class="line">    model-&gt;setDefaultK(K);</span><br><span class="line">    model-&gt;setIsClassifier(true);</span><br><span class="line">    model-&gt;train(tData);</span><br><span class="line"></span><br><span class="line">    //预测分类</span><br><span class="line">    double train_hr = 0, test_hr = 0;</span><br><span class="line">    Mat response;</span><br><span class="line">    // compute prediction error on train and test data</span><br><span class="line">    for (int i = 0; i &lt; samplesNum; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        Mat sample = data.row(i);</span><br><span class="line">        float r = model-&gt;predict(sample);   //对所有行进行预测</span><br><span class="line">        //预测结果与原结果相比，相等为1，不等为0</span><br><span class="line">        r = std::abs(r - labels.at&lt;int&gt;(i)) &lt;= FLT_EPSILON ? 1.f : 0.f;          </span><br><span class="line"></span><br><span class="line">        if (i &lt; trainNum)</span><br><span class="line">            train_hr += r;  //累积正确数</span><br><span class="line">        else</span><br><span class="line">            test_hr += r;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    test_hr /= samplesNum - trainNum;</span><br><span class="line">    train_hr = trainNum &gt; 0 ? train_hr / trainNum : 1.;</span><br><span class="line"></span><br><span class="line">    printf(&quot;accuracy: train = %.1f%%, test = %.1f%%\n&quot;,</span><br><span class="line">        train_hr*100., test_hr*100.);</span><br><span class="line">    waitKey(0);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/19/机器学习推荐书/" rel="next" title="机器学习推荐书">
+                <i class="fa fa-chevron-left"></i> 机器学习推荐书
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/19/特征提取_图像矩阵变换/" rel="prev" title="特征提取_图像矩阵变换">
+                特征提取_图像矩阵变换 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">AomanHao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">86</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/aomanhao" title="GitHub &rarr; https://github.com/aomanhao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:1014325364@qq.com" title="E-Mail &rarr; mailto:1014325364@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/2831714980" title="Weibo &rarr; https://weibo.com/u/2831714980" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#K最近邻-kNN，k-NearestNeighbor-分类算法"><span class="nav-number">1.</span> <span class="nav-text">K最近邻(kNN，k-NearestNeighbor)分类算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EM算法"><span class="nav-number">2.</span> <span class="nav-text">EM算法</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AomanHao</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":75,"height":150},"mobile":{"show":true},"log":false});</script></body>
+</html>
