@@ -113,16 +113,22 @@ hexo d
 ---
 ### 各版块透明度修改
 #### 内容板块透明
-根博客目录`themes\next\source\css\_schemes\Pisces\_layout.styl`文件.content-wrap标签下background: white修改为：
+根博客目录`themes\next\source\css\_schemes\Pisces\_layout.styl`文件`.content-wrap`标签下`background: white`修改为：
+```
 background: rgba(255,255,255,0.7); //0.7是透明度
-
+```
 #### 菜单栏背景
-根博客目录themes\next\source\css\_schemes\Pisces\_layout.styl文件.header-inner标签下background: white修改为：
+根博客目录`themes\next\source\css\_schemes\Pisces\_layout.styl`文件`.header-inner`标签下`background: white`修改为：
+```
 background: rgba(255,255,255,0.7); //0.7是透明度
-
+```
 #### 站点概况背景
-根博客目录themes\next\source\css\_schemes\Pisces\_sidebar.styl文件.sidebar-inner标签下background: white修改为：
+根博客目录`themes\next\source\css\_schemes\Pisces\_sidebar.styl`文件`.sidebar-inner`标签下`background: white`修改为：
+```
 background: rgba(255,255,255,0.7); //0.7是透明度
+```
 
-修改然后根博客目录themes\next\source\css\_schemes\Pisces\_layout.styl文件.sidebar标签下background: $body-bg-color修改为：
+修改然后根博客目录`themes\next\source\css\_schemes\Pisces\_layout.styl`文件`.sidebar`标签下`background: $body-bg-color`修改为：
+```
 background: rgba(255,255,255,0.7); //0.7是透明度
+```
