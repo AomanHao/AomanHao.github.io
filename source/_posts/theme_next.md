@@ -39,7 +39,9 @@ Hexo主题Next配置
 
 在站点目录下安装插件：
 
-```$ npm install gulp -g```
+```
+$ npm install gulp -g
+```
 
 ```
 npm install gulp-minify-css --save
@@ -98,17 +100,19 @@ gulp.task('default', [
 ]);
 ```
 需要只在每次执行generate命令后执行gulp就可以实现对静态资源的压缩，完成压缩后执行deploy命令同步到服务器：
+
 ```
 hexo g
 gulp
 hexo d
 
 ```
+
 ---
 
 ### 隐藏网页底部powered By Hexo / 强力驱动
 打开`themes/next/layout/_partials/footer.swig`,使用`<!--`与`-->`隐藏之间的代码即可，或者直接删除。位置如图：
-!(http://upload-images.jianshu.io/upload_images/5308475-8e8340c7a0489bce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)[hexo]
+![hexo](http://upload-images.jianshu.io/upload_images/5308475-8e8340c7a0489bce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ---
 ### 各版块透明度修改
@@ -254,4 +258,7 @@ footer:
 设置效果：
 
 设置方法：
-首先要先去LeanCloud注册一个帐号.然后再创建一个应用.
+首先要先去`LeanCloud`注册一个帐号.然后再创建一个应用.
+
+拿到`appid`和`appkey`之后，打开`themes/next/_config.yml`主题配置文件，查找`valine`，填入`appid `和 `appkey`
+我的配置:
