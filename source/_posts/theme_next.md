@@ -254,6 +254,17 @@ footer:
   scrollpercent: true
 ```
 
+### 浏览页面的时候显示当前浏览进度
+如果想把top按钮放在侧边栏,打开`themes/next`下的`_config.yml`,搜索关键字`b2t`,把`false`改为`true`
+
+```
+# Back to top in sidebar
+ b2t: true
+    
+ # Scroll percent label in b2t button
+ scrollpercent: true
+```
+
 ### 加入valine在线评论
 设置效果：
 
@@ -262,3 +273,40 @@ footer:
 
 拿到`appid`和`appkey`之后，打开`themes/next/_config.yml`主题配置文件，查找`valine`，填入`appid `和 `appkey`
 我的配置:
+
+---
+### 添加网站已运行时间
+
+在`themes/layout/_parrials/footer.swing`后添加
+
+```
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("11/27/2017 12:00:00");//在此处修改你的建站时间
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = " Runing "+dnum+" D "; 
+        document.getElementById("times").innerHTML = hnum + " H " + mnum + " M " + snum + " S"; 
+    } 
+setInterval("createtime()",250);
+</script>
+
+```
+
+---
+
+### 添加头像
+打开`themes/next下的_config.yml`文件，搜索 `Sidebar Avatar`关键字，去掉avatar前面的#
+# Sidebar Avatar
+# in theme directory(source/images): /images/avatar.jpg
+# in site  directory(source/uploads): /uploads/avatar.jpg
+avatar: http://example.com/avatar.png
+或者使用本地图片,把图片放入themes/next/source/images下,修改avatar
+avatar: /images/blogLogo.png
