@@ -435,6 +435,18 @@
 
           
           
+            <span id="/2018/03/07/matlab_exe/" class="leancloud_visitors" data-flag-title="解决方案matlab2014a破解不完全，报错Test checkout of feature 'Compiler' failed">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">热度：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+              <span>℃</span>
+            </span>
+          
 
           
 
@@ -595,6 +607,18 @@
           
 
           
+          
+            <span id="/2018/03/04/database_2/" class="leancloud_visitors" data-flag-title="数据库Mysql_3_4">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">热度：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+              <span>℃</span>
+            </span>
           
 
           
@@ -757,6 +781,18 @@
 
           
           
+            <span id="/2018/03/04/database_1/" class="leancloud_visitors" data-flag-title="数据库Mysql_3_4">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">热度：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+              <span>℃</span>
+            </span>
+          
 
           
 
@@ -917,6 +953,18 @@
           
 
           
+          
+            <span id="/2018/02/08/hexo_3/" class="leancloud_visitors" data-flag-title="hexo博客yilia主题_缺失模块_解决方案">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">热度：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+              <span>℃</span>
+            </span>
           
 
           
@@ -1079,6 +1127,18 @@
 
           
           
+            <span id="/2018/02/08/hexo_2/" class="leancloud_visitors" data-flag-title="hexo博客yilia主题_more截断文章_多标签添加">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">热度：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+              <span>℃</span>
+            </span>
+          
 
           
 
@@ -1240,6 +1300,18 @@
 
           
           
+            <span id="/2018/02/06/hexo_1/" class="leancloud_visitors" data-flag-title="hexo-github博客首页菜单中文乱码两种解决方案">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">热度：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+              <span>℃</span>
+            </span>
+          
 
           
 
@@ -1400,6 +1472,18 @@
           
 
           
+          
+            <span id="/2018/01/10/记事18_08_28/" class="leancloud_visitors" data-flag-title="米pad记事本 0828刷好lineage系统">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">热度：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+              <span>℃</span>
+            </span>
           
 
           
@@ -1698,6 +1782,7 @@
 
 
 
+
 <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
 <script>
     var now = new Date(); 
@@ -1710,8 +1795,9 @@
         mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
         seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
         snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
-        document.getElementById("timeDate").innerHTML = " Runing "+dnum+" D "; 
-        document.getElementById("times").innerHTML = hnum + " H " + mnum + " M " + snum + " S"; 
+        document.getElementById("timeDate").innerHTML = " 安全运行 "+dnum+" 天 "; 
+       <!-- document.getElementById("times").innerHTML = hnum + " H " + mnum + " M " + snum + " S"; 
+       -->
     } 
 setInterval("createtime()",250);
 </script>
@@ -2175,6 +2261,74 @@ setInterval("createtime()",250);
 
 
   
+  
+  <script>
+    
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $('.leancloud_visitors');
+
+      $visitors.each(function() {
+        entries.push( $(this).attr('id').trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+        .done(function({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'JYiNB437xbwy0eogzSFRhyKC')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'JYiNB437xbwy0eogzSFRhyKC',
+                'X-LC-Key': 'Qts3cyVSNXGD5DsmbIPO7BL0',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            if ($('.post-title-link').length >= 1) {
+              showTime(Counter);
+            }
+          
+        });
+    });
+  </script>
+
+
 
   
 

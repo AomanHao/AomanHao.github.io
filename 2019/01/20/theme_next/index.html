@@ -112,7 +112,7 @@
 <meta property="og:description" content="Hexo主题Next配置">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5308475-8e8340c7a0489bce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-01-29T02:48:48.744Z">
+<meta property="og:updated_time" content="2019-01-29T06:23:59.468Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo主题Next配置">
 <meta name="twitter:description" content="Hexo主题Next配置">
@@ -425,7 +425,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-29 10:48:48" itemprop="dateModified" datetime="2019-01-29T10:48:48+08:00">2019-01-29</time>
+                <time title="修改时间：2019-01-29 14:23:59" itemprop="dateModified" datetime="2019-01-29T14:23:59+08:00">2019-01-29</time>
               
             
           </span>
@@ -438,6 +438,18 @@
           
 
           
+          
+            <span id="/2019/01/20/theme_next/" class="leancloud_visitors" data-flag-title="Hexo主题Next配置">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">热度：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+              <span>℃</span>
+            </span>
           
 
           
@@ -495,7 +507,7 @@
 <h3 id="浏览页面的时候显示当前浏览进度"><a href="#浏览页面的时候显示当前浏览进度" class="headerlink" title="浏览页面的时候显示当前浏览进度"></a>浏览页面的时候显示当前浏览进度</h3><p>如果想把top按钮放在侧边栏,打开<code>themes/next</code>下的<code>_config.yml</code>,搜索关键字<code>b2t</code>,把<code>false</code>改为<code>true</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Back to top in sidebar</span><br><span class="line"> b2t: true</span><br><span class="line">    </span><br><span class="line"> # Scroll percent label in b2t button</span><br><span class="line"> scrollpercent: true</span><br></pre></td></tr></table></figure>
 <h3 id="加入valine在线评论"><a href="#加入valine在线评论" class="headerlink" title="加入valine在线评论"></a>加入valine在线评论</h3><p>设置效果：</p>
-<p>设置方法：<br>首先要先去<code>LeanCloud</code>注册一个帐号.然后再创建一个应用.</p>
+<p>设置方法：<br>首先要先去<a href="https://leancloud.cn/" target="_blank" rel="noopener">LeanCloud</a>注册一个帐号.然后再创建一个应用.</p>
 <p>拿到<code>appid</code>和<code>appkey</code>之后，打开<code>themes/next/_config.yml</code>主题配置文件，查找<code>valine</code>，填入<code>appid</code>和 <code>appkey</code><br>我的配置:</p>
 <hr>
 <h3 id="添加网站已运行时间"><a href="#添加网站已运行时间" class="headerlink" title="添加网站已运行时间"></a>添加网站已运行时间</h3><p>在<code>themes/layout/_parrials/footer.swing</code>后添加</p>
@@ -503,7 +515,11 @@
 <hr>
 <h3 id="添加头像"><a href="#添加头像" class="headerlink" title="添加头像"></a>添加头像</h3><p>打开<code>themes/next下的_config.yml</code>文件，搜索 <code>Sidebar Avatar</code>关键字，去掉avatar前面的#</p>
 <h1 id="Sidebar-Avatar"><a href="#Sidebar-Avatar" class="headerlink" title="Sidebar Avatar"></a>Sidebar Avatar</h1><h1 id="in-theme-directory-source-images-images-avatar-jpg"><a href="#in-theme-directory-source-images-images-avatar-jpg" class="headerlink" title="in theme directory(source/images): /images/avatar.jpg"></a>in theme directory(source/images): /images/avatar.jpg</h1><h1 id="in-site-directory-source-uploads-uploads-avatar-jpg"><a href="#in-site-directory-source-uploads-uploads-avatar-jpg" class="headerlink" title="in site  directory(source/uploads): /uploads/avatar.jpg"></a>in site  directory(source/uploads): /uploads/avatar.jpg</h1><p>avatar: <a href="http://example.com/avatar.png" target="_blank" rel="noopener">http://example.com/avatar.png</a><br>或者使用本地图片,把图片放入themes/next/source/images下,修改avatar<br>avatar: /images/blogLogo.png</p>
-
+<h3 id="添加站内搜索"><a href="#添加站内搜索" class="headerlink" title="添加站内搜索"></a>添加站内搜索</h3><p>设置效果：</p>
+<p>设置方法：<br>安装<code>hexo-generator-searchdb</code>插件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure></p>
+<p>编辑<code>_config.yml</code>站点配置文件，新增以下内容到任意位置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure></p>
+<p>编辑<code>themes/next/_config.yml</code>主题配置文件，启用本地搜索功能,将<code>local_search:</code>下面的<code>enable:</code>的值，改成<code>true</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Local search</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -763,7 +779,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#新建404界面"><span class="nav-number">1.</span> <span class="nav-text">新建404界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态资源压缩"><span class="nav-number">2.</span> <span class="nav-text">静态资源压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐藏网页底部powered-By-Hexo-强力驱动"><span class="nav-number">3.</span> <span class="nav-text">隐藏网页底部powered By Hexo / 强力驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#各版块透明度修改"><span class="nav-number">4.</span> <span class="nav-text">各版块透明度修改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内容板块透明"><span class="nav-number">4.1.</span> <span class="nav-text">内容板块透明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#菜单栏背景"><span class="nav-number">4.2.</span> <span class="nav-text">菜单栏背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#站点概况背景"><span class="nav-number">4.3.</span> <span class="nav-text">站点概况背景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网站底部字数统计"><span class="nav-number">5.</span> <span class="nav-text">网站底部字数统计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加侧栏推荐阅读"><span class="nav-number">6.</span> <span class="nav-text">添加侧栏推荐阅读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#博文置顶"><span class="nav-number">7.</span> <span class="nav-text">博文置顶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网页底部信息隐藏"><span class="nav-number">8.</span> <span class="nav-text">网页底部信息隐藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示文章阅读进度百分比"><span class="nav-number">9.</span> <span class="nav-text">显示文章阅读进度百分比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览页面的时候显示当前浏览进度"><span class="nav-number">10.</span> <span class="nav-text">浏览页面的时候显示当前浏览进度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加入valine在线评论"><span class="nav-number">11.</span> <span class="nav-text">加入valine在线评论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加网站已运行时间"><span class="nav-number">12.</span> <span class="nav-text">添加网站已运行时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加头像"><span class="nav-number">13.</span> <span class="nav-text">添加头像</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#Sidebar-Avatar"><span class="nav-number"></span> <span class="nav-text">Sidebar Avatar</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#in-theme-directory-source-images-images-avatar-jpg"><span class="nav-number"></span> <span class="nav-text">in theme directory(source/images): /images/avatar.jpg</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#in-site-directory-source-uploads-uploads-avatar-jpg"><span class="nav-number"></span> <span class="nav-text">in site  directory(source/uploads): /uploads/avatar.jpg</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#新建404界面"><span class="nav-number">1.</span> <span class="nav-text">新建404界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态资源压缩"><span class="nav-number">2.</span> <span class="nav-text">静态资源压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐藏网页底部powered-By-Hexo-强力驱动"><span class="nav-number">3.</span> <span class="nav-text">隐藏网页底部powered By Hexo / 强力驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#各版块透明度修改"><span class="nav-number">4.</span> <span class="nav-text">各版块透明度修改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内容板块透明"><span class="nav-number">4.1.</span> <span class="nav-text">内容板块透明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#菜单栏背景"><span class="nav-number">4.2.</span> <span class="nav-text">菜单栏背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#站点概况背景"><span class="nav-number">4.3.</span> <span class="nav-text">站点概况背景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网站底部字数统计"><span class="nav-number">5.</span> <span class="nav-text">网站底部字数统计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加侧栏推荐阅读"><span class="nav-number">6.</span> <span class="nav-text">添加侧栏推荐阅读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#博文置顶"><span class="nav-number">7.</span> <span class="nav-text">博文置顶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网页底部信息隐藏"><span class="nav-number">8.</span> <span class="nav-text">网页底部信息隐藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示文章阅读进度百分比"><span class="nav-number">9.</span> <span class="nav-text">显示文章阅读进度百分比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览页面的时候显示当前浏览进度"><span class="nav-number">10.</span> <span class="nav-text">浏览页面的时候显示当前浏览进度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加入valine在线评论"><span class="nav-number">11.</span> <span class="nav-text">加入valine在线评论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加网站已运行时间"><span class="nav-number">12.</span> <span class="nav-text">添加网站已运行时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加头像"><span class="nav-number">13.</span> <span class="nav-text">添加头像</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#Sidebar-Avatar"><span class="nav-number"></span> <span class="nav-text">Sidebar Avatar</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#in-theme-directory-source-images-images-avatar-jpg"><span class="nav-number"></span> <span class="nav-text">in theme directory(source/images): /images/avatar.jpg</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#in-site-directory-source-uploads-uploads-avatar-jpg"><span class="nav-number"></span> <span class="nav-text">in site  directory(source/uploads): /uploads/avatar.jpg</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加站内搜索"><span class="nav-number">1.</span> <span class="nav-text">添加站内搜索</span></a></li></ol></li></div>
             
 
           </div>
@@ -818,6 +834,7 @@
 
 
 
+
 <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
 <script>
     var now = new Date(); 
@@ -830,8 +847,9 @@
         mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
         seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
         snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
-        document.getElementById("timeDate").innerHTML = " Runing "+dnum+" D "; 
-        document.getElementById("times").innerHTML = hnum + " H " + mnum + " M " + snum + " S"; 
+        document.getElementById("timeDate").innerHTML = " 安全运行 "+dnum+" 天 "; 
+       <!-- document.getElementById("times").innerHTML = hnum + " H " + mnum + " M " + snum + " S"; 
+       -->
     } 
 setInterval("createtime()",250);
 </script>
@@ -1301,6 +1319,66 @@ setInterval("createtime()",250);
 
 
   
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'JYiNB437xbwy0eogzSFRhyKC')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'JYiNB437xbwy0eogzSFRhyKC',
+                'X-LC-Key': 'Qts3cyVSNXGD5DsmbIPO7BL0',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
 
   
 

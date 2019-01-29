@@ -441,6 +441,18 @@
 
           
           
+            <span id="/2018/07/18/机器学习_分类_决策树/" class="leancloud_visitors" data-flag-title="机器学习_分类_决策树">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">热度：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+              <span>℃</span>
+            </span>
+          
 
           
 
@@ -534,8 +546,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/16/特征提取_局部特征/" rel="next" title="特征提取——局部特征">
-                <i class="fa fa-chevron-left"></i> 特征提取——局部特征
+              <a href="/2018/07/16/机器学习_分类_数据聚类/" rel="next" title="机器学习_分类_数据聚类">
+                <i class="fa fa-chevron-left"></i> 机器学习_分类_数据聚类
               </a>
             
           </div>
@@ -544,8 +556,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/19/特征提取_图像矩阵变换/" rel="prev" title="特征提取_图像矩阵变换">
-                特征提取_图像矩阵变换 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/19/机器学习推荐书/" rel="prev" title="机器学习推荐书">
+                机器学习推荐书 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -813,6 +825,7 @@
 
 
 
+
 <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
 <script>
     var now = new Date(); 
@@ -825,8 +838,9 @@
         mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
         seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
         snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
-        document.getElementById("timeDate").innerHTML = " Runing "+dnum+" D "; 
-        document.getElementById("times").innerHTML = hnum + " H " + mnum + " M " + snum + " S"; 
+        document.getElementById("timeDate").innerHTML = " 安全运行 "+dnum+" 天 "; 
+       <!-- document.getElementById("times").innerHTML = hnum + " H " + mnum + " M " + snum + " S"; 
+       -->
     } 
 setInterval("createtime()",250);
 </script>
@@ -1296,6 +1310,66 @@ setInterval("createtime()",250);
 
 
   
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'JYiNB437xbwy0eogzSFRhyKC')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'JYiNB437xbwy0eogzSFRhyKC',
+                'X-LC-Key': 'Qts3cyVSNXGD5DsmbIPO7BL0',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
 
   
 
