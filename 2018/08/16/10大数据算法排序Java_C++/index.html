@@ -81,7 +81,7 @@
     root: '/',
     scheme: 'Gemini',
     version: '6.7.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -383,7 +383,7 @@
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AomanHao">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/head.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -565,8 +565,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/16/机器学习-梯度消失爆炸/" rel="next" title="机器学习-梯度消失爆炸">
-                <i class="fa fa-chevron-left"></i> 机器学习-梯度消失爆炸
+              <a href="/2018/08/15/面经—机器学习/" rel="next" title="面经—机器学习">
+                <i class="fa fa-chevron-left"></i> 面经—机器学习
               </a>
             
           </div>
@@ -575,8 +575,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/16/leetcode_sum/" rel="prev" title="leetcode题解">
-                leetcode题解 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/16/面经-概率论算法/" rel="prev" title="面经-概率论算法">
+                面经-概率论算法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -635,6 +635,8 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="AomanHao">
             
               <p class="site-author-name" itemprop="name">AomanHao</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -796,6 +798,13 @@
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -839,7 +848,7 @@
 <script>
     var now = new Date(); 
     function createtime() { 
-        var grt= new Date("08/10/2018 17:38:00");//在此处修改你的建站时间
+        var grt= new Date("11/27/2017 12:00:00");//在此处修改你的建站时间
         now.setTime(now.getTime()+250); 
         days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
         hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
@@ -847,8 +856,8 @@
         mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
         seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
         snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
-        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
-        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+        document.getElementById("timeDate").innerHTML = " Runing "+dnum+" D "; 
+        document.getElementById("times").innerHTML = hnum + " H " + mnum + " M " + snum + " S"; 
     } 
 setInterval("createtime()",250);
 </script>
@@ -894,13 +903,6 @@ setInterval("createtime()",250);
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-          <span id="scrollpercent"><span>0</span>%</span>
-        
-      </div>
     
 
     
