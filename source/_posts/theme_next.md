@@ -269,7 +269,7 @@ footer:
 设置效果：
 
 设置方法：
-首先要先去`LeanCloud`注册一个帐号.然后再创建一个应用.
+首先要先去[LeanCloud](https://leancloud.cn/)注册一个帐号.然后再创建一个应用.
 
 拿到`appid`和`appkey`之后，打开`themes/next/_config.yml`主题配置文件，查找`valine`，填入`appid `和 `appkey`
 我的配置:
@@ -310,3 +310,28 @@ setInterval("createtime()",250);
 avatar: http://example.com/avatar.png
 或者使用本地图片,把图片放入themes/next/source/images下,修改avatar
 avatar: /images/blogLogo.png
+
+
+### 添加站内搜索
+设置效果：
+
+设置方法：
+安装`hexo-generator-searchdb`插件
+```
+npm install hexo-generator-searchdb --save
+```
+编辑`_config.yml`站点配置文件，新增以下内容到任意位置：
+```
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+  ```
+编辑`themes/next/_config.yml `主题配置文件，启用本地搜索功能,将`local_search:`下面的`enable:`的值，改成`true`
+
+```
+# Local search
+local_search:
+  enable: true
+```
