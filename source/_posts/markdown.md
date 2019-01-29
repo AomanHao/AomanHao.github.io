@@ -70,3 +70,15 @@ markdown 基本用法
 
     +（空格）可乐
     +（空格）雪碧
+
+
+---
+### emoji表情
+Markdown文档支持文中插入emoji表情
+
+比如：<br>
+
+`:laughing:` 表示:laughing:
+`:heart:` 表示:heart:
+其他emoji的地址如下链接：
+[emoji地址](https://github.com/guodongxiaren/README/blob/master/emoji.md)
