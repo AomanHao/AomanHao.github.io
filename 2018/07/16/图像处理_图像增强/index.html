@@ -81,7 +81,7 @@
     root: '/',
     scheme: 'Gemini',
     version: '6.7.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -447,6 +447,13 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
           
 
@@ -747,8 +754,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/16/特征提取_局部特征/" rel="next" title="特征提取——局部特征">
-                <i class="fa fa-chevron-left"></i> 特征提取——局部特征
+              <a href="/2018/07/16/阈值分割_大津法_分水岭/" rel="next" title="阈值分割_大津法_分水岭">
+                <i class="fa fa-chevron-left"></i> 阈值分割_大津法_分水岭
               </a>
             
           </div>
@@ -757,8 +764,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/16/Linux_commnd/" rel="prev" title="Linux_常用命令">
-                Linux_常用命令 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/16/opencv_斑点检测/" rel="prev" title="Opencv_斑点检测">
+                Opencv_斑点检测 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -829,7 +836,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">86</span>
+                    <span class="site-state-item-count">87</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -900,7 +907,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                      
+                    
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
@@ -987,7 +996,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <!--<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>-->
 
 <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
@@ -1000,21 +1009,11 @@
   
 </div>
 
-<!--busuanzi访问量模块-->
+<!--busuanzi访问量模块
+-->
 
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-
-<span id="busuanzi_container_site_pv">
-    本站总访问量<span id="busuanzi_value_site_pv"></span>次
-</span>
-</div>
-
-
-<!--Hexo版本模块-->
-
+<!--Hexo版本模块
+-->
 
 
 
@@ -1023,6 +1022,32 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user">本站总访客量：</i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye">本站总浏览量：</i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
 
 
 
@@ -1039,6 +1064,8 @@
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     
