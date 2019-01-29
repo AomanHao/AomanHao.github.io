@@ -545,8 +545,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/28/图像处理_图像插值/" rel="prev" title="图像处理_图像插值">
-                图像处理_图像插值 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/28/hexo_error_replace/" rel="prev" title="Hexo博客 报错 Cannot read property 'replace' of null">
+                Hexo博客 报错 Cannot read property 'replace' of null <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -786,8 +786,8 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <!--<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>-->
-
+        
+<!--网页底部copyright部分-->
 <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
@@ -797,46 +797,10 @@
   
 
   
-</div>
 
-<!--busuanzi访问量模块
--->
+  
 
-
-<!--Hexo版本模块-->
-
-
-
-
-
-<!--Hext主题版本模块-->
-
-
-
-
-
-<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
-<script>
-    var now = new Date(); 
-    function createtime() { 
-        var grt= new Date("11/27/2017 12:00:00");//在此处修改你的建站时间
-        now.setTime(now.getTime()+250); 
-        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
-        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
-        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
-        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
-        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
-        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
-        document.getElementById("timeDate").innerHTML = " 安全运行 "+dnum+" 天 "; 
-       <!-- document.getElementById("times").innerHTML = hnum + " H " + mnum + " M " + snum + " S"; 
-       -->
-    } 
-setInterval("createtime()",250);
-</script>
-
-
-        
-<div class="busuanzi-count">
+  <!--访问量访问人数-->
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
@@ -860,8 +824,54 @@ setInterval("createtime()",250);
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
     </span>
   
+
+
 </div>
 
+
+<span id="timeDate"></span><span id="times"></span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("11/27/2017 12:00:00");//在此处修改你的建站时间
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = " 网站安全运行 "+dnum+" 天 "; 
+        
+    } 
+setInterval("createtime()",250);
+</script>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<!--Hexo版本模块-->
+
+ <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+<!--Hext主题版本模块-->
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+
+
+
+
+
+<!--document.getElementById("times").innerHTML = hnum + " H " + mnum + " M " + snum + " S"; -->
+        
 
 
 

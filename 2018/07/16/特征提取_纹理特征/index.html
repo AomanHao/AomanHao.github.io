@@ -531,8 +531,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/16/图像处理_图像滤波/" rel="next" title="图像处理_图像滤波">
-                <i class="fa fa-chevron-left"></i> 图像处理_图像滤波
+              <a href="/2018/07/16/图像分割_大津法/" rel="next" title="图像分割-大津法">
+                <i class="fa fa-chevron-left"></i> 图像分割-大津法
               </a>
             
           </div>
@@ -541,8 +541,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/16/机器学习_分类_数据聚类/" rel="prev" title="机器学习_分类_数据聚类">
-                机器学习_分类_数据聚类 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/16/特征提取_颜色特征/" rel="prev" title="特征提取——颜色特征">
+                特征提取——颜色特征 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -782,8 +782,8 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <!--<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>-->
-
+        
+<!--网页底部copyright部分-->
 <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
@@ -793,46 +793,10 @@
   
 
   
-</div>
 
-<!--busuanzi访问量模块
--->
+  
 
-
-<!--Hexo版本模块-->
-
-
-
-
-
-<!--Hext主题版本模块-->
-
-
-
-
-
-<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
-<script>
-    var now = new Date(); 
-    function createtime() { 
-        var grt= new Date("11/27/2017 12:00:00");//在此处修改你的建站时间
-        now.setTime(now.getTime()+250); 
-        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
-        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
-        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
-        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
-        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
-        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
-        document.getElementById("timeDate").innerHTML = " 安全运行 "+dnum+" 天 "; 
-       <!-- document.getElementById("times").innerHTML = hnum + " H " + mnum + " M " + snum + " S"; 
-       -->
-    } 
-setInterval("createtime()",250);
-</script>
-
-
-        
-<div class="busuanzi-count">
+  <!--访问量访问人数-->
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
@@ -856,8 +820,54 @@ setInterval("createtime()",250);
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
     </span>
   
+
+
 </div>
 
+
+<span id="timeDate"></span><span id="times"></span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("11/27/2017 12:00:00");//在此处修改你的建站时间
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = " 网站安全运行 "+dnum+" 天 "; 
+        
+    } 
+setInterval("createtime()",250);
+</script>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<!--Hexo版本模块-->
+
+ <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+<!--Hext主题版本模块-->
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+
+
+
+
+
+<!--document.getElementById("times").innerHTML = hnum + " H " + mnum + " M " + snum + " S"; -->
+        
 
 
 
