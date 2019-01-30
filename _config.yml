@@ -108,6 +108,19 @@ deploy:
 #   format: html
 #   limit: 10000
 
+# Algolia Search API Key
+algolia:
+  applicationID: 'LRGS4HB0KD'
+  apiKey: '433a95c049096ef0c81b72dba87d7523'
+  adminApiKey: '1d52e710f58914a29202156a5dadf371'
+  indexName: 'HexoSearch'
+  chunkSize: 5000
+  fields:
+  - title
+  - slug
+  - path
+  - content:strip
+
 # 自动生成sitemap
 sitemap:
   path: sitemap.xml
@@ -134,4 +147,5 @@ live2d:
     #vOffset: 40
   mobile:
     show: true
+
 
