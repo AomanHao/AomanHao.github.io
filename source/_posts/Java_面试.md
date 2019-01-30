@@ -8,7 +8,7 @@ tags: [笔面试, Java]
 Java面试相关
 
 <!--more-->
- ```
+
 谈谈final, finally, finalize的区别： 
 final：：：修饰符（关键字）如果一个类被声明为final，意味着它不能再派生出新的子类，不能作为父类被继承。因此一个类不能既被声明为 abstract的，又被声明为final的。将变量或方法声明为final，可以保证它们在使用中不被改变。被声明为final的变量必须在声明时给定初值，而在以后的引用中只能读取，不可修改。被声明为final的方法也同样只能使用，不能重载 
 finally：：：再异常处理时提供 finally 块来执行任何清除操作。如果抛出一个异常，那么相匹配的 catch 子句就会执行，然后控制就会进入 finally 块（如果有的话）。 
@@ -214,14 +214,14 @@ JSP中动态INCLUDE与静态INCLUDE的区别：
  
 前者页面不会转向include所指的页面，只是显示该页的结果，主页面还是原来的页面。执行完后还会回来，相当于函数调用。并且可以带参数.后者完全转向新页面，不会再回来。相当于go to 语句。
 
-说一说Servlet的生命周期： 
+### Servlet的生命周期： 
 答:servlet有良好的生存期的定义，包括加载和实例化、初始化、处理请求以及服务结束。这个生存期由javax.servlet.Servlet接口的init,service和destroy方法表达。
 
-JAVA SERVLET API中forward() 与redirect()的区别： 
+### JAVA SERVLET API中forward() 与redirect()的区别： 
 答:前者仅是容器中控制权的转向，在客户端浏览器地址栏中不会显示出转向后的地址；后者则是完全的跳转，浏览器将会得到跳转的地址，并重新发送请求链接。这样，从浏览器的地址栏中可以看到跳转后的链接地址。所以，前者更加高效，在前者可以满足需要时，尽量使用forward()方法，并且，这样也有助于隐藏实际的链接。在有些情况下，比如，需要跳转到一个其它服务器上的资源，则必须使用sendRedirect()方法。
 
-Servlet的基本架构： 
- 
+### Servlet的基本架构： 
+ ```
 public class ServletName extends HttpServlet { 
 public void doPost(HttpServletRequest request, HttpServletResponse response) throws 
 ServletException, IOException { 
@@ -230,10 +230,11 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 ServletException, IOException { 
 } 
 }
- 
-可能会让你写一段Jdbc连Oracle的程序,并实现数据查询： 
+ ```
+
+### 可能会让你写一段Jdbc连Oracle的程序,并实现数据查询： 
 答:程序如下： 
- 
+```
 package hello.ant; 
 import java.sql.*; 
 public class jdbc 
@@ -309,24 +310,24 @@ e.printStackTrace();
 } 
 } 
 }
- 
-Class.forName的作用?为什么要用： 
+ ```
+### Class.forName的作用?为什么要用： 
 答：调用该访问返回一个以字符串指定类名的类的对象。
 
-Jdo是什么： 
+### Jdo是什么： 
 答:JDO是Java对象持久化的新的规范，为java data object的简称,也是一个用于存取某种数据仓库中的对象的标准化API。JDO提供了透明的对象存储，因此对开发人员来说，存储数据对象完全不需要额外的代码（如JDBC API的使用）。这些繁琐的例行工作已经转移到JDO产品提供商身上，使开发人员解脱出来，从而集中时间和精力在业务逻辑上。另外，JDO很灵活，因为它可以在任何数据底层上运行。JDBC只是面向关系数据库（RDBMS）JDO更通用，提供到任何数据底层的存储功能，比如关系数据库、文件、XML以及对象数据库（ODBMS）等等，使得应用可移植性更强。
 
-xml有哪些解析技术?区别是什么： 
+### xml有哪些解析技术?区别是什么： 
 答:有DOM,SAX,STAX等 
 DOM:处理大型文件时其性能下降的非常厉害。这个问题是由DOM的树结构所造成的，这种结构占用的内Java程序员面试之九阴真经 - wyf0931 - 河伯的地盘存较多，而且DOM必须在解析文件之前把整个文档装入内存,适合对XML的随机访问SAX:不现于DOM,SAX是事件驱动型的XML解析方式。它顺序读取XML文件，不需要一次全部装载整个文件。当遇到像文件开头，文档结束，或者标签开头与标签结束时，它会触发一个事件，用户通过在其回调事件中写入处理代码来处理XML文件，适合对XML的顺序访问 
 STAX:Streaming API for XML (StAX)。
 
-你在项目中用到了xml技术的哪些方面?如何实现的： 
+### 你在项目中用到了xml技术的哪些方面?如何实现的： 
 答:用到了数据存贮，信息配置两方面。在做数据交换平台时，将不能数据源的数据组装成XML文件，然后将XML文件压缩打包加密后通过网络传送给接收者，接收解密与解压缩后再同XML文件中还原相关信息进行处理。在做软件配置时，利用XML可以很方便的进行，软件的各种配置参数都存贮在XML文件中。
 
-用jdom解析xml文件时如何解决中文问题?如何解析： 
+### 用jdom解析xml文件时如何解决中文问题?如何解析： 
 答:看如下代码,用编码方式加以解决 
- 
+ ```
 package test; 
 import java.io.*; 
 public class DOMTest 
@@ -367,10 +368,10 @@ System.out.println (e.getMessage());
 } 
 } 
 }
-``
-编程用JAVA解析XML的方式： 
+```
+### 编程用JAVA解析XML的方式： 
 答:用SAX方式解析XML，XML文件如下： 
- 
+ ```
 <?xml version="1.0" encoding="gb2312"?> 
 <person> 
 <name>王小明</name> 
@@ -378,9 +379,9 @@ System.out.println (e.getMessage());
 <telephone>6258113</telephone> 
 <notes>男,1955年生,博士，95年调入海南大学</notes> 
 </person> 
- 
-事件回调类SAXHandler.java 
- 
+ ```
+### 事件回调类SAXHandler.java 
+ ```
 import java.io.*; 
 import java.util.Hashtable; 
 import org.xml.sax.*; 
@@ -413,9 +414,9 @@ if (currentElement.equals(name))
 table.put(currentElement, currentValue); 
 } 
 } 
- 
-JSP内容显示源码,SaxXml.jsp: 
- 
+ ```
+### JSP内容显示源码,SaxXml.jsp: 
+ ```
 <HTML> 
 <HEAD> 
 <TITLE>剖析XML文件people.xml</TITLE> 
@@ -452,14 +453,14 @@ out.println("</TABLE>");
 %> 
 </BODY> 
 </HTML>
- 
-EJB与JAVA BEAN的区别： 
+ ```
+### EJB与JAVA BEAN的区别： 
 答:Java Bean 是可复用的组件，对Java Bean并没有严格的规范，理论上讲，任何一个Java类都可以是一个Bean。但通常情况下，由于Java Bean是被容器所创建（如Tomcat）的，所以Java Bean应具有一个无参的构造器，另外，通常Java Bean还要实现Serializable接口用于实现Bean的持久性。Java Bean实际上相当于微软COM模型中的本地进程内COM组件，它是不能被跨进程访问的。Enterprise Java Bean 相当于DCOM，即分布式组件。它是基于Java的远程方法调用（RMI）技术的，所以EJB可以被远程访问（跨进程、跨计算机）。但EJB必须被布署在诸如Webspere、WebLogic这样的容器中，EJB客户从不直接访问真正的EJB组件，而是通过其容器访问。EJB容器是EJB组件的代理，EJB组件由容器所创建和管理。客户通过容器来访问真正的EJB组件。
 
-EJB的基本架构： 
+### EJB的基本架构： 
 答:一个EJB包括三个部分: 
 Remote Interface 接口的代码 
- 
+ ```
 package Beans; 
 import javax.ejb.EJBObject; 
 import java.rmi.RemoteException; 
@@ -468,8 +469,9 @@ public interface Add extends EJBObject
 //some method declare 
 } 
  
- 
-Home Interface 接口的代码 
+ ```
+### Home Interface 接口的代码 
+```
 package Beans; 
 import java.rmi.RemoteException; 
 import jaax.ejb.CreateException; 
@@ -479,8 +481,9 @@ public interface AddHome extends EJBHome
 //some method declare 
 } 
  
- 
-EJB类的代码 
+ ```
+### EJB类的代码 
+```
 package Beans; 
 import java.rmi.RemoteException; 
 import javax.ejb.SessionBean; 
@@ -489,31 +492,31 @@ public class AddBean Implements SessionBean
 { 
 //some method declare 
 }
- 
-MVC的各个部分都有那些技术来实现?如何实现： 
+ ```
+### MVC的各个部分都有那些技术来实现?如何实现： 
 答:MVC是Model－View－Controller的简写。"Model" 代表的是应用的业务逻辑（通过JavaBean，EJB组件实现）， "View" 是应用的表示面（由JSP页面产生），"Controller" 是提供应用的处理过程控制（一般是一个Servlet），通过这种设计模型把应用逻辑，处理过程和显示逻辑分成不同的组件实现。这些组件可以进行交互和重用。
 
-J2EE是什么： 
+### J2EE是什么： 
 答:Je22是Sun公司提出的多层(multi-diered),分布式(distributed),基于组件(component-base)的企业级应用模型(enterpriese application model).在这样的一个应用系统中，可按照功能划分为不同的组件，这些组件又可在不同计算机上，并且处于相应的层次(tier)中。所属层次包括客户层(clietn tier)组件,web层和组件,Business层和组件,企业信息系统(EIS)层。
 
-WEB SERVICE名词解释。JSWDL开发包的介绍。JAXP、JAXM的解释。SOAP、UDDI,WSDL解释： 
+### WEB SERVICE名词解释。JSWDL开发包的介绍。JAXP、JAXM的解释。SOAP、UDDI,WSDL解释： 
 答：Web Service描述语言WSDL 
 SOAP即简单对象访问协议(Simple Object Access Protocol)，它是用于交换XML编码信息的轻量级协议。 
 UDDI 的目的是为电子商务建立标准；UDDI是一套基于Web的、分布式的、为Web Service提供的、信息注册中心的实现标准规范，同时也包含一组使企业能将自身提供的Web Service注册，以使别的企业能够发现的访问协议的实现标准。
 
-STRUTS的应用(如STRUTS架构) ：
+### STRUTS的应用(如STRUTS架构) ：
 答：Struts是采用Java Servlet/JavaServer Pages技术，开发Web应用程序的开放源码的framework。 采用Struts能开发出基于MVC(Model-View-Controller)设计模式的应用构架。 Struts有如下的主要功能： 
 一.包含一个controller servlet，能将用户的请求发送到相应的Action对象。 
 二.JSP自由tag库，并且在controller servlet中提供关联支持，帮助开发员创建交互式表单应用。 
 三.提供了一系列实用对象：XML处理、通过Java reflection APIs自动处理JavaBeans属性、国际化的提示和消息。
 
-开发中都用到了那些设计模式?用在什么场合：
+### 开发中都用到了那些设计模式?用在什么场合：
 答：每个模式都描述了一个在我们的环境中不断出现的问题，然后描述了该问题的解决方案的核心。通过这种方式，你可以无数次地使用那些已有的解决方案，无需在重复相同的工作。主要用到了MVC的设计模式。用来开发JSP/Servlet或者J2EE的相关应用。简单工厂模式等。
 
-存储过程和函数的区别：
+### 存储过程和函数的区别：
 存储过程是用户定义的一系列sql语句的集合，涉及特定表或其它对象的任务，用户可以调用存储过程，而函数通常是数据库已定义的方法，它接收参数并返回某种类型的值并且不涉及特定用户表。
 
-事务是什么：
+### 事务是什么：
 事务是作为一个逻辑单元执行的一系列操作，一个逻辑工作单元必须有四个属性，称为 ACID（原子性、一致性、隔离性和持久性）属性，只有这样才能成为一个事务：
 原子性：
 事务必须是原子工作单元；对于其数据修改，要么全都执行，要么全都不执行。
@@ -524,30 +527,32 @@ STRUTS的应用(如STRUTS架构) ：
 持久性：
 事务完成之后，它对于系统的影响是永久性的。该修改即使出现系统故障也将一直保持。
 
-游标的作用？如何知道游标已经到了最后：
+### 游标的作用？如何知道游标已经到了最后：
 游标用于定位结果集的行，通过判断全局变量@@FETCH_STATUS可以判断是否到了最后，通常此变量不等于0表示出错或到了最后。
 
 触发器分为事前触发和事后触发，这两种触发有和区别。语句级触发和行级触发有何区别：
 事前触发器运行于触发事件发生之前，而事后触发器运行于触发事件发生之后。通常事前触发器可以获取事件之前和新的字段值。
 语句级触发器可以在语句执行前或后执行，而行级触发在触发器所影响的每一行触发一次。
 
-bean 实例的生命周期：
+### bean 实例的生命周期：
          对于Stateless Session Bean、Entity Bean、Message Driven Bean一般存在缓冲池管理，而对于Entity Bean和Statefull Session Bean存在Cache管理，通常包含创建实例，设置上下文、创建EJB Object（create）、业务方法调用、remove等过程，对于存在缓冲池管理的Bean，在create之后实例并不从内存清除，而是采用缓冲池调度机制不断重用实例，而对于存在Cache管理的Bean则通过激活和去激活机制保持Bean的状态并限制内存中实例数量。
 
-remote接口和home接口主要作用：
+### remote接口和home接口主要作用：
          remote接口定义了业务方法，用于EJB客户端调用业务方法
          home接口是EJB工厂用于创建和移除查找EJB实例。
 
-客服端调用EJB对象的几个基本步骤：
+### 客服端调用EJB对象的几个基本步骤：
 一、  设置JNDI服务工厂以及JNDI服务地址系统属性。
 二、  查找Home接口。
 三、  从Home接口调用Create方法创建Remote接口。
 四、  通过Remote接口调用其业务方法。
 
-什么时候用assert： 
+### 什么时候用assert： 
 断言是一个包含布尔表达式的语句，在执行这个语句时假定该表达式为 true。如果表达式计算为 false，那么系统会报告一个 AssertionError。它用于调试目的： 
+```
 assert(a > 0); // throws an AssertionError if a <= 0 
-断言可以有两种形式： 
+```
+### 断言可以有两种形式： 
 assert Expression1 ; 
 assert Expression1 : Expression2 ; 
 Expression1 应该总是产生一个布尔值。 
@@ -559,10 +564,10 @@ javac -source 1.4 Test.java
 要系统类中启用断言，可使用 -esa 或者 -dsa 标记。还可以在包的基础上启用或者禁用断言。 
 可以在预计正常情况下不会到达的任何位置上放置断言。断言可以用于验证传递给私有方法的参数。不过，断言不应该用于验证传递给公有方法的参数，因为不管是否启用了断言，公有方法都必须检查其参数。不过，既可以在公有方法中，也可以在非公有方法中利用断言测试后置条件。另外，断言不应该以任何方式改变程序的状态。
 
-是否可以继承String类： 
+### 是否可以继承String类： 
 String类是final类故不可以继承。
 
-面向对象的特征有哪些方面：
+### 面向对象的特征有哪些方面：
 
 抽象：抽象就是忽略一个主题中与当前目标无关的那些方面，以便更充分地注意与当前目标有关的方面。抽象并不打算了解全部问题，而只是选择其中的一部分，暂时不用部分细节。抽象包括两个方面，一是过程抽象，二是数据抽象。
 
@@ -572,17 +577,17 @@ String类是final类故不可以继承。
 
 多态性：多态性是指允许不同类的对象对同一消息作出响应。多态性包括参数化多态性和包含多态性。多态性语言具有灵活、抽象、行为共享、代码共享的优势，很好的解决了应用程序函数同名问题。
 
-String是最基本的数据类型吗：
+### String是最基本的数据类型吗：
 
 基本数据类型包括byte、int、char、long、float、double、boolean和short。
 
 java.lang.String类是final类型的，因此不可以继承这个类、不能修改这个类。为了提高效率节省空间，我们应该用StringBuffer类。
 
-String 和StringBuffer的区别：
+### String 和StringBuffer的区别：
 
 JAVA平台提供了两个类：String和StringBuffer，它们可以储存和操作字符串，即包含多个字符的字符数据。这个String类提供了数值不可改变的字符串。而这个StringBuffer类提供的字符串进行修改。当你知道字符数据要改变的时候你就可以使用StringBuffer。典型地，你可以使用StringBuffers来动态构造字符数据。
 
-说出ArrayList,Vector, LinkedList的存储性能和特性：
+### 说出ArrayList,Vector, LinkedList的存储性能和特性：
 
 ArrayList和Vector都是使用数组方式存储数据，此数组元素数大于实际存储的数据以便增加和插入元素，它们都允许直接按序号索引元素，但是插入元素要涉及数组元素移动等内存操作，所以索引数据快而插入数据慢，Vector由于使用了synchronized方法（线程安全），通常性能上较ArrayList差，而LinkedList使用双向链表实现存储，按序号索引数据需要进行前向或后向遍历，但是插入数据时只需要记录本项的前后项即可，所以插入速度较快。
 
@@ -590,7 +595,7 @@ ArrayList和Vector都是使用数组方式存储数据，此数组元素数大�
 
 如果数据将在线程间共享。例如正在写的数据以后可能被另一个线程读到，或者正在读的数据可能已经被另一个线程写过了，那么这些数据就是共享数据，必须进行同步存取。当应用程序在对象上调用了一个需要花费很长时间来执行的方法，并且不希望让程序等待方法的返回时，就应该使用异步编程，在很多情况下采用异步途径往往更有效率。
 
-heap和stack有什么区别：
+### heap和stack有什么区别：
 
 栈是一种线形集合，其添加和删除元素的操作应在同一段完成。栈按照后进先出的方式进行处理。堆是栈的一个组成元素。
 
@@ -950,7 +955,7 @@ String strPage;  strPage=request.getParameter("page");  if (strPage==null){  cur
 currPage=Integer.parseInt(strPage);  if (currPage<1) currPage=1;  }  pageCount=(rowCount+pageSize-1)/pageSize;  if (currPage>pageCount) currPage=pageCount;  int thepage=(currPage-1)*pageSize;  
 
 int n=0;  rs.absolute(thepage+1);  while (n<(pageSize)&&!rs  %>  <%rs.close();  rscount.close();  stmt.close();  stmtcount.close();  conn.close();  %>  //下面是 第几页等  
-
+```
 <form name="sinfo" method="post" action="sbinfo_index.jsp?condition=<%=condition%>&type=<%=type%>" onSubmit="return testform(this)">  第<%=currPage%>页 共<%=pageCount%>页 共<%=rowCount%>条  
 
 <%if(currPage>1){%><a href="sbinfo_index.jsp?condition=<%=condition%>&type=<%=type%>">首页</a><%}%>  
@@ -959,12 +964,12 @@ int n=0;  rs.absolute(thepage+1);  while (n<(pageSize)&&!rs  %>  <%rs.close();  
 
 <%if(pageCount>1){%><a href="sbinfo_index.jsp?page=<%=pageCount%>&condition=<%=condition%>&type=<%=type%>">尾页</a><%}%>  跳到<input type="text" name="page" size="4" style="font-size:9px">页  
 
-<input type="submit" name="submit" size="4" value="GO" style="font-size:9px">  </form>  希望大家喜欢！！！！！！
- 
+<input type="submit" name="submit" size="4" value="GO" style="font-size:9px">  </form>  
+ ```
 Java 的通信编程，编程题(或问答)，用JAVA SOCKET编程，读服务器几个字符，再写入本地显示： 
 
 答:Server端程序:
- 
+ ```
  package test; import java.net.*; import java.io.*; public class Server { private ServerSocket ss; private Socket socket; 
 
 private BufferedReader in; private PrintWriter out; public Server() { try { ss=new ServerSocket(10000); while(true) { socket = ss.accept(); 
@@ -973,7 +978,7 @@ String RemoteIP = socket.getInetAddress().getHostAddress(); String RemotePort = 
  
  
 Client端程序: package test; import java.io.*; import java.net.*; public class Client { Socket socket; BufferedReader in; PrintWriter out; public Client() { try { System.out.println("Try to Connect to 127.0.0.1:10000"); socket = new Socket("127.0.0.1",10000); System.out.println("The Server Connected!"); System.out.println("Please enter some Character:"); BufferedReader line = new BufferedReader(new InputStreamReader(System.in)); out = new PrintWriter(socket.getOutputStream(),true); 
-
+```
 Out
  
 文件读写的基本类：
