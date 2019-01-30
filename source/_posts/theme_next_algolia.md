@@ -63,3 +63,11 @@ $ hexo clean
 $ hexo algolia
 ```
 至此，我们的工作就完成了。
+
+---
+
+参考：
+
+[Hexo+next 添加搜索功能](http://sophieb.cn/hexo/build-blog-hexo-next-algolia/)
+
+[Hexo+Next集成Algolia搜索](http://www.qingpingshan.com/m/view.php?aid=386198)
