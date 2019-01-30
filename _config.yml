@@ -101,12 +101,12 @@ deploy:
   repository: https://github.com/AomanHao/AomanHao.github.io
   branch: master
 
-# #表示站内搜索
-# search:
-#   path: search.xml
-#   field: post
-#   format: html
-#   limit: 10000
+#表示站内搜索
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
 
 # Algolia Search API Key
 algolia:
@@ -115,11 +115,11 @@ algolia:
   adminApiKey: '1d52e710f58914a29202156a5dadf371'
   indexName: 'HexoSearch'
   chunkSize: 5000
-  fields:
-  - title
-  - slug
-  - path
-  - content:strip
+  # fields:
+  # - title
+  # - slug
+  # - path
+  # - content:strip
 
 # 自动生成sitemap
 sitemap:
