@@ -335,3 +335,25 @@ search:
 local_search:
   enable: true
 ```
+
+### 底部跳动图标实现
+注意点：需要到`next\layout_partials下的footer.swig`文件中，在你所需要调动的图标所对应的span中增加对应的ID
+去到主体的`css`文件（`next\source\css_variables\custom.styl `，增加以下代码即可
+
+```
+//底部爱心小图标跳动
+keyframes heartAnimate {
+    0%,100%{transform:scale(1);}
+    10%,30%{transform:scale(0.9);}
+    20%,40%,60%,80%{transform:scale(1.1);}
+    50%,70%{transform:scale(1.1);}
+}
+
+//图标所对应的span中的ID
+#heart {
+    animation: heartAnimate 1.33s ease-in-out infinite;
+}
+.with-love {
+    color: rgb(255, 113, 113);
+}
+```

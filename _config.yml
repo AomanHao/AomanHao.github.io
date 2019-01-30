@@ -101,6 +101,13 @@ deploy:
   repository: https://github.com/AomanHao/AomanHao.github.io
   branch: master
 
+# #表示站内搜索
+# search:
+#   path: search.xml
+#   field: post
+#   format: html
+#   limit: 10000
+
 # 自动生成sitemap
 sitemap:
   path: sitemap.xml
@@ -128,9 +135,3 @@ live2d:
   mobile:
     show: true
 
-#表示站内搜索
-search:
-    path: search.xml
-    field: post
-    format: html
-    limit: 10000
