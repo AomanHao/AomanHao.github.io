@@ -109,11 +109,17 @@ search:
   limit: 10000
 
 # Algolia Search API Key
+# algolia:
+#   applicationID: LRGS4HB0KD
+#   apiKey: 433a95c049096ef0c81b72dba87d7523
+#   adminApiKey: 1d52e710f58914a29202156a5dadf371
+#   indexName: SearchIndex
+#   chunkSize: 5000
 algolia:
-  applicationID: 'LRGS4HB0KD'
-  apiKey: '433a95c049096ef0c81b72dba87d7523'
-  adminApiKey: '1d52e710f58914a29202156a5dadf371'
-  indexName: 'HexoSearch'
+  applicationID: WCUJN87Q3G
+  apiKey: 866baa2f7e716bff24c23c30c1d50b25
+  adminApiKey: 7ae30ea9cd3d026ab377eb842ff44d0a
+  indexName: SearchIndex
   chunkSize: 5000
   # fields:
   # - title
