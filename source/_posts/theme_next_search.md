@@ -102,6 +102,6 @@ localhost:4000/search.xml
 
 [![klzXWV.png](https://s2.ax1x.com/2019/01/30/klzXWV.png)](https://imgchr.com/i/klzXWV)
 
-打开`search.xml`文件，找到包含那`一些信息`的那篇文章，认真修改吧，最好是能开MarkDown在线编辑。
+打开`search.xml`文件，找到包含那`一些信息`的那篇文章，最好是能开MarkDown在线编辑，也可以把有问题的`.md`文件拿出来，重新部署博客。
 
 修改完成后，照平时那样部署博客就行。如果还有错，继续排查。

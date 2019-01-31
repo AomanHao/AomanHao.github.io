@@ -274,6 +274,74 @@ footer:
 拿到`appid`和`appkey`之后，打开`themes/next/_config.yml`主题配置文件，查找`valine`，填入`appid `和 `appkey`
 我的配置:
 
+```
+valine:
+  enable: true
+  appid:  your app id
+  appkey: your app key
+  notify: false # mail notifier , https://github.com/xCss/Valine/wiki
+  verify: false # Verification code
+  placeholder: 欢迎评论 
+  guest_info: nick,mail,link
+  pageSize: 10
+```
+
+---
+
+## 显示文章热度
+
+首先要先去[LeanCloud](https://leancloud.cn/)注册一个帐号.然后再创建一个应用.
+
+设置方法：
+`next`主题集成`leanCloud`，打开`themes/next/layout/_macro/post.swig`,准备添加`℃`
+
+
+```
+          {# LeanCloud PageView #}
+          {% if theme.leancloud_visitors.enable or (theme.valine.enable and theme.valine.appid and theme.valine.appkey and theme.valine.visitor) %}
+            <span id="{{ url_for(post.path) }}" class="leancloud_visitors" data-flag-title="{{ post.title }}">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              {% if theme.post_meta.item_text %}
+                <span class="post-meta-item-text">{{ __('post.views') + __('symbol.colon') }}</span>
+              {% endif %}
+                <span class="leancloud-visitors-count"></span>
+              <span>℃</span>
+            </span>
+          {% endif %}
+```
+插入摄氏度到倒数第三句，如下：
+```
+<span>℃</span>
+```
+
+打开，`themes/next/languages/zh-CN.yml`,将`views`后的文字描述改为热度.
+```
+views: 热度
+```
+有的版本不一样，打开，`themes/next/languages/zh-Hans.yml`，将以下
+
+```
+visitors: 热度
+```
+
+然后打开`themes/next/_config.yml`找到`leancloud_visitors`,将`enable:`改成`true`,再填上自己`LeanCloud`的`app_id`和`app_key`。
+```
+# Show number of visitors to each article.
+# You can visit https://leancloud.cn get AppID and AppKey.文章热度
+leancloud_visitors:
+  enable: true
+  app_id: 你自己的id
+  app_key: 你自己的key
+  # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
+  # If you don't care about security in leancloud counter and just want to use it directly
+  # (without hexo-leancloud-counter-security plugin), set `security` to `false`.
+  security: true
+  betterPerformance: false
+```
+
 ---
 ### 添加网站已运行时间
 
@@ -303,14 +371,35 @@ setInterval("createtime()",250);
 ---
 
 ### 添加头像
-打开`themes/next下的_config.yml`文件，搜索 `Sidebar Avatar`关键字，去掉avatar前面的#
-# Sidebar Avatar
-# in theme directory(source/images): /images/avatar.jpg
-# in site  directory(source/uploads): /uploads/avatar.jpg
-avatar: http://example.com/avatar.png
-或者使用本地图片,把图片放入themes/next/source/images下,修改avatar
-avatar: /images/blogLogo.png
+打开`themes/next下的_config.yml`文件，搜索 `Avatar`关键字，修改url的参数
+```
+avatar:
+  # in theme directory(source/images): /images/avatar.gif
+  # in site  directory(source/uploads): /uploads/avatar.gif
+  # You can also use other linking images.
+  url: /images/avatar.gif
+  # If true, the avatar would be dispalyed in circle.
+  rounded: true
+  # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.
+  opacity: 1
+  # If true, the avatar would be rotated with the cursor.
+  rotated: false
 
+```
+url链接默认是`themes/next/source/images`下的`avatar.gif`文件,有两种方法修改连接
+
+1、本地连接，不建议用比较大的图片（大于1M文件），加载图片需要时间
+```
+url: /images/avatar.gif
+
+或者
+
+url: /images/xx.jpg等类型图片
+```
+2、图床外链，建议使用
+```
+url: http://example.com/avatar.png
+```
 
 ### 添加站内搜索
 设置效果：
@@ -357,3 +446,4 @@ keyframes heartAnimate {
     color: rgb(255, 113, 113);
 }
 ```
+
