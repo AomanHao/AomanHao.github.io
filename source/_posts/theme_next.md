@@ -253,7 +253,7 @@ footer:
 # Scroll percent label in b2t button
   scrollpercent: true
 ```
-
+---
 ### 浏览页面的时候显示当前浏览进度
 如果想把top按钮放在侧边栏,打开`themes/next`下的`_config.yml`,搜索关键字`b2t`,把`false`改为`true`
 
@@ -264,6 +264,7 @@ footer:
  # Scroll percent label in b2t button
  scrollpercent: true
 ```
+---
 
 ### 加入valine在线评论
 设置效果：
@@ -287,6 +288,46 @@ valine:
 ```
 
 ---
+## Hexo添加阅读次数
+`next` 集成了 `leancloud` 。可以在`leancloud`进行账号注册。
+创建一个新的应用。点击应用进入。
+创建名称为`Counter`的`Class`，名称必须为`Counter`
+
+[![k1gdSK.md.png](https://s2.ax1x.com/2019/01/31/k1gdSK.md.png)](https://imgchr.com/i/k1gdSK)
+
+点击设置 > 应用Key 复制App ID 和 App Key
+[![k1gUW6.md.png](https://s2.ax1x.com/2019/01/31/k1gUW6.md.png)](https://imgchr.com/i/k1gUW6)
+
+修改配置文件
+在主题`themes`目录下有第三方提供的主题配置文件`\themes\next_config.yml`
+打开主题配置文件 添加`app_id` 和`app_key`:
+```
+# Show number of visitors to each article.
+# You can visit https://leancloud.cn get AppID and AppKey.
+ leancloud_visitors:
+   enable: true
+   app_id: 
+   app_key:
+```
+修改统计设置
+打开主题配置文件 定位到 `post_wordcount`
+```
+# Post wordcount display settings
+# Dependencies: https://github.com/willin/hexo-wordcount
+post_wordcount:
+  item_text: true
+  wordcount: true
+  min2read: true
+  totalcount: false
+  separated_meta: true
+```
+Web安全性
+为了保证应用的统计计数功能仅应用于自己的博客，你可以在应用 > 设置 > 安全中心的Web安全域名中加入自己的博客域名，保证数据的调用安全。
+
+[![k1gwQO.md.png](https://s2.ax1x.com/2019/01/31/k1gwQO.md.png)](https://imgchr.com/i/k1gwQO)
+
+---
+
 
 ## 显示文章热度
 
@@ -447,3 +488,18 @@ keyframes heartAnimate {
 }
 ```
 
+## 实现统计功能
+
+具体实现方法:在根目录下安装 `hexo-wordcount`,运行：
+```
+npm install hexo-wordcount --save
+```
+然后在主题的配置文件中，配置如下：
+```
+# Post wordcount display settings
+# Dependencies: https://github.com/willin/hexo-wordcount
+post_wordcount:
+  item_text: true
+  wordcount: true
+  min2read: true
+```
