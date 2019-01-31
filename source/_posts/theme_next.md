@@ -276,15 +276,21 @@ footer:
 我的配置:
 
 ```
+# You can get your appid and appkey from https://leancloud.cn
+# More info available at https://valine.js.org
 valine:
-  enable: true
-  appid:  your app id
-  appkey: your app key
-  notify: false # mail notifier , https://github.com/xCss/Valine/wiki
-  verify: false # Verification code
-  placeholder: 欢迎评论 
-  guest_info: nick,mail,link
-  pageSize: 10
+  enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
+  appid: 
+  appkey: 
+  notify: true # mail notifier, See: https://github.com/xCss/Valine/wiki
+  verify: true # Verification code
+  placeholder: 欢迎交流讨论... # comment box placeholder
+  avatar: mm # gravatar style
+  guest_info: nick,mail,link # custom comment header
+  pageSize: 10 # pagination size
+  visitor: false # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
+  comment_count: true # if false, comment count will only be displayed in post page, not in home page
+
 ```
 
 ---
@@ -303,11 +309,16 @@ valine:
 打开主题配置文件 添加`app_id` 和`app_key`:
 ```
 # Show number of visitors to each article.
-# You can visit https://leancloud.cn get AppID and AppKey.
- leancloud_visitors:
-   enable: true
-   app_id: 
-   app_key:
+# You can visit https://leancloud.cn get AppID and AppKey.文章热度
+leancloud_visitors:
+  enable: true
+  app_id: 
+  app_key: 
+  # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
+  # If you don't care about security in leancloud counter and just want to use it directly
+  # (without hexo-leancloud-counter-security plugin), set `security` to `false`.
+  security: false
+  betterPerformance: false
 ```
 修改统计设置
 打开主题配置文件 定位到 `post_wordcount`
