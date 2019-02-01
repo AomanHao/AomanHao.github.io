@@ -105,3 +105,9 @@ localhost:4000/search.xml
 打开`search.xml`文件，找到包含那`一些信息`的那篇文章，最好是能开MarkDown在线编辑，也可以把有问题的`.md`文件拿出来，重新部署博客。
 
 修改完成后，照平时那样部署博客就行。如果还有错，继续排查。
+
+
+### [我的个人博客主页，欢迎访问](http://www.aomanhao.top/)
+### [我的CSDN主页，欢迎访问](https://blog.csdn.net/Aoman_Hao)
+### [我的简书主页，欢迎访问](https://www.jianshu.com/u/4082f682db35)
+### [我的GitHub主页，欢迎访问](https://github.com/AomanHao)
