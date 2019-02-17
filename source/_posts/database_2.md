@@ -1,11 +1,11 @@
 ---
-title: 数据库Mysql_3_4
+title: 数据库Mysql_约束
 date: 2018-03-04 12:59:59
 tags: [Mysql, Java]
 ---
-<h2> 一、数据库约束 </h2>
+数据库约束 
 <!--more-->
-
+## 数据库约束
 ### 1.1 默认值约束(default)
 ### 1.2 非空约束( not null )
 ### 1.3 唯一约束(unique)
@@ -74,7 +74,7 @@ tags: [Mysql, Java]
 	DELETE FROM employee2 WHERE id =2;
 
 ### 1.7 补充
- --常遇到字段类型:
+--常遇到字段类型:
 #### 1)char(20) vs varchar(20)
 
 > char(20):是一个固定长度的字符串,存储字符串内容,一定是20个字符串。<br>
@@ -82,5 +82,6 @@ varchar(20):可变的字符串长度,实际存储的时候是根据当前实际�
 
 DROP TABLE test ;
 #### 2) int 和int(4)
+
 > int:默认的长度11位,再存储数值类型的时候,存储实际长度<br>
 int(4):固定长度
