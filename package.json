@@ -33,5 +33,8 @@
     "hexo-tag-dplayer": "^0.3.3",
     "hexo-wordcount": "^6.0.1",
     "live2d-widget-model-koharu": "^1.0.5"
+  },
+  "devDependencies": {
+    "extract-text-webpack-plugin": "^4.0.0-beta.0"
   }
 }
