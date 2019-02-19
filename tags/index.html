@@ -1286,15 +1286,15 @@ setInterval("createtime()",250);
     
 
     $(function() {
-      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'JYiNB437xbwy0eogzSFRhyKC')
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'llBsNPTabKsl2d4aU3OvrmSz-gzGzoHsz')
         .done(function({ api_server }) {
           var Counter = function(method, url, data) {
             return $.ajax({
               method: method,
               url: 'https://' + api_server + '/1.1' + url,
               headers: {
-                'X-LC-Id': 'JYiNB437xbwy0eogzSFRhyKC',
-                'X-LC-Key': 'Qts3cyVSNXGD5DsmbIPO7BL0',
+                'X-LC-Id': 'llBsNPTabKsl2d4aU3OvrmSz-gzGzoHsz',
+                'X-LC-Key': 'gzSQowSIzhnuc5eYPj4k7c7z',
                 'Content-Type': 'application/json',
               },
               data: data
