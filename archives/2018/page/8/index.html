@@ -469,9 +469,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2018/07/05/计算机视觉/" itemprop="url">
+          <a class="post-title-link" href="/2018/07/05/model_danli_7_5/" itemprop="url">
             
-              <span itemprop="name">计算机视觉——</span>
+              <span itemprop="name">单例模式_7_5</span>
             
           </a>
         
@@ -504,9 +504,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2018/07/05/model_danli_7_5/" itemprop="url">
+          <a class="post-title-link" href="/2018/07/05/计算机视觉/" itemprop="url">
             
-              <span itemprop="name">单例模式_7_5</span>
+              <span itemprop="name">计算机视觉——</span>
             
           </a>
         
@@ -609,9 +609,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2018/06/15/Java_6_16/" itemprop="url">
+          <a class="post-title-link" href="/2018/06/15/sql_6_16/" itemprop="url">
             
-              <span itemprop="name">Java相关小知识_6_15</span>
+              <span itemprop="name">数据库相关_6_15</span>
             
           </a>
         
@@ -644,9 +644,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2018/06/15/sql_6_16/" itemprop="url">
+          <a class="post-title-link" href="/2018/06/15/Java_6_16/" itemprop="url">
             
-              <span itemprop="name">数据库相关_6_15</span>
+              <span itemprop="name">Java相关小知识_6_15</span>
             
           </a>
         
@@ -1054,6 +1054,35 @@ setInterval("createtime()",250);
 
 
   
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '2O6FChMzGnsPyPiRvgEMVRyV-gzGzoHsz',
+    appKey: 'ddwQLByw3vbjUTmR1A8vv5D2',
+    placeholder: '欢迎交流讨论...',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: 
+  });
+</script>
+
+
 
 
 

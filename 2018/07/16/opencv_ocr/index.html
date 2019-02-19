@@ -433,6 +433,18 @@
           
             
             
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/07/16/opencv_ocr/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/07/16/opencv_ocr/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -497,8 +509,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/16/图像处理_图像增强/" rel="next" title="图像处理_图像增强">
-                <i class="fa fa-chevron-left"></i> 图像处理_图像增强
+              <a href="/2018/07/16/特征提取_局部特征_SIFT/" rel="next" title="特征提取——局部特征-SIFT算法尺度不变性的理解">
+                <i class="fa fa-chevron-left"></i> 特征提取——局部特征-SIFT算法尺度不变性的理解
               </a>
             
           </div>
@@ -507,8 +519,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/18/机器学习_分类_决策树/" rel="prev" title="机器学习_分类_决策树">
-                机器学习_分类_决策树 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/16/opencv_斑点检测/" rel="prev" title="Opencv_斑点检测">
+                Opencv_斑点检测 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -530,6 +542,10 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
 
   
 
@@ -911,6 +927,35 @@ setInterval("createtime()",250);
 
 
   
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '2O6FChMzGnsPyPiRvgEMVRyV-gzGzoHsz',
+    appKey: 'ddwQLByw3vbjUTmR1A8vv5D2',
+    placeholder: '欢迎交流讨论...',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: 
+  });
+</script>
+
+
 
 
   

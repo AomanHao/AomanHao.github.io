@@ -435,6 +435,18 @@
           
             
             
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/07/19/机器学习-线性回归/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/07/19/机器学习-线性回归/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -531,8 +543,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/19/机器学习常见算法总结/" rel="prev" title="机器学习常见算法总结">
-                机器学习常见算法总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/19/大佬终极面经/" rel="prev" title="大佬终极面经">
+                大佬终极面经 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -554,6 +566,10 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
 
   
 
@@ -961,6 +977,35 @@ setInterval("createtime()",250);
 
 
   
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '2O6FChMzGnsPyPiRvgEMVRyV-gzGzoHsz',
+    appKey: 'ddwQLByw3vbjUTmR1A8vv5D2',
+    placeholder: '欢迎交流讨论...',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: 
+  });
+</script>
+
+
 
 
   
