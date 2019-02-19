@@ -88,9 +88,9 @@
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'WCUJN87Q3G',
+      apiKey: '866baa2f7e716bff24c23c30c1d50b25',
+      indexName: 'SearchIndex',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
@@ -103,18 +103,18 @@
 
 
 
-  <meta name="description" content="一、数据库约束">
+  <meta name="description" content="数据库约束">
 <meta name="keywords" content="Mysql,Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据库Mysql_3_4">
+<meta property="og:title" content="数据库Mysql_约束">
 <meta property="og:url" content="http://www.aomanhao.top/2018/03/04/database_2/index.html">
 <meta property="og:site_name" content="AomanHao的个人博客">
-<meta property="og:description" content="一、数据库约束">
+<meta property="og:description" content="数据库约束">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-28T01:16:31.245Z">
+<meta property="og:updated_time" content="2019-02-18T07:48:39.222Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据库Mysql_3_4">
-<meta name="twitter:description" content="一、数据库约束">
+<meta name="twitter:title" content="数据库Mysql_约束">
+<meta name="twitter:description" content="数据库约束">
 
 
 
@@ -131,7 +131,7 @@
   };
 </script>
 
-  <title>数据库Mysql_3_4 | AomanHao的个人博客</title>
+  <title>数据库Mysql_约束 | AomanHao的个人博客</title>
   
 
 
@@ -380,7 +380,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">数据库Mysql_3_4
+          <h1 class="post-title" itemprop="name headline">数据库Mysql_约束
 
               
             
@@ -423,7 +423,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-28 09:16:31" itemprop="dateModified" datetime="2019-01-28T09:16:31+08:00">2019-01-28</time>
+                <time title="修改时间：2019-02-18 15:48:39" itemprop="dateModified" datetime="2019-02-18T15:48:39+08:00">2019-02-18</time>
               
             
           </span>
@@ -437,7 +437,7 @@
 
           
           
-            <span id="/2018/03/04/database_2/" class="leancloud_visitors" data-flag-title="数据库Mysql_3_4">
+            <span id="/2018/03/04/database_2/" class="leancloud_visitors" data-flag-title="数据库Mysql_约束">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -469,8 +469,8 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><p></p><h2> 一、数据库约束 </h2><br><a id="more"></a><p></p>
-<h3 id="1-1-默认值约束-default"><a href="#1-1-默认值约束-default" class="headerlink" title="1.1 默认值约束(default)"></a>1.1 默认值约束(default)</h3><h3 id="1-2-非空约束-not-null"><a href="#1-2-非空约束-not-null" class="headerlink" title="1.2 非空约束( not null )"></a>1.2 非空约束( not null )</h3><h3 id="1-3-唯一约束-unique"><a href="#1-3-唯一约束-unique" class="headerlink" title="1.3 唯一约束(unique)"></a>1.3 唯一约束(unique)</h3><pre><code>CREATE TABLE test(
+        <script src="/assets/js/APlayer.min.js"> </script><p>数据库约束<br><a id="more"></a></p>
+<h2 id="数据库约束"><a href="#数据库约束" class="headerlink" title="数据库约束"></a>数据库约束</h2><h3 id="1-1-默认值约束-default"><a href="#1-1-默认值约束-default" class="headerlink" title="1.1 默认值约束(default)"></a>1.1 默认值约束(default)</h3><h3 id="1-2-非空约束-not-null"><a href="#1-2-非空约束-not-null" class="headerlink" title="1.2 非空约束( not null )"></a>1.2 非空约束( not null )</h3><h3 id="1-3-唯一约束-unique"><a href="#1-3-唯一约束-unique" class="headerlink" title="1.3 唯一约束(unique)"></a>1.3 唯一约束(unique)</h3><pre><code>CREATE TABLE test(
 id INT  UNIQUE ,-- 唯一
 NAME VARCHAR(20) NOT NULL, -- 非空
 gender VARCHAR(2) DEFAULT &#39;男&#39; -- 默认值约束
@@ -511,7 +511,7 @@ INSERT INTO employee2 (NAME,deptId) VALUES(&#39;李四&#39;,2) ;
 </code></pre><h4 id="给部门表添加数据"><a href="#给部门表添加数据" class="headerlink" title="给部门表添加数据"></a>给部门表添加数据</h4><pre><code>INSERT INTO dept (id,NAME) VALUES(3,&#39;硬件开发部&#39;);
 </code></pre><h4 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h4><pre><code>UPDATE employee2 SET deptId = 3 WHERE id = 3;
 </code></pre><h4 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h4><pre><code>DELETE FROM employee2 WHERE id =2;
-</code></pre><h3 id="1-7-补充"><a href="#1-7-补充" class="headerlink" title="1.7 补充"></a>1.7 补充</h3><p> —常遇到字段类型:</p>
+</code></pre><h3 id="1-7-补充"><a href="#1-7-补充" class="headerlink" title="1.7 补充"></a>1.7 补充</h3><p>—常遇到字段类型:</p>
 <h4 id="1-char-20-vs-varchar-20"><a href="#1-char-20-vs-varchar-20" class="headerlink" title="1)char(20) vs varchar(20)"></a>1)char(20) vs varchar(20)</h4><blockquote>
 <p>char(20):是一个固定长度的字符串,存储字符串内容,一定是20个字符串。<br><br>varchar(20):可变的字符串长度,实际存储的时候是根据当前实际的字符串长度</p>
 </blockquote>
@@ -641,7 +641,7 @@ INSERT INTO employee2 (NAME,deptId) VALUES(&#39;李四&#39;,2) ;
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-count">82</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -712,9 +712,7 @@ INSERT INTO employee2 (NAME,deptId) VALUES(&#39;李四&#39;,2) ;
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -781,7 +779,7 @@ INSERT INTO employee2 (NAME,deptId) VALUES(&#39;李四&#39;,2) ;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text"> 一、数据库约束 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-默认值约束-default"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 默认值约束(default)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-非空约束-not-null"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 非空约束( not null )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-唯一约束-unique"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 唯一约束(unique)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-主键约束-primary-key-作用-非空-唯一约束"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 主键约束(primary key 作用:非空+唯一约束)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-自增长约束-auto-increment"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 自增长约束(auto_increment)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-外键约束-属于数据库中表的设计"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 外键约束(属于数据库中表的设计)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-1-外键约束-约束两个或者两个以上的表的数据，一般情况有两种表-主表-副表"><span class="nav-number">1.7.</span> <span class="nav-text">1.6.1 外键约束:约束两个或者两个以上的表的数据，一般情况有两种表(主表,副表)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-2-员工表"><span class="nav-number">1.8.</span> <span class="nav-text">1.6.2 员工表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-3-部门表-主表-约束别人的表"><span class="nav-number">1.9.</span> <span class="nav-text">1.6.3 部门表(主表,约束别人的表)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#插入几个部门名称"><span class="nav-number">1.9.1.</span> <span class="nav-text">插入几个部门名称</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#给员工表中插入数据"><span class="nav-number">1.9.2.</span> <span class="nav-text">给员工表中插入数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#给部门表添加数据"><span class="nav-number">1.9.3.</span> <span class="nav-text">给部门表添加数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改数据"><span class="nav-number">1.9.4.</span> <span class="nav-text">修改数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除数据"><span class="nav-number">1.9.5.</span> <span class="nav-text">删除数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-补充"><span class="nav-number">1.10.</span> <span class="nav-text">1.7 补充</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-char-20-vs-varchar-20"><span class="nav-number">1.10.1.</span> <span class="nav-text">1)char(20) vs varchar(20)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-int-和int-4"><span class="nav-number">1.10.2.</span> <span class="nav-text">2) int 和int(4)</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库约束"><span class="nav-number">1.</span> <span class="nav-text">数据库约束</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-默认值约束-default"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 默认值约束(default)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-非空约束-not-null"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 非空约束( not null )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-唯一约束-unique"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 唯一约束(unique)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-主键约束-primary-key-作用-非空-唯一约束"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 主键约束(primary key 作用:非空+唯一约束)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-自增长约束-auto-increment"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 自增长约束(auto_increment)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-外键约束-属于数据库中表的设计"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 外键约束(属于数据库中表的设计)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-1-外键约束-约束两个或者两个以上的表的数据，一般情况有两种表-主表-副表"><span class="nav-number">1.7.</span> <span class="nav-text">1.6.1 外键约束:约束两个或者两个以上的表的数据，一般情况有两种表(主表,副表)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-2-员工表"><span class="nav-number">1.8.</span> <span class="nav-text">1.6.2 员工表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-3-部门表-主表-约束别人的表"><span class="nav-number">1.9.</span> <span class="nav-text">1.6.3 部门表(主表,约束别人的表)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#插入几个部门名称"><span class="nav-number">1.9.1.</span> <span class="nav-text">插入几个部门名称</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#给员工表中插入数据"><span class="nav-number">1.9.2.</span> <span class="nav-text">给员工表中插入数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#给部门表添加数据"><span class="nav-number">1.9.3.</span> <span class="nav-text">给部门表添加数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改数据"><span class="nav-number">1.9.4.</span> <span class="nav-text">修改数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除数据"><span class="nav-number">1.9.5.</span> <span class="nav-text">删除数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-补充"><span class="nav-number">1.10.</span> <span class="nav-text">1.7 补充</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-char-20-vs-varchar-20"><span class="nav-number">1.10.1.</span> <span class="nav-text">1)char(20) vs varchar(20)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-int-和int-4"><span class="nav-number">1.10.2.</span> <span class="nav-text">2) int 和int(4)</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
