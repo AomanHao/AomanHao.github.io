@@ -3,9 +3,9 @@ title: 数据库Mysql_3_4
 date: 2018-03-04 10:59:59
 tags: [Mysql, Java]
 ---
-## 一、 mysql常用命令
+mysql常用命令
 <!--more-->
-
+##  一、 mysql常用命令
 ### 1.1 管理
 
     CREATE DATABASE Aoman_OS -- 创建数据库

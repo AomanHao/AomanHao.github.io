@@ -7,7 +7,7 @@ hexo博客yilia主题
 <!--more-->
 左侧栏目有一个全部文章的按钮，刚开始开始报错缺失模块，如下图：
 
-![这里写图片描述](http://upload-images.jianshu.io/upload_images/6280966-d3fb28b5a1dcb69c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![这里写图片描述](https://upload-images.jianshu.io/upload_images/6280966-d3fb28b5a1dcb69c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/335/format/webp)
 
 我解决了这个问题着实不容易饶了弯路，但是跟着提示步骤，其实很简单，走起：
 
@@ -19,7 +19,7 @@ hexo博客yilia主题
 
 ```win键+R键``` 打开命令控制台，输入代码  ```node -v``` 查看node版本，如下图：
 
-![这里写图片描述](http://upload-images.jianshu.io/upload_images/6280966-e798155edf9d3c60.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![这里写图片描述](https://upload-images.jianshu.io/upload_images/6280966-e798155edf9d3c60.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/303/format/webp)
 
 只要node的版本高于6.2就行
 
@@ -32,7 +32,7 @@ hexo博客yilia主题
 
 但是你需要在theme文件夹的yilia主题文件夹下，找到node—modules文件夹。如果hexo-generator-json-content 这个包是存在的就OK，可以进行第三步了，见下图：
 
-![这里写图片描述](http://upload-images.jianshu.io/upload_images/6280966-7bdc3639ca05cc64.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![这里写图片描述](https://upload-images.jianshu.io/upload_images/6280966-7bdc3639ca05cc64.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/655/format/webp)
 
 ## 3、配置文件
 

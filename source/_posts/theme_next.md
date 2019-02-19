@@ -253,7 +253,7 @@ footer:
 # Scroll percent label in b2t button
   scrollpercent: true
 ```
-
+---
 ### 浏览页面的时候显示当前浏览进度
 如果想把top按钮放在侧边栏,打开`themes/next`下的`_config.yml`,搜索关键字`b2t`,把`false`改为`true`
 
@@ -264,6 +264,7 @@ footer:
  # Scroll percent label in b2t button
  scrollpercent: true
 ```
+---
 
 ### 加入valine在线评论
 设置效果：
@@ -273,6 +274,125 @@ footer:
 
 拿到`appid`和`appkey`之后，打开`themes/next/_config.yml`主题配置文件，查找`valine`，填入`appid `和 `appkey`
 我的配置:
+
+```
+# You can get your appid and appkey from https://leancloud.cn
+# More info available at https://valine.js.org
+valine:
+  enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
+  appid: 
+  appkey: 
+  notify: true # mail notifier, See: https://github.com/xCss/Valine/wiki
+  verify: true # Verification code
+  placeholder: 欢迎交流讨论... # comment box placeholder
+  avatar: mm # gravatar style
+  guest_info: nick,mail,link # custom comment header
+  pageSize: 10 # pagination size
+  visitor: false # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
+  comment_count: true # if false, comment count will only be displayed in post page, not in home page
+
+```
+
+---
+## Hexo添加阅读次数
+`next` 集成了 `leancloud` 。可以在`leancloud`进行账号注册。
+创建一个新的应用。点击应用进入。
+创建名称为`Counter`的`Class`，名称必须为`Counter`
+
+[![k1gdSK.md.png](https://s2.ax1x.com/2019/01/31/k1gdSK.md.png)](https://imgchr.com/i/k1gdSK)
+
+点击设置 > 应用Key 复制App ID 和 App Key
+[![k1gUW6.md.png](https://s2.ax1x.com/2019/01/31/k1gUW6.md.png)](https://imgchr.com/i/k1gUW6)
+
+修改配置文件
+在主题`themes`目录下有第三方提供的主题配置文件`\themes\next_config.yml`
+打开主题配置文件 添加`app_id` 和`app_key`:
+```
+# Show number of visitors to each article.
+# You can visit https://leancloud.cn get AppID and AppKey.文章热度
+leancloud_visitors:
+  enable: true
+  app_id: 
+  app_key: 
+  # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
+  # If you don't care about security in leancloud counter and just want to use it directly
+  # (without hexo-leancloud-counter-security plugin), set `security` to `false`.
+  security: false
+  betterPerformance: false
+```
+修改统计设置
+打开主题配置文件 定位到 `post_wordcount`
+```
+# Post wordcount display settings
+# Dependencies: https://github.com/willin/hexo-wordcount
+post_wordcount:
+  item_text: true
+  wordcount: true
+  min2read: true
+  totalcount: false
+  separated_meta: true
+```
+Web安全性
+为了保证应用的统计计数功能仅应用于自己的博客，你可以在应用 > 设置 > 安全中心的Web安全域名中加入自己的博客域名，保证数据的调用安全。
+
+[![k1gwQO.md.png](https://s2.ax1x.com/2019/01/31/k1gwQO.md.png)](https://imgchr.com/i/k1gwQO)
+
+---
+
+
+## 显示文章热度
+
+首先要先去[LeanCloud](https://leancloud.cn/)注册一个帐号.然后再创建一个应用.
+
+设置方法：
+`next`主题集成`leanCloud`，打开`themes/next/layout/_macro/post.swig`,准备添加`℃`
+
+
+```
+          {# LeanCloud PageView #}
+          {% if theme.leancloud_visitors.enable or (theme.valine.enable and theme.valine.appid and theme.valine.appkey and theme.valine.visitor) %}
+            <span id="{{ url_for(post.path) }}" class="leancloud_visitors" data-flag-title="{{ post.title }}">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              {% if theme.post_meta.item_text %}
+                <span class="post-meta-item-text">{{ __('post.views') + __('symbol.colon') }}</span>
+              {% endif %}
+                <span class="leancloud-visitors-count"></span>
+              <span>℃</span>
+            </span>
+          {% endif %}
+```
+插入摄氏度到倒数第三句，如下：
+```
+<span>℃</span>
+```
+
+打开，`themes/next/languages/zh-CN.yml`,将`views`后的文字描述改为热度.
+```
+views: 热度
+```
+有的版本不一样，打开，`themes/next/languages/zh-Hans.yml`，将以下
+
+```
+visitors: 热度
+```
+
+然后打开`themes/next/_config.yml`找到`leancloud_visitors`,将`enable:`改成`true`,再填上自己`LeanCloud`的`app_id`和`app_key`。
+```
+# Show number of visitors to each article.
+# You can visit https://leancloud.cn get AppID and AppKey.文章热度
+leancloud_visitors:
+  enable: true
+  app_id: 你自己的id
+  app_key: 你自己的key
+  # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
+  # If you don't care about security in leancloud counter and just want to use it directly
+  # (without hexo-leancloud-counter-security plugin), set `security` to `false`.
+  security: true
+  betterPerformance: false
+```
 
 ---
 ### 添加网站已运行时间
@@ -303,14 +423,35 @@ setInterval("createtime()",250);
 ---
 
 ### 添加头像
-打开`themes/next下的_config.yml`文件，搜索 `Sidebar Avatar`关键字，去掉avatar前面的#
-# Sidebar Avatar
-# in theme directory(source/images): /images/avatar.jpg
-# in site  directory(source/uploads): /uploads/avatar.jpg
-avatar: http://example.com/avatar.png
-或者使用本地图片,把图片放入themes/next/source/images下,修改avatar
-avatar: /images/blogLogo.png
+打开`themes/next下的_config.yml`文件，搜索 `Avatar`关键字，修改url的参数
+```
+avatar:
+  # in theme directory(source/images): /images/avatar.gif
+  # in site  directory(source/uploads): /uploads/avatar.gif
+  # You can also use other linking images.
+  url: /images/avatar.gif
+  # If true, the avatar would be dispalyed in circle.
+  rounded: true
+  # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.
+  opacity: 1
+  # If true, the avatar would be rotated with the cursor.
+  rotated: false
 
+```
+url链接默认是`themes/next/source/images`下的`avatar.gif`文件,有两种方法修改连接
+
+1、本地连接，不建议用比较大的图片（大于1M文件），加载图片需要时间
+```
+url: /images/avatar.gif
+
+或者
+
+url: /images/xx.jpg等类型图片
+```
+2、图床外链，建议使用
+```
+url: http://example.com/avatar.png
+```
 
 ### 添加站内搜索
 设置效果：
@@ -334,4 +475,42 @@ search:
 # Local search
 local_search:
   enable: true
+```
+
+### 底部跳动图标实现
+注意点：需要到`next\layout_partials下的footer.swig`文件中，在你所需要调动的图标所对应的span中增加对应的ID
+去到主体的`css`文件（`next\source\css_variables\custom.styl `，增加以下代码即可
+
+```
+//底部爱心小图标跳动
+keyframes heartAnimate {
+    0%,100%{transform:scale(1);}
+    10%,30%{transform:scale(0.9);}
+    20%,40%,60%,80%{transform:scale(1.1);}
+    50%,70%{transform:scale(1.1);}
+}
+
+//图标所对应的span中的ID
+#heart {
+    animation: heartAnimate 1.33s ease-in-out infinite;
+}
+.with-love {
+    color: rgb(255, 113, 113);
+}
+```
+
+## 实现统计功能
+
+具体实现方法:在根目录下安装 `hexo-wordcount`,运行：
+```
+npm install hexo-wordcount --save
+```
+然后在主题的配置文件中，配置如下：
+```
+# Post wordcount display settings
+# Dependencies: https://github.com/willin/hexo-wordcount
+post_wordcount:
+  item_text: true
+  wordcount: true
+  min2read: true
 ```
