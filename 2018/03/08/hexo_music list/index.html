@@ -441,18 +441,6 @@
 
           
           
-            <span id="/2018/03/08/hexo_music list/" class="leancloud_visitors" data-flag-title="Hexo博客添加背景音乐和音乐歌单(举例网易云音乐)">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">热度：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-              <span>℃</span>
-            </span>
-          
 
           
 
@@ -525,8 +513,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/08/hexo_cnzz/" rel="next" title="Hexo博客cnzz网站访问量统计">
-                <i class="fa fa-chevron-left"></i> Hexo博客cnzz网站访问量统计
+              <a href="/2018/03/07/matlab_vs2015/" rel="next" title="Matlab2014a vs2015编译器解决方法">
+                <i class="fa fa-chevron-left"></i> Matlab2014a vs2015编译器解决方法
               </a>
             
           </div>
@@ -535,8 +523,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/09/matlab_gui_exit/" rel="prev" title="matlab的gui图像处理操作界面，实现重置和退出按钮功能">
-                matlab的gui图像处理操作界面，实现重置和退出按钮功能 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/08/hexo_cnzz/" rel="prev" title="Hexo博客cnzz网站访问量统计">
+                Hexo博客cnzz网站访问量统计 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1297,71 +1285,6 @@ setInterval("createtime()",250);
 
 
   
-  
-  <script>
-    
-    function addCount(Counter) {
-      var $visitors = $('.leancloud_visitors');
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
-        .done(function({ results }) {
-          if (results.length > 0) {
-            var counter = results[0];
-            
-            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
-            
-              .done(function() {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.time + 1);
-              })
-            
-              .fail(function ({ responseJSON }) {
-                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
-              })
-          } else {
-            
-              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
-                .done(function() {
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(1);
-                })
-                .fail(function() {
-                  console.log('Failed to create');
-                });
-            
-          }
-        })
-        .fail(function ({ responseJSON }) {
-          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
-        });
-    }
-    
-
-    $(function() {
-      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'llBsNPTabKsl2d4aU3OvrmSz-gzGzoHsz')
-        .done(function({ api_server }) {
-          var Counter = function(method, url, data) {
-            return $.ajax({
-              method: method,
-              url: 'https://' + api_server + '/1.1' + url,
-              headers: {
-                'X-LC-Id': 'llBsNPTabKsl2d4aU3OvrmSz-gzGzoHsz',
-                'X-LC-Key': 'gzSQowSIzhnuc5eYPj4k7c7z',
-                'Content-Type': 'application/json',
-              },
-              data: data
-            });
-          };
-          
-            addCount(Counter);
-          
-        });
-    });
-  </script>
-
-
 
   
 

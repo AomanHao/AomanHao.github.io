@@ -437,18 +437,6 @@
 
           
           
-            <span id="/2018/08/16/剑指Offer算法Code_Java_C++/" class="leancloud_visitors" data-flag-title="剑指Offer算法Code_Java_C++(0820更新)">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">热度：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-              <span>℃</span>
-            </span>
-          
 
           
 
@@ -618,8 +606,8 @@ private boolean isBit1(int target, int index){
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/16/10大数据算法排序Java_C++/" rel="next" title="10大数据算法排序Java_C++">
-                <i class="fa fa-chevron-left"></i> 10大数据算法排序Java_C++
+              <a href="/2018/08/16/leetcode_sum/" rel="next" title="leetcode题解">
+                <i class="fa fa-chevron-left"></i> leetcode题解
               </a>
             
           </div>
@@ -628,8 +616,8 @@ private boolean isBit1(int target, int index){
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/16/leetcode_sum/" rel="prev" title="leetcode题解">
-                leetcode题解 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/17/图像处理_Retinex图像增强/" rel="prev" title="图像处理_Retinex图像增强">
+                图像处理_Retinex图像增强 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1390,71 +1378,6 @@ setInterval("createtime()",250);
 
 
   
-  
-  <script>
-    
-    function addCount(Counter) {
-      var $visitors = $('.leancloud_visitors');
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
-        .done(function({ results }) {
-          if (results.length > 0) {
-            var counter = results[0];
-            
-            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
-            
-              .done(function() {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.time + 1);
-              })
-            
-              .fail(function ({ responseJSON }) {
-                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
-              })
-          } else {
-            
-              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
-                .done(function() {
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(1);
-                })
-                .fail(function() {
-                  console.log('Failed to create');
-                });
-            
-          }
-        })
-        .fail(function ({ responseJSON }) {
-          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
-        });
-    }
-    
-
-    $(function() {
-      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'llBsNPTabKsl2d4aU3OvrmSz-gzGzoHsz')
-        .done(function({ api_server }) {
-          var Counter = function(method, url, data) {
-            return $.ajax({
-              method: method,
-              url: 'https://' + api_server + '/1.1' + url,
-              headers: {
-                'X-LC-Id': 'llBsNPTabKsl2d4aU3OvrmSz-gzGzoHsz',
-                'X-LC-Key': 'gzSQowSIzhnuc5eYPj4k7c7z',
-                'Content-Type': 'application/json',
-              },
-              data: data
-            });
-          };
-          
-            addCount(Counter);
-          
-        });
-    });
-  </script>
-
-
 
   
 
