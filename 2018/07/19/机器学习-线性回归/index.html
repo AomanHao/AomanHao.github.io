@@ -533,8 +533,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/19/C++入门/" rel="next" title="C++入门">
-                <i class="fa fa-chevron-left"></i> C++入门
+              <a href="/2018/07/19/机器学习_分类_KNN_EM/" rel="next" title="机器学习_分类_KNN_EM">
+                <i class="fa fa-chevron-left"></i> 机器学习_分类_KNN_EM
               </a>
             
           </div>
@@ -1330,9 +1330,14 @@ setInterval("createtime()",250);
               })
           } else {
             
-              var $element = $(document.getElementById(url));
-              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
-              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
             
           }
         })

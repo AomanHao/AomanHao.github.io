@@ -104,7 +104,7 @@
 
 
   <meta name="description" content="github上传文件报错failed to push some refs解决">
-<meta name="keywords" content="Git,GitHub">
+<meta name="keywords" content="GitHub,Git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git_update_error1">
 <meta property="og:url" content="http://www.aomanhao.top/2018/08/01/git_update_error1/index.html">
@@ -498,9 +498,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Git/" rel="tag"><i class="fa fa-tag"></i> Git</a>
-          
             <a href="/tags/GitHub/" rel="tag"><i class="fa fa-tag"></i> GitHub</a>
+          
+            <a href="/tags/Git/" rel="tag"><i class="fa fa-tag"></i> Git</a>
           
         </div>
       
@@ -1284,9 +1284,14 @@ setInterval("createtime()",250);
               })
           } else {
             
-              var $element = $(document.getElementById(url));
-              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
-              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
             
           }
         })
