@@ -55,6 +55,9 @@ Valine: https://github.com/xCss/Valine (简约，实用，使用Leancloud作�
 打开主题配置文件 添加`appid` 和`appkey`:
 
 ```
+# Valine
+# You can get your appid and appkey from https://leancloud.cn
+# More info available at https://valine.js.org
 valine:
   enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
   appid: 粘贴id
@@ -85,15 +88,17 @@ leancloud_visitors:
   appkey: 粘贴key
 ```
 
-## 评论系统无效原因
-next为5.X版本的时候，配置文件`_config.yml`的`valine`的`id`和`key`的书写方式为`appid`和`appkey`
+## 评论系统无效原因及解决方案
+### 1、next的版本不同导致某些参数设置不同
+
+next为5.X版本的时候，配置文件`themes\next\_config.yml`的`valine`的`id`和`key`的书写方式为`appid`和`appkey`
 
 ```
 valine:
   appid: 粘贴id
   appkey: 粘贴key
 ```
-next为6.X版本的时候，配置文件`_config.yml`的`valine`的`id`和`key`的书写方式为`app_id`和`app_key`
+next为6.X版本的时候，配置文件`themes\next\_config.yml`的`valine`的`id`和`key`的书写方式为`app_id`和`app_key`
 ```
 valine:
   app_id: 粘贴id
@@ -105,6 +110,59 @@ valine:
 	appId: '{{ theme.valine.appid }}',
     appKey: '{{ theme.valine.appkey }}',
 ```
-## 解决方案
+### 参数设置不同解决方案
+配置文件`themes\next\_config.yml`的`valine`的`id`和`key`的书写方式统一为为`appid`和`appkey`
 
----
+### 2、valine评论和文章阅读次数功能均基于LeanCloud，两者有冲突
+
+valine评论和文章阅读次数功能均基于LeanCloud，在配置文件`themes\next\_config.yml`中，`valine`的配置项和文章阅读次数的配置项均需要填写`LeanCloud`的`id`和`key`
+```
+valine:
+  enable: true
+  app_id: 粘贴id
+  app_key: 粘贴key
+
+leancloud_visitors:
+  enable: true
+  appid: 粘贴id
+  appkey: 粘贴key
+```
+即valine评论和文章阅读功能不能同时为`true`，只能单选一个功能。
+### 功能冲突解决方案
+valine作者已经给出了方案，一个两种合一的配置
+
+```
+valine:
+  ...
+  visitor: true # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
+  comment_count: true # if false, comment count will only be displayed in post page, not in home page
+```
+相比之前的配置项多了`visitor`和`comment_count`两项参数。即要想拥有Valine评论与文章阅读次数可见，设置`Valine:`为`true`，`leancloud_visitors:`为`false`，配置如下：
+
+```
+# Valine
+# You can get your appid and appkey from https://leancloud.cn
+# More info available at https://valine.js.org
+valine:
+  enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
+  appid: 粘贴id
+  appkey: 粘贴key 
+  notify: false # mail notifier, See: https://github.com/xCss/Valine/wiki
+  verify: false # Verification code
+  placeholder: 欢迎交流讨论... # comment box placeholder
+  avatar: mm # gravatar style
+  guest_info: nick,mail,link # custom comment header
+  pageSize: 10 # pagination size
+  visitor: true # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
+  comment_count: true # if false, comment count will only be displayed in post page, not in home page
+
+leancloud_visitors:
+  enable: false
+```
+
+以上内容完成Valine评论的配置相关，都是自己踩的坑，合并了文章阅读次数的功能。
+
+ [我的个人博客文章地址，欢迎访问](http://www.aomanhao.top/2019/02/20/hexo_valine/#more)
+ [我的CSDN文章地址，欢迎访问](https://blog.csdn.net/Aoman_Hao)
+ [我的简书文章地址，欢迎访问](https://www.jianshu.com/u/4082f682db35)
+ [我的GitHub主页，欢迎访问](https://github.com/AomanHao)
