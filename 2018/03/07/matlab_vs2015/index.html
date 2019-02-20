@@ -436,9 +436,33 @@
           
             
             
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/03/07/matlab_vs2015/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/03/07/matlab_vs2015/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+            <span id="/2018/03/07/matlab_vs2015/" class="leancloud_visitors" data-flag-title="Matlab2014a vs2015编译器解决方法">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">热度：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+              <span>℃</span>
+            </span>
           
 
           
@@ -521,8 +545,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/08/hexo_cnzz/" rel="prev" title="Hexo博客cnzz网站访问量统计">
-                Hexo博客cnzz网站访问量统计 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/08/hexo_music list/" rel="prev" title="Hexo博客添加背景音乐和音乐歌单(举例网易云音乐)">
+                Hexo博客添加背景音乐和音乐歌单(举例网易云音乐) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -544,6 +568,10 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
 
   
 
@@ -951,6 +979,35 @@ setInterval("createtime()",250);
 
 
   
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'llBsNPTabKsl2d4aU3OvrmSz-gzGzoHsz',
+    appKey: 'gzSQowSIzhnuc5eYPj4k7c7z',
+    placeholder: '欢迎交流讨论...',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+</script>
+
+
 
 
   

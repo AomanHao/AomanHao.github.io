@@ -118,7 +118,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/02/20/k2FUhV.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/02/20/k2Ftkq.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/02/20/k2FJ7n.png">
-<meta property="og:updated_time" content="2019-02-20T02:16:42.363Z">
+<meta property="og:updated_time" content="2019-02-20T03:18:53.225Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo博客使用valine评论系统无效果及终极解决方案">
 <meta name="twitter:description" content="Hexo博客使用valine评论系统无效果及终极解决方案">
@@ -414,7 +414,7 @@
                 
               
 
-              <time title="创建时间：2019-02-20 10:59:59 / 修改时间：10:16:42" itemprop="dateCreated datePublished" datetime="2019-02-20T10:59:59+08:00">2019-02-20</time>
+              <time title="创建时间：2019-02-20 10:59:59 / 修改时间：11:18:53" itemprop="dateCreated datePublished" datetime="2019-02-20T10:59:59+08:00">2019-02-20</time>
             
 
             
@@ -429,9 +429,33 @@
           
             
             
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/02/20/hexo_valine/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/20/hexo_valine/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+            <span id="/2019/02/20/hexo_valine/" class="leancloud_visitors" data-flag-title="Hexo博客使用valine评论系统无效果及终极解决方案">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">热度：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+              <span>℃</span>
+            </span>
           
 
           
@@ -454,23 +478,25 @@
 
       
         <script src="/assets/js/APlayer.min.js"> </script><p> Hexo博客使用valine评论系统无效果及终极解决方案<br><a id="more"></a></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>有一些博主valine评论系统无效果</p>
 <h2 id="评论系统选择"><a href="#评论系统选择" class="headerlink" title="评论系统选择"></a>评论系统选择</h2><p>Hexo可用的评论系统有很多，如下：  </p>
 <p>来必力：<a href="https://livere.com" target="_blank" rel="noopener">https://livere.com</a> （需要邮箱注册，加载慢，较卡顿）</p>
 <p>畅言： <a href="http://changyan.kuaizhan.com" target="_blank" rel="noopener">http://changyan.kuaizhan.com</a> （安装需要备案号）</p>
 <p>Gitment： <a href="https://github.com/imsun/gitment" target="_blank" rel="noopener">https://github.com/imsun/gitment</a> （加载慢，有Bug）</p>
 <p>Valine: <a href="https://github.com/xCss/Valine" target="_blank" rel="noopener">https://github.com/xCss/Valine</a> (简约，实用，使用Leancloud作为线上数据库）</p>
-<h2 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h2><p><code>next</code> 集成了 <code>leancloud</code> 。可以在<code>leancloud</code>进行账号注册。</p>
+<h2 id="评论系统配置过程"><a href="#评论系统配置过程" class="headerlink" title="评论系统配置过程"></a>评论系统配置过程</h2><p><code>next</code> 集成了 <code>leancloud</code> 。可以在<code>leancloud</code>进行账号注册。</p>
 <h3 id="1、注册LeanCloud"><a href="#1、注册LeanCloud" class="headerlink" title="1、注册LeanCloud"></a>1、注册LeanCloud</h3><p>注册地址 <a href="https://leancloud.cn/" target="_blank" rel="noopener">https://leancloud.cn/</a></p>
-<h3 id="配置LeanCloud"><a href="#配置LeanCloud" class="headerlink" title="配置LeanCloud"></a>配置LeanCloud</h3><p>创建一个新的应用</p>
-<p><img src="https://s2.ax1x.com/2019/02/20/k2FG0s.png" alt="k2FG0s.png"></p>
-<p>开始配置</p>
-<p><img src="https://s2.ax1x.com/2019/02/20/k2FdpT.png" alt="k2FdpT.png"></p>
-<p>len3<br>点击设置 &gt; 应用Key 复制App ID 和 App Key</p>
-<p>修改配置文件<br>在主题<code>themes</code>目录下有第三方提供的主题配置文件<code>\themes\next_config.yml</code><br>打开主题配置文件 添加<code>app_id</code> 和<code>app_key</code>:<br><img src="https://s2.ax1x.com/2019/02/20/k2F8mj.png" alt="k2F8mj.png"></p>
-<p><img src="https://s2.ax1x.com/2019/02/20/k2FNt0.png" alt="k2FNt0.png"><br><img src="https://s2.ax1x.com/2019/02/20/k2FUhV.png" alt="k2FUhV.png"></p>
-<h3 id="阅读次数"><a href="#阅读次数" class="headerlink" title="阅读次数"></a>阅读次数</h3><p>创建名称为<code>Counter</code>的<code>Class</code>，名称必须为<code>Counter</code></p>
-<p><img src="https://s2.ax1x.com/2019/02/20/k2Ftkq.png" alt="k2Ftkq.png"><br><img src="https://s2.ax1x.com/2019/02/20/k2FJ7n.png" alt="k2FJ7n.png"></p>
-<h3 id="Web安全性"><a href="#Web安全性" class="headerlink" title="Web安全性"></a>Web安全性</h3><p>为了保证应用的统计计数功能仅应用于自己的博客，你可以在应用 &gt; 设置 &gt; 安全中心的Web安全域名中加入自己的博客域名，保证数据的调用安全。</p>
+<h3 id="2、配置LeanCloud"><a href="#2、配置LeanCloud" class="headerlink" title="2、配置LeanCloud"></a>2、配置LeanCloud</h3><p>创建一个新的应用<br><img src="https://s2.ax1x.com/2019/02/20/k2FG0s.png" alt="k2FG0s.png"></p>
+<p>随便取个名字，自己看着取吧<br><img src="https://s2.ax1x.com/2019/02/20/k2FdpT.png" alt="k2FdpT.png"></p>
+<p>应用创建完成，点开配置按钮<br><img src="https://s2.ax1x.com/2019/02/20/k2F8mj.png" alt="k2F8mj.png"></p>
+<p>点击<code>设置</code> &gt; <code>应用Key</code> 复制App ID 和 App Key<br><img src="https://s2.ax1x.com/2019/02/20/k2FNt0.png" alt="k2FNt0.png"></p>
+<p>点击<code>设置</code> &gt; <code>安全中心</code> 把自己博客网址添加到安全中心，保证数据的调用安全。<br><img src="https://s2.ax1x.com/2019/02/20/k2FUhV.png" alt="k2FUhV.png"></p>
+<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>在主题<code>themes</code>目录下有第三方提供的主题配置文件<code>\themes\next\_config.yml</code><br>打开主题配置文件 添加<code>appid</code> 和<code>appkey</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">valine:</span><br><span class="line">  enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.</span><br><span class="line">  appid: 粘贴id</span><br><span class="line">  appkey: 粘贴key</span><br><span class="line">  notify: false # mail notifier, See: https://github.com/xCss/Valine/wiki</span><br><span class="line">  verify: false # Verification code</span><br><span class="line">  placeholder: 欢迎交流讨论... # comment box placeholder</span><br><span class="line">  avatar: mm # gravatar style</span><br><span class="line">  guest_info: nick,mail,link # custom comment header</span><br><span class="line">  pageSize: 10 # pagination size</span><br></pre></td></tr></table></figure>
+<h2 id="阅读次数功能配置过程"><a href="#阅读次数功能配置过程" class="headerlink" title="阅读次数功能配置过程"></a>阅读次数功能配置过程</h2><h3 id="创建阅读次数Class类"><a href="#创建阅读次数Class类" class="headerlink" title="创建阅读次数Class类"></a>创建阅读次数Class类</h3><p>在应用里面创建名称为<code>Counter</code>的<code>Class</code>，名称必须为<code>Counter</code><br><img src="https://s2.ax1x.com/2019/02/20/k2Ftkq.png" alt="k2Ftkq.png"></p>
+<p>创建完成，效果如下：<br><img src="https://s2.ax1x.com/2019/02/20/k2FJ7n.png" alt="k2FJ7n.png"></p>
+<h2 id="修改配置文件-1"><a href="#修改配置文件-1" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">leancloud_visitors:</span><br><span class="line">  enable: true</span><br><span class="line">  app_id: 粘贴id</span><br><span class="line">  app_key: 粘贴key</span><br></pre></td></tr></table></figure>
+<h3 id="Web安全性"><a href="#Web安全性" class="headerlink" title="Web安全性"></a>Web安全性</h3><p>为了保证应用的统计计数功能仅应用于自己的博客，你可以在<code>设置</code> &gt; <code>安全中心</code>的Web安全域名中加入自己的博客域名，保证数据的调用安全。</p>
 <hr>
 
       
@@ -541,6 +567,10 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
 
   
 
@@ -730,7 +760,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#评论系统选择"><span class="nav-number">1.</span> <span class="nav-text">评论系统选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置过程"><span class="nav-number">2.</span> <span class="nav-text">配置过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、注册LeanCloud"><span class="nav-number">2.1.</span> <span class="nav-text">1、注册LeanCloud</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置LeanCloud"><span class="nav-number">2.2.</span> <span class="nav-text">配置LeanCloud</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阅读次数"><span class="nav-number">2.3.</span> <span class="nav-text">阅读次数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web安全性"><span class="nav-number">2.4.</span> <span class="nav-text">Web安全性</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">1.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评论系统选择"><span class="nav-number">2.</span> <span class="nav-text">评论系统选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评论系统配置过程"><span class="nav-number">3.</span> <span class="nav-text">评论系统配置过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、注册LeanCloud"><span class="nav-number">3.1.</span> <span class="nav-text">1、注册LeanCloud</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、配置LeanCloud"><span class="nav-number">3.2.</span> <span class="nav-text">2、配置LeanCloud</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改配置文件"><span class="nav-number">3.3.</span> <span class="nav-text">修改配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阅读次数功能配置过程"><span class="nav-number">4.</span> <span class="nav-text">阅读次数功能配置过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建阅读次数Class类"><span class="nav-number">4.1.</span> <span class="nav-text">创建阅读次数Class类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改配置文件-1"><span class="nav-number">5.</span> <span class="nav-text">修改配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Web安全性"><span class="nav-number">5.1.</span> <span class="nav-text">Web安全性</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -948,6 +978,35 @@ setInterval("createtime()",250);
 
 
   
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'llBsNPTabKsl2d4aU3OvrmSz-gzGzoHsz',
+    appKey: 'gzSQowSIzhnuc5eYPj4k7c7z',
+    placeholder: '欢迎交流讨论...',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+</script>
+
+
 
 
   
