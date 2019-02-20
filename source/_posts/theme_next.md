@@ -294,7 +294,8 @@ valine:
 ```
 
 ---
-## Hexo添加阅读次数
+
+### Hexo添加阅读次数
 `next` 集成了 `leancloud` 。可以在`leancloud`进行账号注册。
 创建一个新的应用。点击应用进入。
 创建名称为`Counter`的`Class`，名称必须为`Counter`
@@ -320,18 +321,7 @@ leancloud_visitors:
   security: false
   betterPerformance: false
 ```
-修改统计设置
-打开主题配置文件 定位到 `post_wordcount`
-```
-# Post wordcount display settings
-# Dependencies: https://github.com/willin/hexo-wordcount
-post_wordcount:
-  item_text: true
-  wordcount: true
-  min2read: true
-  totalcount: false
-  separated_meta: true
-```
+
 Web安全性
 为了保证应用的统计计数功能仅应用于自己的博客，你可以在应用 > 设置 > 安全中心的Web安全域名中加入自己的博客域名，保证数据的调用安全。
 
@@ -340,7 +330,7 @@ Web安全性
 ---
 
 
-## 显示文章热度
+### 显示文章热度
 
 首先要先去[LeanCloud](https://leancloud.cn/)注册一个帐号.然后再创建一个应用.
 
