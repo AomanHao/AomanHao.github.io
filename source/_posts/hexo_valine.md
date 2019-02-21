@@ -160,9 +160,22 @@ leancloud_visitors:
   enable: false
 ```
 
+## Valine的CDN修改
+官方自带的CDN加载慢，建议将CDN改成第三方CDN`valine:`，修改如下
+
+```
+ # valine
+  # See: https://github.com/xCss/Valine
+  # Example:
+  # valine: //cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js
+  #valine: //cdnjs.cloudflare.com/ajax/libs/valine/1.3.4/Valine.min.js
+  valine: //cdn.jsdelivr.net/npm/valine@1.3.4/dist/Valine.min.js
+```
+
+
 以上内容完成Valine评论的配置相关，都是自己踩的坑，合并了文章阅读次数的功能。
 
  [我的个人博客文章地址，欢迎访问](http://www.aomanhao.top/2019/02/20/hexo_valine/#more)
- [我的CSDN文章地址，欢迎访问](https://blog.csdn.net/Aoman_Hao)
- [我的简书文章地址，欢迎访问](https://www.jianshu.com/u/4082f682db35)
+ [我的CSDN文章地址，欢迎访问](https://blog.csdn.net/Aoman_Hao/article/details/87809762)
+ [我的简书文章地址，欢迎访问](https://www.jianshu.com/p/f4658df66a15)
  [我的GitHub主页，欢迎访问](https://github.com/AomanHao)
