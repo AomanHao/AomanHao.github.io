@@ -1,93 +1,74 @@
 ---
-title: markdown 基本用法(常用)
-date: 2018-07-01 16:00:00
-tags: [Markdown, GitHub]
+title: 谷歌浏览器加载静态文件错误，请修改DNS配置
+date: 2018-08-24 16:00:00
+tags: [GitHub]
 ---
-markdown 基本用法
+谷歌浏览器加载静态文件错误，请修改DNS配置
 <!--more-->
-## 标题类别
-<h1>一级标题</h1>
-用"<h数字></h数字>"或者多个"#"隔开
+[![kW5lHH.png](https://s2.ax1x.com/2019/02/22/kW5lHH.png)](https://imgchr.com/i/kW5lHH)
 
-
-    <h1>一级标题</h1>
-    # 一级标题
-
-<h2>二级标题</h2>
-
-    <h2>二级标题</h2>
-    ## 二级标题
-
-以此类推
+当我登陆CSDN/牛客网的时候，页面不能正常显示，只能显示纯文字，访问百度或者视频网站的时候是可以的
+报错提示<h3>静态文件加载出错，请检查当前网络情况是否正常，或者按照下面步骤修改电脑的DNS等等</h3>
+折腾了一晚上
 
 ---
-## 代码块
+### 修改DNS
+[![kW4Tc8.png](https://s2.ax1x.com/2019/02/22/kW4Tc8.png)](https://imgchr.com/i/kW4Tc8)
+[百度经验修改DNS](https://jingyan.baidu.com/article/2fb0ba40833b0a00f2ec5f28.html)
 
 
-四个空格后开始写代码
-（空空空空zxcvbasdfgqwert）
-
-或者用```放在代码块两端
-
-    ```
-    AAA
-    ```
-
-
- (四个空格两个字节)zxcvbasdfgqwert
-
---- 
-## 语句强调
-<h3>斜体</h3>
-文字两端使用1个"*"或者"_"夹起来
-
-*a*
-
-    *a*
-    或者
-    _a_
+按照要求修改了dns，失败，仍然不能正常加载网页
 
 ---
+### 修改hosts文件
+[百度经验修改hosts文件](http://jingyan.baidu.com/article/425e69e6e479a2be15fc16e1.html?allowHTTP=1)
 
-### 粗体
-文字两端使用2个"*"或者"_"夹起来
+hosts属于系统文件，需要谨慎操作，需要很高的权限
+[![kZblMF.png](https://s2.ax1x.com/2019/01/24/kZblMF.png)](https://imgchr.com/i/kZblMF)
+
+打开hosts文件，发现最后一行是`192.168.137.1 windows10.microdone.cn`
+神秘代码有没有，寻找其出处，网友指出他是`银联网银插件`修改的
+[代码解释链接](https://www.v2ex.com/t/273757)
+
+解决方法：
+卸载最近安装的 网银插件/控件
+（我没有就不用卸载了）
+
+
+然后按照百度经验修改`hosts`文件，保存后，发现过一会打开又出现了`192.168.137.1 windows10.microdone.cn`
+这下怀疑中病毒了
+
+### 使用360断网急救箱
+[![kW5ENR.png](https://s2.ax1x.com/2019/02/22/kW5ENR.png)](https://imgchr.com/i/kW5ENR)
+诊断确实是 `hosts`文件出现异常
+
+修复在检测，依然有问题
+
+### 使用360系统急救箱
+深度检测，删了一些文件（可能中毒）
+重启电脑，依然`CSDN/牛客网`的时候，页面不能正常显示
 
 ---
+### 谷歌浏览器插件问题
 
-### 分隔线
-三个"*"或者"-"
+我鬼使神差的试试用微软自带的Eage浏览器登陆`CSDN/牛客网`，可以<font color=red size="10">正常显示</font>，惊了。我这一通操作，就是换个浏览器的题
 
-    ***
-    ---
+仔细回想一下，之前安装的`谷歌访问助手`插件崩溃了，我就卸载了
 
----
+1、卸载`谷歌浏览器`，重新安装
+>失败，不能正常显示网页`CSDN/牛客网`
 
-## 无序列表
+2、安装`谷歌访问助手`插件
+>`CSDN/牛客网`可以正常显示了。
 
-使用加号"+"或是减号"-"作为列表标记：
-
-+ 可乐
-+ 雪碧
-
-    +（空格）可乐
-    +（空格）雪碧
-
+原因：怀疑是插件的上网代理搞鬼
 
 ---
-## emoji表情
-Markdown文档支持文中插入emoji表情
+# 解决方法：谷歌浏览器谷歌访问助手重新安装
 
-比如：<br>
 
-`:laughing:` 表示:laughing:
-`:heart:` 表示:heart:
-其他emoji的地址如下链接：
-[emoji地址](https://github.com/guodongxiaren/README/blob/master/emoji.md)
+#[我的个人博客主页，欢迎访问](http://www.aomanhao.top/)
+#[我的CSDN主页，欢迎访问](https://blog.csdn.net/Aoman_Hao)
+#[我的简书主页，欢迎访问](https://www.jianshu.com/u/4082f682db35)
+#[我的GitHub主页，欢迎访问](https://github.com/AomanHao)
 
-## 引用
-`>`表示引用 
-`>>` 表示引用中的引用
-效果展示:
-
->引用(一个小于号) 
->> 引用中的引用（两个小于号）
