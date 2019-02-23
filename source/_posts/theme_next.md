@@ -504,3 +504,14 @@ post_wordcount:
   wordcount: true
   min2read: true
 ```
+
+## 修改界面内容显示区域宽度
+`Next`主题默认的设置，两边留白的区域很大。当然我们可以修改设置
+在`themes\next\source\css\_custom的custom.styl`添加下面参数
+```
+// 屏幕宽度小于1600px
+$content-desktop = 700px
+
+// 屏幕宽度大于或等于 1600px
+$content-desktop-large = 900px
+```

@@ -4,13 +4,15 @@ date: 2019-01-30 21:55:00
 tags: [GitHub, Hexo, Next]
 ---
 
-
-
 字数统计和阅读时长（旧版本新版本）
 <!--more-->
-
+插件地址：
+https://github.com/theme-next/hexo-symbols-count-time
 安装插件
+
+```
 npm install hexo-symbols-count-time --save
+```
 
 修改 站点配置文件
 ```
