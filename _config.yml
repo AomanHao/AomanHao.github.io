@@ -154,4 +154,11 @@ live2d:
   mobile:
     show: true
 
-
+# 文章文字统计
+symbols_count_time:
+ #文章内是否显示
+  symbols: true
+  time: true
+ # 网页底部是否显示
+  total_symbols: true
+  total_time: false

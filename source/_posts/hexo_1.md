@@ -22,15 +22,33 @@ language: zh-Hans
 language: zh-CN
 ```
 ![这里写图片描述](https://upload-images.jianshu.io/upload_images/6280966-9d29614e5ae7bf3e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/573/format/webp)
+<<<<<<< HEAD
+=======
 
+>>>>>>> 18775685f6f00718757e97d762a03862d8046aa8
 
 取决于你的主题theme目录下的language目录下有`zh-Hans.yml`还是`zh-CN.yml`![这里写图片描述](https://upload-images.jianshu.io/upload_images/6280966-5ba1bdb068d647a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/676/format/webp)
 
+<<<<<<< HEAD
+取决于你的主题theme目录下的language目录下有`zh-Hans.yml`还是`zh-CN.yml`![这里写图片描述](https://upload-images.jianshu.io/upload_images/6280966-5ba1bdb068d647a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/676/format/webp)
 
+
+=======
+
+
+
+
+
+
+>>>>>>> 18775685f6f00718757e97d762a03862d8046aa8
 ## 方案二：
 
 根目录下的配置文件是_config.yml文件
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 18775685f6f00718757e97d762a03862d8046aa8
 ![在这里插入图片描述](https://upload-images.jianshu.io/upload_images/6280966-7bd69c77ce45ca98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/704/format/webp)
 我们需要打开此文件，然后编辑文字。
 
