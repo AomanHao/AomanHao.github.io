@@ -111,13 +111,13 @@
 <meta property="og:site_name" content="AomanHao的个人博客">
 <meta property="og:description" content="axes控件实现了展示图片，动态txt控件实现了展示或者输入参数。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://p3qhnc0eg.bkt.clouddn.com/matlab/%E7%95%8C%E9%9D%A2_%E9%87%8D%E7%BD%AE1.png">
-<meta property="og:image" content="http://p3qhnc0eg.bkt.clouddn.com/matlab/%E7%95%8C%E9%9D%A2_%E9%87%8D%E7%BD%AE2.png">
-<meta property="og:updated_time" content="2019-02-18T07:48:39.263Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6280966-2d2a35253cee4790.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/263/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6280966-6b3057eecc5c3401.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/357/format/webp">
+<meta property="og:updated_time" content="2019-02-22T02:48:59.809Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="matlab的gui图像处理操作界面，实现重置和退出按钮功能">
 <meta name="twitter:description" content="axes控件实现了展示图片，动态txt控件实现了展示或者输入参数。">
-<meta name="twitter:image" content="http://p3qhnc0eg.bkt.clouddn.com/matlab/%E7%95%8C%E9%9D%A2_%E9%87%8D%E7%BD%AE1.png">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/6280966-2d2a35253cee4790.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/263/format/webp">
 
 
 
@@ -426,7 +426,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-18 15:48:39" itemprop="dateModified" datetime="2019-02-18T15:48:39+08:00">2019-02-18</time>
+                <time title="修改时间：2019-02-22 10:48:59" itemprop="dateModified" datetime="2019-02-22T10:48:59+08:00">2019-02-22</time>
               
             
           </span>
@@ -468,6 +468,34 @@
           
 
           
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">845</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
 
           
 
@@ -486,8 +514,8 @@
       
         <script src="/assets/js/APlayer.min.js"> </script><p>axes控件实现了展示图片，动态txt控件实现了展示或者输入参数。<br><a id="more"></a></p>
 <p>在gui界面右键点击“重置”pushbotton回到代码块callback，编写代码</p>
-<p><img src="http://p3qhnc0eg.bkt.clouddn.com/matlab/%E7%95%8C%E9%9D%A2_%E9%87%8D%E7%BD%AE1.png" alt="这里写图片描述"></p>
-<p><img src="http://p3qhnc0eg.bkt.clouddn.com/matlab/%E7%95%8C%E9%9D%A2_%E9%87%8D%E7%BD%AE2.png" alt="这里写图片描述"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6280966-2d2a35253cee4790.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/263/format/webp" alt="在这里插入图片描述"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6280966-6b3057eecc5c3401.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/357/format/webp" alt="在这里插入图片描述"></p>
 <p>以下代码是实现图片和参数数字重置，是重置按钮（puttern）的功能实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function pushbutton1_Callback(hObject, eventdata, handles)</span><br><span class="line">% hObject    handle to pushbutton1 (see GCBO)</span><br><span class="line">% eventdata  reserved - to be defined in a future version of MATLAB</span><br><span class="line">% handles    structure with handles and user data (see GUIDATA)</span><br><span class="line">% 重置清空图片 美滋滋</span><br><span class="line">cla(handles.axes1,&apos;reset&apos;);</span><br><span class="line">cla(handles.axes2,&apos;reset&apos;);</span><br><span class="line">cla(handles.axes3,&apos;reset&apos;);</span><br><span class="line">cla(handles.axes4,&apos;reset&apos;);</span><br><span class="line">cla(handles.axes5,&apos;reset&apos;);</span><br><span class="line"></span><br><span class="line">% 重置清空动态txt的文字 美滋滋</span><br><span class="line">set(handles.edit1,&apos;string&apos;,&apos;&apos;)</span><br><span class="line">set(handles.edit2,&apos;string&apos;,&apos;&apos;)</span><br><span class="line">set(handles.edit3,&apos;string&apos;,&apos;&apos;)</span><br><span class="line">set(handles.edit4,&apos;string&apos;,&apos;&apos;)</span><br></pre></td></tr></table></figure></p>
 <hr>
 <p>退出按钮：<br>在gui界面右键点击“退出”pushbotton回到代码块callback，编写代码<br>即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">close</span><br></pre></td></tr></table></figure></p>
@@ -529,8 +557,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/08/hexo_cnzz/" rel="next" title="Hexo博客cnzz网站访问量统计">
-                <i class="fa fa-chevron-left"></i> Hexo博客cnzz网站访问量统计
+              <a href="/2018/03/08/hexo_music_list/" rel="next" title="Hexo博客添加背景音乐和音乐歌单(举例网易云音乐)">
+                <i class="fa fa-chevron-left"></i> Hexo博客添加背景音乐和音乐歌单(举例网易云音乐)
               </a>
             
           </div>
@@ -608,7 +636,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">83</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -765,9 +793,18 @@
   <span class="author" itemprop="copyrightHolder">by AomanHao</span>
 
   
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">242k</span>
+  
 
   
 
+    
+    <span class="post-meta-divider">|</span>
   
 
   <!--访问量访问人数-->
