@@ -161,4 +161,4 @@ symbols_count_time:
   time: true
  # 网页底部是否显示
   total_symbols: true
-  total_time: true
+  total_time: false
