@@ -111,7 +111,7 @@
 <meta property="og:site_name" content="AomanHao的个人博客">
 <meta property="og:description" content="图像滤波">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-18T07:48:39.321Z">
+<meta property="og:updated_time" content="2019-02-24T12:32:46.047Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图像处理_图像滤波">
 <meta name="twitter:description" content="图像滤波">
@@ -423,7 +423,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-18 15:48:39" itemprop="dateModified" datetime="2019-02-18T15:48:39+08:00">2019-02-18</time>
+                <time title="修改时间：2019-02-24 20:32:46" itemprop="dateModified" datetime="2019-02-24T20:32:46+08:00">2019-02-24</time>
               
             
           </span>
@@ -475,7 +475,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">3.7k</span>
+                <span title="本文字数">4.3k</span>
               
 
               
@@ -489,7 +489,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">6 分钟</span>
+                <span title="阅读时长">7 分钟</span>
               
             </div>
           
@@ -571,7 +571,10 @@
 <p>1) 将模板在图像中进行遍历，将模板中心和各个像素位置重合；</p>
 <p>2) 将模板的各个系数与模板对应像素值进行相乘；</p>
 <p>3) 将所有的乘积相加，并将求和结果赋值于模板中心对应的像素</p>
-<h4 id="延拓"><a href="#延拓" class="headerlink" title="延拓"></a>延拓</h4><p>模板的行或列就会超出图像之外，因此常常采用延拓的方式解决外边界问题。常用的方法有四种，分别是<code>补零</code>、<code>重复</code>、<code>对称</code>和<code>循环</code>方式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">补零是指通过补零来扩展图像；</span><br><span class="line">重复是指通过复制外边界的值来扩展图像；</span><br><span class="line">对称是指通过镜像反射外边界的值来扩展图像；</span><br><span class="line">循环是指将图像看成二维周期函数的一个周期来扩展。</span><br></pre></td></tr></table></figure></p>
+<h4 id="延拓"><a href="#延拓" class="headerlink" title="延拓"></a>延拓</h4><p>模板的行或列就会超出图像之外，因此常常采用延拓的方式解决外边界问题。常用的方法有四种，分别是<code>补零</code>、<code>重复</code>、<code>对称</code>和<code>循环</code>方式。</p>
+<blockquote>
+<p>补零是指通过在图像边界外围补零来扩展图像；<br>重复是指在图像边界外围通过复制外边界的值来扩展图像；<br>对称是指在图像边界外围通过镜像反射外边界的值来扩展图像；<br>循环是在图像边界外围指将图像看成二维周期函数的一个周期来扩展。</p>
+</blockquote>
 <h4 id="均值滤波"><a href="#均值滤波" class="headerlink" title="均值滤波"></a>均值滤波</h4><h4 id="高斯滤波"><a href="#高斯滤波" class="headerlink" title="高斯滤波"></a>高斯滤波</h4><p>高斯滤波器宽度(决定着平滑程度)是由参数σ表征的，而且σ和平滑程度的关系是非常简单的．σ越大，高斯滤波器的频带就越宽，平滑程度就越好．通过调节平滑程度参数σ</p>
 <p>高斯分布：$h(x,y)=e^-(\frac{x^2+y^2}{2a^2})$</p>
 <h4 id="双边滤波"><a href="#双边滤波" class="headerlink" title="双边滤波"></a>双边滤波</h4><p>一种非线性的滤波方法，是结合图像的<code>空间邻近度</code>和<code>像素相似度</code>的的一种折中处理。它是一种<code>保持边缘</code>的非迭代平滑滤波方法。中心像素的距离和灰度差值的增大，邻域像素的权系数逐渐减小</p>
@@ -586,6 +589,23 @@
 <p>1) 将模板在图像中遍历</p>
 <p>2) 将模板对应的邻域内像素的灰度值排序</p>
 <p>3) 查找中间值，将其赋于模板中心对应的像素</p>
+<h3 id="Matlab函数"><a href="#Matlab函数" class="headerlink" title="Matlab函数"></a>Matlab函数</h3><p>Matlab滤波相关函数主要有<code>imfilter()</code>和<code>fspecial()</code>。</p>
+<blockquote>
+<p><code>imfilter()</code>是滤波操作<br><code>fspecial()</code>是构建自定义的二维滤波器，供<code>imfilter()</code>函数使用</p>
+</blockquote>
+<h4 id="imfilter-函数"><a href="#imfilter-函数" class="headerlink" title="imfilter()函数"></a>imfilter()函数</h4><p>定义 <code>g = imfilter(f, w, option1, option2, ...)</code></p>
+<blockquote>
+<p>其中：<br>f:待滤波图像<br>w:滤波模板<br>option1, option2:可选项</p>
+</blockquote>
+<p>可选项分为：</p>
+<p>（1） 边界项：遍历处理边界元素时，需要提前在图像边界周围补充元素<br>     参数：<code>X</code>—表示具体的数字，默认用<code>0</code>补充<br>      <code>symmetric</code>—镜像边界元素<br>      <code>replicate</code>—重复边界像素<br>      <code>circular</code>—周期性填充边界内容</p>
+<p>（2） 尺寸项：处理图像前扩充了边界，比原图大一圈，此项输出图像大小<br>参数: <code>same</code>—输出图像输入图像尺寸相同<br><code>full</code>—输出图像与扩充边界的图像尺寸相同，即比原图大一圈<br>（3） 模式项：滤波过程选择<br>参数：<code>corr</code>—相关滤波过程<br><code>conv</code>—卷积相关过程<br>（4）</p>
+<h4 id="fspecial-函数"><a href="#fspecial-函数" class="headerlink" title="fspecial()函数"></a>fspecial()函数</h4><p>定义 <code>h = fspecial(type, parameters)</code></p>
+<blockquote>
+<p>其中：<br>type:滤波类型</p>
+</blockquote>
+<p>参数：<code>average</code>—平均模板<br><code>disk</code>—圆形邻域平均模板<br><code>guassian</code>—高斯模板<br><code>laplacian</code>—拉普拉斯模板<br><code>log</code>—高斯-拉普拉斯模板<br><code>prewitt</code>—prewitt水平边缘检测算子<br><code>sobel</code>—Sobel水平边缘检测算子</p>
+<hr>
 <h2 id="频域滤波"><a href="#频域滤波" class="headerlink" title="频域滤波"></a>频域滤波</h2><p>可以用图像增强，首先把图像通过傅里叶变换将图像从空间域转换到频率域，频域处理，反傅里叶变换转到空间域</p>
 <div class="table-container">
 <table>
@@ -604,7 +624,7 @@
 </tbody>
 </table>
 </div>
-<h2 id="C-代码"><a href="#C-代码" class="headerlink" title="C++代码"></a>C++代码</h2><h3 id="均值滤波-1"><a href="#均值滤波-1" class="headerlink" title="均值滤波"></a>均值滤波</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">void meanFilter (unsigned char* corrupted, unsigned char* smooth, int width, int height)  </span><br><span class="line">&#123;  </span><br><span class="line">      </span><br><span class="line">    memcpy ( smooth, corrupted, width*height*sizeof(unsigned char) );  </span><br><span class="line">      </span><br><span class="line">    for (int j=1;j&lt;height-1;j++)  </span><br><span class="line">    &#123;  </span><br><span class="line">        for (int i=1;i&lt;width-1;i++)  </span><br><span class="line">        &#123;  </span><br><span class="line">            smooth [ j*width+i ] = (    corrupted [ (j-1)*width+(i-1) ] + corrupted [ (j-1)*width+i] + corrupted [ (j-1)*width+(i+1) ] +  </span><br><span class="line">                                        corrupted [ j*width+(i-1) ]     + corrupted [ j*width+i]     + corrupted [ j*width+(i+1) ] +  </span><br><span class="line">                                        corrupted [ (j+1)*width+(i-1) ] + corrupted [ (j+1)*width+i] + corrupted [ (j+1)*width+(i+1) ] ) / 9;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="C-代码"><a href="#C-代码" class="headerlink" title="C++代码"></a>C++代码</h3><h3 id="均值滤波-1"><a href="#均值滤波-1" class="headerlink" title="均值滤波"></a>均值滤波</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">void meanFilter (unsigned char* corrupted, unsigned char* smooth, int width, int height)  </span><br><span class="line">&#123;  </span><br><span class="line">      </span><br><span class="line">    memcpy ( smooth, corrupted, width*height*sizeof(unsigned char) );  </span><br><span class="line">      </span><br><span class="line">    for (int j=1;j&lt;height-1;j++)  </span><br><span class="line">    &#123;  </span><br><span class="line">        for (int i=1;i&lt;width-1;i++)  </span><br><span class="line">        &#123;  </span><br><span class="line">            smooth [ j*width+i ] = (    corrupted [ (j-1)*width+(i-1) ] + corrupted [ (j-1)*width+i] + corrupted [ (j-1)*width+(i+1) ] +  </span><br><span class="line">                                        corrupted [ j*width+(i-1) ]     + corrupted [ j*width+i]     + corrupted [ j*width+(i+1) ] +  </span><br><span class="line">                                        corrupted [ (j+1)*width+(i-1) ] + corrupted [ (j+1)*width+i] + corrupted [ (j+1)*width+(i+1) ] ) / 9;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="中值滤波-1"><a href="#中值滤波-1" class="headerlink" title="中值滤波"></a>中值滤波</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">void medianFilter (unsigned char* corrupted, unsigned char* smooth, int width, int height)  </span><br><span class="line">&#123;  </span><br><span class="line">      </span><br><span class="line">    memcpy ( smooth, corrupted, width*height*sizeof(unsigned char) );  </span><br><span class="line">    for (int j=1;j&lt;height-1;j++)  </span><br><span class="line">    &#123;  </span><br><span class="line">        for (int i=1;i&lt;width-1;i++)  </span><br><span class="line">        &#123;  </span><br><span class="line">            int k = 0;  </span><br><span class="line">            unsigned char window[9];  </span><br><span class="line">            for (int jj = j - 1; jj &lt; j + 2; ++jj)  </span><br><span class="line">                for (int ii = i - 1; ii &lt; i + 2; ++ii)  </span><br><span class="line">                    window[k++] = corrupted[jj * width + ii];  </span><br><span class="line">            //   Order elements (only half of them)  </span><br><span class="line">            for (int m = 0; m &lt; 5; ++m)  </span><br><span class="line">            &#123;  </span><br><span class="line">                int min = m;  </span><br><span class="line">                for (int n = m + 1; n &lt; 9; ++n)  </span><br><span class="line">                    if (window[n] &lt; window[min])  </span><br><span class="line">                        min = n;  </span><br><span class="line">                //   Put found minimum element in its place  </span><br><span class="line">                unsigned char temp = window[m];  </span><br><span class="line">                window[m] = window[min];  </span><br><span class="line">                window[min] = temp;  </span><br><span class="line">            &#125;  </span><br><span class="line">            smooth[ j*width+i ] = window[4];  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
@@ -641,8 +661,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/16/特征提取_纹理特征/" rel="next" title="特征提取——纹理特征">
-                <i class="fa fa-chevron-left"></i> 特征提取——纹理特征
+              <a href="/2018/07/16/特征提取_颜色特征/" rel="next" title="特征提取——颜色特征">
+                <i class="fa fa-chevron-left"></i> 特征提取——颜色特征
               </a>
             
           </div>
@@ -651,8 +671,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/16/机器学习_概率论_数学基础/" rel="prev" title="机器学习_概率论_数学基础">
-                机器学习_概率论_数学基础 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/16/特征提取_局部特征_SIFT/" rel="prev" title="特征提取——局部特征-SIFT算法尺度不变性的理解">
+                特征提取——局部特征-SIFT算法尺度不变性的理解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -884,7 +904,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#噪声"><span class="nav-number">1.</span> <span class="nav-text">噪声</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空域滤波"><span class="nav-number">2.</span> <span class="nav-text">空域滤波</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#滤波模板"><span class="nav-number">2.1.</span> <span class="nav-text">滤波模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性空域滤波"><span class="nav-number">2.2.</span> <span class="nav-text">线性空域滤波</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模板卷积"><span class="nav-number">2.2.1.</span> <span class="nav-text">模板卷积</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#延拓"><span class="nav-number">2.2.2.</span> <span class="nav-text">延拓</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#均值滤波"><span class="nav-number">2.2.3.</span> <span class="nav-text">均值滤波</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高斯滤波"><span class="nav-number">2.2.4.</span> <span class="nav-text">高斯滤波</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#双边滤波"><span class="nav-number">2.2.5.</span> <span class="nav-text">双边滤波</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中值滤波"><span class="nav-number">2.2.6.</span> <span class="nav-text">中值滤波</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#频域滤波"><span class="nav-number">3.</span> <span class="nav-text">频域滤波</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-代码"><span class="nav-number">4.</span> <span class="nav-text">C++代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#均值滤波-1"><span class="nav-number">4.1.</span> <span class="nav-text">均值滤波</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中值滤波-1"><span class="nav-number">4.2.</span> <span class="nav-text">中值滤波</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#噪声"><span class="nav-number">1.</span> <span class="nav-text">噪声</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空域滤波"><span class="nav-number">2.</span> <span class="nav-text">空域滤波</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#滤波模板"><span class="nav-number">2.1.</span> <span class="nav-text">滤波模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性空域滤波"><span class="nav-number">2.2.</span> <span class="nav-text">线性空域滤波</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模板卷积"><span class="nav-number">2.2.1.</span> <span class="nav-text">模板卷积</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#延拓"><span class="nav-number">2.2.2.</span> <span class="nav-text">延拓</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#均值滤波"><span class="nav-number">2.2.3.</span> <span class="nav-text">均值滤波</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高斯滤波"><span class="nav-number">2.2.4.</span> <span class="nav-text">高斯滤波</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#双边滤波"><span class="nav-number">2.2.5.</span> <span class="nav-text">双边滤波</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中值滤波"><span class="nav-number">2.2.6.</span> <span class="nav-text">中值滤波</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Matlab函数"><span class="nav-number">2.3.</span> <span class="nav-text">Matlab函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#imfilter-函数"><span class="nav-number">2.3.1.</span> <span class="nav-text">imfilter()函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fspecial-函数"><span class="nav-number">2.3.2.</span> <span class="nav-text">fspecial()函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#频域滤波"><span class="nav-number">3.</span> <span class="nav-text">频域滤波</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#C-代码"><span class="nav-number">3.1.</span> <span class="nav-text">C++代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#均值滤波-1"><span class="nav-number">3.2.</span> <span class="nav-text">均值滤波</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中值滤波-1"><span class="nav-number">3.3.</span> <span class="nav-text">中值滤波</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -925,7 +945,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">242k</span>
+    <span title="站点总字数">248k</span>
   
 
   
