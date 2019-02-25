@@ -111,7 +111,7 @@
 <meta property="og:site_name" content="AomanHao的个人博客">
 <meta property="og:description" content="Hexo主题Next配置及加载优化">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-25T04:07:50.528Z">
+<meta property="og:updated_time" content="2019-02-25T06:06:13.769Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo主题Next配置及加载优化">
 <meta name="twitter:description" content="Hexo主题Next配置及加载优化">
@@ -406,7 +406,7 @@
                 
               
 
-              <time title="创建时间：2019-02-25 11:55:00 / 修改时间：12:07:50" itemprop="dateCreated datePublished" datetime="2019-02-25T11:55:00+08:00">2019-02-25</time>
+              <time title="创建时间：2019-02-25 11:55:00 / 修改时间：14:06:13" itemprop="dateCreated datePublished" datetime="2019-02-25T11:55:00+08:00">2019-02-25</time>
             
 
             
@@ -463,7 +463,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.9k</span>
+                <span title="本文字数">2.6k</span>
               
 
               
@@ -477,7 +477,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">3 分钟</span>
+                <span title="阅读时长">4 分钟</span>
               
             </div>
           
@@ -505,7 +505,8 @@
 <hr>
 <h2 id="博客双线部署"><a href="#博客双线部署" class="headerlink" title="博客双线部署"></a>博客双线部署</h2><p>(参考文章地址)[<a href="https://www.ieclipse.cn/2016/08/29/Web/Hexo-deploy-lines/" target="_blank" rel="noopener">https://www.ieclipse.cn/2016/08/29/Web/Hexo-deploy-lines/</a>]</p>
 <hr>
-<h2 id="压缩网页静态资源"><a href="#压缩网页静态资源" class="headerlink" title="压缩网页静态资源"></a>压缩网页静态资源</h2><p>(参考文章地址)[<a href="https://blog.csdn.net/lewky_liu/article/details/82432003" target="_blank" rel="noopener">https://blog.csdn.net/lewky_liu/article/details/82432003</a>]<br>(插件github地址)[<a href="https://github.com/rozbo/hexo-neat" target="_blank" rel="noopener">https://github.com/rozbo/hexo-neat</a>]</p>
+<h2 id="压缩网页静态资源"><a href="#压缩网页静态资源" class="headerlink" title="压缩网页静态资源"></a>压缩网页静态资源</h2><p>(参考文章地址)[<a href="https://blog.csdn.net/lewky_liu/article/details/82432003" target="_blank" rel="noopener">https://blog.csdn.net/lewky_liu/article/details/82432003</a>]<br>(hexo-neat插件github地址)[<a href="https://github.com/rozbo/hexo-neat" target="_blank" rel="noopener">https://github.com/rozbo/hexo-neat</a>]</p>
+<p>常规的做法是使用<code>gulp</code>来进行压缩，每次压缩时还需要输入额外的命令，比较繁琐</p>
 <h3 id="配置hexo-neat压缩插件"><a href="#配置hexo-neat压缩插件" class="headerlink" title="配置hexo-neat压缩插件"></a>配置hexo-neat压缩插件</h3><h4 id="在站点根目录下安装hexo-neat"><a href="#在站点根目录下安装hexo-neat" class="headerlink" title="在站点根目录下安装hexo-neat"></a>在站点根目录下安装hexo-neat</h4><p>博客目录下运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-neat --save</span><br></pre></td></tr></table></figure></p>
 <p>如果报错，选择克隆插件，然后手动复制到插件目录里面<code>hexo目录\node_modules\</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/rozbo/hexo-neat</span><br></pre></td></tr></table></figure></p>
 <h4 id="站点配置文件添加相关配置"><a href="#站点配置文件添加相关配置" class="headerlink" title="站点配置文件添加相关配置"></a>站点配置文件添加相关配置</h4><p>配置信息添加到博客目录文件夹下的<code>hexo目录\_config.yml</code>的末尾，可以安装自己的需求去自定义配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># hexo-neat</span><br><span class="line"># 博文压缩</span><br><span class="line">neat_enable: true</span><br><span class="line"># 压缩html</span><br><span class="line">neat_html:</span><br><span class="line">  enable: true</span><br><span class="line">  exclude:</span><br><span class="line"># 压缩css  </span><br><span class="line">neat_css:</span><br><span class="line">  enable: true</span><br><span class="line">  exclude:</span><br><span class="line">    - &apos;**/*.min.css&apos;</span><br><span class="line"># 压缩js</span><br><span class="line">neat_js:</span><br><span class="line">  enable: true</span><br><span class="line">  mangle: true</span><br><span class="line">  output:</span><br><span class="line">  compress:</span><br><span class="line">  exclude:</span><br><span class="line">    - &apos;**/*.min.js&apos;</span><br><span class="line">    - &apos;**/jquery.fancybox.pack.js&apos;</span><br><span class="line">    - &apos;**/index.js&apos;</span><br></pre></td></tr></table></figure></p>
@@ -520,6 +521,14 @@
 <p>gitalk js文件报错<br>在上面的代码底部加入如下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- &apos;**/comments.gitalk.js&apos;</span><br></pre></td></tr></table></figure></p>
 <p>jquery pjax min js报错<br>我这里的 jquery pjax min js是指的加入pjax前需要以来的两个cdn文件，一个是jq，一个是它，我将它下载到了本地，不要在意这些细节~<br>同样加入如下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- &apos;**/jquery_pjax_min_js.js&apos;</span><br></pre></td></tr></table></figure></p>
 <hr>
+<h3 id="lazyload-图片懒加载"><a href="#lazyload-图片懒加载" class="headerlink" title="lazyload 图片懒加载"></a>lazyload 图片懒加载</h3><p>Hexo 博客虽然功能很强大，但也越来越繁重了，访问速度上有了一些问题，这里我也考虑了许多，例如加 cdn，将国外的资源引用改为国内镜像等方式。今天又想到如果一个页面的图片很多，那么如何来提高博客的访问速度呢？。</p>
+<p>经过一番寻找之后，找到一个方案，就是懒加载，通俗点讲就是当你翻到图片的时候再加载那张图片，而不是以下将本页面的所有图片都加载完。</p>
+<p>配置<br>配置过程也很简单，就是一个 npm 模块。<br>在你的 Hexo 目录下，执行以下命令：</p>
+<p>npm install hexo-lazyload —save<br>然后在你的 Hexo 目录的配置文件 _config.yml 中添加配置:</p>
+<p>lazyload:<br>  enable: true</p>
+<h1 id="className-可选-e-g-J-lazyload-img"><a href="#className-可选-e-g-J-lazyload-img" class="headerlink" title="className: #可选 e.g. .J-lazyload-img"></a>className: #可选 e.g. .J-lazyload-img</h1><h1 id="loadingImg-可选-eg-images-loading-png"><a href="#loadingImg-可选-eg-images-loading-png" class="headerlink" title="loadingImg: #可选 eg. ./images/loading.png"></a>loadingImg: #可选 eg. ./images/loading.png</h1><p>loadingImg - 图片未加载时的代替图</p>
+<p>默认路径: ‘/js/lazyload-plugin/loading.svg’<br>如果需要自定义，添填入 loading 图片地址，如果是本地图片，不要忘记把图片添加到你的主题目录下。<br>className - 需要延迟加载的图片 class 选择器</p>
+<p>默认会延迟加载文章中的所有图片。<br>如果不为空，请填入需要延迟加载的图片 class 选择器</p>
 
       
     </div>
@@ -799,7 +808,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主题源加载优化"><span class="nav-number">1.</span> <span class="nav-text">主题源加载优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#博客双线部署"><span class="nav-number">2.</span> <span class="nav-text">博客双线部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#压缩网页静态资源"><span class="nav-number">3.</span> <span class="nav-text">压缩网页静态资源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置hexo-neat压缩插件"><span class="nav-number">3.1.</span> <span class="nav-text">配置hexo-neat压缩插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在站点根目录下安装hexo-neat"><span class="nav-number">3.1.1.</span> <span class="nav-text">在站点根目录下安装hexo-neat</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#站点配置文件添加相关配置"><span class="nav-number">3.1.2.</span> <span class="nav-text">站点配置文件添加相关配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#报错及相应解决"><span class="nav-number">3.1.3.</span> <span class="nav-text">报错及相应解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1、跳过压缩文件的正确配置方式"><span class="nav-number">3.1.4.</span> <span class="nav-text">1、跳过压缩文件的正确配置方式</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主题源加载优化"><span class="nav-number">1.</span> <span class="nav-text">主题源加载优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#博客双线部署"><span class="nav-number">2.</span> <span class="nav-text">博客双线部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#压缩网页静态资源"><span class="nav-number">3.</span> <span class="nav-text">压缩网页静态资源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置hexo-neat压缩插件"><span class="nav-number">3.1.</span> <span class="nav-text">配置hexo-neat压缩插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在站点根目录下安装hexo-neat"><span class="nav-number">3.1.1.</span> <span class="nav-text">在站点根目录下安装hexo-neat</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#站点配置文件添加相关配置"><span class="nav-number">3.1.2.</span> <span class="nav-text">站点配置文件添加相关配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#报错及相应解决"><span class="nav-number">3.1.3.</span> <span class="nav-text">报错及相应解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1、跳过压缩文件的正确配置方式"><span class="nav-number">3.1.4.</span> <span class="nav-text">1、跳过压缩文件的正确配置方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lazyload-图片懒加载"><span class="nav-number">3.2.</span> <span class="nav-text">lazyload 图片懒加载</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#className-可选-e-g-J-lazyload-img"><span class="nav-number"></span> <span class="nav-text">className: #可选 e.g. .J-lazyload-img</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#loadingImg-可选-eg-images-loading-png"><span class="nav-number"></span> <span class="nav-text">loadingImg: #可选 eg. ./images/loading.png</span></a></li></div>
             
 
           </div>
@@ -840,7 +849,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">251k</span>
+    <span title="站点总字数">252k</span>
   
 
   
