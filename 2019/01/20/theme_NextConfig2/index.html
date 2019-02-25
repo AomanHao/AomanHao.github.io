@@ -111,7 +111,7 @@
 <meta property="og:site_name" content="AomanHao的个人博客">
 <meta property="og:description" content="Hexo主题Next配置（二）">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-25T02:19:51.246Z">
+<meta property="og:updated_time" content="2019-02-25T03:02:18.964Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo主题Next配置（二）">
 <meta name="twitter:description" content="Hexo主题Next配置（二）">
@@ -423,7 +423,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-25 10:19:51" itemprop="dateModified" datetime="2019-02-25T10:19:51+08:00">2019-02-25</time>
+                <time title="修改时间：2019-02-25 11:02:18" itemprop="dateModified" datetime="2019-02-25T11:02:18+08:00">2019-02-25</time>
               
             
           </span>
@@ -475,7 +475,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">897</span>
+                <span title="本文字数">910</span>
               
 
               
@@ -489,7 +489,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">2 分钟</span>
               
             </div>
           
@@ -515,7 +515,7 @@
 <h3 id="图片来源"><a href="#图片来源" class="headerlink" title="图片来源"></a>图片来源</h3><p><a href="https://source.unsplash.com/" target="_blank" rel="noopener">https://source.unsplash.com/</a></p>
 <h3 id="修改背景样式"><a href="#修改背景样式" class="headerlink" title="修改背景样式"></a>修改背景样式</h3><p>修改themes\next\source\css\ _custom\custom.styl文件，这个是Next故意留给用户自己个性化定制一些样式的文件，添加以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    background:url(https://source.unsplash.com/random/1600x900);</span><br><span class="line">    background-repeat: no-repeat;</span><br><span class="line">    background-attachment:fixed;</span><br><span class="line">    background-position:50% 50%;</span><br><span class="line">    background-size:cover;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h4 id="参数细节"><a href="#参数细节" class="headerlink" title="参数细节"></a>参数细节</h4><p><code>url</code>可更换为自己喜欢的图片的地址。<br><code>repeat：</code>是否重复出现<br><code>attachment：</code>定义背景图片随滚动轴的移动方式<br><code>position：</code>设置背景图像的起始位置。<br><code>background-size:cover</code>为可能有助于大分辨率下背景图的显示</p>
-<h3 id="修改不透明度"><a href="#修改不透明度" class="headerlink" title="修改不透明度"></a>修改不透明度</h3><p>因为next主题的背景是纯透明的，这样子就造成背景图片的影响看不见文字，这对于博客来说肯定不行。</p>
+<h3 id="修改不透明度（可加可不加，看实际效果）"><a href="#修改不透明度（可加可不加，看实际效果）" class="headerlink" title="修改不透明度（可加可不加，看实际效果）"></a>修改不透明度（可加可不加，看实际效果）</h3><p>因为next主题的背景是纯透明的，这样子就造成背景图片的影响看不见文字，这对于博客来说肯定不行。</p>
 <p>调整背景的不透明度可以更加美观，参数<code>opacity:</code>建议调整<code>0.8</code>至<code>0.95</code>之间。<br>修改<code>themes\next\source\css\ _custom\custom.styl</code>文件。在后面添加如下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.main-inner &#123; </span><br><span class="line">    margin-top: 60px;</span><br><span class="line">    padding: 60px 60px 60px 60px;</span><br><span class="line">    background: #fff;</span><br><span class="line">    opacity: 0.9;</span><br><span class="line">    min-height: 500px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>其中：<code>background: #fff;</code> 白色<br><code>opacity: 0.9;</code>为不透明度</p>
 <p>注：效果还可以，但是博客备份在github上，网速限制加载的比较忙，建议博客放在国内的Coding上</p>
@@ -648,7 +648,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-count">88</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -803,7 +803,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景图片加载"><span class="nav-number">1.</span> <span class="nav-text">背景图片加载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">1.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片来源"><span class="nav-number">1.2.</span> <span class="nav-text">图片来源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改背景样式"><span class="nav-number">1.3.</span> <span class="nav-text">修改背景样式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参数细节"><span class="nav-number">1.3.1.</span> <span class="nav-text">参数细节</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改不透明度"><span class="nav-number">1.4.</span> <span class="nav-text">修改不透明度</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景图片加载"><span class="nav-number">1.</span> <span class="nav-text">背景图片加载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">1.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片来源"><span class="nav-number">1.2.</span> <span class="nav-text">图片来源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改背景样式"><span class="nav-number">1.3.</span> <span class="nav-text">修改背景样式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参数细节"><span class="nav-number">1.3.1.</span> <span class="nav-text">参数细节</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改不透明度（可加可不加，看实际效果）"><span class="nav-number">1.4.</span> <span class="nav-text">修改不透明度（可加可不加，看实际效果）</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -844,7 +844,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">249k</span>
+    <span title="站点总字数">251k</span>
   
 
   
