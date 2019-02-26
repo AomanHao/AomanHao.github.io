@@ -442,6 +442,7 @@ url: /images/xx.jpg等类型图片
 ```
 url: http://example.com/avatar.png
 ```
+---
 
 ### 添加站内搜索
 设置效果：
@@ -466,6 +467,7 @@ search:
 local_search:
   enable: true
 ```
+---
 
 ### 底部跳动图标实现
 注意点：需要到`next\layout_partials下的footer.swig`文件中，在你所需要调动的图标所对应的span中增加对应的ID
@@ -488,8 +490,9 @@ keyframes heartAnimate {
     color: rgb(255, 113, 113);
 }
 ```
+---
 
-## 实现统计功能
+### 实现统计功能
 
 具体实现方法:在根目录下安装 `hexo-wordcount`,运行：
 ```
@@ -504,8 +507,9 @@ post_wordcount:
   wordcount: true
   min2read: true
 ```
+---
 
-## 修改界面内容显示区域宽度
+### 修改界面内容显示区域宽度
 `Next`主题默认的设置，两边留白的区域很大。当然我们可以修改设置
 在`themes\next\source\css\_custom的custom.styl`添加下面参数
 ```

@@ -55,3 +55,25 @@ body {
 
 
 ---
+
+### 侧边栏社交小图标设置
+
+侧边栏默认只有
+打开主题配置文件（_config.yml），搜索social_icons:,在fontawesome图标库（[网址](https://fontawesome.com/)）找自己喜欢的小图标，并将名字复制在如下位置配置文件
+
+```
+social:
+  GitHub: https://github.com/yourname || github
+  E-Mail: mailto:邮箱地址 || envelope
+  Weibo: https://weibo.com/yourname || weibo
+  CSDN: https://me.csdn.net/yourname || book
+  #Google: https://plus.google.com/yourname || google
+  #Twitter: https://twitter.com/yourname || twitter
+  #FB Page: https://www.facebook.com/yourname || facebook
+  #VK Group: https://vk.com/yourname || vk
+  #StackOverflow: https://stackoverflow.com/yourname || stack-overflow
+  #YouTube: https://youtube.com/yourname || youtube
+  #Instagram: https://instagram.com/yourname || instagram
+  #Skype: skype:yourname?call|chat || skype
+
+```
