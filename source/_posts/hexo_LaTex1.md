@@ -11,19 +11,20 @@ toc: true
 <font color = blue>代码编辑器，强烈推荐使用微软的 VS code，相比Atom开启迅速，使用方便，扩展丰富</font>
 
 
-##第一步： 安装Kramed
+## 第一步： 安装Kramed
 hexo 默认的渲染引擎是 marked，但是 marked 不支持 mathjax。，所以需要更换Hexo的markdown渲染引擎为hexo-renderer-kramed引擎，后者支持mathjax公式输出。
 ```
 npm uninstall hexo-renderer-marked --save
 npm install hexo-renderer-kramed --save
 ```
 
-![](http://p3qhnc0eg.bkt.clouddn.com/blog/img/hexo-math1.png)
+
+![](https://img-blog.nos-eastchina1.126.net/hexo-math1.png)
 
 
 
 
-##第二步：更改文件配置
+## 第二步：更改文件配置
 
 打开`/node_modules/hexo-renderer-kramed/lib/renderer.js`，更改：
 ```
@@ -40,11 +41,11 @@ function formatText(text) {
     return text;
 }
 ```
-![这里写图片描述](http://p3qhnc0eg.bkt.clouddn.com/blog/img/hexo-math4.png)
+![](https://img-blog.nos-eastchina1.126.net/hexo-math4.png)
 
 
 
-##第三步: 停止使用 hexo-math，并安装mathjax包
+## 第三步: 停止使用 hexo-math，并安装mathjax包
 
 卸载hexo-math
 ```
@@ -55,12 +56,12 @@ npm uninstall hexo-math --save
 npm install hexo-renderer-mathjax --save
 ```
 
-![这里写图片描述](http://p3qhnc0eg.bkt.clouddn.com/blog/img/hexo-math2.png)
-![这里写图片描述](http://p3qhnc0eg.bkt.clouddn.com/blog/img/hexo-math3.png)
+![](https://img-blog.nos-eastchina1.126.net/hexo-math2.png)
+![](https://img-blog.nos-eastchina1.126.net/hexo-math3.png)
 
 
 
-##第四步: 更新 Mathjax 的 配置文件
+## 第四步: 更新 Mathjax 的 配置文件
 
 打开`/node_modules/hexo-renderer-mathjax/mathjax.html`
 如图所示更改`<script>`为：
@@ -69,11 +70,11 @@ npm install hexo-renderer-mathjax --save
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 ```
 
-![这里写图片描述](http://p3qhnc0eg.bkt.clouddn.com/blog/img/hexo-math5.png)
+![](https://img-blog.nos-eastchina1.126.net/hexo-math5.png)
 
 
 
-##第五步: 更改默认转义规则
+## 第五步: 更改默认转义规则
 因为LaTeX与markdown语法有语义冲突，所以 hexo 默认的转义规则会将一些字符进行转义，所以我们需要对默认的规则进行修改. 
  打开`/node_modules\kramed\lib\rules\inline.js`
  1、
@@ -93,11 +94,10 @@ em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
 em: /^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
 ```
 
-![这里写图片描述](http://p3qhnc0eg.bkt.clouddn.com/blog/img/hexo-math6.png)
+![](https://img-blog.nos-eastchina1.126.net/hexo-math6.png)
 
 
-
-##第六步: 开启mathjax
+## 第六步: 开启mathjax
 
 打开`/themes/yilia `主题目录下的`config.yml`文件
 因为我用的`yilia`主题，所以路径是`/themes/yilia `
@@ -112,7 +112,7 @@ mathjax:
 mathjax: true
 ```
 
-![这里写图片描述](http://p3qhnc0eg.bkt.clouddn.com/blog/img/hexo-math7.png)
+![](https://img-blog.nos-eastchina1.126.net/hexo-math7.png)
 
 <font color = red size="2">注意的是：，无论是配置文件还是博客文件，配置项跟配置参数均有有一个空格，否则会配置失败</font><br>
 例：
@@ -138,7 +138,7 @@ mathjax: true
 ```
 如下图所示
 
-![这里写图片描述](http://p3qhnc0eg.bkt.clouddn.com/blog/img/hexo-math7.5.png)
+![](https://img-blog.nos-eastchina1.126.net/hexo-math7.5.png)
 
 
 
@@ -146,19 +146,13 @@ mathjax: true
 
 效果展示：
 
-![这里写图片描述](http://p3qhnc0eg.bkt.clouddn.com/blog/img/hexo-math8.png)
-![这里写图片描述](http://p3qhnc0eg.bkt.clouddn.com/blog/img/hexo-math9.png)
+![](https://img-blog.nos-eastchina1.126.net/hexo-math8.png)
 
-#[我的博客主页，欢迎访问](http://www.haoloverongrong.top/)
+![](https://img-blog.nos-eastchina1.126.net/hexo-math9.png)
 
-#[我的CSDN主页，欢迎访问](https://blog.csdn.net/Aoman_Hao)
-
-#[我的简书主页，欢迎访问](https://www.jianshu.com/u/4082f682db35)
-
-#[我的GitHub主页，欢迎访问](https://github.com/AomanHao)
 
 [参考文章1](https://blog.csdn.net/crazy_scott/article/details/79293576)
-[参考文章2](https://blog.csdn.net/u014630987/article/details/78670258)
+[参考文章2](https://www.jianshu.com/p/a0aa94ef8ab2)
 
 
-https://www.jianshu.com/p/a0aa94ef8ab2
+
