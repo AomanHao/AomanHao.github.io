@@ -111,15 +111,15 @@
 <meta property="og:site_name" content="AomanHao的个人博客">
 <meta property="og:description" content="Hexo添加helper-live2d模型插件">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://s2.ax1x.com/2019/02/22/kW4CTA.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/02/22/kW4peH.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/02/22/kWhzOe.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/02/22/kW49wd.png">
-<meta property="og:updated_time" content="2019-02-22T02:24:18.503Z">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/koharu4.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/koharu1.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/koharu3.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/koharu2.png">
+<meta property="og:updated_time" content="2019-02-28T13:12:59.577Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo博客yilia主题首页添加helper-live2d模型插件">
 <meta name="twitter:description" content="Hexo添加helper-live2d模型插件">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/02/22/kW4CTA.png">
+<meta name="twitter:image" content="https://img-blog.nos-eastchina1.126.net/koharu4.png">
 
 
 
@@ -290,6 +290,23 @@
     <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
 
       
       
@@ -428,7 +445,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-22 10:24:18" itemprop="dateModified" datetime="2019-02-22T10:24:18+08:00">2019-02-22</time>
+                <time title="修改时间：2019-02-28 21:12:59" itemprop="dateModified" datetime="2019-02-28T21:12:59+08:00">2019-02-28</time>
               
             
           </span>
@@ -516,10 +533,10 @@
       
         <script src="/assets/js/APlayer.min.js"> </script><p>Hexo添加helper-live2d模型插件<br><a id="more"></a></p>
 <p>插件效果<br><a href="https://github.com/EYHN/hexo-helper-live2d" target="_blank" rel="noopener">插件的github地址</a><br>插件作者提供了较为详细的安装步骤，我结合自己操作和图示，提供大家。</p>
-<p>效果展示：红框内为2d模型，可以随鼠标移动而变化<br><img src="https://s2.ax1x.com/2019/02/22/kW4CTA.png" alt="kW4CTA.png"></p>
+<p>效果展示：红框内为2d模型，可以随鼠标移动而变化<br><img src="https://img-blog.nos-eastchina1.126.net/koharu4.png" alt=""></p>
 <h2 id="安装模块"><a href="#安装模块" class="headerlink" title="安装模块:"></a>安装模块:</h2><p>hexo博客根目录选择<code>cmd</code>命令窗口或者<code>git bash</code> 输入以下代码，安装插件</p>
 <h3 id="操作："><a href="#操作：" class="headerlink" title="操作："></a>操作：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-helper-live2d</span><br></pre></td></tr></table></figure>
-<p><img src="https://s2.ax1x.com/2019/02/22/kW4peH.png" alt="kW4peH.png"></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/koharu1.png" alt=""></p>
 <h3 id="下载模型"><a href="#下载模型" class="headerlink" title="下载模型"></a>下载模型</h3><p>作者提供了三个下载模型的办法，我选择操作比较简单的一种<br><code>npm 模块名</code> 的方法</p>
 <p>作者提供以下模型的模型包，模型包预览地址见下面的链接，选择你想用的模型，记住名字，选择对应的后缀模型包</p>
 <p><a href="https://huaji8.top/post/live2d-plugin-2.0/" target="_blank" rel="noopener">作者各种模型包展示</a></p>
@@ -528,12 +545,12 @@
 <h3 id="操作：-1"><a href="#操作：-1" class="headerlink" title="操作："></a>操作：</h3><p>在hexo博客根目录选择<code>cmd</code>命令窗口或者<code>git bash</code> 输入以下代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install live2d-widget-model-koharu</span><br></pre></td></tr></table></figure>
 <p>执行安装就完事了</p>
-<p><img src="https://s2.ax1x.com/2019/02/22/kWhzOe.png" alt="kWhzOe.png"></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/koharu3.png" alt=""></p>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>请向<code>Hexo</code>的 <code>_config.yml</code> 文件添加配置.</p>
 <h3 id="操作：-2"><a href="#操作：-2" class="headerlink" title="操作："></a>操作：</h3><p>打开个人Hexo博客文件根目录下的 <code>_config.yml</code> 文件，在最后添加一下代码<br>示例:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">live2d:</span><br><span class="line">  enable: true</span><br><span class="line">  scriptFrom: local</span><br><span class="line">  pluginRootPath: live2dw/</span><br><span class="line">  pluginJsPath: lib/</span><br><span class="line">  pluginModelPath: assets/</span><br><span class="line">  tagMode: false</span><br><span class="line">  debug: false</span><br><span class="line">  model:</span><br><span class="line">    use: live2d-widget-model-koharu</span><br><span class="line">  display:</span><br><span class="line">    position: right</span><br><span class="line">    width: 150</span><br><span class="line">    height: 300</span><br><span class="line">  mobile:</span><br><span class="line">    show: true</span><br></pre></td></tr></table></figure>
 <p>你需要配置的是<code>use: live2d-widget-model-koharu</code><br><code>use</code>后为你选择的安装包的全称</p>
-<p><img src="https://s2.ax1x.com/2019/02/22/kW49wd.png" alt="kW49wd.png"></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/koharu2.png" alt=""></p>
 <p>插件部署与应用就完成了，接下来就是部署hexo博客和个人主页</p>
 
       
@@ -552,6 +569,29 @@
     
     
 
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>AomanHao</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://www.aomanhao.top/2018/08/23/hexo-helper-live2d/" title="Hexo博客yilia主题首页添加helper-live2d模型插件">http://www.aomanhao.top/2018/08/23/hexo-helper-live2d/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
     
 
     <footer class="post-footer">
@@ -663,7 +703,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-count">90</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -734,7 +774,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                      
+                    
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -788,12 +830,21 @@
                   
                     
                   
-                  <a href="https://me.csdn.net/Aoman_Hao" title="CSDN &rarr; https://me.csdn.net/Aoman_Hao" rel="noopener" target="_blank"><i class="fa fa-fw fa-book-open"></i>CSDN</a>
+                  <a href="https://me.csdn.net/Aoman_Hao" title="CSDN &rarr; https://me.csdn.net/Aoman_Hao" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
                 </span>
               
             </div>
           
 
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
           
 
           
