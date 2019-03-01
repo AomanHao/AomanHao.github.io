@@ -13,7 +13,7 @@ Hexo添加helper-live2d模型插件
 插件作者提供了较为详细的安装步骤，我结合自己操作和图示，提供大家。
 
 效果展示：红框内为2d模型，可以随鼠标移动而变化
-![kW4CTA.png](https://s2.ax1x.com/2019/02/22/kW4CTA.png)
+![](https://img-blog.nos-eastchina1.126.net/koharu4.png)
 
 
 
@@ -24,7 +24,7 @@ hexo博客根目录选择`cmd`命令窗口或者`git bash` 输入以下代码，
 ```
 npm install --save hexo-helper-live2d
 ```
-![kW4peH.png](https://s2.ax1x.com/2019/02/22/kW4peH.png)
+![](https://img-blog.nos-eastchina1.126.net/koharu1.png)
 
 
 
@@ -72,7 +72,7 @@ npm install live2d-widget-model-koharu
 ```
 执行安装就完事了
 
-![kWhzOe.png](https://s2.ax1x.com/2019/02/22/kWhzOe.png)
+![](https://img-blog.nos-eastchina1.126.net/koharu3.png)
 
 
 ## 配置
@@ -103,6 +103,6 @@ live2d:
 你需要配置的是` use: live2d-widget-model-koharu`
 `use`后为你选择的安装包的全称
 
-![kW49wd.png](https://s2.ax1x.com/2019/02/22/kW49wd.png)
+![](https://img-blog.nos-eastchina1.126.net/koharu2.png)
 
 插件部署与应用就完成了，接下来就是部署hexo博客和个人主页
