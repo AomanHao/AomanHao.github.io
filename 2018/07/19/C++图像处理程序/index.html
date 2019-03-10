@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'WCUJN87Q3G',
+      apiKey: '866baa2f7e716bff24c23c30c1d50b25',
+      indexName: 'SearchIndex',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="C++图像处理程序">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++图像处理程序">
+<meta property="og:url" content="http://www.aomanhao.top/2018/07/19/C++图像处理程序/index.html">
+<meta property="og:site_name" content="AomanHao的个人博客">
+<meta property="og:description" content="C++图像处理程序">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-10T08:43:36.222Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++图像处理程序">
+<meta name="twitter:description" content="C++图像处理程序">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.aomanhao.top/2018/07/19/C++图像处理程序/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>C++图像处理程序 | AomanHao的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AomanHao的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">唯有梦想与好姑娘不可辜负</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2018/07/19/C++图像处理程序/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AomanHao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AomanHao的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++图像处理程序
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-19 09:39:40" itemprop="dateCreated datePublished" datetime="2018-07-19T09:39:40+08:00">2018-07-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-10 16:43:36" itemprop="dateModified" datetime="2019-03-10T16:43:36+08:00">2019-03-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/07/19/C++图像处理程序/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/07/19/C++图像处理程序/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2018/07/19/C++图像处理程序/" class="leancloud_visitors" data-flag-title="C++图像处理程序">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">热度：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+              <span>℃</span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">23k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">39 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>C++图像处理程序</p>
+<a id="more"></a>
+<p>C++开源项目：</p>
+<blockquote>
+<p>Boost.GIL：通用图像库<br>CImg ：用于图像处理的小型开源C++工具包<br>CxImage ：用于加载，保存，显示和转换的图像处理和转换库，可以处理的图片格式包括 BMP, JPEG, GIF, PNG, TIFF, MNG, ICO, PCX, TGA, WMF, WBMP, JBG, J2K。<br>FreeImage ：开源库，支持现在多媒体应用所需的通用图片格式和其他格式。<br>GDCM：Grassroots DICOM 库<br>ITK：跨平台的开源图像分析系统<br>Magick++：ImageMagick程序的C++接口<br>MagickWnd：ImageMagick程序的C++接口<br>OpenCV ： 开源计算机视觉类库<br>tesseract-ocr：OCR引擎<br>VIGRA ：用于图像分析通用C++计算机视觉库<br>VTK ：用于3D计算机图形学，图像处理和可视化的开源免费软件系统。</p>
+</blockquote>
+<h2 id="MakegGray-彩色转灰度"><a href="#MakegGray-彩色转灰度" class="headerlink" title="MakegGray 彩色转灰度"></a>MakegGray 彩色转灰度</h2><p>函数名称：MakegGray()<br>函数类型：void<br>功能：真彩色转化成256色灰度图像。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">void MakeColorDib::MakegGray()    //灰度变化</span><br><span class="line">&#123;</span><br><span class="line"> BYTE *p_data;     //原图数据区指针</span><br><span class="line"> int wide,height,DibWidth;    //原图长、宽、字节宽</span><br><span class="line"> p_data=this-&gt;GetData ();   //取得原图的数据区指针</span><br><span class="line">    wide=this-&gt;GetWidth ();   //取得原图的数据区宽度</span><br><span class="line">    height=this-&gt;GetHeight ();   //取得原图的数据区高度</span><br><span class="line"> DibWidth=this-&gt;GetDibWidthBytes();   //取得原图的每行字节数</span><br><span class="line"> for(int j=0;j&lt;height;j++) // 每行</span><br><span class="line">  for(int i=0;i&lt;DibWidth;i+=3) // 每列</span><br><span class="line">  &#123;</span><br><span class="line">   BYTE* pbyBlue = p_data++;   //得到蓝色值</span><br><span class="line">   BYTE* pbyGreen = p_data++;  //得到绿色值</span><br><span class="line">   BYTE* pbyRed = p_data++;    //得到红色值</span><br><span class="line">   BYTE r = *pbyRed;</span><br><span class="line">   BYTE g = *pbyGreen;</span><br><span class="line">   BYTE b = *pbyBlue;</span><br><span class="line">   //取到原r,g,b中的最大值作为像素三分量值的新值</span><br><span class="line">   int gray=0;</span><br><span class="line">   if(r&gt;g)</span><br><span class="line">    gray=r;</span><br><span class="line">   else </span><br><span class="line">    gray=g;</span><br><span class="line">   if(gray&lt;b)</span><br><span class="line">    gray=b;   </span><br><span class="line">         *pbyBlue = gray;     //将取到的最大值赋给像素的蓝分量</span><br><span class="line">   *pbyGreen = gray;    //将取到的最大值赋给像素的绿分量</span><br><span class="line">   *pbyRed = gray;      //将取到的最大值赋给像素的红分量</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="LightAlter-亮度调整"><a href="#LightAlter-亮度调整" class="headerlink" title="LightAlter 亮度调整"></a>LightAlter 亮度调整</h2><p>函数名称：LightAlter(int m_Light)<br>函数类型：void<br>参数：int m_Light，用户给定的阈值<br>功能：对图像使用阈值法进行亮度调整</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">void MakeColorDib::LightAlter(int m_Light)    //亮度调整</span><br><span class="line">&#123;</span><br><span class="line"> BYTE *p_data;     //原图数据区指针</span><br><span class="line"> int wide,height,DibWidth;    //原图长、宽、字节宽</span><br><span class="line"> p_data=this-&gt;GetData ();   //取得原图的数据区指针</span><br><span class="line">    wide=this-&gt;GetWidth ();  //取得原图的数据区宽度</span><br><span class="line">    height=this-&gt;GetHeight ();    //取得原图的数据区高度</span><br><span class="line"> DibWidth=this-&gt;GetDibWidthBytes();   //取得原图的每行字节数</span><br><span class="line"> for(int j=0;j&lt;height;j++) // 每行</span><br><span class="line"> for(int i=0;i&lt;DibWidth;i++) // 每列</span><br><span class="line"> &#123;   </span><br><span class="line">  int a=0;</span><br><span class="line">  a=int(*p_data*m_Light/100);   //调整当前点的亮度</span><br><span class="line">  *p_data=a;</span><br><span class="line">  //判断范围，取得合理的值</span><br><span class="line">  if(a&lt;0) </span><br><span class="line">   *p_data=0;  </span><br><span class="line">     if(a&gt;255)</span><br><span class="line">   *p_data=255;</span><br><span class="line">        p_data++;   //指向下一指针</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="LightReverse-亮度取反"><a href="#LightReverse-亮度取反" class="headerlink" title="LightReverse 亮度取反"></a>LightReverse 亮度取反</h2><p>函数名称：LightReverse()<br>函数类型：void<br>功能：图像的亮度取反。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">void MakeColorDib::LightReverse()    //亮度取反</span><br><span class="line">&#123;</span><br><span class="line"> BYTE *p_data;     //原图数据区指针</span><br><span class="line"> int wide,height,DibWidth;    //原图长、宽、字节宽</span><br><span class="line"> p_data=this-&gt;GetData ();   //取得原图的数据区指针</span><br><span class="line">    wide=this-&gt;GetWidth ();  //取得原图的数据区宽度</span><br><span class="line">    height=this-&gt;GetHeight ();   //取得原图的数据区高度</span><br><span class="line"> DibWidth=this-&gt;GetDibWidthBytes();   //取得原图的每行字节数</span><br><span class="line"> for(int j=0;j&lt;height;j++) // 每行</span><br><span class="line">  for(int i=0;i&lt;DibWidth;i++) // 每列</span><br><span class="line">  &#123;</span><br><span class="line">   int a=*p_data;   //取得当前点的值</span><br><span class="line">   *p_data=255-a;    //取反</span><br><span class="line">   p_data++;  //指向下一指针  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="ContrastAlter-调整对比度（阈值法）"><a href="#ContrastAlter-调整对比度（阈值法）" class="headerlink" title="ContrastAlter 调整对比度（阈值法）"></a>ContrastAlter 调整对比度（阈值法）</h2><p>函数名称：ContrastAlter(int m_Increment)<br>函数类型：void<br>参数：int m_Increment，用户给定的阈值<br>功能：对图像使用阈值法调整对比度处理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">void MakeColorDib::ContrastAlter(int m_Increment)   ///对比度处理</span><br><span class="line">&#123;</span><br><span class="line"> int nHigh = 255 - m_Increment;</span><br><span class="line"> //对于极端情况加以处理</span><br><span class="line"> if(nHigh &lt; m_Increment)</span><br><span class="line"> &#123;</span><br><span class="line">  nHigh = 127;</span><br><span class="line">  m_Increment = 120;</span><br><span class="line"> &#125;</span><br><span class="line"> if(m_Increment &lt; -127)</span><br><span class="line">  m_Increment = -120;</span><br><span class="line"> //扩展或压缩区间的长度</span><br><span class="line"> int nStretch = 255;</span><br><span class="line"> if(m_Increment &gt;= 0)</span><br><span class="line">  nStretch = 255 - 2 * m_Increment;</span><br><span class="line"> else</span><br><span class="line">  nStretch = 255 + 2 * m_Increment;</span><br><span class="line"> BYTE *p_data;     //原图数据区指针</span><br><span class="line"> int wide,height,DibWidth;    //原图长、宽、字节宽</span><br><span class="line"> p_data=this-&gt;GetData ();   //取得原图的数据区指针</span><br><span class="line">    wide=this-&gt;GetWidth ();  //取得原图的数据区宽度</span><br><span class="line">    height=this-&gt;GetHeight ();   //取得原图的数据区高度</span><br><span class="line"> DibWidth=this-&gt;GetDibWidthBytes();   //取得原图的每行字节数</span><br><span class="line"> if(m_Increment &gt;= 0)   // m_Increment&gt;=0时</span><br><span class="line"> &#123;</span><br><span class="line">  for(int j=0;j&lt;height;j++) // 每行</span><br><span class="line">   for(int i=0;i&lt;DibWidth-3;i+=3) // 每列</span><br><span class="line">   &#123;   </span><br><span class="line">    //取得当前点（蓝色）的值，调整</span><br><span class="line">    BYTE* pbyBlue = p_data++;    </span><br><span class="line">    if(*pbyBlue&lt;=m_Increment)</span><br><span class="line">     *pbyBlue=0;</span><br><span class="line">    else if(*pbyBlue&gt;nHigh)</span><br><span class="line">     *pbyBlue=255;</span><br><span class="line">    else</span><br><span class="line">     *pbyBlue=(BYTE)((((int)*pbyBlue - m_Increment) * 255) / nStretch );</span><br><span class="line">    //取得当前点（绿色）的值，调整</span><br><span class="line">    BYTE* pbyGreen = p_data++;</span><br><span class="line">    if(*pbyGreen&lt;=m_Increment)</span><br><span class="line">     *pbyGreen=0;</span><br><span class="line">    else if(*pbyGreen&gt;nHigh)</span><br><span class="line">     *pbyGreen=255;</span><br><span class="line">    else</span><br><span class="line">     *pbyGreen=(BYTE)((((int)*pbyGreen - m_Increment) * 255) / nStretch );</span><br><span class="line">    //取得当前点（红色）的值，调整</span><br><span class="line">    BYTE* pbyRed = p_data++;</span><br><span class="line">    if(*pbyRed&lt;=m_Increment)</span><br><span class="line">     *pbyRed=0;</span><br><span class="line">    else if(*pbyRed&gt;nHigh)</span><br><span class="line">     *pbyRed=255;</span><br><span class="line">    else</span><br><span class="line">     *pbyRed=(BYTE)((((int)*pbyRed - m_Increment) * 255) / nStretch );</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line"> &#125;</span><br><span class="line"> else  // m_Increment &lt; 0 时</span><br><span class="line"> &#123;</span><br><span class="line">  for(int j=0;j&lt;height;j++)</span><br><span class="line">   for(int i=0;i&lt;DibWidth-3;i+=3)</span><br><span class="line">   &#123; //取得当前点（蓝色）的值，调整</span><br><span class="line">    BYTE* pbyBlue = p_data++;</span><br><span class="line">    *pbyBlue = (BYTE)((((int)(*pbyBlue) * nStretch) / 255) - m_Increment);</span><br><span class="line">    //取得当前点（红色）的值，调整</span><br><span class="line">    BYTE* pbyGreen = p_data++;</span><br><span class="line">    *pbyGreen = (BYTE)((((int)(*pbyGreen) * nStretch) / 255) - m_Increment);</span><br><span class="line">    //取得当前点（红色）的值，调整</span><br><span class="line">    BYTE* pbyRed = p_data++;</span><br><span class="line">    *pbyRed = (BYTE)((((int)(*pbyRed) * nStretch) / 255) - m_Increment);    </span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Exposal-曝光处理"><a href="#Exposal-曝光处理" class="headerlink" title="Exposal 曝光处理"></a>Exposal 曝光处理</h2><p>函数名称：Exposal()<br>函数类型：void<br>功能：图像曝光处理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">void MakeColorDib::Exposal() //曝光处理</span><br><span class="line">&#123;</span><br><span class="line"> BYTE *p_data;     //原图数据区指针</span><br><span class="line"> int wide,height,DibWidth;    //原图长、宽、字节宽</span><br><span class="line"> p_data=this-&gt;GetData ();   //取得原图的数据区指针</span><br><span class="line">    wide=this-&gt;GetWidth ();  //取得原图的数据区宽度</span><br><span class="line">    height=this-&gt;GetHeight ();   //取得原图的数据区高度</span><br><span class="line"> DibWidth=this-&gt;GetDibWidthBytes();   //取得原图的每行字节数</span><br><span class="line"> for(int j=0;j&lt;height;j++) // 每行</span><br><span class="line">  for(int i=0;i&lt;DibWidth;i++) // 每列</span><br><span class="line">  &#123;</span><br><span class="line">   BYTE* pbydata = p_data++;  //取得当前点的值</span><br><span class="line">   BYTE a=*pbydata;   //传给临时变量</span><br><span class="line">   *pbydata=(a&gt;128)?a:(255-a);   //调整</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="PaintColor-着色处理（阈值法）"><a href="#PaintColor-着色处理（阈值法）" class="headerlink" title="PaintColor 着色处理（阈值法）"></a>PaintColor 着色处理（阈值法）</h2><p>函数名称：PaintColor(int m_Red,int m_Green,int m_Blue)<br>函数类型：void<br>参数：int m_Red、m_Green、m_Blue，用户给定的红绿蓝值<br>功能：对图像使用阈值法进行着色处理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">void MakeColorDib::PaintColor(int m_Red,int m_Green,int m_Blue) //着色处理</span><br><span class="line">&#123;</span><br><span class="line"> BYTE *p_data;     //原图数据区指针</span><br><span class="line"> int wide,height,DibWidth;    //原图长、宽、字节宽</span><br><span class="line"> p_data=this-&gt;GetData ();   //取得原图的数据区指针</span><br><span class="line">    wide=this-&gt;GetWidth ();  //取得原图的数据区宽度</span><br><span class="line">    height=this-&gt;GetHeight ();   //取得原图的数据区高度</span><br><span class="line"> DibWidth=this-&gt;GetDibWidthBytes();   //取得原图的每行字节数</span><br><span class="line"> for(int j=0;j&lt;height;j++) // 每行</span><br><span class="line">  for(int i=0;i&lt;DibWidth;i+=3) // 每列</span><br><span class="line">  &#123;   </span><br><span class="line">   BYTE* pbyBlue = p_data++; //取得当前点（蓝色）的值     </span><br><span class="line">   BYTE* pbyGreen = p_data++;  //取得当前点（绿色）的值</span><br><span class="line">   BYTE* pbyRed = p_data++;    //取得当前点（红色）的值</span><br><span class="line">   BYTE r = *pbyRed;</span><br><span class="line">   BYTE g = *pbyGreen;</span><br><span class="line">   BYTE b = *pbyBlue;</span><br><span class="line">      BYTE gray=(BYTE)(((WORD)r * 59 + (WORD)g * 30 + (WORD)b * 11) / 100);</span><br><span class="line">   *pbyBlue = (BYTE)((m_Blue * gray) / 255);  </span><br><span class="line">   *pbyGreen = (BYTE)((m_Green * gray) / 255);</span><br><span class="line">   *pbyRed = (BYTE)((m_Red * gray) / 255);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="NeonLight-霓虹处理"><a href="#NeonLight-霓虹处理" class="headerlink" title="NeonLight 霓虹处理"></a>NeonLight 霓虹处理</h2><p>函数名称：NeonLight()<br>函数类型：void<br>功能：使图像产生霓虹处理效果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">void MakeColorDib::NeonLight()   //霓虹处理</span><br><span class="line">&#123;</span><br><span class="line"> BYTE *p_data;     //原图数据区指针</span><br><span class="line"> int wide,height,DibWidth;    //原图长、宽、字节宽</span><br><span class="line"> p_data=this-&gt;GetData ();   //取得原图的数据区指针</span><br><span class="line">    wide=this-&gt;GetWidth ();  //取得原图的数据区宽度</span><br><span class="line">    height=this-&gt;GetHeight ();   //取得原图的数据区高度</span><br><span class="line"> DibWidth=this-&gt;GetDibWidthBytes();   //取得原图的每行字节数</span><br><span class="line">    BYTE *p_temp=new BYTE[height*DibWidth]; // 暂时分配内存，以保存新图像</span><br><span class="line"> for(int j=0;j&lt;height-4;j++) // 每行</span><br><span class="line"> &#123;</span><br><span class="line">  for(int i=0;i&lt;DibWidth-1;i++) // 每列</span><br><span class="line">  &#123;</span><br><span class="line">    int pby_pt=0;</span><br><span class="line">    //对像素执行算法</span><br><span class="line">    pby_pt=(*(p_data+(height-j-1)*DibWidth+i)-*(p_data+(height-j-1)*DibWidth+i+3))</span><br><span class="line">       *(*(p_data+(height-j-1)*DibWidth+i)-*(p_data+(height-j-1)*DibWidth+i+3))</span><br><span class="line">       +(*(p_data+(height-j-1)*DibWidth+i)-*(p_data+(height-j-2)*DibWidth+i))</span><br><span class="line">       *(*(p_data+(height-j-1)*DibWidth+i)-*(p_data+(height-j-2)*DibWidth+i));</span><br><span class="line">   *(p_temp+(height-j-1)*DibWidth+i)=2*int(sqrt(pby_pt));</span><br><span class="line">   //判断合法性</span><br><span class="line">   if(*(p_temp+(height-j-1)*DibWidth+i)&lt;0)</span><br><span class="line">     *(p_temp+(height-j-1)*DibWidth+i)=0;</span><br><span class="line">   if(*(p_temp+(height-j-1)*DibWidth+i)&gt;255)</span><br><span class="line">     *(p_temp+(height-j-1)*DibWidth+i)=255;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">    memcpy(p_data,p_temp,height*DibWidth);  // 复制处理后的图像</span><br><span class="line">    delete []p_temp;   //删除暂时分配内存</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Smoothness-平滑处理"><a href="#Smoothness-平滑处理" class="headerlink" title="Smoothness 平滑处理"></a>Smoothness 平滑处理</h2><p>函数名称：Smoothness()<br>函数类型：void<br>功能：使图像平滑处理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">void MakeColorDib::Smoothness()   //平滑处理</span><br><span class="line">&#123;</span><br><span class="line"> BYTE *p_data;     //原图数据区指针</span><br><span class="line"> int wide,height,DibWidth;    //原图长、宽、字节宽</span><br><span class="line"> p_data=this-&gt;GetData ();   //取得原图的数据区指针</span><br><span class="line">    wide=this-&gt;GetWidth ();  //取得原图的数据区宽度</span><br><span class="line">    height=this-&gt;GetHeight ();   //取得原图的数据区高度</span><br><span class="line"> DibWidth=this-&gt;GetDibWidthBytes();   //取得原图的每行字节数</span><br><span class="line">    int h[3][3];////定义(3x3)矩阵</span><br><span class="line"> h[0][0] = 1;  h[0][1] = 1; h[0][2] = 1;</span><br><span class="line"> h[1][0] = 1;  h[1][1] = 1; h[1][2] = 1;</span><br><span class="line"> h[2][0] = 1;  h[2][1] = 1; h[2][2] = 1;</span><br><span class="line">    BYTE *p_temp=new BYTE[height*DibWidth]; // 暂时分配内存，以保存新图像</span><br><span class="line"> for(int j=0;j&lt;height-2;j++) // 每行</span><br><span class="line"> &#123;</span><br><span class="line">  for(int i=0;i&lt;DibWidth-8;i++) // 每列</span><br><span class="line">  &#123;</span><br><span class="line">         double pby_pt=0;</span><br><span class="line">                    //对应的第0行的值乘以矩阵对应值，再相加</span><br><span class="line">       pby_pt= h[0][0]*(*(p_data+(height-j-1)*DibWidth+i))</span><br><span class="line">        +h[0][1]*(*(p_data+(height-j-1)*DibWidth+i+3))</span><br><span class="line">        +h[0][2]*(*(p_data+(height-j-1)*DibWidth+i+6))</span><br><span class="line">                    //对应的第1行的值乘以矩阵对应值，再相加</span><br><span class="line">        +h[1][0]*(*(p_data+(height-j-2)*DibWidth+i))</span><br><span class="line">        +h[1][1]*(*(p_data+(height-j-2)*DibWidth+i+3))</span><br><span class="line">        +h[1][2]*(*(p_data+(height-j-2)*DibWidth+i+6))</span><br><span class="line">                    //对应的第2行的值乘以矩阵对应值，再相加</span><br><span class="line">              +h[2][0]*(*(p_data+(height-j-3)*DibWidth+i))</span><br><span class="line">     +h[2][1]*(*(p_data+(height-j-3)*DibWidth+i+3))</span><br><span class="line">     +h[2][2]*(*(p_data+(height-j-3)*DibWidth+i+6));</span><br><span class="line">   *(p_temp+(height-j-2)*DibWidth+i+3)=abs(int(pby_pt/9));//取总和的的平均值</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">    memcpy(p_data,p_temp,height*DibWidth);  // 复制处理后的图像</span><br><span class="line">    delete []p_temp;//删除暂时分配内存</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Embossment-浮雕处理"><a href="#Embossment-浮雕处理" class="headerlink" title="Embossment 浮雕处理"></a>Embossment 浮雕处理</h2><p>函数名称：Embossment()<br>函数类型：void<br>功能：产生图像浮雕处理效果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">void MakeColorDib::Embossment()   //浮雕处理</span><br><span class="line">&#123;</span><br><span class="line"> BYTE *p_data;     //原图数据区指针</span><br><span class="line"> int wide,height,DibWidth;    //原图长、宽、字节宽</span><br><span class="line"> p_data=this-&gt;GetData ();   //取得原图的数据区指针</span><br><span class="line">    wide=this-&gt;GetWidth ();  //取得原图的数据区宽度</span><br><span class="line">    height=this-&gt;GetHeight ();   //取得原图的数据区高度</span><br><span class="line"> DibWidth=this-&gt;GetDibWidthBytes();   //取得原图的每行字节数</span><br><span class="line">    BYTE *p_temp=new BYTE[height*DibWidth]; // 暂时分配内存，以保存新图像</span><br><span class="line"> for(int j=0;j&lt;height;j++) // 每行</span><br><span class="line"> &#123;</span><br><span class="line">  for(int i=0;i&lt;DibWidth-4;i++) // 每列</span><br><span class="line">  &#123;</span><br><span class="line">    int pby_pt=0;</span><br><span class="line">    //对像素得每个分量执行算法</span><br><span class="line">    pby_pt=*(p_data+(height-j-1)*DibWidth+i)</span><br><span class="line">       -*(p_data+(height-j-1)*DibWidth+i+3)+128;</span><br><span class="line">    *(p_temp+(height-j-1)*DibWidth+i+3)=pby_pt;</span><br><span class="line">   //检验合法性</span><br><span class="line">   if(*(p_temp+(height-j-1)*DibWidth+i+3)&lt;0)</span><br><span class="line">    *(p_temp+(height-j-1)*DibWidth+i+3)=0;</span><br><span class="line">   else if(*(p_temp+(height-j-1)*DibWidth+i+3)&gt;255)</span><br><span class="line">    *(p_temp+(height-j-1)*DibWidth+i+3)=255;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">    memcpy(p_data,p_temp,height*DibWidth);  // 复制处理后的图像</span><br><span class="line">    delete []p_temp;   //删除暂时分配内存</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Spread-图像扩散"><a href="#Spread-图像扩散" class="headerlink" title="Spread 图像扩散"></a>Spread 图像扩散</h2><p>函数名称：Spread()<br>函数类型：void<br>功能：图像扩散处理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">void MakeColorDib::Spread()   //扩散处理</span><br><span class="line">&#123; </span><br><span class="line"> BYTE *p_data;     //原图数据区指针</span><br><span class="line"> int wide,height,DibWidth;    //原图长、宽、字节宽</span><br><span class="line"> p_data=this-&gt;GetData ();   //取得原图的数据区指针</span><br><span class="line">    wide=this-&gt;GetWidth ();  //取得原图的数据区宽度</span><br><span class="line">    height=this-&gt;GetHeight ();   //取得原图的数据区高度</span><br><span class="line"> DibWidth=this-&gt;GetDibWidthBytes();   //取得原图的每行字节数</span><br><span class="line">    BYTE *p_temp=new BYTE[height*DibWidth]; // 暂时分配内存，以保存新图像</span><br><span class="line"> for(int j=0;j&lt;height-4;j++) // 每行</span><br><span class="line"> &#123;</span><br><span class="line">  for(int i=0;i&lt;DibWidth-14;i++) // 每列</span><br><span class="line">  &#123;</span><br><span class="line">    int m=0,n=0;</span><br><span class="line">    m=rand()%5; //取得行随机数</span><br><span class="line">    n=rand()%5; //取得列随机数</span><br><span class="line">    int pby_pt=0; </span><br><span class="line">    pby_pt=*(p_data+(height-j-1-m)*DibWidth+i+3*n);//得到对应随机像素值</span><br><span class="line">    *(p_temp+(height-j-3)*DibWidth+i+6)=pby_pt;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">    memcpy(p_data,p_temp,height*DibWidth);  // 复制处理后的图像</span><br><span class="line">    delete []p_temp;   //删除暂时分配内存</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Sharp-锐化"><a href="#Sharp-锐化" class="headerlink" title="Sharp 锐化"></a>Sharp 锐化</h2><p>函数名称：Sharp()<br>函数类型：void<br>功能：图像锐化处理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">void MakeColorDib::Sharp()   //图像锐化</span><br><span class="line">&#123;</span><br><span class="line">  BYTE *p_data;     //原图数据区指针</span><br><span class="line"> int wide,height,DibWidth;    //原图长、宽、字节宽</span><br><span class="line"> p_data=this-&gt;GetData ();   //取得原图的数据区指针</span><br><span class="line">    wide=this-&gt;GetWidth ();  //取得原图的数据区宽度</span><br><span class="line">    height=this-&gt;GetHeight ();   //取得原图的数据区高度</span><br><span class="line"> DibWidth=this-&gt;GetDibWidthBytes();   //取得原图的每行字节数</span><br><span class="line">    BYTE *p_temp=new BYTE[height*DibWidth];</span><br><span class="line"> for(int j=0;j&lt;height-1;j++) // 每行</span><br><span class="line"> &#123;</span><br><span class="line">  for(int i=0;i&lt;DibWidth-5;i++) // 每列</span><br><span class="line">  &#123;</span><br><span class="line">         int pby_pt=0; </span><br><span class="line">   pby_pt= *(p_data+(height-j-2)*DibWidth+i+3)</span><br><span class="line">          -*(p_data+(height-j-1)*DibWidth+i);</span><br><span class="line">   *(p_temp+(height-j-2)*DibWidth+i+3)=*(p_data+(height-j-2)*DibWidth+i+3)</span><br><span class="line">                                     +abs(int(pby_pt/4));</span><br><span class="line">   if(*(p_temp+(height-j-2)*DibWidth+i+3)&gt;255)</span><br><span class="line">      *(p_temp+(height-j-2)*DibWidth+i+3)=255;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">    memcpy(p_data,p_temp,height*DibWidth);  // 复制处理后的图像</span><br><span class="line">    delete []p_temp;  //删除暂时分配内存</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="HighLVBO-阈值法进行高通滤波"><a href="#HighLVBO-阈值法进行高通滤波" class="headerlink" title="HighLVBO 阈值法进行高通滤波"></a>HighLVBO 阈值法进行高通滤波</h2><p>函数名称：HighLVBO(int m_GaoTong)<br>函数类型：void<br>参数：int m_GaoTong，用户给定的阈值来选择矩阵<br>功能：对图像使用阈值法进行高通滤波。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">void MakeColorDib::HighLVBO(int m_GaoTong)   //高通滤波</span><br><span class="line">&#123;</span><br><span class="line"> BYTE *p_data;     //原图数据区指针</span><br><span class="line"> int wide,height,DibWidth;    //原图长、宽、字节宽</span><br><span class="line"> p_data=this-&gt;GetData ();   //取得原图的数据区指针</span><br><span class="line">    wide=this-&gt;GetWidth ();  //取得原图的数据区宽度</span><br><span class="line">    height=this-&gt;GetHeight ();   //取得原图的数据区高度</span><br><span class="line"> DibWidth=this-&gt;GetDibWidthBytes();   //取得原图的每行字节数</span><br><span class="line"> int h[3][3];  ////定义(3x3)矩阵</span><br><span class="line"> if(m_GaoTong==1)</span><br><span class="line"> &#123;   //矩阵1（基本高通）</span><br><span class="line">  h[0][0] =1;   h[0][1] =-2;  h[0][2] =1;</span><br><span class="line">  h[1][0] =-2;  h[1][1] =5;   h[1][2] =-2;</span><br><span class="line">  h[2][0] =1;   h[2][1] =-2;  h[2][2] =1;</span><br><span class="line"> &#125;</span><br><span class="line"> else if(m_GaoTong==2)</span><br><span class="line"> &#123;   //矩阵2（中等高通）</span><br><span class="line">  h[0][0] = 0;   h[0][1] = -1; h[0][2] = 0;</span><br><span class="line">  h[1][0] = -1;  h[1][1] =  5; h[1][2] = -1;</span><br><span class="line">  h[2][0] = 0;   h[2][1] = -1; h[2][2] = 0;</span><br><span class="line"> &#125;</span><br><span class="line"> else</span><br><span class="line"> &#123;   //矩阵3（过量高通）</span><br><span class="line">  h[0][0] = -1;  h[0][1] = -1; h[0][2] = -1;</span><br><span class="line">  h[1][0] = -1;  h[1][1] =  9; h[1][2] = -1;</span><br><span class="line">  h[2][0] = -1;  h[2][1] = -1; h[2][2] = -1;</span><br><span class="line"> &#125;</span><br><span class="line">    BYTE *p_temp=new BYTE[height*DibWidth]; // 暂时分配内存，以保存新图像</span><br><span class="line"> for(int j=0;j&lt;height-2;j++) // 每行</span><br><span class="line"> &#123;</span><br><span class="line">  for(int i=0;i&lt;DibWidth-8;i++) // 每列</span><br><span class="line">  &#123;</span><br><span class="line">   int pby_pt=0;</span><br><span class="line">   //对应的第0行的值乘以矩阵对应值，再相加</span><br><span class="line">   pby_pt=  h[0][0]*(*(p_data+(height-j-1)*DibWidth+i))</span><br><span class="line">    +h[0][1]*(*(p_data+(height-j-1)*DibWidth+i+3))</span><br><span class="line">    +h[0][2]*(*(p_data+(height-j-1)*DibWidth+i+6))</span><br><span class="line">    //对应的第1行的值乘以矩阵对应值，再相加</span><br><span class="line">    +h[1][0]*(*(p_data+(height-j-2)*DibWidth+i))</span><br><span class="line">    +h[1][1]*(*(p_data+(height-j-2)*DibWidth+i+3))</span><br><span class="line">    +h[1][2]*(*(p_data+(height-j-2)*DibWidth+i+6))</span><br><span class="line">    //对应的第2行的值乘以矩阵对应值，再相加</span><br><span class="line">    +h[2][0]*(*(p_data+(height-j-3)*DibWidth+i))</span><br><span class="line">    +h[2][1]*(*(p_data+(height-j-3)*DibWidth+i+3))</span><br><span class="line">    +h[2][2]*(*(p_data+(height-j-3)*DibWidth+i+6));</span><br><span class="line">   *(p_temp+(height-j-2)*DibWidth+i+3)=abs(pby_pt);</span><br><span class="line">   if(pby_pt&gt;255) //判断是否越界</span><br><span class="line">    *(p_temp+(height-j-2)*DibWidth+i+3)=255;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">    memcpy(p_data,p_temp,height*DibWidth);  // 复制处理后的图像</span><br><span class="line">    delete []p_temp;  //删除暂时分配内存</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="LowLVBO-图像低通滤波"><a href="#LowLVBO-图像低通滤波" class="headerlink" title="LowLVBO 图像低通滤波"></a>LowLVBO 图像低通滤波</h2><p>函数名称：LowLVBO()<br>函数类型：void<br>功能：实现图像低通滤波(3x3)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">void MakeColorDib::LowLVBO()   //低通滤波(3x3)</span><br><span class="line">&#123;</span><br><span class="line"> BYTE *p_data;     //原图数据区指针</span><br><span class="line"> int wide,height,DibWidth;    //原图长、宽、字节宽</span><br><span class="line"> p_data=this-&gt;GetData ();   //取得原图的数据区指针</span><br><span class="line">    wide=this-&gt;GetWidth ();  //取得原图的数据区宽度</span><br><span class="line">    height=this-&gt;GetHeight ();   //取得原图的数据区高度</span><br><span class="line"> DibWidth=this-&gt;GetDibWidthBytes();   //取得原图的每行字节数</span><br><span class="line">    double h[3][3];////定义(3x3)矩阵</span><br><span class="line"> h[0][0] = 0.1;  h[0][1] = 0.1; h[0][2] = 0.1;</span><br><span class="line"> h[1][0] = 0.1;  h[1][1] = 0.2; h[1][2] = 0.1;</span><br><span class="line"> h[2][0] = 0.1;  h[2][1] = 0.1; h[2][2] = 0.1;</span><br><span class="line"> BYTE *p_temp=new BYTE[height*DibWidth]; // 暂时分配内存，以保存新图像</span><br><span class="line"> for(int j=0;j&lt;height-2;j++) // 每行</span><br><span class="line"> &#123;</span><br><span class="line">  for(int i=0;i&lt;DibWidth-8;i++) // 每列</span><br><span class="line">  &#123;</span><br><span class="line">   double pby_pt=0;</span><br><span class="line">            //对应的第0行的值乘以矩阵对应值，再相加 </span><br><span class="line">   pby_pt=  h[0][0]*(*(p_data+(height-j-1)*DibWidth+i))</span><br><span class="line">    +h[0][1]*(*(p_data+(height-j-1)*DibWidth+i+3))</span><br><span class="line">    +h[0][2]*(*(p_data+(height-j-1)*DibWidth+i+6))</span><br><span class="line">    //对应的第0行的值乘以矩阵对应值，再相加</span><br><span class="line">    +h[1][0]*(*(p_data+(height-j-2)*DibWidth+i))</span><br><span class="line">    +h[1][1]*(*(p_data+(height-j-2)*DibWidth+i+3))</span><br><span class="line">    +h[1][2]*(*(p_data+(height-j-2)*DibWidth+i+6))</span><br><span class="line">    //对应的第0行的值乘以矩阵对应值，再相加</span><br><span class="line">    +h[2][0]*(*(p_data+(height-j-3)*DibWidth+i))</span><br><span class="line">    +h[2][1]*(*(p_data+(height-j-3)*DibWidth+i+3))</span><br><span class="line">    +h[2][2]*(*(p_data+(height-j-3)*DibWidth+i+6));</span><br><span class="line">   *(p_temp+(height-j-2)*DibWidth+i+3)=abs(int(pby_pt));</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> memcpy(p_data,p_temp,height*DibWidth);  // 复制处理后的图像</span><br><span class="line"> delete []p_temp;  //删除暂时分配内存</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="LowVBObig-低通滤波"><a href="#LowVBObig-低通滤波" class="headerlink" title="LowVBObig 低通滤波"></a>LowVBObig 低通滤波</h2><p>函数名称：LowVBObig()<br> 函数类型：void<br> 功能：实现函数低通滤波(5*5)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">void MakeColorDib::LowLVBObig()   //低通滤波(5x5)</span><br><span class="line">&#123;</span><br><span class="line"> BYTE *p_data;     //原图数据区指针</span><br><span class="line"> int wide,height,DibWidth;    //原图长、宽、字节宽</span><br><span class="line"> p_data=this-&gt;GetData ();   //取得原图的数据区指针</span><br><span class="line">    wide=this-&gt;GetWidth ();  //取得原图的数据区宽度</span><br><span class="line">    height=this-&gt;GetHeight ();   //取得原图的数据区高度</span><br><span class="line"> DibWidth=this-&gt;GetDibWidthBytes();   //取得原图的每行字节数</span><br><span class="line"> int h[5][5];//定义(5x5)矩阵</span><br><span class="line"> h[0][0] = 1;  h[0][1] = 1; h[0][2] = 1; h[0][3] = 1; h[0][4] = 1;</span><br><span class="line"> h[1][0] = 1;  h[1][1] = 2; h[1][2] = 2; h[1][3] = 2; h[1][4] = 1;</span><br><span class="line"> h[2][0] = 1;  h[2][1] = 2; h[2][2] = 3; h[2][3] = 2; h[2][4] = 1;</span><br><span class="line"> h[3][0] = 1;  h[3][1] = 2; h[3][2] = 2; h[3][3] = 2; h[3][4] = 1;</span><br><span class="line"> h[4][0] = 1;  h[4][1] = 1; h[4][2] = 1; h[4][3] = 1; h[4][4] = 1;</span><br><span class="line"> BYTE *p_temp=new BYTE[height*DibWidth]; // 暂时分配内存，以保存新图像</span><br><span class="line"> for(int j=0;j&lt;height-4;j++) // 每行</span><br><span class="line"> &#123;</span><br><span class="line">  for(int i=0;i&lt;DibWidth-14;i++) // 每列</span><br><span class="line">  &#123;</span><br><span class="line">         int pby_pt=0;</span><br><span class="line">         //对应的第0行的值乘以矩阵对应值，再相加</span><br><span class="line">   pby_pt=h[0][0]*(*(p_data+(height-j-1)*DibWidth+i))</span><br><span class="line">      +h[0][1]*(*(p_data+(height-j-1)*DibWidth+i+3))</span><br><span class="line">      +h[0][2]*(*(p_data+(height-j-1)*DibWidth+i+6))</span><br><span class="line">         +h[0][3]*(*(p_data+(height-j-1)*DibWidth+i+9))</span><br><span class="line">      +h[0][4]*(*(p_data+(height-j-1)*DibWidth+i+12))</span><br><span class="line">                  //对应的第1行的值乘以矩阵对应值，再相加</span><br><span class="line">         +h[1][0]*(*(p_data+(height-j-2)*DibWidth+i))</span><br><span class="line">         +h[1][1]*(*(p_data+(height-j-2)*DibWidth+i+3))</span><br><span class="line">      +h[1][2]*(*(p_data+(height-j-2)*DibWidth+i+6))</span><br><span class="line">      +h[1][3]*(*(p_data+(height-j-2)*DibWidth+i+9))</span><br><span class="line">      +h[1][4]*(*(p_data+(height-j-2)*DibWidth+i+12))</span><br><span class="line">                  //对应的第2行的值乘以矩阵对应值，再相加</span><br><span class="line">         +h[2][0]*(*(p_data+(height-j-3)*DibWidth+i))</span><br><span class="line">      +h[2][1]*(*(p_data+(height-j-3)*DibWidth+i+3))</span><br><span class="line">      +h[2][2]*(*(p_data+(height-j-3)*DibWidth+i+6))</span><br><span class="line">      +h[2][3]*(*(p_data+(height-j-3)*DibWidth+i+9))</span><br><span class="line">      +h[2][4]*(*(p_data+(height-j-3)*DibWidth+i+12))</span><br><span class="line">                  //对应的第3行的值乘以矩阵对应值，再相加</span><br><span class="line">         +h[3][0]*(*(p_data+(height-j-4)*DibWidth+i))</span><br><span class="line">         +h[3][1]*(*(p_data+(height-j-4)*DibWidth+i+3))</span><br><span class="line">      +h[3][2]*(*(p_data+(height-j-4)*DibWidth+i+6))</span><br><span class="line">      +h[3][3]*(*(p_data+(height-j-4)*DibWidth+i+9))</span><br><span class="line">      +h[3][4]*(*(p_data+(height-j-4)*DibWidth+i+12))</span><br><span class="line">                  //对应的第4行的值乘以矩阵对应值，再相加</span><br><span class="line">         +h[4][0]*(*(p_data+(height-j-5)*DibWidth+i))</span><br><span class="line">      +h[4][1]*(*(p_data+(height-j-5)*DibWidth+i+3))</span><br><span class="line">      +h[4][2]*(*(p_data+(height-j-5)*DibWidth+i+6))</span><br><span class="line">      +h[4][3]*(*(p_data+(height-j-5)*DibWidth+i+9))</span><br><span class="line">      +h[4][4]*(*(p_data+(height-j-5)*DibWidth+i+12));</span><br><span class="line">                  //为了计算方便我们把除以35（矩阵权和）放在求总和之后</span><br><span class="line">   *(p_temp+(height-j-3)*DibWidth+i+6)=abs(int(pby_pt/35));</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> memcpy(p_data,p_temp,height*DibWidth);  // 复制处理后的图像</span><br><span class="line"> delete []p_temp;  //删除暂时分配内存</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="ShuiPingGROW-水平增强"><a href="#ShuiPingGROW-水平增强" class="headerlink" title="ShuiPingGROW 水平增强"></a>ShuiPingGROW 水平增强</h2><p>函数名称：ShuiPingGROW()<br>函数类型：void<br>功能：使图像水平增强。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">void MakeColorDib::ShuiPingGROW()   //水平增强</span><br><span class="line">&#123;</span><br><span class="line"> BYTE *p_data;     //原图数据区指针</span><br><span class="line"> int wide,height,DibWidth;    //原图长、宽、字节宽</span><br><span class="line"> p_data=this-&gt;GetData ();   //取得原图的数据区指针</span><br><span class="line">    wide=this-&gt;GetWidth ();  //取得原图的数据区宽度</span><br><span class="line">    height=this-&gt;GetHeight ();   //取得原图的数据区高度</span><br><span class="line"> DibWidth=this-&gt;GetDibWidthBytes();   //取得原图的每行字节数</span><br><span class="line"> int h[3][1];//定义(3x1)矩阵</span><br><span class="line"> h[0][0] = -1;  </span><br><span class="line"> h[1][0] = 2; </span><br><span class="line"> h[2][0] = -1;</span><br><span class="line"> BYTE *p_temp=new BYTE[height*DibWidth]; // 暂时分配内存，以保存新图像</span><br><span class="line"> for(int j=0;j&lt;height-2;j++) // 每行</span><br><span class="line"> &#123;</span><br><span class="line">  for(int i=0;i&lt;DibWidth-8;i++) // 每列</span><br><span class="line">  &#123;</span><br><span class="line">   int pby_pt=0;</span><br><span class="line">   //对应的3行的值乘分别以矩阵对应值，再相加</span><br><span class="line">   pby_pt= h[0][0]*(*(p_data+(height-j-1)*DibWidth+i))</span><br><span class="line">    +h[1][0]*(*(p_data+(height-j-2)*DibWidth+i))</span><br><span class="line">    +h[2][0]*(*(p_data+(height-j-3)*DibWidth+i));</span><br><span class="line">   if(pby_pt&gt;20)</span><br><span class="line">    *(p_temp+(height-j-2)*DibWidth+i)=abs(pby_pt)+100;</span><br><span class="line">   else</span><br><span class="line">    *(p_temp+(height-j-2)*DibWidth+i)=abs(pby_pt);</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> memcpy(p_data,p_temp,height*DibWidth);  // 复制处理后的图像</span><br><span class="line">    delete []p_temp;  //删除暂时分配内存</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="ChuiZhiGROW-垂直增强"><a href="#ChuiZhiGROW-垂直增强" class="headerlink" title="ChuiZhiGROW 垂直增强"></a>ChuiZhiGROW 垂直增强</h2><p>函数名称：ChuiZhiGROW()<br>函数类型：void<br>功能：使图像垂直增强。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">void MakeColorDib::ChuiZhiGROW()   //垂直增强</span><br><span class="line">&#123;</span><br><span class="line"> BYTE *p_data;     //原图数据区指针</span><br><span class="line"> int wide,height,DibWidth;    //原图长、宽、字节宽</span><br><span class="line"> p_data=this-&gt;GetData ();   //取得原图的数据区指针</span><br><span class="line">    wide=this-&gt;GetWidth ();  //取得原图的数据区宽度</span><br><span class="line">    height=this-&gt;GetHeight ();   //取得原图的数据区高度</span><br><span class="line"> DibWidth=this-&gt;GetDibWidthBytes();   //取得原图的每行字节数</span><br><span class="line"> int h[1][3];//定义(1x3)矩阵</span><br><span class="line"> h[0][0] = -1; </span><br><span class="line"> h[0][1] = 2;</span><br><span class="line"> h[0][2] = -1;</span><br><span class="line"> BYTE *p_temp=new BYTE[height*DibWidth]; // 暂时分配内存，以保存新图像</span><br><span class="line"> for(int j=0;j&lt;height-2;j++) // 每行</span><br><span class="line"> &#123;</span><br><span class="line">  for(int i=0;i&lt;DibWidth-8;i++) // 每列</span><br><span class="line">  &#123;</span><br><span class="line">   int pby_pt=0;</span><br><span class="line">   //对应的第0行的值乘以矩阵对应值，再相加</span><br><span class="line">   pby_pt= h[0][0]*(*(p_data+(height-j-1)*DibWidth+i))</span><br><span class="line">    +h[0][1]*(*(p_data+(height-j-1)*DibWidth+i+3))</span><br><span class="line">    +h[0][2]*(*(p_data+(height-j-1)*DibWidth+i+6));</span><br><span class="line">   if(pby_pt&gt;20)</span><br><span class="line">    *(p_temp+(height-j-2)*DibWidth+i)=abs(pby_pt)+100;</span><br><span class="line">   else</span><br><span class="line">    *(p_temp+(height-j-2)*DibWidth+i)=abs(pby_pt);</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> memcpy(p_data,p_temp,height*DibWidth);  // 复制处理后的图像</span><br><span class="line"> delete []p_temp;  //删除暂时分配内存</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="ShuangXiangGROW-双向增强"><a href="#ShuangXiangGROW-双向增强" class="headerlink" title="ShuangXiangGROW 双向增强"></a>ShuangXiangGROW 双向增强</h2><p>函数名称：ShuangXiangGROW()<br>函数类型：void<br>功能：使图像双向增强。<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">void MakeColorDib::ShuangXiangGROW()    //双向增强</span><br><span class="line">&#123;</span><br><span class="line"> BYTE *p_data;     //原图数据区指针</span><br><span class="line"> int wide,height,DibWidth;    //原图长、宽、字节宽</span><br><span class="line"> p_data=this-&gt;GetData ();   //取得原图的数据区指针</span><br><span class="line">    wide=this-&gt;GetWidth ();  //取得原图的数据区宽度</span><br><span class="line">    height=this-&gt;GetHeight ();   //取得原图的数据区高度</span><br><span class="line"> DibWidth=this-&gt;GetDibWidthBytes();   //取得原图的每行字节数</span><br><span class="line"> int h[3][3];//定义(3x3)矩阵</span><br><span class="line"> h[0][0] = -1;  h[0][1] = -1; h[0][2] = -1;</span><br><span class="line"> h[1][0] = -1;  h[1][1] =  8; h[1][2] = -1;</span><br><span class="line"> h[2][0] = -1;  h[2][1] = -1; h[2][2] = -1; </span><br><span class="line"> BYTE *p_temp=new BYTE[height*DibWidth]; // 暂时分配内存，以保存新图像</span><br><span class="line"> for(int j=0;j&lt;height-2;j++) // 每行</span><br><span class="line"> &#123; </span><br><span class="line">  for(int i=0;i&lt;DibWidth-8;i++) // 每列</span><br><span class="line">  &#123;</span><br><span class="line">   int pby_pt=0;</span><br><span class="line">   //对应的第0行的值乘以矩阵对应值，再相加</span><br><span class="line">   pby_pt= h[0][0]*(*(p_data+(height-j-1)*DibWidth+i))</span><br><span class="line">    +h[0][1]*(*(p_data+(height-j-1)*DibWidth+i+3))</span><br><span class="line">    +h[0][2]*(*(p_data+(height-j-1)*DibWidth+i+6))</span><br><span class="line">    //对应的第1行的值乘以矩阵对应值，再相加</span><br><span class="line">    +h[1][0]*(*(p_data+(height-j-2)*DibWidth+i))</span><br><span class="line">    +h[1][1]*(*(p_data+(height-j-2)*DibWidth+i+3))</span><br><span class="line">    +h[1][2]*(*(p_data+(height-j-2)*DibWidth+i+6))</span><br><span class="line">    //对应的第2行的值乘以矩阵对应值，再相加</span><br><span class="line">    +h[2][0]*(*(p_data+(height-j-3)*DibWidth+i))</span><br><span class="line">    +h[2][1]*(*(p_data+(height-j-3)*DibWidth+i+3))</span><br><span class="line">    +h[2][2]*(*(p_data+(height-j-3)*DibWidth+i+6));</span><br><span class="line">   if(pby_pt&gt;20)</span><br><span class="line">    *(p_temp+(height-j-2)*DibWidth+i)=abs(pby_pt)+100;</span><br><span class="line">   else</span><br><span class="line">    *(p_temp+(height-j-2)*DibWidth+i)=abs(pby_pt);</span><br><span class="line">  &#125;</span><br><span class="line"> &#125; </span><br><span class="line"> memcpy(p_data,p_temp,height*DibWidth);  // 复制处理后的图像</span><br><span class="line"> delete []p_temp;  //删除暂时分配内存</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Mosaic-马塞克"><a href="#Mosaic-马塞克" class="headerlink" title="Mosaic 马塞克"></a>Mosaic 马塞克</h2><p>函数名称：Mosaic()<br>函数类型：void<br>功能：使图像产生马赛克效果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">void MakeColorDib::Mosaic()    //马赛克</span><br><span class="line">&#123;</span><br><span class="line"> BYTE *p_data;     //原图数据区指针</span><br><span class="line"> int wide,height,DibWidth;    //原图长、宽、字节宽</span><br><span class="line"> p_data=this-&gt;GetData ();   //取得原图的数据区指针</span><br><span class="line">    wide=this-&gt;GetWidth ();  //取得原图的数据区宽度</span><br><span class="line">    height=this-&gt;GetHeight ();   //取得原图的数据区高度</span><br><span class="line"> DibWidth=this-&gt;GetDibWidthBytes();   //取得原图的每行字节数</span><br><span class="line"> BYTE *p_temp=new BYTE[height*DibWidth]; // 暂时分配内存，以保存新图像</span><br><span class="line"> for(int j=0;j&lt;height-4;j+=5) // 每行</span><br><span class="line"> &#123; </span><br><span class="line">     for(int i=0;i&lt;DibWidth-14;i+=15) // 每列</span><br><span class="line">  &#123;   //对应周围(5x5)矩阵蓝色值求和平均</span><br><span class="line">   int pby_pt=0;</span><br><span class="line">   for(int m=0;m&lt;5;m++)</span><br><span class="line">    for(int n=0;n&lt;15;n+=3)</span><br><span class="line">    &#123;   </span><br><span class="line">     pby_pt+=*(p_data+(height-j-1-m)*DibWidth+i+n);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">   for(m=0;m&lt;5;m++)</span><br><span class="line">    for(int n=0;n&lt;14;n+=3)</span><br><span class="line">    &#123;</span><br><span class="line">     *(p_temp+(height-j-1-m)*DibWidth+i+n)=int(pby_pt/25);</span><br><span class="line">    &#125; </span><br><span class="line">            //对应周围(5x5)矩阵绿色值求和平均</span><br><span class="line">   pby_pt=0;</span><br><span class="line">   for(m=0;m&lt;5;m++)</span><br><span class="line">    for(int n=0;n&lt;15;n+=3)</span><br><span class="line">    &#123;</span><br><span class="line">     pby_pt+=*(p_data+(height-j-1-m)*DibWidth+i+n+1);</span><br><span class="line">    &#125;</span><br><span class="line">   for(m=0;m&lt;5;m++)</span><br><span class="line">    for(int n=0;n&lt;14;n+=3)</span><br><span class="line">    &#123;</span><br><span class="line">     *(p_temp+(height-j-1-m)*DibWidth+i+n+1)=int(pby_pt/25);</span><br><span class="line">    &#125;</span><br><span class="line">            //对应周围(5x5)矩阵红色值求和平均</span><br><span class="line">   pby_pt=0;</span><br><span class="line">   for(m=0;m&lt;5;m++)</span><br><span class="line">    for(int n=0;n&lt;15;n+=3)</span><br><span class="line">    &#123;</span><br><span class="line">     pby_pt+=*(p_data+(height-j-1-m)*DibWidth+i+n+2);</span><br><span class="line">    &#125;</span><br><span class="line">   for(m=0;m&lt;5;m++)</span><br><span class="line">    for(int n=0;n&lt;14;n+=3)</span><br><span class="line">    &#123;</span><br><span class="line">     *(p_temp+(height-j-1-m)*DibWidth+i+n+2)=int(pby_pt/25);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;   </span><br><span class="line"> &#125;</span><br><span class="line"> memcpy(p_data,p_temp,height*DibWidth);  // 复制处理后的图像</span><br><span class="line"> delete []p_temp;  //删除暂时分配内存</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>AomanHao</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://www.aomanhao.top/2018/07/19/C++图像处理程序/" title="C++图像处理程序">http://www.aomanhao.top/2018/07/19/C++图像处理程序/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/19/机器学习常见算法总结/" rel="next" title="机器学习常见算法总结">
+                <i class="fa fa-chevron-left"></i> 机器学习常见算法总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/19/opencv_imgseg/" rel="prev" title="Opencv图像分割">
+                Opencv图像分割 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="AomanHao">
+            
+              <p class="site-author-name" itemprop="name">AomanHao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">91</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/aomanhao" title="GitHub &rarr; https://github.com/aomanhao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:1014325364@qq.com" title="E-Mail &rarr; mailto:1014325364@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/2831714980" title="Weibo &rarr; https://weibo.com/u/2831714980" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://me.csdn.net/Aoman_Hao" title="CSDN &rarr; https://me.csdn.net/Aoman_Hao" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MakegGray-彩色转灰度"><span class="nav-number">1.</span> <span class="nav-text">MakegGray 彩色转灰度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LightAlter-亮度调整"><span class="nav-number">2.</span> <span class="nav-text">LightAlter 亮度调整</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LightReverse-亮度取反"><span class="nav-number">3.</span> <span class="nav-text">LightReverse 亮度取反</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ContrastAlter-调整对比度（阈值法）"><span class="nav-number">4.</span> <span class="nav-text">ContrastAlter 调整对比度（阈值法）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exposal-曝光处理"><span class="nav-number">5.</span> <span class="nav-text">Exposal 曝光处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PaintColor-着色处理（阈值法）"><span class="nav-number">6.</span> <span class="nav-text">PaintColor 着色处理（阈值法）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NeonLight-霓虹处理"><span class="nav-number">7.</span> <span class="nav-text">NeonLight 霓虹处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Smoothness-平滑处理"><span class="nav-number">8.</span> <span class="nav-text">Smoothness 平滑处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Embossment-浮雕处理"><span class="nav-number">9.</span> <span class="nav-text">Embossment 浮雕处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spread-图像扩散"><span class="nav-number">10.</span> <span class="nav-text">Spread 图像扩散</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sharp-锐化"><span class="nav-number">11.</span> <span class="nav-text">Sharp 锐化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HighLVBO-阈值法进行高通滤波"><span class="nav-number">12.</span> <span class="nav-text">HighLVBO 阈值法进行高通滤波</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LowLVBO-图像低通滤波"><span class="nav-number">13.</span> <span class="nav-text">LowLVBO 图像低通滤波</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LowVBObig-低通滤波"><span class="nav-number">14.</span> <span class="nav-text">LowVBObig 低通滤波</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ShuiPingGROW-水平增强"><span class="nav-number">15.</span> <span class="nav-text">ShuiPingGROW 水平增强</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ChuiZhiGROW-垂直增强"><span class="nav-number">16.</span> <span class="nav-text">ChuiZhiGROW 垂直增强</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ShuangXiangGROW-双向增强"><span class="nav-number">17.</span> <span class="nav-text">ShuangXiangGROW 双向增强</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mosaic-马塞克"><span class="nav-number">18.</span> <span class="nav-text">Mosaic 马塞克</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<!--网页底部copyright部分-->
+<div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">by AomanHao</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">277k</span>
+  
+
+  
+
+    
+    <span class="post-meta-divider">|</span>
+  
+
+  <!--访问量访问人数-->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+
+
+</div>
+
+
+<span id="timeDate"></span><span id="times"></span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("11/27/2017 12:00:00");//在此处修改你的建站时间
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = " 网站安全运行 "+dnum+" 天 "; 
+        
+    } 
+setInterval("createtime()",250);
+</script>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<!--Hexo版本模块-->
+
+ <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+<!--Hext主题版本模块-->
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a></div>
+
+
+
+
+
+
+<!--document.getElementById("times").innerHTML = hnum + " H " + mnum + " M " + snum + " S"; -->
+        
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.2" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/valine@1.3.4/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'llBsNPTabKsl2d4aU3OvrmSz-gzGzoHsz',
+    appKey: 'gzSQowSIzhnuc5eYPj4k7c7z',
+    placeholder: '欢迎交流讨论...',
+    avatar: 'monsterid',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":75,"height":150},"mobile":{"show":true},"log":false});</script></body>
+</html>
+
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
