@@ -29,17 +29,21 @@ mbuild -setup
 
 然后替换文件
 
-附件下面的将mexopts/下的msvc2015.xml和msvcpp2015.xml<br>
-复制到Matlab目录下的bin/win64/mexopts下就可以了
+附件下面的将`mexopts/`下的`msvc2015.xml`和`msvcpp2015.xml`<br>
+复制到`Matlab`目录下的`bin/win64/mexopts`下就可以了
 
 
 
 首先在Matlab命令行输入
+```
 mbuild -setup
-![原始效果](http://p3qhnc0eg.bkt.clouddn.com/VS2015_1.png)
+```
+![原始效果](https://img-blog.nos-eastchina1.126.net/VS2015_1.png)
 
 然后输入
+```
 mex -setup
-![原始效果](http://p3qhnc0eg.bkt.clouddn.com/VS2015_1.png)
+```
+![原始效果](https://img-blog.nos-eastchina1.126.net/VS2015_2.png)
 
 选项都选择C++的就哦了
