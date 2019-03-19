@@ -509,7 +509,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><p>Opencv图像分割</p>
+        <p>Opencv图像分割</p>
 <a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> *</span><br><span class="line"> * 功能：通过灰度图做简单的图像分割,再使用findContours去掉多余的轮廓</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line"> </span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line"> </span><br><span class="line">#include &lt;opencv2/core/core.hpp&gt;</span><br><span class="line">#include &lt;opencv2/highgui/highgui.hpp&gt;</span><br><span class="line">#include &lt;opencv2/imgproc/imgproc.hpp&gt;</span><br><span class="line"> </span><br><span class="line">using namespace cv;</span><br><span class="line">using namespace std;</span><br><span class="line"> </span><br><span class="line">void contours();</span><br><span class="line"> </span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    contours();</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">void contours()</span><br><span class="line">&#123;</span><br><span class="line">    //--1.读入图片</span><br><span class="line">    Mat image = imread(&quot;horse_hw.jpg&quot;);</span><br><span class="line"> </span><br><span class="line">    Mat gray;//mat类型数据存放图片，opencv特有</span><br><span class="line">  </span><br><span class="line">    cvtColor(image,gray,CV_RGB2GRAY);</span><br><span class="line"> </span><br><span class="line">    Mat binary;</span><br><span class="line">    threshold(gray,binary,60,255,THRESH_BINARY_INV);</span><br><span class="line"> </span><br><span class="line">    vector&lt;vector&lt;Point&gt; &gt; contours;</span><br><span class="line">    Mat binary_copy; //因为findcontours函数会改变输入的图像，所以复制一个图像作为函数的输入</span><br><span class="line">    binary.copyTo(binary_copy);</span><br><span class="line">    findContours(binary_copy,contours,CV_RETR_EXTERNAL/*获取外轮廓*/,CV_CHAIN_APPROX_NONE/*获取每个轮廓的每个像素*/);</span><br><span class="line"> </span><br><span class="line">    //遍历每一个轮廓，把多余的轮廓去掉</span><br><span class="line">    vector&lt;vector&lt;Point&gt; &gt;::const_iterator it=contours.begin();</span><br><span class="line">    while(it!=contours.end())</span><br><span class="line">    &#123;</span><br><span class="line">        if(it-&gt;size()&lt;500)</span><br><span class="line">            it = contours.erase(it);</span><br><span class="line">        else</span><br><span class="line">            ++it;</span><br><span class="line">    &#125;</span><br><span class="line">    Mat dst(image.size(),CV_8U,Scalar(0));</span><br><span class="line">    drawContours(dst,contours,-1/*绘制所有轮廓*/,Scalar(255)/*绘制为白色*/,CV_FILLED/*轮廓全部填充*/);</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    //--4.显示结果(原图和结果图显示在一起)</span><br><span class="line">    const int width  = image.cols;</span><br><span class="line">    const int height = image.rows;</span><br><span class="line">    Mat show_image(Size(3*width,height),CV_8UC3);</span><br><span class="line">    //将image拷贝到显示图片指定位置</span><br><span class="line">    image.copyTo(show_image(Rect(0,0,width,height)));</span><br><span class="line">    //将binary,dst转换为3通道，使得show_image和dst通道数一致，或者使用convertTo()函数做操作</span><br><span class="line">    cvtColor(binary,binary,CV_GRAY2RGB);</span><br><span class="line">    cvtColor(dst,dst,CV_GRAY2RGB);</span><br><span class="line">    //将binary,dst拷贝image指定位置</span><br><span class="line">    binary.copyTo(show_image(Rect(width,0,width,height)));</span><br><span class="line">    dst.copyTo(show_image(Rect(2*width,0,width,height)));</span><br><span class="line">    //显示</span><br><span class="line">    imshow(&quot;show&quot;,show_image);</span><br><span class="line">    waitKey(0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
@@ -574,8 +574,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/19/机器学习推荐书/" rel="next" title="机器学习推荐书">
-                <i class="fa fa-chevron-left"></i> 机器学习推荐书
+              <a href="/2018/07/19/特征提取_图像矩阵变换/" rel="next" title="特征提取_图像矩阵变换">
+                <i class="fa fa-chevron-left"></i> 特征提取_图像矩阵变换
               </a>
             
           </div>
@@ -584,8 +584,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/19/机器学习常见算法总结/" rel="prev" title="机器学习常见算法总结">
-                机器学习常见算法总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/19/机器学习-线性回归/" rel="prev" title="机器学习-线性回归">
+                机器学习-线性回归 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -653,7 +653,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">93</span>
+                    <span class="site-state-item-count">94</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -735,6 +735,7 @@
                   </a>
                 </div>
               
+              
             </nav>
           
 
@@ -813,6 +814,19 @@
           
         </div>
       
+
+      
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+        <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">28</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理学/">心理学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">1</span></li></ul>
+        </canvas>
+    </div>
+</div>
+
 
     </div>
   </aside>
@@ -924,6 +938,15 @@ setInterval("createtime()",250);
 
 
 
+
+<div>
+<!--始-->
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+document.write(unescape("%3Cspan id='cnzz_stat_icon_1274486405'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + 
+"s22.cnzz.com/z_stat.php%3Fid%3D1274486405%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<!--末-->
+</div>
 
 
 

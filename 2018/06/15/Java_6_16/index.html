@@ -509,7 +509,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><p>实体完整性要求每个表都有唯一标识符，每一个表中的主键字段不能为空或者重复的值。<br><a id="more"></a></p>
+        <p>实体完整性要求每个表都有唯一标识符，每一个表中的主键字段不能为空或者重复的值。<br><a id="more"></a></p>
 <p>参照完整性要求关系中不允许引用不存在的实体。设定相应的更新删除插入规则来更新参考表。</p>
 <p>Java语言使用的是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line">HashMap不能保证元素的顺序，HashMap能够将键设为null，也可以将值设为null，与之对应的是Hashtable，(注意大小写：不是HashTable)，Hashtable不能将键和值设为null，否则运行时会报空指针异常错误。&lt;br&gt;</span><br><span class="line">HashMap线程不安全，Hashtable线程安全</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">for循环的执行顺序：&lt;br&gt;</span><br><span class="line">for(条件1;条件2;条件3) &#123;</span><br><span class="line">    //语句</span><br><span class="line">&#125;</span><br><span class="line">执行顺序是条件1-&gt;条件2-&gt;语句-&gt;条件3-&gt;条件2-&gt;语句-&gt;条件3-&gt;条件2........</span><br><span class="line">如果条件2为true，则一直执行。如果条件2位false，则for循环结束</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">java1.8后，抽象类中的抽象方法和非抽象方法在不加修饰符的情况下，都是默认的default</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">substring    方法将返回一个包含从    start    到最后（不包含    end    ）的子字符串的字符串。（左闭右开）</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">### 在为传统面向对象语言的程序做单元测试的时候,经常用到mock对象。Mock对象通过反射数。请问反射最大程度破坏了面向对象的以下哪个特性？ ：封装性</span><br><span class="line"></span><br><span class="line">mock对象：也成为伪对象，在测试中的利用mock对象来代替真实对象，方便测试的进行。&lt;br&gt;</span><br><span class="line">java的封装性：指的是将对象的状态信息隐藏在对象内部，不允许外部程序直接访问对象内部信息，通过该类提供的方法实现对内部信息的操作访问。&lt;br&gt;</span><br><span class="line">反射机制：在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法;对于任意一个对象，都能够调用它的任意一个方法和属性。&lt;br&gt;</span><br><span class="line">反射破坏代码的封装性，破坏原有的访问修饰符访问限制  </span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">### try-catch-finally执行顺序&lt;br&gt;</span><br><span class="line">&gt;博文try-catch-finally执行顺序详解：http://qing0991.blog.51cto.com/1640542/1387200</span><br><span class="line">try块中抛出异常，try、catch和finally中都有return语句</span><br></pre></td></tr></table></figure></p>
 <p>public static int WithException(){</p>
@@ -621,7 +621,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/15/sql_6_15/" rel="prev" title="数据库相关_6_15">
+              <a href="/2018/06/15/sql_6_16/" rel="prev" title="数据库相关_6_15">
                 数据库相关_6_15 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -690,7 +690,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">93</span>
+                    <span class="site-state-item-count">94</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -772,6 +772,7 @@
                   </a>
                 </div>
               
+              
             </nav>
           
 
@@ -850,6 +851,19 @@
           
         </div>
       
+
+      
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+        <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">28</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理学/">心理学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">1</span></li></ul>
+        </canvas>
+    </div>
+</div>
+
 
     </div>
   </aside>
@@ -961,6 +975,15 @@ setInterval("createtime()",250);
 
 
 
+
+<div>
+<!--始-->
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+document.write(unescape("%3Cspan id='cnzz_stat_icon_1274486405'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + 
+"s22.cnzz.com/z_stat.php%3Fid%3D1274486405%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<!--末-->
+</div>
 
 
 

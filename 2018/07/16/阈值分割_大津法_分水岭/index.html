@@ -509,7 +509,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><p>阈值分割<em>大津法</em>分水岭<br><a id="more"></a></p>
+        <p>阈值分割<em>大津法</em>分水岭<br><a id="more"></a></p>
 <h3 id="大津法-最大类间方差法-Otsu"><a href="#大津法-最大类间方差法-Otsu" class="headerlink" title="大津法(最大类间方差法,Otsu)"></a>大津法(最大类间方差法,Otsu)</h3><p>一种基于全局的二值化算法，它是根据图像的灰度特性,将图像分为前景和背景两个部分</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;stdio.h&quot;</span><br><span class="line">#include &quot;cv.h&quot;</span><br><span class="line">#include &quot;highgui.h&quot;</span><br><span class="line">#include &quot;Math.h&quot;</span><br><span class="line"></span><br><span class="line">int Otsu(IplImage* src);</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    IplImage* img = cvLoadImage(&quot;lena.jpg&quot;,0); //获取灰度图像img</span><br><span class="line">    IplImage* dst = cvCreateImage(cvGetSize(img), 8, 1);</span><br><span class="line">    int threshold = Otsu(img); //调用大津法求出最佳阈值</span><br><span class="line">    printf(&quot;otsu threshold = %d\n&quot;, threshold);</span><br><span class="line">    cvThreshold(img, dst, threshold, 255, CV_THRESH_BINARY); //用otsu的阈值二值化</span><br><span class="line"></span><br><span class="line">    cvNamedWindow( &quot;img&quot;, 1 );</span><br><span class="line">    cvNamedWindow( &quot;dst&quot;, 1 );</span><br><span class="line">    cvShowImage(&quot;img&quot;, img);</span><br><span class="line">    cvShowImage(&quot;dst&quot;, dst);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    cvWaitKey(-1);</span><br><span class="line"></span><br><span class="line">    cvReleaseImage(&amp;img);</span><br><span class="line">    cvReleaseImage(&amp;dst);</span><br><span class="line"></span><br><span class="line">    cvDestroyWindow( &quot;img&quot; );</span><br><span class="line">    cvDestroyWindow( &quot;dst&quot; );</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int Otsu(IplImage* src)  </span><br><span class="line">&#123;  </span><br><span class="line">    int height=src-&gt;height;  </span><br><span class="line">    int width=src-&gt;width;      </span><br><span class="line"></span><br><span class="line">    //histogram  </span><br><span class="line">    float histogram[256] = &#123;0&#125;;  </span><br><span class="line">    for(int i=0; i &lt; height; i++)</span><br><span class="line">    &#123;  </span><br><span class="line">        unsigned char* p=(unsigned char*)src-&gt;imageData + src-&gt;widthStep * i;  </span><br><span class="line">        for(int j = 0; j &lt; width; j++) </span><br><span class="line">        &#123;  </span><br><span class="line">            histogram[*p++]++;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    //normalize histogram &amp; average pixel value </span><br><span class="line">    int size = height * width;  </span><br><span class="line">    float u =0;</span><br><span class="line">    for(int i = 0; i &lt; 256; i++)</span><br><span class="line">    &#123;  </span><br><span class="line">        histogram[i] = histogram[i] / size;  </span><br><span class="line">        u += i * histogram[i];  //整幅图像的平均灰度</span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    int threshold;    </span><br><span class="line">    float maxVariance=0;  </span><br><span class="line">    float w0 = 0, avgValue  = 0;</span><br><span class="line">    for(int i = 0; i &lt; 256; i++) </span><br><span class="line">    &#123;  </span><br><span class="line">        w0 += histogram[i];  //假设当前灰度i为阈值, 0~i 灰度像素所占整幅图像的比例即前景比例</span><br><span class="line">        avgValue  += i * histogram[i]; //avgValue/w0 = u0</span><br><span class="line"></span><br><span class="line">        float t = avgValue/w0 - u;  //t=u0-u</span><br><span class="line">        float variance = t * t * w0 /(1 - w0);  </span><br><span class="line">        if(variance &gt; maxVariance) </span><br><span class="line">        &#123;  </span><br><span class="line">            maxVariance = variance;  </span><br><span class="line">            threshold = i;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    return threshold;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
@@ -572,8 +572,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/16/特征提取_纹理特征/" rel="next" title="特征提取——纹理特征">
-                <i class="fa fa-chevron-left"></i> 特征提取——纹理特征
+              <a href="/2018/07/16/边缘检测/" rel="next" title="图像处理_边缘检测">
+                <i class="fa fa-chevron-left"></i> 图像处理_边缘检测
               </a>
             
           </div>
@@ -582,8 +582,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/16/特征提取_颜色特征/" rel="prev" title="特征提取——颜色特征">
-                特征提取——颜色特征 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/16/机器学习_最优化/" rel="prev" title="机器学习_最优化">
+                机器学习_最优化 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -660,7 +660,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">93</span>
+                    <span class="site-state-item-count">94</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -741,6 +741,7 @@
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
+              
               
             </nav>
           
@@ -837,6 +838,19 @@
           
         </div>
       
+
+      
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+        <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">28</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理学/">心理学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">1</span></li></ul>
+        </canvas>
+    </div>
+</div>
+
 
     </div>
   </aside>
@@ -948,6 +962,15 @@ setInterval("createtime()",250);
 
 
 
+
+<div>
+<!--始-->
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+document.write(unescape("%3Cspan id='cnzz_stat_icon_1274486405'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + 
+"s22.cnzz.com/z_stat.php%3Fid%3D1274486405%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<!--末-->
+</div>
 
 
 
