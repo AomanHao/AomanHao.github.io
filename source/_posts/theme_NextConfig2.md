@@ -9,7 +9,7 @@ Hexo主题Next配置（二）
 
 <!--more-->
 
-## 背景图片加载
+## 随机背景图片加载
 ### 原理
 自动更换背景是修改添加背景的css样式实现
 
@@ -17,7 +17,7 @@ Hexo主题Next配置（二）
 https://source.unsplash.com/
 
 ### 修改背景样式
-修改themes\next\source\css\ _custom\custom.styl文件，这个是Next故意留给用户自己个性化定制一些样式的文件，添加以下代码：
+修改`themes\next\source\css\ _custom\custom.styl`文件，这个是Next故意留给用户自己个性化定制一些样式的文件，添加以下代码：
 ```
 body {
     background:url(https://source.unsplash.com/random/1600x900);
@@ -53,7 +53,22 @@ body {
 
 注：效果还可以，但是博客备份在github上，网速限制加载的比较忙，建议博客放在国内的Coding上
 
+---
 
+## 固定背景图片加载
+`hexo\themes\next\source\images\` 的路径下；
+在文件的最上方加上一代码 body { background:url(/images/backGround.jpg（这是你之前加的背景图片的名字）);} 就完事了。
+### 修改背景样式
+修改`themes\next\source\css\ _custom\custom.styl`文件，添加以下代码：
+```
+body {
+    background:url(/images/图片.jpg);
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-position:50% 50%;
+    background-size:cover;
+}
+```
 ---
 
 ### 侧边栏社交小图标设置
