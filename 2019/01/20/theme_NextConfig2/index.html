@@ -111,7 +111,7 @@
 <meta property="og:site_name" content="AomanHao的个人博客">
 <meta property="og:description" content="Hexo主题Next配置（二）">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-01T10:39:29.122Z">
+<meta property="og:updated_time" content="2019-03-20T02:45:05.522Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo主题Next配置（二）">
 <meta name="twitter:description" content="Hexo主题Next配置（二）">
@@ -423,7 +423,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-01 18:39:29" itemprop="dateModified" datetime="2019-03-01T18:39:29+08:00">2019-03-01</time>
+                <time title="修改时间：2019-03-20 10:45:05" itemprop="dateModified" datetime="2019-03-20T10:45:05+08:00">2019-03-20</time>
               
             
           </span>
@@ -475,7 +475,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.7k</span>
+                <span title="本文字数">2.1k</span>
               
 
               
@@ -489,7 +489,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">3 分钟</span>
+                <span title="阅读时长">4 分钟</span>
               
             </div>
           
@@ -511,14 +511,17 @@
       
         <p>Hexo主题Next配置（二）</p>
 <a id="more"></a>
-<h2 id="背景图片加载"><a href="#背景图片加载" class="headerlink" title="背景图片加载"></a>背景图片加载</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>自动更换背景是修改添加背景的css样式实现</p>
+<h2 id="随机背景图片加载"><a href="#随机背景图片加载" class="headerlink" title="随机背景图片加载"></a>随机背景图片加载</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>自动更换背景是修改添加背景的css样式实现</p>
 <h3 id="图片来源"><a href="#图片来源" class="headerlink" title="图片来源"></a>图片来源</h3><p><a href="https://source.unsplash.com/" target="_blank" rel="noopener">https://source.unsplash.com/</a></p>
-<h3 id="修改背景样式"><a href="#修改背景样式" class="headerlink" title="修改背景样式"></a>修改背景样式</h3><p>修改themes\next\source\css\ _custom\custom.styl文件，这个是Next故意留给用户自己个性化定制一些样式的文件，添加以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    background:url(https://source.unsplash.com/random/1600x900);</span><br><span class="line">    background-repeat: no-repeat;</span><br><span class="line">    background-attachment:fixed;</span><br><span class="line">    background-position:50% 50%;</span><br><span class="line">    background-size:cover;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="修改背景样式"><a href="#修改背景样式" class="headerlink" title="修改背景样式"></a>修改背景样式</h3><p>修改<code>themes\next\source\css\ _custom\custom.styl</code>文件，这个是Next故意留给用户自己个性化定制一些样式的文件，添加以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    background:url(https://source.unsplash.com/random/1600x900);</span><br><span class="line">    background-repeat: no-repeat;</span><br><span class="line">    background-attachment:fixed;</span><br><span class="line">    background-position:50% 50%;</span><br><span class="line">    background-size:cover;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h4 id="参数细节"><a href="#参数细节" class="headerlink" title="参数细节"></a>参数细节</h4><p><code>url</code>可更换为自己喜欢的图片的地址。<br><code>repeat：</code>是否重复出现<br><code>attachment：</code>定义背景图片随滚动轴的移动方式<br><code>position：</code>设置背景图像的起始位置。<br><code>background-size:cover</code>为可能有助于大分辨率下背景图的显示</p>
 <h3 id="修改不透明度（可加可不加，看实际效果）"><a href="#修改不透明度（可加可不加，看实际效果）" class="headerlink" title="修改不透明度（可加可不加，看实际效果）"></a>修改不透明度（可加可不加，看实际效果）</h3><p>因为next主题的背景是纯透明的，这样子就造成背景图片的影响看不见文字，这对于博客来说肯定不行。</p>
 <p>调整背景的不透明度可以更加美观，参数<code>opacity:</code>建议调整<code>0.8</code>至<code>0.95</code>之间。<br>修改<code>themes\next\source\css\ _custom\custom.styl</code>文件。在后面添加如下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.main-inner &#123; </span><br><span class="line">    margin-top: 60px;</span><br><span class="line">    padding: 60px 60px 60px 60px;</span><br><span class="line">    background: #fff;</span><br><span class="line">    opacity: 0.9;</span><br><span class="line">    min-height: 500px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>其中：<code>background: #fff;</code> 白色<br><code>opacity: 0.9;</code>为不透明度</p>
 <p>注：效果还可以，但是博客备份在github上，网速限制加载的比较忙，建议博客放在国内的Coding上</p>
+<hr>
+<h2 id="固定背景图片加载"><a href="#固定背景图片加载" class="headerlink" title="固定背景图片加载"></a>固定背景图片加载</h2><p><code>hexo\themes\next\source\images\</code> 的路径下；<br>在文件的最上方加上一代码 body { background:url(/images/backGround.jpg（这是你之前加的背景图片的名字）);} 就完事了。</p>
+<h3 id="修改背景样式-1"><a href="#修改背景样式-1" class="headerlink" title="修改背景样式"></a>修改背景样式</h3><p>修改<code>themes\next\source\css\ _custom\custom.styl</code>文件，添加以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    background:url(/images/图片.jpg);</span><br><span class="line">    background-repeat: no-repeat;</span><br><span class="line">    background-attachment:fixed;</span><br><span class="line">    background-position:50% 50%;</span><br><span class="line">    background-size:cover;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
 <h3 id="侧边栏社交小图标设置"><a href="#侧边栏社交小图标设置" class="headerlink" title="侧边栏社交小图标设置"></a>侧边栏社交小图标设置</h3><p>侧边栏默认只有<br>打开主题配置文件（_config.yml），搜索social_icons:,在fontawesome图标库（<a href="https://fontawesome.com/" target="_blank" rel="noopener">网址</a>）找自己喜欢的小图标，并将名字复制在如下位置配置文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">social:</span><br><span class="line">  GitHub: https://github.com/yourname || github</span><br><span class="line">  E-Mail: mailto:邮箱地址 || envelope</span><br><span class="line">  Weibo: https://weibo.com/yourname || weibo</span><br><span class="line">  CSDN: https://me.csdn.net/yourname || book</span><br><span class="line">  #Google: https://plus.google.com/yourname || google</span><br><span class="line">  #Twitter: https://twitter.com/yourname || twitter</span><br><span class="line">  #FB Page: https://www.facebook.com/yourname || facebook</span><br><span class="line">  #VK Group: https://vk.com/yourname || vk</span><br><span class="line">  #StackOverflow: https://stackoverflow.com/yourname || stack-overflow</span><br><span class="line">  #YouTube: https://youtube.com/yourname || youtube</span><br><span class="line">  #Instagram: https://instagram.com/yourname || instagram</span><br><span class="line">  #Skype: skype:yourname?call|chat || skype</span><br></pre></td></tr></table></figure>
@@ -840,7 +843,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景图片加载"><span class="nav-number">1.</span> <span class="nav-text">背景图片加载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">1.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片来源"><span class="nav-number">1.2.</span> <span class="nav-text">图片来源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改背景样式"><span class="nav-number">1.3.</span> <span class="nav-text">修改背景样式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参数细节"><span class="nav-number">1.3.1.</span> <span class="nav-text">参数细节</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改不透明度（可加可不加，看实际效果）"><span class="nav-number">1.4.</span> <span class="nav-text">修改不透明度（可加可不加，看实际效果）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#侧边栏社交小图标设置"><span class="nav-number">1.5.</span> <span class="nav-text">侧边栏社交小图标设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置网站图标"><span class="nav-number">1.6.</span> <span class="nav-text">设置网站图标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下载图标"><span class="nav-number">1.6.1.</span> <span class="nav-text">下载图标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图标放在"><span class="nav-number">1.6.2.</span> <span class="nav-text">图标放在</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置"><span class="nav-number">1.6.3.</span> <span class="nav-text">配置</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#随机背景图片加载"><span class="nav-number">1.</span> <span class="nav-text">随机背景图片加载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">1.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片来源"><span class="nav-number">1.2.</span> <span class="nav-text">图片来源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改背景样式"><span class="nav-number">1.3.</span> <span class="nav-text">修改背景样式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参数细节"><span class="nav-number">1.3.1.</span> <span class="nav-text">参数细节</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改不透明度（可加可不加，看实际效果）"><span class="nav-number">1.4.</span> <span class="nav-text">修改不透明度（可加可不加，看实际效果）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#固定背景图片加载"><span class="nav-number">2.</span> <span class="nav-text">固定背景图片加载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改背景样式-1"><span class="nav-number">2.1.</span> <span class="nav-text">修改背景样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#侧边栏社交小图标设置"><span class="nav-number">2.2.</span> <span class="nav-text">侧边栏社交小图标设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置网站图标"><span class="nav-number">2.3.</span> <span class="nav-text">设置网站图标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下载图标"><span class="nav-number">2.3.1.</span> <span class="nav-text">下载图标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图标放在"><span class="nav-number">2.3.2.</span> <span class="nav-text">图标放在</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置"><span class="nav-number">2.3.3.</span> <span class="nav-text">配置</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

@@ -1917,7 +1917,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #d0eeff;
+  background: #16c618;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3024,7 +3024,7 @@ ul.breadcrumb li+li:last-child {
   }
 }
 body {
-  background: url("https://source.unsplash.com/random/1600x900");
+  background: url("/images/starry-sky-over-lake.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
