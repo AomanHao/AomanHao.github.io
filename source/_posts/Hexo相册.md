@@ -22,7 +22,7 @@ toc: true
 ### 1.在主页上必须有一个可供点击的连接
 `BLOG\source`目录下创建一个`photos`目录，目的是存放利用脚本生成的json 文件和渲染文件。
 
-![](http://p3qhnc0eg.bkt.clouddn.com/img/blog/blog_photos_1.png)
+![](https://img-blog.nos-eastchina1.126.net/blog_photos_1.png)
 
 
 
@@ -33,25 +33,25 @@ yourBlog/themes/yilia/_config.yml文件
 ```
   相册: /photos/
 ```
-![](http://p3qhnc0eg.bkt.clouddn.com/img/blog/blog_head_photo1.png)
+![](https://img-blog.nos-eastchina1.126.net/blog_head_photo1.png)
 
 
 ### 2.如何生成 photos.html 文件来
 
 在github上新建一个仓库，主要用于存储图片，可以通过url访问到，也方便管理，备份图片和其他东西
 
-![](http://p3qhnc0eg.bkt.clouddn.com/img/blog/blog_backup1.png)
+![](https://img-blog.nos-eastchina1.126.net/blog_backup1.png)
 
 `git clone` 到本地，模仿作者的文件目录结构
 
 `source`文件夹是备份图片，`theme`是备份yilia配置文件等
-![](http://p3qhnc0eg.bkt.clouddn.com/img/blog/blog_backup2.png)
+![](https://img-blog.nos-eastchina1.126.net/blog_backup2.png)
 
 `min_photos`是缩略图文件夹，`photos`是原图文件夹，`blog_photos_copy`是渲染文件备份，最后再弄
-![](http://p3qhnc0eg.bkt.clouddn.com/img/blog/blog_backup3.png)
+![](https://img-blog.nos-eastchina1.126.net/blog_backup3.png)
 
 备份渲染文件，最后再弄
-![](http://p3qhnc0eg.bkt.clouddn.com/img/blog/blog_backup4.png)
+![](https://img-blog.nos-eastchina1.126.net/blog_backup4.png)
 
 
 ejs 文件是以后要hexo 文件渲染的文件.
@@ -74,15 +74,15 @@ ins.js 文件设置自己的东西.
 这个链接不是直接的图片url，是需要点“下载”才能看到的url。
 
 github仓库上传的图片文件
-![](http://p3qhnc0eg.bkt.clouddn.com/img/blog/blog_photos_git_1.png)
+![](https://img-blog.nos-eastchina1.126.net/blog_photos_git_1.png)
 
 下载选项，看网址
 
-![](http://p3qhnc0eg.bkt.clouddn.com/img/blog/blog_photos_git_2.png)
+![](https://img-blog.nos-eastchina1.126.net/blog_photos_git_2.png)
 
 
 黄色画出了链接网址，路径地址.minSrc 小图的路径. src 大图的路径
-![](http://p3qhnc0eg.bkt.clouddn.com/img/blog/blog_photos_git_3.png)
+![](https://img-blog.nos-eastchina1.126.net/blog_photos_git_3.png)
 
 
 我的路径有`source/min_photos/`和`source/photos`，分别是缩略图（压缩的图快速加载预览）和原图（点击查看图片）
@@ -96,7 +96,7 @@ github仓库上传的图片文件
 每次更新图片都要执行脚本重新生成 json 文件.这个json 文件会出现在
 yourBlog/source/photos/data.json
 
-![](http://p3qhnc0eg.bkt.clouddn.com/img/blog/blog_photos_2.png)
+![](https://img-blog.nos-eastchina1.126.net/blog_photos_2.png)
 
 ### 4.处理图片
 处理脚本试用python语言写的，运行环境也是python
@@ -105,7 +105,7 @@ python脚本文件原作者GitHub地址：`https://github.com/lawlite19/Blog-Bac
 
 下载python2或者3，在`cmd`运行窗口运行`python tool.py`
 
-![](http://p3qhnc0eg.bkt.clouddn.com/img/blog/blog_python1.png)
+![](https://img-blog.nos-eastchina1.126.net/blog_python1.png)
 
 `tool.py`是运行主函数，`ImageProcess`图像处理功能函数，包括裁剪、压缩等
 
@@ -116,7 +116,7 @@ git_operation()方法:
 handle_photo()方法:
 注意: 该脚本对图片的命名规则有要求.
 最前面是日期，然后用_进行分隔；后面是图片的描述信息，注意不要包含_和.符号
-![](http://p3qhnc0eg.bkt.clouddn.com/img/blog/blog_photos_git_4.png)
+![](https://img-blog.nos-eastchina1.126.net/blog_photos_git_4.png)
 
 ### 5.注意事项
 5.1 
@@ -140,7 +140,7 @@ handle_photo()方法:
 在你博客的本地仓库source下新建一个文件夹命名为assets,再在assets下新建一个文件夹命名为img。最后把empty.png放到img里面。
 
 我的目录如下：
-![](http://p3qhnc0eg.bkt.clouddn.com/img/blog/blog_photos_git_5.png)
+![](https://img-blog.nos-eastchina1.126.net/blog_photos_git_5.png)
 
 
 结尾：
