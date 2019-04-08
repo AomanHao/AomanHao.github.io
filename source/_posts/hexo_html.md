@@ -1,6 +1,6 @@
 ---
 title: Hexo博客多样写作样式
-date: 2019-04-03 10:59:59
+date: 2018-04-03 10:59:59
 tags: [Hexo]
 toc: true
 ---
