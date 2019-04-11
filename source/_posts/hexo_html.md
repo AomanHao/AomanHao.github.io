@@ -33,7 +33,9 @@ Hexo博客多样写作样式
 
 11.02主题自带样式 note 标签
 在主题配置文件_config.yml里有一个关于这个的配置，但官方文档没有提供 HTML 的使用方式，个人认为这种方式更简单，也不会产生一些奇怪的显示 bug……
-
+```
+<div class="note default"><p>default</p></div>
+```
 <div class="note default"><p>default</p></div>
 default
 
