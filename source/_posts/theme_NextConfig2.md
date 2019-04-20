@@ -107,20 +107,21 @@ social:
 
 ## 放大文章内图片
 使用了图片浏览放大功能fancybox插件
-
+[插件地址](https://github.com/theme-next/theme-next-fancybox)
 ### 下载插件安装包
 下载插件安装包到blog的lib目录
 
 ```
-cd next/source/lib
+$ cd themes/next
 ```
 ```
-git clone https://github.com/theme-next/theme-next-fancybox3 
+$ git clone https://github.com/theme-next/theme-next-fancybox source/lib/fancybox
 ```
-fancybox
 
+注意删掉fancybox文件夹里的 `.git``.github`文件夹
 
-3.3 更改主题配置文件
-更改next/_config.yml文件
-
+### 更改主题配置文件
+更改`next/_config.yml`文件
+```
 fancybox: true
+```
