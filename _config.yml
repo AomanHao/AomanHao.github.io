@@ -191,6 +191,6 @@ neat_js:
 tag_cloud:
     textFont: Trebuchet MS, Helvetica
     textColor: '#333'
-    textHeight: 25
+    textHeight: 20
     outlineColor: '#E2E1D1'
     maxSpeed: 0.1
