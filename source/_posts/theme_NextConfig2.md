@@ -104,3 +104,23 @@ social:
 3.配置主题目录中的配置文件（敲黑板，重点）
 
 之前网上查到的方法如下:(并没有成功）
+
+## 放大文章内图片
+使用了图片浏览放大功能fancybox插件
+
+### 下载插件安装包
+下载插件安装包到blog的lib目录
+
+```
+cd next/source/lib
+```
+```
+git clone https://github.com/theme-next/theme-next-fancybox3 
+```
+fancybox
+
+
+3.3 更改主题配置文件
+更改next/_config.yml文件
+
+fancybox: true
