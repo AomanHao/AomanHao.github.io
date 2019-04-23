@@ -1,83 +1,75 @@
 #post-instagram{
-    padding: 30px;
-}
-figure {
-    margin: 0;
+	padding: 30px;
 }
 #post-instagram .article-entry{
-    padding-right: 0;
+	padding-right: 0;
 }
 .instagram{
-    position: relative;
-    min-height: 500px;
+	position: relative;
+	min-height: 500px;
 }
 .instagram img {
-    width: 100%;
-
-}
-.posts-expand .post-body img {
-    padding: 0;
-    border : 0;
+	width: 100%;
 }
 .instagram .year {
-    font-size: 16px;
+	font-size: 16px;
 }
 .instagram .open-ins{
-    padding: 10px 0;
-    color: #cdcdcd;
+	padding: 10px 0;
+	color: #cdcdcd;
 }
 .instagram .open-ins:hover{
-    color: #657b83;
+	color: #657b83;
 }
 .instagram .year{
-    display: inline;
+	display: inline;
 }
 .instagram .thumb {
-    width: 25%;
-    height: 0;
-    padding-bottom: 25%;
-    position: relative;
-    display: inline-block;
-    text-align: center;
-    background: #ededed;
-    outline: 1px solid #ddd;
+	width: 25%;
+	height: 0; 
+	padding-bottom: 25%;
+	position: relative;
+	display: inline-block;
+	text-align: center;
+	background: #ededed;
+	outline: 1px solid #ddd;
 }
 .instagram .thumb a {
-    position: relative;
+	position: relative;
 }
 .instagram .album h1 em{
-    font-style: normal;
-    font-size: 14px;
-    margin-left: 10px;
+	font-style: normal;
+	font-size: 14px;
+	margin-left: 10px;
 }
 .instagram .album ul{
-    display: flex;
-    flex-wrap: wrap;
-    clear: both;
-    width: 100%;
-    text-align: left;
+	display: flex;
+	flex-wrap: wrap;
+	clear: both;
+	width: 100%;
+	text-align: left;
 }
 .instagram .album li{
-    list-style: none;
-    display: inline-block;
-    box-sizing: border-box;
-    padding: 0 5px;
-    margin-bottom: -10px;
-    height: 0;
-    width: 25%;
-    position: relative;
-    padding-bottom: 25%;
+	list-style: none;
+	display: inline-block;
+	box-sizing: border-box;
+	padding: 0 5px;
+	margin-bottom: -10px;
+	height: 0;
+	width: 25%;
+	position: relative;
+	padding-bottom: 25%;
 }
 .instagram .album li:before{
-    display: none;
+	display: none;
 }
 .instagram .album div.img-box{
-    position: absolute;
-    width: 90%;
-    height: 90%;
-    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.4), 0 1px 0 1px rgba(255,255,255,0.1);
-    -moz-box-shadow: 0 1px 0 rgba(255,255,255,0.4), 0 1px 0 1px rgba(255,255,255,0.1);
-    box-shadow: 0 1px 0 rgba(255,255,255,0.4), 0 1px 0 1px rgba(255,255,255,0.1);
+	position: absolute;
+	width: 90%;
+	height: 90%;
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.4), 0 1px 0 1px rgba(255,255,255,0.1);
+	-moz-box-shadow: 0 1px 0 rgba(255,255,255,0.4), 0 1px 0 1px rgba(255,255,255,0.1);
+	box-shadow: 0 1px 0 rgba(255,255,255,0.4), 0 1px 0 1px rgba(255,255,255,0.1);
 }
 .instagram .album div.img-box img{
 	width: 100%;
