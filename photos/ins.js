@@ -116,11 +116,11 @@
                 var data = res.list[j].arr;
                 var liTmpl = "";
                 for (var i = 0, len = data.link.length; i < len; i++) {
-                    var minSrc = 'https://raw.githubusercontent.com/wugenqiang/myblog_album/master/min_photos/' + data.link[i];
-                    var src = 'https://raw.githubusercontent.com/wugenqiang/myblog_album/master/photos/' + data.link[i];
+                    var minSrc = 'https://raw.githubusercontent.com/AomanHao/Blog-Back-Up/master/source/min_photos/' + data.link[i];
+                    var src = 'https://raw.githubusercontent.com/AomanHao/Blog-Back-Up/master/source/photos/' + data.link[i];
                     var type = data.type[i];
                     var target = src + (type === 'video' ? '.mp4' : '.jpg');
-                    src += '';
+                    src += '';  
                     liTmpl += '<figure class="thumb" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">\
             <a href="' + src + '" itemprop="contentUrl" data-size="1080x1080" data-type="' + type + '" data-target="' + src + '">\
               <img class="reward-img" data-type="' + type + '" data-src="' + minSrc + '" src="assets/empty.png" itemprop="thumbnail" onload="lzld(this)">\
