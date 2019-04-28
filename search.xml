@@ -363,6 +363,15 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[数据结构_二叉树]]></title>
+    <url>%2F2018%2F07%2F19%2F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[数据结构_二叉树 树的遍历顺序大体分为三种：前序遍历（先根遍历、先序遍历），中序遍历（中根遍历），后序遍历（后根遍历） 123456二叉树： A / \ B C /\ / D E F 前序遍历前序遍历可以记为根左右。前序遍历的规则：123（1）访问根节点（2）前序遍历左子树（3）前序遍历右子树 前序遍历的输出结果：ABDECF 中序遍历中序遍历可以记为左根右中序遍历的规则：123（1）中序遍历左子树（2）访问根节点（3）中序遍历右子树 中序遍历的输出结果：DBEAFC 后序遍历后序遍历可以记为左右根后序遍历二叉树的规则：123（1）后序遍历左子树（2）后序遍历右子树（3）访问根节点 后序遍历的输出顺序：DEBFCA]]></content>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>二叉树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Opencv图像分割]]></title>
     <url>%2F2018%2F07%2F19%2Fopencv_imgseg%2F</url>
     <content type="text"><![CDATA[Opencv图像分割 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768/* * * 功能：通过灰度图做简单的图像分割,再使用findContours去掉多余的轮廓 * */ #include &lt;vector&gt; #include &lt;opencv2/core/core.hpp&gt;#include &lt;opencv2/highgui/highgui.hpp&gt;#include &lt;opencv2/imgproc/imgproc.hpp&gt; using namespace cv;using namespace std; void contours(); int main()&#123; contours();&#125; void contours()&#123; //--1.读入图片 Mat image = imread(&quot;horse_hw.jpg&quot;); Mat gray;//mat类型数据存放图片，opencv特有 cvtColor(image,gray,CV_RGB2GRAY); Mat binary; threshold(gray,binary,60,255,THRESH_BINARY_INV); vector&lt;vector&lt;Point&gt; &gt; contours; Mat binary_copy; //因为findcontours函数会改变输入的图像，所以复制一个图像作为函数的输入 binary.copyTo(binary_copy); findContours(binary_copy,contours,CV_RETR_EXTERNAL/*获取外轮廓*/,CV_CHAIN_APPROX_NONE/*获取每个轮廓的每个像素*/); //遍历每一个轮廓，把多余的轮廓去掉 vector&lt;vector&lt;Point&gt; &gt;::const_iterator it=contours.begin(); while(it!=contours.end()) &#123; if(it-&gt;size()&lt;500) it = contours.erase(it); else ++it; &#125; Mat dst(image.size(),CV_8U,Scalar(0)); drawContours(dst,contours,-1/*绘制所有轮廓*/,Scalar(255)/*绘制为白色*/,CV_FILLED/*轮廓全部填充*/); //--4.显示结果(原图和结果图显示在一起) const int width = image.cols; const int height = image.rows; Mat show_image(Size(3*width,height),CV_8UC3); //将image拷贝到显示图片指定位置 image.copyTo(show_image(Rect(0,0,width,height))); //将binary,dst转换为3通道，使得show_image和dst通道数一致，或者使用convertTo()函数做操作 cvtColor(binary,binary,CV_GRAY2RGB); cvtColor(dst,dst,CV_GRAY2RGB); //将binary,dst拷贝image指定位置 binary.copyTo(show_image(Rect(width,0,width,height))); dst.copyTo(show_image(Rect(2*width,0,width,height))); //显示 imshow(&quot;show&quot;,show_image); waitKey(0);&#125;]]></content>
@@ -370,15 +379,6 @@
         <tag>Opencv</tag>
         <tag>图像处理</tag>
         <tag>图像分割</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[数据结构_二叉树]]></title>
-    <url>%2F2018%2F07%2F19%2F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
-    <content type="text"><![CDATA[数据结构_二叉树 树的遍历顺序大体分为三种：前序遍历（先根遍历、先序遍历），中序遍历（中根遍历），后序遍历（后根遍历） 123456二叉树： A / \ B C /\ / D E F 前序遍历前序遍历可以记为根左右。前序遍历的规则：123（1）访问根节点（2）前序遍历左子树（3）前序遍历右子树 前序遍历的输出结果：ABDECF 中序遍历中序遍历可以记为左根右中序遍历的规则：123（1）中序遍历左子树（2）访问根节点（3）中序遍历右子树 中序遍历的输出结果：DBEAFC 后序遍历后序遍历可以记为左右根后序遍历二叉树的规则：123（1）后序遍历左子树（2）后序遍历右子树（3）访问根节点 后序遍历的输出顺序：DEBFCA]]></content>
-      <tags>
-        <tag>数据结构</tag>
-        <tag>二叉树</tag>
       </tags>
   </entry>
   <entry>
@@ -739,13 +739,12 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Hexo博客添加背景音乐和音乐歌单(举例网易云音乐)]]></title>
-    <url>%2F2018%2F03%2F08%2Fhexo_music_list%2F</url>
-    <content type="text"><![CDATA[添加背景音乐 1、 打开网易云音乐首页，然后搜索你要添加的背景音乐 http://music.163.com/ 2、 搜索到歌曲点击生成外链播放器，进去下一个界面 3、 复制外链播放器的代码打开yilia主题下的_partial文件夹下的left-col.ejs文件 复制文件内容到最下端 红线内的iframe框为复制的外链播放器代码，如图红线内，把代码放在div框 例如： &lt;div style=&quot;position:absolute; bottom:120px left:auto; width:85%&quot;&gt; &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=260 height=86 src=&quot;//music.163.com/outchain/player?type=2&amp;id=422428548&amp;auto=1&amp;height=66&quot;&gt;&lt;/iframe&gt; &lt;/div&gt; 这样就可以了 注：调节播放器大小，改变外链播放器的代码块，长度宽度即可 width=260 height=86]]></content>
+    <title><![CDATA[eclipse在主题商城下载安装黑色主题]]></title>
+    <url>%2F2018%2F03%2F08%2Feclipse_black_theme%2F</url>
+    <content type="text"><![CDATA[eclipse在主题商城下载安装黑色主题 Eclipse配置黑色主题方法： 1、借用国外一个Elipse主题网站分享的主题配置文件来配置一个黑色的主题. 主题网址 2、在这个网站下载自己喜欢的主题,单击主题进入下载页面,建议大家选择EPF格式的进行下载. 3、下载好之后打开Eclipse,单击File菜单下的Import选项 4、在弹出的窗口中,点击General下面的Preferences选项,然后点击Next 5、单击Browse选择你下载的EPF配置文件,然后点击Finish 6、这个时候如果你如果之前选择的是Eclipse默认的主题的话,那么只有代码区变成了黑色,那么你就需要再单击windos下的Preferences选项,然后再打开General下面的Appearance,在Theme选择那个Dark主题,然后点确定就可以了.]]></content>
       <tags>
-        <tag>Hexo</tag>
-        <tag>yilia</tag>
-        <tag>Music</tag>
+        <tag>Java</tag>
+        <tag>Theme</tag>
       </tags>
   </entry>
   <entry>
@@ -759,12 +758,13 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[eclipse在主题商城下载安装黑色主题]]></title>
-    <url>%2F2018%2F03%2F08%2Feclipse_black_theme%2F</url>
-    <content type="text"><![CDATA[eclipse在主题商城下载安装黑色主题 Eclipse配置黑色主题方法： 1、借用国外一个Elipse主题网站分享的主题配置文件来配置一个黑色的主题. 主题网址 2、在这个网站下载自己喜欢的主题,单击主题进入下载页面,建议大家选择EPF格式的进行下载. 3、下载好之后打开Eclipse,单击File菜单下的Import选项 4、在弹出的窗口中,点击General下面的Preferences选项,然后点击Next 5、单击Browse选择你下载的EPF配置文件,然后点击Finish 6、这个时候如果你如果之前选择的是Eclipse默认的主题的话,那么只有代码区变成了黑色,那么你就需要再单击windos下的Preferences选项,然后再打开General下面的Appearance,在Theme选择那个Dark主题,然后点确定就可以了.]]></content>
+    <title><![CDATA[Hexo博客添加背景音乐和音乐歌单(举例网易云音乐)]]></title>
+    <url>%2F2018%2F03%2F08%2Fhexo_music_list%2F</url>
+    <content type="text"><![CDATA[添加背景音乐 1、 打开网易云音乐首页，然后搜索你要添加的背景音乐 http://music.163.com/ 2、 搜索到歌曲点击生成外链播放器，进去下一个界面 3、 复制外链播放器的代码打开yilia主题下的_partial文件夹下的left-col.ejs文件 复制文件内容到最下端 红线内的iframe框为复制的外链播放器代码，如图红线内，把代码放在div框 例如： &lt;div style=&quot;position:absolute; bottom:120px left:auto; width:85%&quot;&gt; &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=260 height=86 src=&quot;//music.163.com/outchain/player?type=2&amp;id=422428548&amp;auto=1&amp;height=66&quot;&gt;&lt;/iframe&gt; &lt;/div&gt; 这样就可以了 注：调节播放器大小，改变外链播放器的代码块，长度宽度即可 width=260 height=86]]></content>
       <tags>
-        <tag>Java</tag>
-        <tag>Theme</tag>
+        <tag>Hexo</tag>
+        <tag>yilia</tag>
+        <tag>Music</tag>
       </tags>
   </entry>
   <entry>
