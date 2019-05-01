@@ -99,8 +99,10 @@ theme: next
 deploy:
   type: git
   repo:
-    github: https://github.com/AomanHao/AomanHao.github.io.git
-    coding: https://git.coding.net/AomanHao/AomanHao.git
+    github: git@github.com:AomanHao/AomanHao.github.io.git
+    coding: git@git.coding.net:AomanHao/AomanHao.git
+    #github: https://github.com/AomanHao/AomanHao.github.io.git
+    #coding: https://git.coding.net/AomanHao/AomanHao.git
   branch: master
 #repository: https://github.com/AomanHao/AomanHao.github.io
 #表示站内搜索
