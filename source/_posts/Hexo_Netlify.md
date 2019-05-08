@@ -1,5 +1,5 @@
 ---
-title: 个人博客迁移到托管平台Netlify上
+title: 个人博客迁移到托管平台Netlify
 date: 2019-05-03 10:59:59
 tags: [Hexo, GitHub]
 toc: true
@@ -7,7 +7,9 @@ toc: true
 
 个人博客迁移到托管平台Netlify上
 <!--more-->
-Netlify是一家国外的静态网站的托管平台，提供免费的https，自动化部署和升级，可以监控GitHub、GitLab或者Bitbucket做到自动更新发布
+Netlify是一家国外的静态网站的托管平台，提供免费的https，自动化部署和升级，可以监控GitHub、GitLab或者Bitbucket做到自动更新发布。
+<font color=DeepPink size=6>个人体会访问速度不是很理想，不如部署在GitHub上。</font>
+
 
 ### 一、使用github或者gitlab登陆netlify
 
