@@ -1,7 +1,7 @@
 ---
 title: Hexo博客Next主题DaoVoice实现在线联系
-date: 2019-05-03 10:59:59
-tags: [Hexo, GitHub]
+date: 2019-05-18 10:59:59
+tags: [Hexo, Next]
 toc: true
 ---
 

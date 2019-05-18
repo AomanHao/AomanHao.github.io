@@ -1,7 +1,7 @@
 ---
-title: Hexo添加相册
+title: Hexo博客添加相册
 date: 2018-09-23 09:39:40
-tags: [Hexo, GitHub]
+tags: [Hexo, Next]
 toc: true
 ---
 

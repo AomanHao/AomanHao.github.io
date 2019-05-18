@@ -1,7 +1,7 @@
 ---
-title: 个人博客迁移到托管平台Netlify
+title: Hexo个人博客迁移到托管平台Netlify
 date: 2019-05-03 10:59:59
-tags: [Hexo, GitHub]
+tags: [Hexo]
 toc: true
 ---
 
