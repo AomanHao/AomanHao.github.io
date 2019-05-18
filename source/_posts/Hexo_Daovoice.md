@@ -1,54 +1,59 @@
 ---
-title: 个人博客迁移到托管平台Netlify
+title: Hexo博客Next主题DaoVoice实现在线联系
 date: 2019-05-03 10:59:59
 tags: [Hexo, GitHub]
 toc: true
 ---
 
-个人博客迁移到托管平台Netlify上
+Hexo博客Next主题DaoVoice实现在线联系
 <!--more-->
-Netlify是一家国外的静态网站的托管平台，提供免费的https，自动化部署和升级，可以监控GitHub、GitLab或者Bitbucket做到自动更新发布。
-<font color=DeepPink size=6>个人体会访问速度不是很理想，不如部署在GitHub上。</font>
+## 注册登录DaoVoice
+注册登录地址如下:
+http://www.daovoice.io/
 
+官网进行注册,需要邀请码: b6dbddb6 复制粘贴就可以了~!
+或者通过下面链接进入：
 
-### 一、使用github或者gitlab登陆netlify
+复制粘贴代码
+修改的`hexo`的文件路劲如下: `博客/themes/next/layout/_partials/head/head.swig` 添加下面的代码:
 
-打开[Netlify网站](https://app.netlify.com/)
-然后点击右上角Sign up注册账号，选择GitHub关联登录。
+```
+{% if theme.daovoice %}
+ <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/b6dbddb6.js","daovoice")
+ daovoice('init', {
+  app_id: "你获取的appid"
+});
+daovoice('update');
+ </script>
+{% endif %}
 
-![](https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step1.png)
-### 二、根据github/gitlab仓库创建网站
+```
+1
 
-创建站点，点击New site from Git按钮：
-![](https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step0.5.jpg)
-### 三、选择代码托管空间
-可以选择GitHub、GitLab或者BitBucket。
+## 修改主题配置文件
+在Next主题的配置文件`博客/themes/next/_config.yml`末尾中添加用户ID:
+```
+daovoice: true
+daovoice_app_id: 我们注册获取的id
 
-![](https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step2.png)
+```
 
-![](https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step3.png)
-### 四、选择要部署的项目仓库
-点击你已经建好的库，选好分支（默认master即可），然后点击“Deploy site”，系统就会自动编译你的静态页面了。网站的控制台去进行设置域名绑定和https申请即可，部署成功后会自动进行cdn加速的。
+## 修改聊天图标等设置
+应用设置--聊天设置，然后定制欢迎辞，设置聊天窗口样式等
+2
+## 部署Daovoice
+清理缓存，生成缓存，部署服务
+```
+hexo clean && hexo g && hexo s
+```
+登陆本地服务：`http://localhost:4000/`，可以看到Daovoice已经成功运行。
 
-![](https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step4.png)
+3
+DaoVoice官网会提示，服务接入成功
+4
 
+![](https://img-blog.nos-eastchina1.126.net/blog/Hexo_Daovoice1.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/Hexo_Daovoice2.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/Hexo_Daovoice3.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/Hexo_Daovoice4.png)
 
-
-
-之后我们就不需要这么麻烦了以后编辑好文章之后，只需要执行 hexo clean && hexo g && hexo d 即可自动化部署，然后要记得将我们的项目文件 push 到 github 的 master分支上去哦。
-
-## 域名解析
-### 网站引导
-Netlify网站 提供的网站域名是该网站的二级域名，看起来不太美观，如果你拥有自己的域名，可以通过绑定自己的域名然后跳转到Netlity的二级域名。
-![](https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step7.jpg)
-
-
-![](https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step8.png)
-
-### 域名控制台
-添加两条解析记录，一条A记录，一条CNAME记录。A记录的记录值IP是你的`https://xxx.netlify.com`域名对应的`ip`，这个可以网上查。
-CNAME记录的记录值是`https://xxx.netlify.com`的`xxx.netlify.com`值，添加完解析后就可将你的域名绑定到`Netlify`了。
-
-
-## 使用体验
-想要部署在Netlity的初衷是部署在Coding上需要备案，且已经被公安催了要备案，需要一个不用备案的代码托管网站。在网站部署操作不是很麻烦，但是实际部署下来访问速度不是很理想，不如部署在GitHub上。纠结一下
