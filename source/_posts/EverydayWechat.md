@@ -4,7 +4,6 @@ date: 2019-06-08 11:55:00
 tags: [GitHub]
 ---
 
-
 有趣GitHub项目之每日自动给女朋友发微信暖心话
 
 <!--more-->
@@ -17,24 +16,21 @@ tags: [GitHub]
 项目介绍：
 开发环境：Python >= 3.6
 
-使用库
+## 使用库
 ```
 itchat - 微信个人号接口
 requests - 网络请求库
 beautifulsoup4 - 解析网页
 APScheduler - 定时任务
 ```
-功能
+## 功能
 定时给女朋友发送每日天气、提醒、每日一句。
 
-数据来源
+## 数据来源
 每日一句和上面的大佬一样也是来自 ONE●一个
 天气信息来自 SOJSON
-实现效果
-命令行信息
-微信截图
 
-代码说明
+## 代码说明
 目录结构
 
 ```
@@ -45,17 +41,18 @@ requirements.txt：需要安装的库
 run.py：项目运行类
 ```
 核心代码
-1.定时任务。
+### 1.定时任务。
 每天 9：30 给女朋友们开始给女朋友发送内容。
-
-# 定时任务
+```
+### 定时任务
 scheduler = BlockingScheduler()
 # 每天9：30给女朋友发送每日一句
 # scheduler.add_job(start_today_info, 'cron', hour=9, minute=30)
 scheduler.start()
 start_today_info 是方法处理类。
+```
 
-2.获取每日一句。
+### 2.获取每日一句。
 数据来源 1： ONE●一个
 ```
 def get_dictum_info(self):
@@ -78,6 +75,7 @@ def get_dictum_info(self):
 ```
 When you finally get your own happiness, you will understand the previous sadness is a kind of treasure, which makes you better to hold and cherish the people you love. 等你获得真正属于你的幸福之后，你就会明白一起的伤痛其实是一种财富，它让你学会更好地去把握和珍惜你爱的人。
 ```
+
 ```
 代码实现 ：
 
@@ -97,7 +95,7 @@ When you finally get your own happiness, you will understand the previous sadnes
         print("没有获取到数据")
         return None
 ```
-3. 获取今日天气 。
+### 3. 获取今日天气 。
 天气数据来源：SOJSON
 ```
 def get_weather_info(self, city_code=''）：
