@@ -8,8 +8,10 @@ tags: [电影]
 《重庆森林》
 
 <!--more-->
-发条张讲解的B站视频链接
-<iframe src="//player.bilibili.com/player.html?aid=55359824&cid=96800122&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+发条张讲解的B站视频
+[视频链接](https://www.bilibili.com/video/av55359824/)
+
+<iframe height=498 width=510 src="//player.bilibili.com/player.html?aid=55359824&cid=96800122&page=1" frameborder=0 allowfullscreen></iframe>
 
 ## 简介
 《重庆森林》是泽东电影公司出品的一部都市时装片，由王家卫执导，林青霞、梁朝伟、王菲、金城武等主演。1994年7月14日，该片在香港上映。
