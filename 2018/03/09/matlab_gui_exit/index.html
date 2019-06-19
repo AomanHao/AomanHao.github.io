@@ -124,13 +124,13 @@ daovoice('update');
 <meta property="og:site_name" content="AomanHao的个人博客">
 <meta property="og:description" content="axes控件实现了展示图片，动态txt控件实现了展示或者输入参数。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6280966-2d2a35253cee4790.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/263/format/webp">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6280966-6b3057eecc5c3401.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/357/format/webp">
-<meta property="og:updated_time" content="2019-02-22T02:48:59.809Z">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/jiemian_chongzhi%20(2">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/jiemian_chongzhi%20(1">
+<meta property="og:updated_time" content="2019-06-19T13:14:51.603Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="matlab的gui图像处理操作界面，实现重置和退出按钮功能">
 <meta name="twitter:description" content="axes控件实现了展示图片，动态txt控件实现了展示或者输入参数。">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/6280966-2d2a35253cee4790.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/263/format/webp">
+<meta name="twitter:image" content="https://img-blog.nos-eastchina1.126.net/blog/jiemian_chongzhi%20(2">
 
 
 
@@ -473,7 +473,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-22 10:48:59" itemprop="dateModified" datetime="2019-02-22T10:48:59+08:00">2019-02-22</time>
+                <time title="修改时间：2019-06-19 21:14:51" itemprop="dateModified" datetime="2019-06-19T21:14:51+08:00">2019-06-19</time>
               
             
           </span>
@@ -525,7 +525,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">844</span>
+                <span title="本文字数">854</span>
               
 
               
@@ -561,8 +561,8 @@ daovoice('update');
       
         <p>axes控件实现了展示图片，动态txt控件实现了展示或者输入参数。<br><a id="more"></a></p>
 <p>在gui界面右键点击“重置”pushbotton回到代码块callback，编写代码</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/6280966-2d2a35253cee4790.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/263/format/webp" alt="在这里插入图片描述"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/6280966-6b3057eecc5c3401.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/357/format/webp" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/jiemian_chongzhi%20(2" alt="在这里插入图片描述">.png)</p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/jiemian_chongzhi%20(1" alt="在这里插入图片描述">.png)</p>
 <p>以下代码是实现图片和参数数字重置，是重置按钮（puttern）的功能实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function pushbutton1_Callback(hObject, eventdata, handles)</span><br><span class="line">% hObject    handle to pushbutton1 (see GCBO)</span><br><span class="line">% eventdata  reserved - to be defined in a future version of MATLAB</span><br><span class="line">% handles    structure with handles and user data (see GUIDATA)</span><br><span class="line">% 重置清空图片 美滋滋</span><br><span class="line">cla(handles.axes1,&apos;reset&apos;);</span><br><span class="line">cla(handles.axes2,&apos;reset&apos;);</span><br><span class="line">cla(handles.axes3,&apos;reset&apos;);</span><br><span class="line">cla(handles.axes4,&apos;reset&apos;);</span><br><span class="line">cla(handles.axes5,&apos;reset&apos;);</span><br><span class="line"></span><br><span class="line">% 重置清空动态txt的文字 美滋滋</span><br><span class="line">set(handles.edit1,&apos;string&apos;,&apos;&apos;)</span><br><span class="line">set(handles.edit2,&apos;string&apos;,&apos;&apos;)</span><br><span class="line">set(handles.edit3,&apos;string&apos;,&apos;&apos;)</span><br><span class="line">set(handles.edit4,&apos;string&apos;,&apos;&apos;)</span><br></pre></td></tr></table></figure></p>
 <hr>
 <p>退出按钮：<br>在gui界面右键点击“退出”pushbotton回到代码块callback，编写代码<br>即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">close</span><br></pre></td></tr></table></figure></p>
@@ -706,7 +706,7 @@ daovoice('update');
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">101</span>
+                    <span class="site-state-item-count">100</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -877,7 +877,7 @@ daovoice('update');
           <h3 class="widget-title"></h3>
           <div id="myCanvasContainer" class="widget tagcloud">
               <canvas width="200" height="200" id="resCanvas" style="width=100%">
-                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li></ul>
+                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li></ul>
               </canvas>
           </div>
         </div>
@@ -907,7 +907,7 @@ daovoice('update');
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">291k</span>
+    <span title="站点总字数">288k</span>
   
 
   
