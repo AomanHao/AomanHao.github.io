@@ -9,9 +9,9 @@ axes控件实现了展示图片，动态txt控件实现了展示或者输入参�
 
 在gui界面右键点击“重置”pushbotton回到代码块callback，编写代码
 
-![在这里插入图片描述](https://upload-images.jianshu.io/upload_images/6280966-2d2a35253cee4790.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/263/format/webp)
+![在这里插入图片描述](https://img-blog.nos-eastchina1.126.net/blog/jiemian_chongzhi%20(2).png)
 
-![在这里插入图片描述](https://upload-images.jianshu.io/upload_images/6280966-6b3057eecc5c3401.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/357/format/webp)
+![在这里插入图片描述](https://img-blog.nos-eastchina1.126.net/blog/jiemian_chongzhi%20(1).png)
 
 以下代码是实现图片和参数数字重置，是重置按钮（puttern）的功能实现
 ```
