@@ -34,3 +34,4 @@ leancloud: http://pirogue.org/js/av-min.js
 然后平常一样部署博客就可以
 
 ---
+感谢提供资源的小伙伴，[他的门户](http://pirogue.org)
