@@ -113,4 +113,15 @@ live2d:
 
 插件部署与应用就完成了
 
-本地预览命令：
+## 效果预览
+
+本地预览
+```
+hexo clean && hexo g && hexo s 
+```
+
+## 博客部署
+
+博客部署
+```
+hexo clean && hexo g && hexo d 

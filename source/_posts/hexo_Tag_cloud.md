@@ -122,7 +122,7 @@ hexo clean && hexo g && hexo s
 
 ## 博客部署
 
-本地预览
+博客部署
 ```
 hexo clean && hexo g && hexo d 
 ```
