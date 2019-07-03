@@ -109,6 +109,9 @@ tag_cloud:
     outlineColor: '#E2E1D1'
     maxSpeed: 0.1 
 ```
+textColor: '#333'   字体颜色
+textHeight: 25      字体高度，根据部署的效果调整
+maxSpeed: 0.1       文字滚动速度，根据自己喜好调整
 
 ## 效果预览
 
@@ -125,7 +128,7 @@ hexo clean && hexo g && hexo d
 ```
 推荐使用 `&&` 作为组合命令的串联符号
 
-注：一定要严格清理缓存，这样不容易出现问题，即
+注：一定要严格清理缓存，这样不容易出现问题，即需要执行`hexo clean`
 
 ---
 
