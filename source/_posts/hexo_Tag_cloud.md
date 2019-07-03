@@ -117,8 +117,15 @@ tag_cloud:
 hexo clean && hexo g && hexo s 
 ```
 
+## 博客部署
+
+本地预览
+```
+hexo clean && hexo g && hexo d 
+```
 推荐使用 `&&` 作为组合命令的串联符号
 
+注：一定要严格清理缓存，这样不容易出现问题，即
 
 ---
 

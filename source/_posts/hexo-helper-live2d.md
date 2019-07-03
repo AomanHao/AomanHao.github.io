@@ -99,10 +99,18 @@ live2d:
   mobile:
     show: true
 ```
+注：在移动端可能会干扰阅览，可以选择取消移动端显示，`true`改为`fasle`
+```
+  mobile:
+    show: fasle
+```
 
 你需要配置的是` use: live2d-widget-model-koharu`
 `use`后为你选择的安装包的全称
 
 ![](https://img-blog.nos-eastchina1.126.net/koharu2.png)
 
-插件部署与应用就完成了，接下来就是部署hexo博客和个人主页
+
+插件部署与应用就完成了
+
+本地预览命令：
