@@ -111,7 +111,7 @@ live2d:
 ![](https://img-blog.nos-eastchina1.126.net/koharu2.png)
 
 
-插件部署与应用就完成了
+插件部署与配置就完成了
 
 ## 效果预览
 
@@ -125,3 +125,4 @@ hexo clean && hexo g && hexo s
 博客部署
 ```
 hexo clean && hexo g && hexo d 
+```
