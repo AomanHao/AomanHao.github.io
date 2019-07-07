@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-cat.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-cat.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'WCUJN87Q3G',
+      apiKey: '866baa2f7e716bff24c23c30c1d50b25',
+      indexName: 'SearchIndex',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+ <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/b6dbddb6.js","daovoice")
+ daovoice('init', {
+  app_id: "b69005f1"
+});
+daovoice('update');
+ </script>
+
+
+  <meta name="description" content="图像分割_评价指标_PSNR峰值信噪比">
+<meta name="keywords" content="图像处理,评价指标">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图像分割_评价指标_PSNR峰值信噪比和SSIM结构相似度">
+<meta property="og:url" content="http://www.aomanhao.top/2019/07/07/图像分割_评价指标/index.html">
+<meta property="og:site_name" content="AomanHao的个人博客">
+<meta property="og:description" content="图像分割_评价指标_PSNR峰值信噪比">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/formula_SSIM.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/formula_SSIM_2.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/formula_SSIM_3.png">
+<meta property="og:updated_time" content="2019-07-07T05:11:01.392Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图像分割_评价指标_PSNR峰值信噪比和SSIM结构相似度">
+<meta name="twitter:description" content="图像分割_评价指标_PSNR峰值信噪比">
+<meta name="twitter:image" content="https://img-blog.nos-eastchina1.126.net/blog/formula_SSIM.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.aomanhao.top/2019/07/07/图像分割_评价指标/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>图像分割_评价指标_PSNR峰值信噪比和SSIM结构相似度 | AomanHao的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AomanHao的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">唯有梦想与好姑娘不可辜负</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-相册">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/photos/" rel="section"><i class="menu-item-icon fa fa-fw fa-camera-retro"></i> <br>相册</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-爱礼">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="http://www.aomanhao.top/loveheart/" rel="section"><i class="menu-item-icon fa fa-fw fa-heart"></i> <br>爱礼</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2019/07/07/图像分割_评价指标/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AomanHao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AomanHao的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">图像分割_评价指标_PSNR峰值信噪比和SSIM结构相似度
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-07 09:39:40 / 修改时间：13:11:01" itemprop="dateCreated datePublished" datetime="2019-07-07T09:39:40+08:00">2019-07-07</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/07/07/图像分割_评价指标/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/07/07/图像分割_评价指标/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/07/07/图像分割_评价指标/" class="leancloud_visitors" data-flag-title="图像分割_评价指标_PSNR峰值信噪比和SSIM结构相似度">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">热度：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+              <span>℃</span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">15k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">25 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>图像分割_评价指标_PSNR峰值信噪比</p>
+<a id="more"></a>
+<h2 id="PSNR"><a href="#PSNR" class="headerlink" title="PSNR"></a>PSNR</h2><p><code>psnr</code>是“Peak Signal to Noise Ratio”的缩写，即峰值信噪比，是一种评价图像的客观标准。<br>为了衡量经过处理后的影像品质，我们通常会参考<code>PSNR</code>值来衡量某个处理程序能否令人满意。PSNR的单位是dB，数值越大表示失真越小。n为每像素的比特数，一般的灰度图像取8，即像素灰阶数为256。它是原图像与被处理图像之间的均方误差相对于<code>(2n-1)2</code>的对数值(信号最大值的平方，n是每个采样值的比特数)，所以PSNR值越大，就代表失真越少。<br>MATLAB用法的公式如下：</p>
+<script type="math/tex; mode=display">PSNR=10*log10((2n-1)2/MSE)</script><p>其中，<code>MSE</code>是原图像与处理图像之间均方误差。</p>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>PSNR是最普遍，最广泛使用的评鉴画质的客观量测法，不过许多实验结果都显示，PSNR的分数无法和人眼看到的视觉品质完全一致，有可能PSNR较高者看起来反而比PSNR较低者差。这是因为人眼的视觉对于误差的敏感度并不是绝对的，其感知结果会受到许多因素的影响而产生变化（例如：人眼对空间频率较低的对比差异敏感度较高，人眼对亮度对比差异的敏感度较色度高，人眼对一个区域的感知结果会受到其周围邻近区域的影响）。</p>
+<h3 id="Matlab代码"><a href="#Matlab代码" class="headerlink" title="Matlab代码"></a>Matlab代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">function [PSNR, MSE] = psnr(X, Y)</span><br><span class="line">%%%%%%%%%%%%%%%%%%%%%%%%%%%</span><br><span class="line">%</span><br><span class="line">% 计算峰值信噪比PSNR</span><br><span class="line">% 将RGB转成YCbCr格式进行计算</span><br><span class="line">% 如果直接计算会比转后计算值要小2dB左右（当然是个别测试）</span><br><span class="line">%</span><br><span class="line">%%%%%%%%%%%%%%%%%%%%%%%%%%%</span><br><span class="line"> if size(X,3)~=1   %判断图像时不是彩色图，如果是，结果为3，否则为1</span><br><span class="line">   org=rgb2ycbcr(X);</span><br><span class="line">   test=rgb2ycbcr(Y);</span><br><span class="line">   Y1=org(:,:,1);</span><br><span class="line">   Y2=test(:,:,1);</span><br><span class="line">   Y1=double(Y1);  %计算平方时候需要转成double类型，否则uchar类型会丢失数据</span><br><span class="line">   Y2=double(Y2);</span><br><span class="line"> else              %灰度图像，不用转换</span><br><span class="line">     Y1=double(X);</span><br><span class="line">     Y2=double(Y);</span><br><span class="line"> end</span><br><span class="line"> </span><br><span class="line">if nargin&lt;2    </span><br><span class="line">   D = Y1;</span><br><span class="line">else</span><br><span class="line">  if any(size(Y1)~=size(Y2))</span><br><span class="line">    error(&apos;The input size is not equal to each other!&apos;);</span><br><span class="line">  end</span><br><span class="line"> D = Y1 - Y2; </span><br><span class="line">end</span><br><span class="line">MSE = sum(D(:).*D(:)) / numel(Y1); </span><br><span class="line">PSNR = 10*log10(255^2 / MSE);</span><br></pre></td></tr></table></figure>
+<h2 id="SSIM"><a href="#SSIM" class="headerlink" title="SSIM"></a>SSIM</h2><p>SSIM(structural similarity index)，结构相似性，是一种衡量两幅图像相似度的指标。该指标首先由德州大学奥斯丁分校的图像和视频工程实验室(Laboratory for Image and Video Engineering)提出。SSIM使用的两张图像中，一张为未经压缩的无失真图像，另一张为失真后的图像。</p>
+<p>给定两个图像 x和y , 两张图像的结构相似性可按照以下方式求出</p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/formula_SSIM.png" alt=""></p>
+<p>其中，$μ_X$、$μ_Y$分别表示图像$X$和$Y$的均值，$σ_X$、$σ_Y$分别表示图像$X$和$Y$的方差，$σ_XY$表示图像$X$和$Y$的协方差。</p>
+<p>SSIM分别从亮度、对比度、结构三方面度量图像相似性。<br><img src="https://img-blog.nos-eastchina1.126.net/blog/formula_SSIM_2.png" alt=""></p>
+<p>$C1$、$C2$、$C3$为常数，为了避免分母为0的情况，通常取$C1=(K1∗L)2$,$ C2=(K2∗L)2$, $C3=C22$, 一般地K1=0.01, K2=0.03, L=255 则,</p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/formula_SSIM_3.png" alt=""></p>
+<h3 id="Matlab公式"><a href="#Matlab公式" class="headerlink" title="Matlab公式"></a>Matlab公式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br></pre></td><td class="code"><pre><span class="line">function [ssimval, ssimmap] = ssim(varargin)</span><br><span class="line">%SSIM Structural Similarity Index for measuring image quality</span><br><span class="line">%   SSIMVAL = SSIM(A, REF) calculates the Structural Similarity Index</span><br><span class="line">%   (SSIM) value for image A, with the image REF as the reference. A and</span><br><span class="line">%   REF can be 2D grayscale or 3D volume images, and must be of the same</span><br><span class="line">%   size and class. </span><br><span class="line">% </span><br><span class="line">%   [SSIMVAL, SSIMMAP] = SSIM(A, REF) also returns the local SSIM value for</span><br><span class="line">%   each pixel in SSIMMAP. SSIMMAP has the same size as A.</span><br><span class="line">%</span><br><span class="line">%   [SSIMVAL, SSIMMAP] = SSIM(A, REF, NAME1, VAL1,...) calculates the SSIM</span><br><span class="line">%   value using name-value pairs to control aspects of the computation.</span><br><span class="line">%   Parameter names can be abbreviated.</span><br><span class="line">%</span><br><span class="line">%   Parameters include:</span><br><span class="line">%</span><br><span class="line">%   &apos;Radius&apos;                 - Specifies the standard deviation of </span><br><span class="line">%                              isotropic Gaussian function used for</span><br><span class="line">%                              weighting the neighborhood pixels around a</span><br><span class="line">%                              pixel for estimating local statistics. This</span><br><span class="line">%                              weighting is used to avoid blocking</span><br><span class="line">%                              artifacts in estimating local statistics.</span><br><span class="line">%                              The default value is 1.5.</span><br><span class="line">% </span><br><span class="line">%   &apos;DynamicRange&apos;           - Positive scalar, L, that specifies the</span><br><span class="line">%                              dynamic range of the input image. By</span><br><span class="line">%                              default, L is chosen based on the class of</span><br><span class="line">%                              the input image A, as L =</span><br><span class="line">%                              diff(getrangefromclass(A)). Note that when</span><br><span class="line">%                              class of A is single or double, L = 1 by</span><br><span class="line">%                              default.</span><br><span class="line">% </span><br><span class="line">%   &apos;RegularizationConstants&apos;- Three-element vector, [C1 C2 C3], of </span><br><span class="line">%                              non-negative real numbers that specifies the</span><br><span class="line">%                              regularization constants for the luminance,</span><br><span class="line">%                              contrast, and structural terms (see [1]),</span><br><span class="line">%                              respectively. The regularization constants</span><br><span class="line">%                              are used to avoid instability for image</span><br><span class="line">%                              regions where the local mean or standard</span><br><span class="line">%                              deviation is close to zero. Therefore, small</span><br><span class="line">%                              non-zero values should be used for these</span><br><span class="line">%                              constants. By default, C1 = (0.01*L).^2, C2</span><br><span class="line">%                              = (0.03*L).^2, and C3 = C2/2, where L is the</span><br><span class="line">%                              specified &apos;DynamicRange&apos; value. If a value</span><br><span class="line">%                              of &apos;DynamicRange&apos; is not specified, the</span><br><span class="line">%                              default value is used (see name-value pair</span><br><span class="line">%                              &apos;DynamicRange&apos;).</span><br><span class="line">% </span><br><span class="line">%   &apos;Exponents&apos;               - Three-element vector [alpha beta gamma],</span><br><span class="line">%                               of non-negative real numbers that specifies</span><br><span class="line">%                               the exponents for the luminance, contrast,</span><br><span class="line">%                               and structural terms (see [1]),</span><br><span class="line">%                               respectively. By default, all the three</span><br><span class="line">%                               exponents are 1, i.e. the vector is [1 1</span><br><span class="line">%                               1].</span><br><span class="line">% </span><br><span class="line">%   Notes </span><br><span class="line">%   -----</span><br><span class="line">%   1. A and REF can be arrays of upto three dimensions. All 3D arrays</span><br><span class="line">%      are considered 3D volumetric images. RGB images will also be</span><br><span class="line">%      processed as 3D volumetric images.</span><br><span class="line">% </span><br><span class="line">%   2. Input image A and reference image REF are converted to</span><br><span class="line">%      floating-point type for internal computation.</span><br><span class="line">% </span><br><span class="line">%   3. For signed-integer images (int16), an offset is applied to bring the</span><br><span class="line">%      gray values in the non-negative range before computing the SSIM</span><br><span class="line">%      index.</span><br><span class="line">% </span><br><span class="line">%   Example</span><br><span class="line">%   ---------</span><br><span class="line">%   This example shows how to compute SSIM value for a blurred image given</span><br><span class="line">%   the original reference image.</span><br><span class="line">% </span><br><span class="line">%   ref = imread(&apos;pout.tif&apos;);</span><br><span class="line">%   H = fspecial(&apos;Gaussian&apos;,[11 11],1.5);</span><br><span class="line">%   A = imfilter(ref,H,&apos;replicate&apos;);</span><br><span class="line">% </span><br><span class="line">%   subplot(1,2,1); imshow(ref); title(&apos;Reference Image&apos;);</span><br><span class="line">%   subplot(1,2,2); imshow(A);   title(&apos;Blurred Image&apos;);</span><br><span class="line">% </span><br><span class="line">%   [ssimval, ssimmap] = ssim(A,ref);</span><br><span class="line">% </span><br><span class="line">%   fprintf(&apos;The SSIM value is %0.4f.\n&apos;,ssimval);</span><br><span class="line">% </span><br><span class="line">%   figure, imshow(ssimmap,[]);</span><br><span class="line">%   title(sprintf(&apos;SSIM Index Map - Mean SSIM Value is %0.4f&apos;,ssimval));</span><br><span class="line"></span><br><span class="line">%   Class Support</span><br><span class="line">%   -------------</span><br><span class="line">%   Input arrays A and REF must be one of the following classes: uint8,</span><br><span class="line">%   int16, uint16, single, or double. Both A and REF must be of the same</span><br><span class="line">%   class. They must be nonsparse. SSIMVAL is a scalar and SSIMMAP is an</span><br><span class="line">%   array of the same size as A. Both SSIMVAL and SSIMMAP are of class</span><br><span class="line">%   double, unless A and REF are of class single in which case SSIMVAL and</span><br><span class="line">%   SSIMMAP are of class single.</span><br><span class="line">% </span><br><span class="line">%   References:</span><br><span class="line">%   -----------</span><br><span class="line">%   [1] Z. Wang, A. C. Bovik, H. R. Sheikh, and E. P. Simoncelli, &quot;Image </span><br><span class="line">%       Quality Assessment: From Error Visibility to Structural</span><br><span class="line">%       Similarity,&quot; IEEE Transactions on Image Processing, Volume 13,</span><br><span class="line">%       Issue 4, pp. 600- 612, 2004.</span><br><span class="line">%</span><br><span class="line">%   See also IMMSE, MEAN, MEDIAN, PSNR, SUM, VAR.</span><br><span class="line"></span><br><span class="line">%   Copyright 2013-2014 The MathWorks, Inc. </span><br><span class="line"></span><br><span class="line">narginchk(2,10);</span><br><span class="line"></span><br><span class="line">[A, ref, C, exponents, radius] = parse_inputs(varargin&#123;:&#125;);</span><br><span class="line"></span><br><span class="line">if isempty(A)</span><br><span class="line">    ssimval = zeros(0, &apos;like&apos;, A);</span><br><span class="line">    ssimmap = A;</span><br><span class="line">    return;</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">if isa(A,&apos;int16&apos;) % int16 is the only allowed signed-integer type for A and ref.</span><br><span class="line">    % Add offset for signed-integer types to bring values in the</span><br><span class="line">    % non-negative range.</span><br><span class="line">    A = double(A) - double(intmin(&apos;int16&apos;));</span><br><span class="line">    ref = double(ref) - double(intmin(&apos;int16&apos;));</span><br><span class="line">elseif isinteger(A)</span><br><span class="line">    A = double(A);</span><br><span class="line">    ref = double(ref);</span><br><span class="line">end</span><br><span class="line">      </span><br><span class="line">% Gaussian weighting function</span><br><span class="line">gaussFilt = getGaussianWeightingFilter(radius,ndims(A));</span><br><span class="line"></span><br><span class="line">% Weighted-mean and weighted-variance computations</span><br><span class="line">mux2 = imfilter(A, gaussFilt,&apos;conv&apos;,&apos;replicate&apos;);</span><br><span class="line">muy2 = imfilter(ref, gaussFilt,&apos;conv&apos;,&apos;replicate&apos;);</span><br><span class="line">muxy = mux2.*muy2;</span><br><span class="line">mux2 = mux2.^2;</span><br><span class="line">muy2 = muy2.^2;</span><br><span class="line"></span><br><span class="line">sigmax2 = imfilter(A.^2,gaussFilt,&apos;conv&apos;,&apos;replicate&apos;) - mux2;</span><br><span class="line">sigmay2 = imfilter(ref.^2,gaussFilt,&apos;conv&apos;,&apos;replicate&apos;) - muy2;</span><br><span class="line">sigmaxy = imfilter(A.*ref,gaussFilt,&apos;conv&apos;,&apos;replicate&apos;) - muxy;</span><br><span class="line"></span><br><span class="line">% Compute SSIM index</span><br><span class="line">if (C(3) == C(2)/2) &amp;&amp; isequal(exponents(:),ones(3,1))</span><br><span class="line">    % Special case: Equation 13 from [1]</span><br><span class="line">    num = (2*muxy + C(1)).*(2*sigmaxy + C(2));</span><br><span class="line">    den = (mux2 + muy2 + C(1)).*(sigmax2 + sigmay2 + C(2));</span><br><span class="line">    if (C(1) &gt; 0) &amp;&amp; (C(2) &gt; 0)</span><br><span class="line">        ssimmap = num./den;</span><br><span class="line">    else</span><br><span class="line">        % Need to guard against divide-by-zero if either C(1) or C(2) is 0.</span><br><span class="line">        isDenNonZero = (den ~= 0);           </span><br><span class="line">        ssimmap = ones(size(A));</span><br><span class="line">        ssimmap(isDenNonZero) = num(isDenNonZero)./den(isDenNonZero);</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">else</span><br><span class="line">    % General case: Equation 12 from [1] </span><br><span class="line">    % Luminance term</span><br><span class="line">    if (exponents(1) &gt; 0)</span><br><span class="line">        num = 2*muxy + C(1);</span><br><span class="line">        den = mux2 + muy2 + C(1); </span><br><span class="line">        ssimmap = guardedDivideAndExponent(num,den,C(1),exponents(1));</span><br><span class="line">    else </span><br><span class="line">        ssimmap = ones(size(A), &apos;like&apos;, A);</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    % Contrast term</span><br><span class="line">    sigmaxsigmay = [];</span><br><span class="line">    if (exponents(2) &gt; 0)  </span><br><span class="line">        sigmaxsigmay = sqrt(sigmax2.*sigmay2);</span><br><span class="line">        num = 2*sigmaxsigmay + C(2);</span><br><span class="line">        den = sigmax2 + sigmay2 + C(2); </span><br><span class="line">        ssimmap = ssimmap.*guardedDivideAndExponent(num,den,C(2),exponents(2));        </span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    % Structure term</span><br><span class="line">    if (exponents(3) &gt; 0)</span><br><span class="line">        num = sigmaxy + C(3);</span><br><span class="line">        if isempty(sigmaxsigmay)</span><br><span class="line">            sigmaxsigmay = sqrt(sigmax2.*sigmay2);</span><br><span class="line">        end</span><br><span class="line">        den = sigmaxsigmay + C(3); </span><br><span class="line">        ssimmap = ssimmap.*guardedDivideAndExponent(num,den,C(3),exponents(3));        </span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">ssimval = mean(ssimmap(:));</span><br><span class="line">    </span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">% -------------------------------------------------------------------------</span><br><span class="line">function component = guardedDivideAndExponent(num, den, C, exponent)</span><br><span class="line"></span><br><span class="line">if C &gt; 0</span><br><span class="line">    component = num./den;</span><br><span class="line">else</span><br><span class="line">    component = ones(size(num),&apos;like&apos;,num);</span><br><span class="line">    isDenNonZero = (den ~= 0);</span><br><span class="line">    component(isDenNonZero) = num(isDenNonZero)./den(isDenNonZero);</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">if (exponent ~= 1)</span><br><span class="line">    component = component.^exponent;</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">function gaussFilt = getGaussianWeightingFilter(radius,N)</span><br><span class="line">% Get 2D or 3D Gaussian weighting filter</span><br><span class="line"></span><br><span class="line">filtRadius = ceil(radius*3); % 3 Standard deviations include &gt;99% of the area. </span><br><span class="line">filtSize = 2*filtRadius + 1;</span><br><span class="line"></span><br><span class="line">if (N &lt; 3)</span><br><span class="line">    % 2D Gaussian mask can be used for filtering even one-dimensional</span><br><span class="line">    % signals using imfilter. </span><br><span class="line">    gaussFilt = fspecial(&apos;gaussian&apos;,[filtSize filtSize],radius);</span><br><span class="line">else </span><br><span class="line">    % 3D Gaussian mask</span><br><span class="line">     [x,y,z] = ndgrid(-filtRadius:filtRadius,-filtRadius:filtRadius, ...</span><br><span class="line">                    -filtRadius:filtRadius);</span><br><span class="line">     arg = -(x.*x + y.*y + z.*z)/(2*radius*radius);</span><br><span class="line">     gaussFilt = exp(arg);</span><br><span class="line">     gaussFilt(gaussFilt&lt;eps*max(gaussFilt(:))) = 0;</span><br><span class="line">     sumFilt = sum(gaussFilt(:));</span><br><span class="line">     if (sumFilt ~= 0)</span><br><span class="line">         gaussFilt  = gaussFilt/sumFilt;</span><br><span class="line">     end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">function [A, ref, C, exponents, radius] = parse_inputs(varargin)</span><br><span class="line"></span><br><span class="line">validImageTypes = &#123;&apos;uint8&apos;,&apos;uint16&apos;,&apos;int16&apos;,&apos;single&apos;,&apos;double&apos;&#125;;</span><br><span class="line"></span><br><span class="line">A = varargin&#123;1&#125;;</span><br><span class="line">validateattributes(A,validImageTypes,&#123;&apos;nonsparse&apos;,&apos;real&apos;&#125;,mfilename,&apos;A&apos;,1);</span><br><span class="line"></span><br><span class="line">ref = varargin&#123;2&#125;;</span><br><span class="line">validateattributes(ref,validImageTypes,&#123;&apos;nonsparse&apos;,&apos;real&apos;&#125;,mfilename,&apos;REF&apos;,2);</span><br><span class="line"></span><br><span class="line">if ~isa(A,class(ref))</span><br><span class="line">    error(message(&apos;images:validate:differentClassMatrices&apos;,&apos;A&apos;,&apos;REF&apos;));</span><br><span class="line">end</span><br><span class="line">    </span><br><span class="line">if ~isequal(size(A),size(ref))</span><br><span class="line">    error(message(&apos;images:validate:unequalSizeMatrices&apos;,&apos;A&apos;,&apos;REF&apos;));</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">if (ndims(A) &gt; 3)</span><br><span class="line">    error(message(&apos;images:validate:tooManyDimensions&apos;,&apos;A and REF&apos;,3));</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">% Default values for parameters</span><br><span class="line">dynmRange = diff(getrangefromclass(A));        </span><br><span class="line">C = [];</span><br><span class="line">exponents = [1 1 1];</span><br><span class="line">radius = 1.5;</span><br><span class="line"></span><br><span class="line">args_names = &#123;&apos;dynamicrange&apos;, &apos;regularizationconstants&apos;,&apos;exponents&apos;,...</span><br><span class="line">              &apos;radius&apos;&#125;;</span><br><span class="line"></span><br><span class="line">for i = 3:2:nargin</span><br><span class="line">    arg = varargin&#123;i&#125;;</span><br><span class="line">    if ischar(arg)        </span><br><span class="line">        idx = find(strncmpi(arg, args_names, numel(arg)));</span><br><span class="line">        if isempty(idx)</span><br><span class="line">            error(message(&apos;images:validate:unknownInputString&apos;, arg))</span><br><span class="line">            </span><br><span class="line">        elseif numel(idx) &gt; 1</span><br><span class="line">            error(message(&apos;images:validate:ambiguousInputString&apos;, arg))</span><br><span class="line">            </span><br><span class="line">        elseif numel(idx) == 1</span><br><span class="line">            if (i+1 &gt; nargin) </span><br><span class="line">                error(message(&apos;images:validate:missingParameterValue&apos;));             </span><br><span class="line">            end</span><br><span class="line">            if idx == 1</span><br><span class="line">                dynmRange = varargin&#123;i+1&#125;;</span><br><span class="line">                validateattributes(dynmRange,&#123;&apos;numeric&apos;&#125;,&#123;&apos;positive&apos;, ...</span><br><span class="line">                    &apos;finite&apos;, &apos;real&apos;, &apos;nonempty&apos;,&apos;scalar&apos;&#125;, mfilename, ...</span><br><span class="line">                    &apos;DynamicRange&apos;,i);</span><br><span class="line">                dynmRange = double(dynmRange);</span><br><span class="line">                </span><br><span class="line">            elseif idx == 2</span><br><span class="line">                C = varargin&#123;i+1&#125;;</span><br><span class="line">                validateattributes(C,&#123;&apos;numeric&apos;&#125;,&#123;&apos;nonnegative&apos;,&apos;finite&apos;, ...</span><br><span class="line">                    &apos;real&apos;,&apos;nonempty&apos;,&apos;vector&apos;, &apos;numel&apos;, 3&#125;, mfilename, ...</span><br><span class="line">                    &apos;RegularizationConstants&apos;,i);                              </span><br><span class="line">                C = double(C);                              </span><br><span class="line">                              </span><br><span class="line">            elseif idx == 3</span><br><span class="line">                exponents = varargin&#123;i+1&#125;;</span><br><span class="line">                validateattributes(exponents,&#123;&apos;numeric&apos;&#125;,&#123;&apos;nonnegative&apos;, ...</span><br><span class="line">                    &apos;finite&apos;, &apos;real&apos;, &apos;nonempty&apos;,&apos;vector&apos;, &apos;numel&apos;, 3&#125;, ...</span><br><span class="line">                    mfilename,&apos;Exponents&apos;,i);</span><br><span class="line">                exponents = double(exponents);</span><br><span class="line">                </span><br><span class="line">            elseif idx == 4</span><br><span class="line">                radius = varargin&#123;i+1&#125;;</span><br><span class="line">                validateattributes(radius,&#123;&apos;numeric&apos;&#125;,&#123;&apos;positive&apos;,&apos;finite&apos;, ...</span><br><span class="line">                    &apos;real&apos;, &apos;nonempty&apos;,&apos;scalar&apos;&#125;, mfilename,&apos;Radius&apos;,i);</span><br><span class="line">                radius = double(radius);</span><br><span class="line">            end</span><br><span class="line">        end    </span><br><span class="line">    else</span><br><span class="line">        error(message(&apos;images:validate:mustBeString&apos;)); </span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">% If &apos;RegularizationConstants&apos; is not specified, choose default C.</span><br><span class="line">if isempty(C)</span><br><span class="line">    C = [(0.01*dynmRange).^2 (0.03*dynmRange).^2 ((0.03*dynmRange).^2)/2];</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p><a href="https://blog.csdn.net/xiaohaijiejie/article/details/48053595" target="_blank" rel="noopener">参考文章1</a></p>
+<p><a href="https://blog.csdn.net/qq_35608277/article/details/85671519" target="_blank" rel="noopener">参考文章2</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>AomanHao</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://www.aomanhao.top/2019/07/07/图像分割_评价指标/" title="图像分割_评价指标_PSNR峰值信噪比和SSIM结构相似度">http://www.aomanhao.top/2019/07/07/图像分割_评价指标/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/图像处理/" rel="tag"><i class="fa fa-tag"></i> 图像处理</a>
+          
+            <a href="/tags/评价指标/" rel="tag"><i class="fa fa-tag"></i> 评价指标</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/25/git入门/" rel="next" title="git命令及程序版本命令">
+                <i class="fa fa-chevron-left"></i> git命令及程序版本命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="AomanHao">
+            
+              <p class="site-author-name" itemprop="name">AomanHao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">104</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/aomanhao" title="GitHub &rarr; https://github.com/aomanhao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:1014325364@qq.com" title="E-Mail &rarr; mailto:1014325364@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/2831714980" title="Weibo &rarr; https://weibo.com/u/2831714980" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://me.csdn.net/Aoman_Hao" title="CSDN &rarr; https://me.csdn.net/Aoman_Hao" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PSNR"><span class="nav-number">1.</span> <span class="nav-text">PSNR</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优缺点"><span class="nav-number">1.1.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Matlab代码"><span class="nav-number">1.2.</span> <span class="nav-text">Matlab代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSIM"><span class="nav-number">2.</span> <span class="nav-text">SSIM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Matlab公式"><span class="nav-number">2.1.</span> <span class="nav-text">Matlab公式</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+          <h3 class="widget-title"></h3>
+          <div id="myCanvasContainer" class="widget tagcloud">
+              <canvas width="200" height="200" id="resCanvas" style="width=100%">
+                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li></ul>
+              </canvas>
+          </div>
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<!--网页底部copyright部分-->
+<div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">by AomanHao</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">306k</span>
+  
+
+  
+
+    
+    <span class="post-meta-divider">|</span>
+  
+
+  <!--访问量访问人数-->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+
+
+</div>
+
+
+<span id="timeDate"></span><span id="times"></span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("11/27/2017 12:00:00");//在此处修改你的建站时间
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = " 网站安全运行 "+dnum+" 天 "; 
+        
+    } 
+setInterval("createtime()",250);
+</script>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<!--Hexo版本模块-->
+
+ <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+<!--Hext主题版本模块-->
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+
+
+
+
+
+<!--document.getElementById("times").innerHTML = hnum + " H " + mnum + " M " + snum + " S"; -->
+        
+
+
+
+
+
+
+<div>
+<!--始-->
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+document.write(unescape("%3Cspan id='cnzz_stat_icon_1274486405'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + 
+"s22.cnzz.com/z_stat.php%3Fid%3D1274486405%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<!--末-->
+</div>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.2" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.13.2/dist/av-min.js"></script>
+
+
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/valine@1.3.4/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: true,
+    appId: 'llBsNPTabKsl2d4aU3OvrmSz-gzGzoHsz',
+    appKey: 'gzSQowSIzhnuc5eYPj4k7c7z',
+    placeholder: '欢迎交流讨论...',
+    avatar: 'monsterid',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":75,"height":150},"mobile":{"show":true},"log":false});</script></body>
+</html>
+
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
