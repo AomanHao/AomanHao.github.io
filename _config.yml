@@ -144,7 +144,7 @@ live2d:
   pluginRootPath: live2dw/
   pluginJsPath: lib/
   pluginModelPath: assets/
-  tagMode: false
+  tagMode: true
   debug: false
   model:
     #use: live2d-widget-model-wanko
@@ -156,7 +156,7 @@ live2d:
     #hOffset: 0
     #vOffset: 40
   mobile:
-    show: true
+    show: false
 
 # 文章文字统计
 symbols_count_time:
