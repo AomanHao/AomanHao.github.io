@@ -144,7 +144,7 @@ live2d:
   pluginRootPath: live2dw/
   pluginJsPath: lib/
   pluginModelPath: assets/
-  tagMode: true
+  tagMode: false
   debug: false
   model:
     #use: live2d-widget-model-wanko
