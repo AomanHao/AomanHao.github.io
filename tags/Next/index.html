@@ -346,20 +346,26 @@ daovoice('update');
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -537,32 +543,6 @@ daovoice('update');
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2019/01/30/theme_next_leancloud/" itemprop="url">
-            
-              <span itemprop="name">Hexo博客Next主题阅读次数热度不能读取的问题，报错Counter not initialized! More info at console err msg.</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-30T21:55:00+08:00" content="2019-01-30">
-          01-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
           <a class="post-title-link" href="/2019/01/30/hexo_theme_next_search/" itemprop="url">
             
               <span itemprop="name">Hexo博客Next主题站内搜索模块相关，解决搜索无效、一直loading的问题</span>
@@ -615,6 +595,32 @@ daovoice('update');
 
       <h2 class="post-title">
         
+          <a class="post-title-link" href="/2019/01/30/theme_next_leancloud/" itemprop="url">
+            
+              <span itemprop="name">Hexo博客Next主题阅读次数热度不能读取的问题，报错Counter not initialized! More info at console err msg.</span>
+            
+          </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-01-30T21:55:00+08:00" content="2019-01-30">
+          01-30
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
           <a class="post-title-link" href="/2019/01/30/hexo_theme_next_algolia/" itemprop="url">
             
               <span itemprop="name">Hexo主题Next配置algolia站内搜索</span>
@@ -641,9 +647,9 @@ daovoice('update');
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2019/01/20/theme_NextConfig2/" itemprop="url">
+          <a class="post-title-link" href="/2019/01/20/theme_NextConfig1/" itemprop="url">
             
-              <span itemprop="name">Hexo主题Next配置（二）</span>
+              <span itemprop="name">Hexo主题Next配置</span>
             
           </a>
         
@@ -667,9 +673,9 @@ daovoice('update');
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2019/01/20/theme_NextConfig1/" itemprop="url">
+          <a class="post-title-link" href="/2019/01/20/theme_NextConfig2/" itemprop="url">
             
-              <span itemprop="name">Hexo主题Next配置</span>
+              <span itemprop="name">Hexo主题Next配置（二）</span>
             
           </a>
         
@@ -1549,6 +1555,19 @@ document.write(unescape("%3Cspan id='cnzz_stat_icon_1274486405'%3E%3C/span%3E%3C
   </script>
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.7.0"></script>
 
 
 

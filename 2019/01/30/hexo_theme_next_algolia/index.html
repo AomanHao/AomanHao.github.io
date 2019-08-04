@@ -124,7 +124,7 @@ daovoice('update');
 <meta property="og:site_name" content="AomanHao的个人博客">
 <meta property="og:description" content="Hexo主题Next配置algolia站内搜索">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-18T07:48:39.292Z">
+<meta property="og:updated_time" content="2019-08-04T13:37:36.859Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo主题Next配置algolia站内搜索">
 <meta name="twitter:description" content="Hexo主题Next配置algolia站内搜索">
@@ -351,20 +351,26 @@ daovoice('update');
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -470,7 +476,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-18 15:48:39" itemprop="dateModified" datetime="2019-02-18T15:48:39+08:00">2019-02-18</time>
+                <time title="修改时间：2019-08-04 21:37:36" itemprop="dateModified" datetime="2019-08-04T21:37:36+08:00">2019-08-04</time>
               
             
           </span>
@@ -558,12 +564,11 @@ daovoice('update');
       
         <p>Hexo主题Next配置algolia站内搜索</p>
 <a id="more"></a>
-<p>Algolia是一家为网站与移动应用提供托管式搜索API的初创企业，成立于2012年，总部位于旧金山，曾参加过去年的YC训练营。网站或移动应用只需嵌入简单代码数分钟即可实现搜索功能。</p>
+<p><code>Algolia</code>是一家为网站与移动应用提供托管式搜索API的初创企业，成立于2012年，总部位于旧金山，曾参加过去年的YC训练营。网站或移动应用只需嵌入简单代码数分钟即可实现搜索功能。</p>
 <p>实现的效果如下</p>
-<p>search</p>
-<p>注册Algolia<br>打开Algolia进行注册。可直接使用github账号进行注册。</p>
-<p>创建index<br>点击 NEW INDEX创建一个新的index。Index Name 后面会使用到。如图所示：<br>INDEX</p>
-<p>编辑KEY<br>点击侧边栏API Keys可以看到 Application ID、 Search-Only API Key 、 Admin API Key。后面我们需要用到。 点击 ALL API KEYS，编辑KEY。如图所示。<br>INDEX</p>
+<h3 id="search"><a href="#search" class="headerlink" title="search"></a>search</h3><p>注册<code>Algolia</code><br>打开<code>Algolia</code>进行注册。可直接使用github账号进行注册。</p>
+<p>创建<code>index</code><br>点击 <code>NEW INDEX</code>创建一个新的<code>index</code>。<code>Index Name</code> 后面会使用到。<br><code>INDEX</code></p>
+<p>编辑<code>KEY</code><br>点击侧边栏<code>API Keys</code>可以看到 <code>Application ID</code>、 <code>Search-Only API Key</code> 、 <code>Admin API Key</code>。后面我们需要用到。 点击 <code>ALL API KEYS</code>，编辑KEY。</p>
 <p>安装<code>hexo-algoliasearch</code>插件<br>在<code>Hexo</code>的根目录下执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-algoliasearch --save</span><br></pre></td></tr></table></figure></p>
 <p>配置站点信息<br>打开 站点配置文件，添加algolia配置信息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">algolia:</span><br><span class="line">  applicationID: </span><br><span class="line">  apiKey: </span><br><span class="line">  adminApiKey: </span><br><span class="line">  indexName: #创建index使用的Index Name</span><br><span class="line">  chunkSize: 5000</span><br></pre></td></tr></table></figure></p>
 <p>打开 主题配置文件，添加algolia配置信息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Algolia Search</span><br><span class="line">algolia_search:</span><br><span class="line">  enable: true</span><br><span class="line">  hits:</span><br><span class="line">    per_page: 10</span><br><span class="line">  labels:</span><br><span class="line">    input_placeholder: Search for Posts</span><br><span class="line">    hits_empty: &quot;We didn&apos;t find any results for the search: $&#123;query&#125;&quot;</span><br><span class="line">    hits_stats: &quot;$&#123;hits&#125; results found in $&#123;time&#125; ms&quot;</span><br></pre></td></tr></table></figure></p>
@@ -637,8 +642,8 @@ daovoice('update');
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/20/theme_NextConfig2/" rel="next" title="Hexo主题Next配置（二）">
-                <i class="fa fa-chevron-left"></i> Hexo主题Next配置（二）
+              <a href="/2019/01/20/theme_NextConfig1/" rel="next" title="Hexo主题Next配置">
+                <i class="fa fa-chevron-left"></i> Hexo主题Next配置
               </a>
             
           </div>
@@ -647,8 +652,8 @@ daovoice('update');
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/30/hexo_next_wordcount/" rel="prev" title="字数统计和阅读时长(网站底部/文章内)">
-                字数统计和阅读时长(网站底部/文章内) <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/30/theme_next_leancloud/" rel="prev" title="Hexo博客Next主题阅读次数热度不能读取的问题，报错Counter not initialized! More info at console err msg.">
+                Hexo博客Next主题阅读次数热度不能读取的问题，报错Counter not initialized! More info at console err msg. <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -698,8 +703,17 @@ daovoice('update');
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -875,6 +889,23 @@ daovoice('update');
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#search"><span class="nav-number">1.</span> <span class="nav-text">search</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1483,6 +1514,19 @@ document.write(unescape("%3Cspan id='cnzz_stat_icon_1274486405'%3E%3C/span%3E%3C
   </script>
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.7.0"></script>
 
 
 

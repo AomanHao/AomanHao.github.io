@@ -351,20 +351,26 @@ daovoice('update');
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -624,8 +630,8 @@ daovoice('update');
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/15/面经—机器学习/" rel="next" title="面经—机器学习">
-                <i class="fa fa-chevron-left"></i> 面经—机器学习
+              <a href="/2018/08/16/10大数据算法排序Java_C++/" rel="next" title="10大数据算法排序Java_C++">
+                <i class="fa fa-chevron-left"></i> 10大数据算法排序Java_C++
               </a>
             
           </div>
@@ -634,8 +640,8 @@ daovoice('update');
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/16/面经-概率论算法/" rel="prev" title="面经-概率论算法">
-                面经-概率论算法 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/16/leetcode_sum/" rel="prev" title="leetcode题解">
+                leetcode题解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1496,6 +1502,19 @@ document.write(unescape("%3Cspan id='cnzz_stat_icon_1274486405'%3E%3C/span%3E%3C
   </script>
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.7.0"></script>
 
 
 

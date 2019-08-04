@@ -359,20 +359,26 @@ daovoice('update');
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -869,8 +875,8 @@ daovoice('update');
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/16/opencv_ocr/" rel="next" title="opencv_ocr">
-                <i class="fa fa-chevron-left"></i> opencv_ocr
+              <a href="/2018/07/16/特征提取_局部特征_SIFT/" rel="next" title="特征提取——局部特征-SIFT算法尺度不变性的理解">
+                <i class="fa fa-chevron-left"></i> 特征提取——局部特征-SIFT算法尺度不变性的理解
               </a>
             
           </div>
@@ -879,8 +885,8 @@ daovoice('update');
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/16/机器学习_概率论_数学基础/" rel="prev" title="机器学习_概率论_数学基础">
-                机器学习_概率论_数学基础 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/16/机器学习_分类_随机森林/" rel="prev" title="机器学习_分类_随机森林">
+                机器学习_分类_随机森林 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1741,6 +1747,19 @@ document.write(unescape("%3Cspan id='cnzz_stat_icon_1274486405'%3E%3C/span%3E%3C
   </script>
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.7.0"></script>
 
 
 
