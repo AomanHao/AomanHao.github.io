@@ -106,11 +106,11 @@ deploy:
   branch: master
 #repository: https://github.com/AomanHao/AomanHao.github.io
 #表示站内搜索
-search:
-  path: search.xml
-  field: post
-  format: html
-  limit: 10000
+# search:
+  # path: search.xml
+  # field: post
+  # format: html
+  # limit: 10000
 
 # Algolia Search API Key
 # algolia:
