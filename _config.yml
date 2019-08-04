@@ -106,11 +106,11 @@ deploy:
   branch: master
 #repository: https://github.com/AomanHao/AomanHao.github.io
 #表示站内搜索
-# search:
-  # path: search.xml
-  # field: post
-  # format: html
-  # limit: 10000
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
 
 # Algolia Search API Key
 # algolia:
@@ -119,12 +119,12 @@ deploy:
 #   adminApiKey: 1d52e710f58914a29202156a5dadf371
 #   indexName: SearchIndex
 #   chunkSize: 5000
-algolia:
-  applicationID: WCUJN87Q3G
-  apiKey: 866baa2f7e716bff24c23c30c1d50b25
-  adminApiKey: 7ae30ea9cd3d026ab377eb842ff44d0a
-  indexName: SearchIndex
-  chunkSize: 5000
+#algolia:
+#  applicationID: WCUJN87Q3G
+#  apiKey: 866baa2f7e716bff24c23c30c1d50b25
+#  adminApiKey: 7ae30ea9cd3d026ab377eb842ff44d0a
+#  indexName: SearchIndex
+#  chunkSize: 5000
   # fields:
   # - title
   # - slug
