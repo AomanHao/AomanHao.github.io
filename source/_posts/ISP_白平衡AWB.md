@@ -39,11 +39,18 @@ ISP图像处理——白平衡AWB
 
 所以,AWB算法的核心就是判断图像的色温,是在白天,晚上,室内,室外,是烈日还是夕阳,还是在阳光下的沙滩上.或者是在卧室里”暖味”的床头灯下.
 
- 
+ ![](https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_1.jpeg)
 
 之前拍了6张色温照以及6组矫正参数.可是6够么,当然不够, 插值一下可以得到无数个值,我们把点连成线, 得到了一个神奇的曲线------色温曲线.大概是下面这个样子.
 
- 
+ ![](https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_2.jpeg)
+![](https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_SE1.jpeg)
+
+
+![](https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_SE2.jpeg)
+
+
+![](https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_SE3.jpeg)
 
 上面提到了三个值(RG,BG,色温),这应该是个三维的.没关系,我们再来一条RG跟色温的曲线,这样只要知道色温,就知道RG,知道RG,就知道BG,知道RG,BG就能轿正了,yes!
 
