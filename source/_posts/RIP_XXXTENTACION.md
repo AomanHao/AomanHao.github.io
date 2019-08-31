@@ -7,10 +7,11 @@ tags: [音乐]
 XXXTENTACION，音乐使之重生
 <!--more-->
 
+<iframe src="//player.bilibili.com/player.html?aid=56015687&cid=97913257&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 
-声明：
+熟悉的街头却变成炼狱，愿你在另一个地方重获新生。Rest In Peace
 
-部分转载自网络，仅供参考。
+
 
 
 #[我的个人博客主页，欢迎访问](http://www.aomanhao.top/)
