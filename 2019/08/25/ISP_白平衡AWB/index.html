@@ -120,21 +120,27 @@ daovoice('update');
 <meta name="keywords" content="ISP,图像处理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ISP图像处理——白平衡AWB">
-<meta property="og:url" content="http://www.aomanhao.top/2019/08/10/ISP_白平衡AWB/index.html">
+<meta property="og:url" content="http://www.aomanhao.top/2019/08/25/ISP_白平衡AWB/index.html">
 <meta property="og:site_name" content="AomanHao的个人博客">
 <meta property="og:description" content="ISP图像处理——白平衡AWB">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-25T15:06:48.719Z">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_1.jpeg">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_2.jpeg">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_SE1.jpeg">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_SE2.jpeg">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_SE3.jpeg">
+<meta property="og:updated_time" content="2019-08-31T15:01:59.732Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ISP图像处理——白平衡AWB">
 <meta name="twitter:description" content="ISP图像处理——白平衡AWB">
+<meta name="twitter:image" content="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_1.jpeg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://www.aomanhao.top/2019/08/10/ISP_白平衡AWB/">
+  <link rel="canonical" href="http://www.aomanhao.top/2019/08/25/ISP_白平衡AWB/">
 
 
 
@@ -410,7 +416,7 @@ daovoice('update');
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2019/08/10/ISP_白平衡AWB/">
+    <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2019/08/25/ISP_白平衡AWB/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AomanHao">
@@ -453,7 +459,7 @@ daovoice('update');
                 
               
 
-              <time title="创建时间：2019-08-10 18:44:45" itemprop="dateCreated datePublished" datetime="2019-08-10T18:44:45+08:00">2019-08-10</time>
+              <time title="创建时间：2019-08-25 18:44:45" itemprop="dateCreated datePublished" datetime="2019-08-25T18:44:45+08:00">2019-08-25</time>
             
 
             
@@ -470,7 +476,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-25 23:06:48" itemprop="dateModified" datetime="2019-08-25T23:06:48+08:00">2019-08-25</time>
+                <time title="修改时间：2019-08-31 23:01:59" itemprop="dateModified" datetime="2019-08-31T23:01:59+08:00">2019-08-31</time>
               
             
           </span>
@@ -487,8 +493,8 @@ daovoice('update');
                   <i class="fa fa-comment-o"></i>
                 </span>
             
-                <a href="/2019/08/10/ISP_白平衡AWB/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/08/10/ISP_白平衡AWB/" itemprop="commentCount"></span>
+                <a href="/2019/08/25/ISP_白平衡AWB/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/08/25/ISP_白平衡AWB/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -496,7 +502,7 @@ daovoice('update');
 
           
           
-            <span id="/2019/08/10/ISP_白平衡AWB/" class="leancloud_visitors" data-flag-title="ISP图像处理——白平衡AWB">
+            <span id="/2019/08/25/ISP_白平衡AWB/" class="leancloud_visitors" data-flag-title="ISP图像处理——白平衡AWB">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -568,7 +574,11 @@ daovoice('update');
 <p>   实际上只矫正R和B通道就可以,这样就得到了6组矫正参数(Rgain,Bgain).</p>
 <p>3,上面是做前期工作,爱思考的小明发现,只要知道当前场景是什么色温,再轿正一下就可以了.事实上也就是如此.</p>
 <p>所以,AWB算法的核心就是判断图像的色温,是在白天,晚上,室内,室外,是烈日还是夕阳,还是在阳光下的沙滩上.或者是在卧室里”暖味”的床头灯下.</p>
+<p> <img src="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_1.jpeg" alt=""></p>
 <p>之前拍了6张色温照以及6组矫正参数.可是6够么,当然不够, 插值一下可以得到无数个值,我们把点连成线, 得到了一个神奇的曲线———色温曲线.大概是下面这个样子.</p>
+<p> <img src="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_2.jpeg" alt=""><br><img src="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_SE1.jpeg" alt=""></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_SE2.jpeg" alt=""></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_SE3.jpeg" alt=""></p>
 <p>上面提到了三个值(RG,BG,色温),这应该是个三维的.没关系,我们再来一条RG跟色温的曲线,这样只要知道色温,就知道RG,知道RG,就知道BG,知道RG,BG就能轿正了,yes!</p>
 <p>至此,我们的前期工作已经全部做完了, 并得到了AWB的色温曲线,下一步只要计算得到当前色温,顺藤摸瓜就能得到当前的矫正参数(Rgain,Bgain),那白平衡的工作就作完了.(放心,当然没这么简单)</p>
 <p>2，色温计算</p>
@@ -636,7 +646,7 @@ daovoice('update');
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="http://www.aomanhao.top/2019/08/10/ISP_白平衡AWB/" title="ISP图像处理——白平衡AWB">http://www.aomanhao.top/2019/08/10/ISP_白平衡AWB/</a>
+    <a href="http://www.aomanhao.top/2019/08/25/ISP_白平衡AWB/" title="ISP图像处理——白平衡AWB">http://www.aomanhao.top/2019/08/25/ISP_白平衡AWB/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -664,8 +674,8 @@ daovoice('update');
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/23/hexo_迁移托管NetLify/" rel="next" title="个人博客迁移到托管平台Netlify">
-                <i class="fa fa-chevron-left"></i> 个人博客迁移到托管平台Netlify
+              <a href="/2019/08/10/ISP_安防透雾/" rel="next" title="安防行业监控摄像机的四大透雾技术">
+                <i class="fa fa-chevron-left"></i> 安防行业监控摄像机的四大透雾技术
               </a>
             
           </div>
@@ -674,8 +684,8 @@ daovoice('update');
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/10/ISP_安防透雾/" rel="prev" title="安防行业监控摄像机的四大透雾技术">
-                安防行业监控摄像机的四大透雾技术 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/31/RIP_XXXTENTACION/" rel="prev" title="XXXTENTACION，音乐使之重生">
+                XXXTENTACION，音乐使之重生 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
