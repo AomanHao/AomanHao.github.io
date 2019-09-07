@@ -21,8 +21,4 @@ look at me, FK me!
 
 
 
-#[我的个人博客主页，欢迎访问](http://www.aomanhao.top/)
-#[我的CSDN主页，欢迎访问](https://blog.csdn.net/Aoman_Hao)
-#[我的GitHub主页，欢迎访问](https://github.com/AomanHao)
-
 
