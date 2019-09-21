@@ -4,7 +4,7 @@ date: 2019-09-21 18:44:45
 tags: [图像处理]
 ---
 
-Raw数据相关概念
+10句话读懂图像频域滤波
 <!--more-->
 
 
@@ -90,17 +90,8 @@ P.S. 如果还想更进一步，请参考博文“如何构造频域滤波器—
 原文链接：https://blog.csdn.net/iracer/article/details/49311463
 
 
-
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1)
-声明：
-
-
-
-此资料部分转载自网络，仅供学习参考。
-
-
-#[我的个人博客主页，欢迎访问](http://www.aomanhao.top/)
-#[我的CSDN主页，欢迎访问](https://blog.csdn.net/Aoman_Hao)
-#[我的GitHub主页，欢迎访问](https://github.com/AomanHao)
+### [我的个人博客主页，欢迎访问](http://www.aomanhao.top/)
+### [我的CSDN主页，欢迎访问](https://blog.csdn.net/Aoman_Hao)
+### [我的GitHub主页，欢迎访问](https://github.com/AomanHao)
 
 
