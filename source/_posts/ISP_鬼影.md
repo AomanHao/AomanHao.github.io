@@ -44,7 +44,6 @@ iphone11系列拍照的历史顽固问题-鬼影
 
 ![](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_Q2.jpg)
 
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_Q3.jpg)
 
 专业相机出现鬼影的情况比较少，因为专业相机把图像效果放在第一位，并且使用先进高成本的镜头镀膜工艺，来减少鬼影情况。
 ![](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_Q3.jpg)
