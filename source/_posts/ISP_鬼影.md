@@ -1,35 +1,57 @@
 ---
-title: 鬼影
-date: 2019-09-21 21:44:45
+title: iphone拍照的历史顽固问题-鬼影
+date: 2019-10-07 21:44:45
 tags: [图像处理]
 ---
 
+iphone11系列拍照的历史顽固问题-鬼影
 <!--more-->
 
 
----
-
+## iphone11 系列的鬼影问题
 近期苹果 iPhone 11 系列的手机又出现了新问题，其中有不少网友表示，自己在用手机拍照后，图片中莫名出现了“鬼影”的现象，这次的“鬼影门”是指手机对着灯光拍照时，手机屏幕内会出现倒影和炫光。
 
 [知乎上的相关讨论](https://www.zhihu.com/question/348478461/answer/840490857)
 
-拍摄作者是'木西AlexanDENG'，一名专业摄影师，拍摄手机是分别是 'iPhone XS 自动测光单张拍摄' 和 'iPhone 11 Pro Max 自动测光单张拍摄'
+拍摄作者是'木西AlexanDENG'，一名专业摄影师，拍摄手机是分别是 `iPhone XS 自动测光单张拍摄` 和 `iPhone 11 Pro Max 自动测光单张拍摄`和`Mate30 Pro 自动测光单张拍摄`
 
-从他拍的图片上我们可以看到，在图片的上方有鬼影。这种现象在晚上格外的明显，给用户带来了很大的烦恼，用户体验较差。
+![iPhone XS 自动测光单张拍摄](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_1.jpg)
 
+>图1 iPhone XS 自动测光单张拍摄
+
+![iPhone 11 Pro Max 自动测光单张拍摄](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_3_i11.jpg)
+
+>图2 iPhone 11 Pro Max 自动测光单张拍摄
+
+![Mate30 Pro 自动测光单张拍摄](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_2.jpg)
+
+>图3 Mate30 Pro 自动测光单张拍摄
+
+从他拍的图片上我们可以看到，在iphone拍摄的图片的上方有鬼影。这种现象在晚上格外的明显，给用户带来了很大的烦恼，用户体验较差。
+
+---
+## 鬼影产生的原理
 [趣体验评测的科普](https://www.bilibili.com/video/av69411194?from=search&seid=12798611946182658204)
 
 
 
 不论是专业相机还是手机，能成为拍照系统的几个重要组成部分中，除了影像传感器外，就是镜头。而镜头是由多枚镜片构成的，大部分镜片由玻璃或塑料等材料制造的，如果不进行特殊处理，镜片表面就容易形成反射光。
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_Q1.jpg)
+
 
 当在夜景或者暗光环境下拍摄强光时，强光进入镜头，内部的各枚镜片的表面就会和传感器等形成反射，从而就形成了“鬼影”。
 
-专业相机出现鬼影的情况比较少，因为专业相机把图像效果放在第一位，并且使用先进高成本的镜头镀膜工艺，来减少鬼影情况。而手机终端在日常生活中使用场景复杂，会兼顾考虑到镜头成本和镜头耐磨性，新推出的iphone 11系列配备蓝宝石镜头就是提高镜头的耐磨性，但是按照摄影师'木西AlexanDENG'拍的样片来看，iphone的鬼影问题并不是新一代引入的问题。
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_Q2.jpg)
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_Q3.jpg)
+
+专业相机出现鬼影的情况比较少，因为专业相机把图像效果放在第一位，并且使用先进高成本的镜头镀膜工艺，来减少鬼影情况。
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_Q3.jpg)
+而手机终端在日常生活中使用场景复杂，会兼顾考虑到镜头成本和镜头耐磨性，新推出的iphone 11系列配备蓝宝石镜头就是提高镜头的耐磨性，但是按照摄影师'木西AlexanDENG'拍的样片来看，iphone的鬼影问题并不是新一代引入的问题。
 
 ---
-
+## 华为联合徕卡，镜头镀改善鬼影情况
 而华为在P9系列之后的旗舰手机都会给镜头镀膜来减少鬼影。
 
 [媒体报道徕卡与华为的合作](http://m.sohu.com/a/166216300_99907693)
@@ -66,23 +88,12 @@ P9/P9 Plus的镜头是真正徕卡品质的镜头，属于SUMMARIT系列（光�
 文章中提到，徕卡对于鬼影的要求更高，这促进的手机成像的改进和优化。
 
 ---
-
+## 小结
 iphone 11的这个问题属于设计缺陷。除了镀膜的问题还有可能是镜片排列及距离的问题。iPhone的祖传鬼影问题一直没有妥善解决，愧对其旗舰机的地位。在大连拍摄测评时我们发现不论是MATE30还是NEX3，鬼影都没有这么严重，甚至可以说好得多。而随着这代iPhone感光能力增强，夜景曝光向右，在黑暗背景里出现的眩光比前几代更加明显。
 
-总之，这次iphone 11系列出现的问题不是小问题，影响程度非常大，以至于在逆光，光比强的白天，夜景灯光，等场景都无法使用。更不是很多人说的所谓“正常
+总之，这次iphone 11系列出现的问题不是小问题，影响程度非常大，以至于在逆光，光比强的白天，夜景灯光，等场景都无法使用。更不是很多人说的所谓“正常，很有可能是因为镜片镀膜存在问题。
 
-最后，如果iPhone 11系列的“鬼影”情况很严重、很频繁……那么很有可能是因为镜片镀膜存在问题。
 
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_Q1.jpg)
-
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_Q2.jpg)
-
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_Q3.jpg)
-
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_1.jpg)
-
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_2.jpg)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_3_i11.jpg)
 
 ---
 
