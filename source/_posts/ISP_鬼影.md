@@ -67,11 +67,22 @@ P9/P9 Plus的镜头是真正徕卡品质的镜头，属于SUMMARIT系列（光�
 
 ---
 
-iphone 11的这个问题属于设计缺陷。除了镀膜的问题还有可能是镜片排列及距离的问题。
+iphone 11的这个问题属于设计缺陷。除了镀膜的问题还有可能是镜片排列及距离的问题。iPhone的祖传鬼影问题一直没有妥善解决，愧对其旗舰机的地位。在大连拍摄测评时我们发现不论是MATE30还是NEX3，鬼影都没有这么严重，甚至可以说好得多。而随着这代iPhone感光能力增强，夜景曝光向右，在黑暗背景里出现的眩光比前几代更加明显。
 
 总之，这次iphone 11系列出现的问题不是小问题，影响程度非常大，以至于在逆光，光比强的白天，夜景灯光，等场景都无法使用。更不是很多人说的所谓“正常
 
 最后，如果iPhone 11系列的“鬼影”情况很严重、很频繁……那么很有可能是因为镜片镀膜存在问题。
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_Q1.jpg)
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_Q2.jpg)
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_Q3.jpg)
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_1.jpg)
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_2.jpg)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_guiying_3_i11.jpg)
 
 ---
 
