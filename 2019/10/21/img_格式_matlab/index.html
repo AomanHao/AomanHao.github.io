@@ -124,7 +124,7 @@ daovoice('update');
 <meta property="og:site_name" content="AomanHao的个人博客">
 <meta property="og:description" content="图像格式及Matlab的格式转换">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-02T15:29:59.986Z">
+<meta property="og:updated_time" content="2019-11-03T08:37:01.534Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图像格式及Matlab的格式转换">
 <meta name="twitter:description" content="图像格式及Matlab的格式转换">
@@ -470,7 +470,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-11-02 23:29:59" itemprop="dateModified" datetime="2019-11-02T23:29:59+08:00">2019-11-02</time>
+                <time title="修改时间：2019-11-03 16:37:01" itemprop="dateModified" datetime="2019-11-03T16:37:01+08:00">2019-11-03</time>
               
             
           </span>
@@ -522,7 +522,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2.7k</span>
+                <span title="本文字数">2.8k</span>
               
 
               
@@ -557,12 +557,21 @@ daovoice('update');
 
       
         <p>图像格式及Matlab的格式转换<br><a id="more"></a></p>
-<h2 id="1-matlab图像保存说明"><a href="#1-matlab图像保存说明" class="headerlink" title="1. matlab图像保存说明"></a>1. matlab图像保存说明</h2><p>　　matlab中读取图片后保存的数据是uint8类型(8位无符号整数，即1个字节)，以此方式存储的图像称作8位图像，好处相比较默认matlab数据类型双精度浮点double（64位，8个字节），自然可以节省很大一部分存储空间。<br>　　详细来说imread把灰度图像存入一个8位矩阵，当为RGB图像时，就存入8位RGB矩阵中。例如，彩色图像像素大小是400<em>300( 高 </em> 宽 )，则保存的数据矩阵为400<em>300</em>3，其中每个颜色通道值是处于0~255之间。<br>但是虽然matlab中读入图像的数据类型是uint8，而在图像矩阵运算的时候，使用的数据类型却是double类型。一是为了保证精度，二是因为如果不转换，在对uint8进行加减时会产生溢出，可能提示的错误为：　<br>Function ‘*’ is not defined for values of class ‘uint8’<br>　　1个字节无符号整型最大只能存储数据为255，对图片的操作所以很容易溢出。</p>
-<h2 id="2-matlab图像类型转换"><a href="#2-matlab图像类型转换" class="headerlink" title="2. matlab图像类型转换"></a>2. matlab图像类型转换</h2><p>　　matlab读入图像的数据是uint8，而matlab中数值一般采用double型（64位）存储和运算。所以要先将图像转为double格式的才能运算，区别如下：<br>img = imread(‘./1.jpg’); % 读入是unit8型(0~255)数据I1  = im2double(img);    % 把图像转换成double精度类型（0~1）I2  = double(img)/255;   % uint8转换成double,作用同im2double<br>1<br>2<br>3<br>　　这里补充说明一下，im2double( )和double( )的区别。double( img)就是简单的数据类型转换，将无符号整型转换为双精度浮点型double，但是数据大小没有变化，原本数据是0~255之间，转化后还是0~255。例如原来是255，那么转换后为255.0，小数位0个数是由double数据长度决定，实际数据大小还是255，只不过这个255已经是double类型空间存储了，再增加不会发生溢出情况。而im2double(img)则不仅仅是将uint8转换到double类型，而且把数据大小从0~255映射到0~1区间。<br>　　另外需要补充说明下面这种情况：<br>img = imread(‘./1.jpg’);I1  = double(img);I2  = im2double(I2); % I2数据依然是0~255，并不是0~1，即I1=I2<br>1<br>2<br>3<br>　　因为I1已经是double类型，imdouble不会对double类型数据0~255映射到区间0~1，所以上面im2double操作没有任何作用，I1和I2相等。<br>　　总结如下：函数im2double将输入转换成double类型。如果输入是uint8、unit16 或者是二值的logical类型，则函数im2double 将其值归一化到0～1之间，当然就是double类型的了。如果输入本身就是double类型，输出还是double类型，并不进行映射。<br>　　如果已经是double类型的数据需要映射，则进行下面操作即可：　　<br>I2 = I1/255;<br>1</p>
-<h2 id="3-matlab图像显示imshow类型问题"><a href="#3-matlab图像显示imshow类型问题" class="headerlink" title="3. matlab图像显示imshow类型问题"></a>3. matlab图像显示imshow类型问题</h2><p>　　在matlab处理完数据好，我们希望显示或者imwrite写入图片时候，需要注意。如果直接对double之间的数据矩阵I运行imshow(I)，我们会发现有时候显示的是一个白色的图像。<br>　　这是因为imshow()显示图像时对double型是认为在0~1范围内，即大于1时都是显示为白色，而imshow显示uint8型时是0~255范围。所以对double类型的图像显示的时候，要么归一化到0~1之间，要么将double类型的0~255数据转为uint8类型。解决方法如下：<br>imshow(I/255);    % 将图像矩阵转化到0-1之间imshow(I,[]);     % 自动调整数据的范围以便于显示inshow(uint8(I)); % 转成uint8<br>1<br>2<br>3</p>
-<h2 id="4-uint和double数据转换的深入说明"><a href="#4-uint和double数据转换的深入说明" class="headerlink" title="4. uint和double数据转换的深入说明"></a>4. uint和double数据转换的深入说明</h2><p>　　double和uint8、uint16之间数据转换有下面的函数：<br>im2double(); % 将图像数组转换成double精度类型im2uint8();  % 将图像数组转换成unit8类型 im2uint16(); % 将图像数组转换成unit16类型<br>1<br>2<br>3<br>　　当然，当图像数据是double类型的0~1之间，下面两者操作是等价的：<br>I1=im2uint8(I); I2=uint8(round(I*255));<br>1<br>2<br>　　但是matlab默认double类型图片数据是位于0~1之间的，而uint8是位于0~255。所以如果矩阵数据图像是double类型（0~1之间）可直接im2uint8，这样不仅完成数据类型转换，而且将0~1之间映射为了0~255之间的数据。<br>但是如果图像矩阵数据是double类型的0~255，直接im2uint8转换的话，matlab会将大于1的数据都转换为255，0~1之间的数据才会映射到0~255之间整型的数据。例如下面程序：<br>img64 = [1,2,3,4];I8    = im2uint8(img64); % I8结果为[255255255255]<br>1<br>2</p>
-<h2 id="5-mat2gray-和im2double-区别"><a href="#5-mat2gray-和im2double-区别" class="headerlink" title="5. mat2gray()和im2double()区别"></a>5. mat2gray()和im2double()区别</h2><p>　　这两个如果都是对uint8数据操作，区别就在于前者是归一化操作，归一化后也在0~1之间，自然结果也是double类型，后者是将数据从0~255映射到0~1。例如：<br>I  = uint8([1,1,2,3]);I1 = mat2gray(I);  % 归一化，I1结果是double型[0,0,0.5,1]I2 = im2double(I); % 映射化，I2结果是double型[0.0039,0.0039,0.0078,0.0118]<br>1<br>2<br>3<br>　　可以看出，虽然两者都是一种归一化，im2double只不过最大值永远是常数255，最小值永远是0，如下：<br>I−0.0255.0−0.0</p>
-<p>　　而mat2gray最大值和最小值都是当前矩阵中最大最小的值，如下：<br>I−min(I)max(I)−min(I)<br>　　另外补充一个函数，mat2str()是将数型转换为字符串类型，一般在批量处理图片，给保存图片格式的名称中有作用，这样就不需要格式化sprintf操作了，非常方便。</p>
+<h2 id="1-matlab图像保存说明"><a href="#1-matlab图像保存说明" class="headerlink" title="1. matlab图像保存说明"></a>1. matlab图像保存说明</h2><p>　　matlab中读取图片后保存的数据是uint8类型(8位无符号整数，即1个字节)，以此方式存储的图像称作8位图像，好处相比较默认matlab数据类型双精度浮点double（64位，8个字节），自然可以节省很大一部分存储空间。<br>　　详细来说imread把灰度图像存入一个8位矩阵，当为RGB图像时，就存入8位RGB矩阵中。例如，彩色图像像素大小是400<em>300( 高 </em> 宽 )，则保存的数据矩阵为400<em>300</em>3，其中每个颜色通道值是处于0~255之间。<br>但是虽然matlab中读入图像的数据类型是uint8，而在图像矩阵运算的时候，使用的数据类型却是double类型。一是为了保证精度，二是因为如果不转换，在对uint8进行加减时会产生溢出，可能提示的错误为：　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Function ‘*’ is not defined for values of class ‘uint8’</span><br></pre></td></tr></table></figure></p>
+<p>　　1个字节无符号整型最大只能存储数据为255，对图片的操作所以很容易溢出。</p>
+<h2 id="2-matlab图像类型转换"><a href="#2-matlab图像类型转换" class="headerlink" title="2. matlab图像类型转换"></a>2. matlab图像类型转换</h2><p>　　matlab读入图像的数据是<code>uint8</code>，而matlab中数值一般采用double型（64位）存储和运算。所以要先将图像转为double格式的才能运算，区别如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&apos;./1.jpg&apos;); % 读入是unit8型(0~255)数据I1  = im2double(img);    % 把图像转换成double精度类型（0~1）I2  = double(img)/255;   % uint8转换成double,作用同im2double</span><br></pre></td></tr></table></figure></p>
+<p>　　这里补充说明一下，im2double( )和double( )的区别。double( img)就是简单的数据类型转换，将无符号整型转换为双精度浮点型double，但是数据大小没有变化，原本数据是0~255之间，转化后还是0~255。例如原来是255，那么转换后为255.0，小数位0个数是由double数据长度决定，实际数据大小还是255，只不过这个255已经是double类型空间存储了，再增加不会发生溢出情况。而im2double(img)则不仅仅是将uint8转换到double类型，而且把数据大小从0~255映射到0~1区间。<br>　　另外需要补充说明下面这种情况：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&apos;./1.jpg&apos;);I1  = double(img);I2  = im2double(I2); % I2数据依然是0~255，并不是0~1，即I1=I2</span><br></pre></td></tr></table></figure></p>
+<p>　　因为I1已经是double类型，imdouble不会对double类型数据0~255映射到区间0~1，所以上面im2double操作没有任何作用，I1和I2相等。<br>　　总结如下：函数im2double将输入转换成double类型。如果输入是uint8、unit16 或者是二值的logical类型，则函数im2double 将其值归一化到0～1之间，当然就是double类型的了。如果输入本身就是double类型，输出还是double类型，并不进行映射。<br>　　如果已经是double类型的数据需要映射，则进行下面操作即可：　　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I2 = I1/255;</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-matlab图像显示imshow类型问题"><a href="#3-matlab图像显示imshow类型问题" class="headerlink" title="3. matlab图像显示imshow类型问题"></a>3. matlab图像显示imshow类型问题</h2><p>　　在matlab处理完数据好，我们希望显示或者imwrite写入图片时候，需要注意。如果直接对double之间的数据矩阵I运行imshow(I)，我们会发现有时候显示的是一个白色的图像。<br>　　这是因为imshow()显示图像时对double型是认为在0~1范围内，即大于1时都是显示为白色，而imshow显示uint8型时是0~255范围。所以对double类型的图像显示的时候，要么归一化到0~1之间，要么将double类型的0~255数据转为uint8类型。解决方法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">imshow(I/255);    % 将图像矩阵转化到0-1之间imshow(I,[]);     % 自动调整数据的范围以便于显示inshow(uint8(I)); % 转成uint8</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-uint和double数据转换的深入说明"><a href="#4-uint和double数据转换的深入说明" class="headerlink" title="4. uint和double数据转换的深入说明"></a>4. uint和double数据转换的深入说明</h2><p>　　double和uint8、uint16之间数据转换有下面的函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">im2double(); % 将图像数组转换成double精度类型</span><br><span class="line">im2uint8();  % 将图像数组转换成unit8类型 </span><br><span class="line">im2uint16(); % 将图像数组转换成unit16类型</span><br></pre></td></tr></table></figure></p>
+<p>　　当然，当图像数据是double类型的0~1之间，下面两者操作是等价的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">I1=im2uint8(I);</span><br><span class="line">I2=uint8(round(I*255));</span><br></pre></td></tr></table></figure></p>
+<p>　　但是matlab默认double类型图片数据是位于0~1之间的，而uint8是位于0~255。所以如果矩阵数据图像是double类型（0~1之间）可直接im2uint8，这样不仅完成数据类型转换，而且将0~1之间映射为了0~255之间的数据。<br>但是如果图像矩阵数据是double类型的0~255，直接im2uint8转换的话，matlab会将大于1的数据都转换为255，0~1之间的数据才会映射到0~255之间整型的数据。例如下面程序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img64 = [1,2,3,4];I8    = im2uint8(img64); % I8结果为[255255255255]</span><br></pre></td></tr></table></figure></p>
+<h2 id="5-mat2gray-和im2double-区别"><a href="#5-mat2gray-和im2double-区别" class="headerlink" title="5. mat2gray()和im2double()区别"></a>5. mat2gray()和im2double()区别</h2><p>　　这两个如果都是对uint8数据操作，区别就在于前者是归一化操作，归一化后也在0~1之间，自然结果也是double类型，后者是将数据从0~255映射到0~1。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">I  = uint8([1,1,2,3]);</span><br><span class="line">I1 = mat2gray(I);  % 归一化，I1结果是double型[0,0,0.5,1]</span><br><span class="line">I2 = im2double(I); % 映射化，I2结果是double型[0.0039,0.0039,0.0078,0.0118]</span><br></pre></td></tr></table></figure>
+<p>　　可以看出，虽然两者都是一种归一化，im2double只不过最大值永远是常数255，最小值永远是0，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I−0.0255.0−0.0</span><br></pre></td></tr></table></figure></p>
+<p>　　而mat2gray最大值和最小值都是当前矩阵中最大最小的值，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I−min(I)max(I)−min(I)</span><br></pre></td></tr></table></figure></p>
+<p>　　另外补充一个函数，mat2str()是将数型转换为字符串类型，一般在批量处理图片，给保存图片格式的名称中有作用，这样就不需要格式化sprintf操作了，非常方便。</p>
+<p>资源来源：<a href="https://www.cnblogs.com/psztswcbyy/p/7489516.html" target="_blank" rel="noopener">https://www.cnblogs.com/psztswcbyy/p/7489516.html</a></p>
 <hr>
 <h3 id="我的个人博客主页，欢迎访问"><a href="#我的个人博客主页，欢迎访问" class="headerlink" title="我的个人博客主页，欢迎访问"></a><a href="http://www.aomanhao.top/">我的个人博客主页，欢迎访问</a></h3><h3 id="我的CSDN主页，欢迎访问"><a href="#我的CSDN主页，欢迎访问" class="headerlink" title="我的CSDN主页，欢迎访问"></a><a href="https://blog.csdn.net/Aoman_Hao" target="_blank" rel="noopener">我的CSDN主页，欢迎访问</a></h3><h3 id="我的GitHub主页，欢迎访问"><a href="#我的GitHub主页，欢迎访问" class="headerlink" title="我的GitHub主页，欢迎访问"></a><a href="https://github.com/AomanHao" target="_blank" rel="noopener">我的GitHub主页，欢迎访问</a></h3>
       
@@ -623,8 +632,8 @@ daovoice('update');
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/18/图像处理_IRImageSeg/" rel="next" title="红外图分特点析及红外图像分割">
-                <i class="fa fa-chevron-left"></i> 红外图分特点析及红外图像分割
+              <a href="/2019/10/21/SouceInsight4/" rel="next" title="Source Insight 4.0 破解和使用">
+                <i class="fa fa-chevron-left"></i> Source Insight 4.0 破解和使用
               </a>
             
           </div>
@@ -632,10 +641,6 @@ daovoice('update');
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/10/21/SouceInsight4/" rel="prev" title="Source Insight 4.0 破解和使用">
-                Source Insight 4.0 破解和使用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -869,6 +874,7 @@ daovoice('update');
           
           
 
+
         </div>
       </div>
 
@@ -907,12 +913,279 @@ daovoice('update');
           <h3 class="widget-title"></h3>
           <div id="myCanvasContainer" class="widget tagcloud">
               <canvas width="200" height="200" id="resCanvas" style="width=100%">
-                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐/">音乐</a><span class="tag-list-count">1</span></li></ul>
+                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">33</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐/">音乐</a><span class="tag-list-count">1</span></li></ul>
               </canvas>
           </div>
         </div>
       
+      
+      
+          <!-- canvas粒子时钟 -->
+          <div style="">
+  <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
 
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+      
     </div>
   </aside>
 
@@ -937,7 +1210,7 @@ daovoice('update');
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">340k</span>
+    <span title="站点总字数">339k</span>
   
 
   

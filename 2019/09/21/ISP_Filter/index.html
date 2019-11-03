@@ -124,23 +124,24 @@ daovoice('update');
 <meta property="og:site_name" content="AomanHao的个人博客">
 <meta property="og:description" content="10句话读懂图像频域滤波">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1">
-<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1.2">
-<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1.4">
-<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_2">
-<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_3">
-<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_4">
-<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_5">
-<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_6">
-<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_7">
-<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_8">
-<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_9">
-<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_11">
-<meta property="og:updated_time" content="2019-09-21T14:14:28.605Z">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1.2.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1.4.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_2.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_3.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_4.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_5.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_6.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_7.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_8.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_9.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_10.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_11.png">
+<meta property="og:updated_time" content="2019-11-03T08:47:14.398Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="10句话读懂图像频域滤波（转载）">
 <meta name="twitter:description" content="10句话读懂图像频域滤波">
-<meta name="twitter:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1">
+<meta name="twitter:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1.png">
 
 
 
@@ -466,12 +467,24 @@ daovoice('update');
                 
               
 
-              <time title="创建时间：2019-09-21 18:44:45 / 修改时间：22:14:28" itemprop="dateCreated datePublished" datetime="2019-09-21T18:44:45+08:00">2019-09-21</time>
+              <time title="创建时间：2019-09-21 18:44:45" itemprop="dateCreated datePublished" datetime="2019-09-21T18:44:45+08:00">2019-09-21</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-03 16:47:14" itemprop="dateModified" datetime="2019-11-03T16:47:14+08:00">2019-11-03</time>
               
             
           </span>
@@ -523,7 +536,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.3k</span>
+                <span title="本文字数">1.2k</span>
               
 
               
@@ -560,29 +573,29 @@ daovoice('update');
         <p>10句话读懂图像频域滤波<br><a id="more"></a></p>
 <p>今天的图像处理依靠各类方便易用的工具箱与函数库似乎已然成为上手就能用的应用科学。但没有那种算法是普适的，知其所以然才能真正理解原理，深刻的理解才能针对具体应用行成独到见解。图像处理是信号与信息处理学科的分支，图像滤波的理论当然得从信号与系统说起。尽管很多文献都有详细的论述，但如果你对LSI系统、空间卷积、二维傅里叶变换、空域与频域、滤波与变换的理论概念虽耳熟能详但仍一知半解，本文将尽力用简单的文字将这些关系屡屡清楚，总结并告诉我们一些不可不知的图像频域滤波处理基本理论。</p>
 <h2 id="10句话读懂图像频域滤波基本理论"><a href="#10句话读懂图像频域滤波基本理论" class="headerlink" title="10句话读懂图像频域滤波基本理论"></a>10句话读懂图像频域滤波基本理论</h2><p>数字图像信号为离散二维或三维信号。</p>
-<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1" alt=""></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1.png" alt=""></p>
 <p>二维灰度图像                                                                  三维视频图像</p>
 <p>图像处理很简单，给一幅输入图像x得到一幅输出图像y(n1,n2)，通常将这个过程视为一个二维信号处理系统T：</p>
-<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1.2" alt=""></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1.2.png" alt=""></p>
 <p>线性移不变(LSI)系统有很多优良的性质，这类系统必须同时具有线性与空间移不变性：输出对任意输入都满足均匀性与叠加性（合称线性），输出与系统的坐标原点位置无关（移不变性）</p>
-<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1.4" alt=""></p>
-<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_2" alt=""></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1.4.png" alt=""></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_2.png" alt=""></p>
 <p>单位冲激函数δ(n1,n2)通过LSI系统，输出为系统的冲激响应h(n1,n2)：</p>
-<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_3" alt=""></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_3.png" alt=""></p>
 <p>想得到输出图像其实不难：若已知LSI系统的冲激响应h(n1,n2)，则输出图像=输入图像与冲激响应的二维卷积：</p>
-<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_4" alt=""></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_4.png" alt=""></p>
 <p>傅里叶很牛，可将图像信号从空域x(n1,n2)变到到频域X(ω1,ω2)，也可以将图像信号从频域变回空域，(ω1,ω2)分别表示频域中的垂直与水平频率</p>
-<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_5" alt=""><br><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_6" alt=""></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_5.png" alt=""><br><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_6.png" alt=""></p>
 <p> LSI系统冲激响应h(n1,n2)的傅里叶变换就是该系统的频率响应H(ω1,ω2)，它给出了系统在频点(ω1,ω2)处的响应特性：</p>
-<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_7" alt=""></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_7.png" alt=""></p>
 <p>有了卷积定理，一切变得简单：LSI系统在空域的二维卷积运算，等于该系统在频域的乘积运算：</p>
-<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_8" alt=""></p>
-<h3 id="结论-频域滤波就是设计合适的LSI系统频谱响应H-ω1-ω2-，即可实现对输入图像中某些频率的放大、衰减或不通过（拒绝）："><a href="#结论-频域滤波就是设计合适的LSI系统频谱响应H-ω1-ω2-，即可实现对输入图像中某些频率的放大、衰减或不通过（拒绝）：" class="headerlink" title="结论:频域滤波就是设计合适的LSI系统频谱响应H(ω1,ω2)，即可实现对输入图像中某些频率的放大、衰减或不通过（拒绝）："></a>结论:频域滤波就是设计合适的LSI系统频谱响应H(ω1,ω2)，即可实现对输入图像中某些频率的放大、衰减或不通过（拒绝）：</h3><p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_9" alt=""></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_8.png" alt=""></p>
+<h3 id="结论-频域滤波就是设计合适的LSI系统频谱响应H-ω1-ω2-，即可实现对输入图像中某些频率的放大、衰减或不通过（拒绝）："><a href="#结论-频域滤波就是设计合适的LSI系统频谱响应H-ω1-ω2-，即可实现对输入图像中某些频率的放大、衰减或不通过（拒绝）：" class="headerlink" title="结论:频域滤波就是设计合适的LSI系统频谱响应H(ω1,ω2)，即可实现对输入图像中某些频率的放大、衰减或不通过（拒绝）："></a>结论:频域滤波就是设计合适的LSI系统频谱响应H(ω1,ω2)，即可实现对输入图像中某些频率的放大、衰减或不通过（拒绝）：</h3><p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_9.png" alt=""></p>
 <p>那么问题来了，到底怎么分析呢(｡･∀･)ﾉﾞ~图像滤波中所用的滤波核或模板就是系统的冲激响应h，每个滤波核都已其特定的频率响应函数H，例如：</p>
 <p>低通滤波器：频率响应曲线中间凸、四周低表示低频部分系数高：低频分量通过，高频被抑制</p>
-<pre><code>   ![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_10)        
-</code></pre><p>高通滤波器：频率响应曲线四周高、中间凹表示高频部分系数高：高频分量通过，低频被抑制</p>
-<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_11" alt=""></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_10.png" alt="">        </p>
+<p>高通滤波器：频率响应曲线四周高、中间凹表示高频部分系数高：高频分量通过，低频被抑制</p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_filter_11.png" alt=""></p>
 <p>P.S. 如果还想更进一步，请参考博文“如何构造频域滤波器——图像频域滤波的信号与系统基本理论”。</p>
 <p>版权声明：本文为CSDN博主「iracer」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/iracer/article/details/49311463" target="_blank" rel="noopener">https://blog.csdn.net/iracer/article/details/49311463</a></p>
 <h3 id="我的个人博客主页，欢迎访问"><a href="#我的个人博客主页，欢迎访问" class="headerlink" title="我的个人博客主页，欢迎访问"></a><a href="http://www.aomanhao.top/">我的个人博客主页，欢迎访问</a></h3><h3 id="我的CSDN主页，欢迎访问"><a href="#我的CSDN主页，欢迎访问" class="headerlink" title="我的CSDN主页，欢迎访问"></a><a href="https://blog.csdn.net/Aoman_Hao" target="_blank" rel="noopener">我的CSDN主页，欢迎访问</a></h3><h3 id="我的GitHub主页，欢迎访问"><a href="#我的GitHub主页，欢迎访问" class="headerlink" title="我的GitHub主页，欢迎访问"></a><a href="https://github.com/AomanHao" target="_blank" rel="noopener">我的GitHub主页，欢迎访问</a></h3>
@@ -654,8 +667,8 @@ daovoice('update');
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/21/图像处理_增强_CLAHE/" rel="prev" title="图像增强CLAHE灰度均衡化">
-                图像增强CLAHE灰度均衡化 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/21/图像处理评价指标_模糊度/" rel="prev" title="图像处理评价指标之模糊度（更新中）">
+                图像处理评价指标之模糊度（更新中） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -890,6 +903,7 @@ daovoice('update');
           
           
 
+
         </div>
       </div>
 
@@ -928,12 +942,279 @@ daovoice('update');
           <h3 class="widget-title"></h3>
           <div id="myCanvasContainer" class="widget tagcloud">
               <canvas width="200" height="200" id="resCanvas" style="width=100%">
-                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐/">音乐</a><span class="tag-list-count">1</span></li></ul>
+                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">33</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐/">音乐</a><span class="tag-list-count">1</span></li></ul>
               </canvas>
           </div>
         </div>
       
+      
+      
+          <!-- canvas粒子时钟 -->
+          <div style="">
+  <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
 
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+      
     </div>
   </aside>
 
@@ -958,7 +1239,7 @@ daovoice('update');
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">340k</span>
+    <span title="站点总字数">339k</span>
   
 
   
