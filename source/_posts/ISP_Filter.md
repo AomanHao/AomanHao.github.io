@@ -14,7 +14,7 @@ tags: [图像处理]
 数字图像信号为离散二维或三维信号。
 
 
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1.png)
 
 
 二维灰度图像                                                                  三维视频图像
@@ -22,50 +22,50 @@ tags: [图像处理]
 图像处理很简单，给一幅输入图像x得到一幅输出图像y(n1,n2)，通常将这个过程视为一个二维信号处理系统T：
 
 
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1.2)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1.2.png)
 
 线性移不变(LSI)系统有很多优良的性质，这类系统必须同时具有线性与空间移不变性：输出对任意输入都满足均匀性与叠加性（合称线性），输出与系统的坐标原点位置无关（移不变性）
 
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1.4)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_1.4.png)
 
 
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_2)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_2.png)
 
 
 单位冲激函数δ(n1,n2)通过LSI系统，输出为系统的冲激响应h(n1,n2)：
 
 
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_3)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_3.png)
 
 想得到输出图像其实不难：若已知LSI系统的冲激响应h(n1,n2)，则输出图像=输入图像与冲激响应的二维卷积：
 
 
 
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_4)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_4.png)
 
 傅里叶很牛，可将图像信号从空域x(n1,n2)变到到频域X(ω1,ω2)，也可以将图像信号从频域变回空域，(ω1,ω2)分别表示频域中的垂直与水平频率
 
 
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_5)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_6)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_5.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_6.png)
 
 
 
  LSI系统冲激响应h(n1,n2)的傅里叶变换就是该系统的频率响应H(ω1,ω2)，它给出了系统在频点(ω1,ω2)处的响应特性：
 
 
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_7)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_7.png)
 
 有了卷积定理，一切变得简单：LSI系统在空域的二维卷积运算，等于该系统在频域的乘积运算：
 
 
 
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_8)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_8.png)
 
 ### 结论:频域滤波就是设计合适的LSI系统频谱响应H(ω1,ω2)，即可实现对输入图像中某些频率的放大、衰减或不通过（拒绝）：
 
 
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_9)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_9.png)
 
 那么问题来了，到底怎么分析呢(｡･∀･)ﾉﾞ~图像滤波中所用的滤波核或模板就是系统的冲激响应h，每个滤波核都已其特定的频率响应函数H，例如：
 
@@ -74,13 +74,13 @@ tags: [图像处理]
 
 低通滤波器：频率响应曲线中间凸、四周低表示低频部分系数高：低频分量通过，高频被抑制
 
-       ![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_10)        
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_10.png)        
 
 高通滤波器：频率响应曲线四周高、中间凹表示高频部分系数高：高频分量通过，低频被抑制
 
 
 
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_11)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_filter_11.png)
 
 P.S. 如果还想更进一步，请参考博文“如何构造频域滤波器——图像频域滤波的信号与系统基本理论”。
 
