@@ -4,7 +4,7 @@ date: 2019-10-21 21:44:45
 tags: [图像处理]
 ---
 
-图像格式及Matlab的格式转换
+Source Insight 4.0 破解和使用
 <!--more-->
 转自博客：https://blog.csdn.net/xiaoxu2050/article/details/82752799
 
@@ -21,41 +21,6 @@ https://pan.baidu.com/s/1eSZtsbw            密码: 3kjj
 
 ![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_1.png)
 
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_2.png)
-
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_3.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_4.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_5.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_6.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_7.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_8.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_10.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_11.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_12.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_13.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_14.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_16.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_17.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_18.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_19.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_20.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_21.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_30.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_31.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_32.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_33.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_34.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_35.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_36.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_37.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_38.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_39.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_40.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_41.png)
-
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_42.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_43.png)
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_44 .png)
 
 
 
@@ -178,6 +143,8 @@ Source Insight4.0软件打开C程序中文注释乱码的解决方法
 高亮显示：F8。取消高亮：再按一次F8。
 效果如下：
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_2.jpg)
+
 打开Source Insight相关窗口
 （1）打开Symbol Window。
 View->Symbol Window。快捷键：Alt+F8。
@@ -186,6 +153,8 @@ View->Panels->Context Window。
 （3）打开Relation Window。
 View->Panels->Relation Window
 Source Insight窗口布局我一般设置如下：
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_3.jpg)
 
 窗口字体大小与样式设置步骤：
 Preferences->Colors&Fonts->Set Panel Fonts and Colors。
@@ -196,11 +165,16 @@ Preferences->Colors&Fonts->Set Panel Fonts and Colors。
 窗口内右击->Relation Window Options->Font。
 Source Insight的7种窗口的使用。
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_4.png)
+
 1、文档窗口
 （1）、修改窗口颜色属性：菜单栏-选项-参数-颜色标签，可以修改背景颜色、默认字体颜色、修改标记颜色等，如背景颜色改为护眼模式：R199 G237 B204。
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_5.png)
+
 （2）、Alt+Y打开文档类型选项窗口，修改字体显示大小、是否显示行号、解析语言选择、工程文件过滤、扩展tab键、是否显示符号窗口等。
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_6.png)
 扩充1：Source Insight可以定义风格，菜单栏-选项-风格，即可以打开风格窗口，可以新建一个风格或修改一个风格。风格可以继承（和C++继承差不多）。
 扩充2：如何使用风格。当选中某种语言解析文档的时候，可以定义一些固定字符以不同的风格显示出来。菜单栏-选项-参数-语言标签，选中解析文档的语言，点击关键字按钮，打开语言关键字窗口，在样式这一栏选中一种风格，然后添加关键字即可。这样文档中这个关键字就以那种风格显示了。
 扩充3：如何查看和修改符号（如函数名、变量等）的风格，右击该符号，选择风格，打开窗口就可以看到该符号的风格是什么，然后进行修改。
@@ -213,14 +187,17 @@ Source Insight的7种窗口的使用。
 （9）、Alt+左击拖动：可以进行列编辑
 （10）、自动缩进：Alt+T打开文档选项窗口，点击自动选项，选中第三个smart缩进，并把后面的两个勾都去掉，这样配置比较好。可以尝试一下勾上的效果，然后和不勾的效果对比一下。
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_7.png)
 （11）、编码格式设置，设置完毕后需要重新打开文件进行浏览。
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_8.png)
 （12）、Ctrl+F打开查找界面，配置好查找选项，然后关闭查找界面，选中一个单词，按一次Shift+F3，然后只要按F3和F4即可进行查找上一个和下一个。
 2、符号窗口
 这个窗口是显示文档的符号的，那么文档内容哪些是符号呢，这个应该是看文档窗口是设置哪种语言来解析文档的。
 （1）、Alt+F8：打开/关闭当前文档的符号窗口。
 （2）、Alt+Y打开文档选项窗口，配置所有文档是否打开符号窗口。
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_10.png)
 （3）、右击符号窗口-符号窗口选项-符号类型，可以选择显示的符号种类。
 （4）、右击符号窗口-符号窗口选项，可以修改字体、背景颜色等。
 3、项目窗口
@@ -232,6 +209,7 @@ Source Insight的7种窗口的使用。
 （2）、右击关联窗口-新建窗口，则可以打开一个新的关联窗口。
 （3）、关联窗口的功能修改，右击关联窗口-窗口属性，可以修改对应符号的关系类型，选择Reference，则该窗口显示调用该函数或变量的地方，选择calls，则该窗口显示该函数调用了哪些函数。
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_11.png)
 （4）、如何使用该窗口：选中某个函数或变量，关联窗口会自动显示对于内容，如果不想它自己变，就锁上，然后需要找的时候刷新。（锁定、刷新按钮应该可以看到吧）
 5、上下文窗口
 这个窗口一般配合关联窗口使用，单机关联窗口的某一项，可以自动在上下文窗口显示该项的上下文，双击上下文内容，则可以在文档窗口打开上下文。
@@ -247,6 +225,7 @@ Source Insight的7种窗口的使用。
 打开上下文窗口context window
 在view / panels/ context window
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_12.png)
 三、自定义命令
 菜单栏-选项-自定义命令，可以添加一条命令，定义该命令的名字、执行命令语句。
 如何运行命令：可以将命令显示在菜单栏（参考第五点菜单分配）或者给命令定义一个快捷键（参考第六点键分配）。
@@ -309,6 +288,7 @@ macro MultiLineComment()
 五、菜单分配
 菜单栏-选项-菜单分配，可以将自定义命令、宏等显示到菜单栏列表里。
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_13.png)
 六、健分配
 菜单栏-选项-键分配，定义快捷键，可以将自定义命令、宏等定义一个快捷键。
 七、配置的保存和载入
@@ -316,17 +296,28 @@ macro MultiLineComment()
 八、布局使用
 软件提供了四个布局的保存，当配置好一个界面布局后可保存到一个布局当中，这样可以方便切换软件布局。
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_14.png)
 九、文件名标签设置为最近的使用靠左显示
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_16.png)
 10、显示/去掉overview
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_17.png)
 附：代码格式化，自己调整，本来想上传配置文件的，我看还是算了，自己调整吧
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_18.png)
 
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_19.png)
+
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_20.png)
 
 面是SI4.0版本官网的使用说明介绍网页。
 https://www.sourceinsight.com/doc/v4/userguide/index.html#t=Manual%2FFrontMatter%2FFrontMatter.html
 
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_21.jpg)
 第一用户界面
 第二：功能和概念
 1项目 2项目窗口
@@ -376,6 +367,7 @@ https://www.sourceinsight.com/doc/v4/userguide/index.html#t=Manual%2FFrontMatter
 ② 在一个项目里面：
 ● 一个项目基本上由两部分组成：您的源文件和Source Insight维护的项目数据文件。
 
+
 图3.1 Source Insight项目的组件
 每个项目都包含一个指向源文件的列表文件路径。项目还包含由Source Insight维护的符号数据库。您的源文件由Source Insight和符号声明和定义进行分析，并且引用记录在符号数据库中。您只需将源文件添加到您的项目中; 您不必生成任何其他“标签”文件。Source Insight自动执行此操作。每个项目都有自己的会话工作区。工作区包含会话信息，例如打开的文件列表和窗口位置。
 
@@ -390,34 +382,57 @@ Source Insight导入源代码流程如下：
 3）不断Next，你会发现Add and Remove Project Files对话框，在左边列表中选择你的源代码所在的文件夹，然后点击Add Tree，将源代码中所有文件添加到新创建的Source Insight工程中(即添加到右边列表中)，添加完成后你可以关闭该对话框，点击Project->Rebuild Project,这时你的源代码中的所有源文件全部都同步到Source Inight工程中了，这时你就可以使用Source Insight阅读源代码了；
 点击Project->New Project，就会出现以下界面
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_30.jpg)
 再New project name里面写一个项目名字，然后点击Browse，选择到你那个项目的文件夹，此次以我的一个项目为例：
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_31.jpg)
 点击确定，然后出现一直ok
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_32.jpg)
 直到出现这个界面
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_33.jpg)
 
 然后点击Add Tree，出现这个界面
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_34.jpg)
 点击确定，然后出现这个界面
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_35.jpg)
 
 ，然后把这个界面关掉就加载了项目
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_36.jpg)
 然后点击右边操作栏中，下面被选中这个按钮
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_37.jpg)
 然后会弹出一个提示框，是否要将这些代码关联，确认，然后加载完就可以，此时出现的是所有识别的函数名的列表，然后点击第一个按钮，回到下面这个界面，显示的是文件代码
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_38.jpg)
 
 双击其中Main.cpp文件，出现这个界面
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_39.jpg)
+
 然后随便选择这个文件中一个函数，就可以在下面看到他的定义
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_40.jpg)
 
 下面查看这个函数的全部调用，右击这个函数，选择Lookup References
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_41.jpg)
+
 然后选择Search
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_42.jpg)
 
 如果有弹出下面的框，可以随便选择Replace还是Append
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_43.jpg)
+
 然后就出现下面的界面
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_44.jpg)
 
 阅读python代码
 首先从http://www.sourceinsight.com/public/languages/下载Python的配置文件Python.CLF ，然后对SourceInsight作如下配置：
@@ -436,6 +451,7 @@ https://baijiahao.baidu.com/s?id=1608656406591755295&wfr=spider&for=pc
 https://zhuanlan.zhihu.com/p/32754019
 https://www.sourceinsight.com/doc/v4/userguide/index.html#t=Manual%2FFrontMatter%2FFrontMatter.htm
 https://zhuanlan.zhihu.com/p/36543793
+
 ---
 
 ### [我的个人博客主页，欢迎访问](http://www.aomanhao.top/)
