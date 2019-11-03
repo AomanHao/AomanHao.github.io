@@ -18,6 +18,47 @@ https://pan.baidu.com/s/1eSZtsbw            密码: 3kjj
 解压密码: biu 
 下载解压后先找到安装文件进行安装，然后用解压后的“source insight 4.0.exe”替换安装路径下的source insight 4.0.exe，然后运行SI4，在弹出的对话框中选择第三项并将下载的文件 si4.pediy.lic选中并“Next”即可破解！
 
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_1.png)
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_2.png)
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_3.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_4.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_5.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_6.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_7.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_8.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_10.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_11.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_12.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_13.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_14.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_16.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_17.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_18.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_19.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_20.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_21.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_30.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_31.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_32.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_33.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_34.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_35.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_36.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_37.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_38.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_39.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_40.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_41.png)
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_42.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_43.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_44 .png)
+
+
+
 ## 安装卸载附录： 
 如果安装或者安装后提示有问题，请进行完全卸载后，再重装一遍即可。
 完全卸载方式：
