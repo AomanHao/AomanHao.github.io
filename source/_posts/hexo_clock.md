@@ -6,10 +6,9 @@ tags: [GitHub, Hexo, Next]
 
 Hexo博客添加粒子时钟特效
 <!--more-->
-canvas粒子时钟
-网上看到一款不错的canvas粒子时钟，遂整合到自己博客中来了，操作步骤：
+博客应用canvas粒子时钟的操作步骤：
 
-在/themes/next/layout/_custom/目录下，新建clock.swig文件，内容如下：
+在`\themes\next\layout\_custom\`目录下，新建`clock.swig`文件，内容如下：
 ```
 <div style="">
   <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
@@ -278,8 +277,9 @@ if(canvas.getContext){
 ```
 
 ### 引用代码
+直接引用或者通过配置文件配置，二选一
 #### 直接引用 
-在`/themes/next/layout/_macro/sidebar.swig`尾部中引入：
+在`博客目录\themes\next\layout\_macro\sidebar.swig`尾部中引入：
 
 ```
 {% include '../_custom/clock.swig' %}
@@ -287,9 +287,11 @@ if(canvas.getContext){
 示意图如下：
 ![](https://img-blog.nos-eastchina1.126.net/blog/blog_clock.png)
 
-注：代码块要放置在`sider-inner`的`div`块中，放在`div`块的位置决定时钟样式的展示位置。我选择放置在尾部，看着效果好点。
-#### 通过配置文件配置
-在`/themes/next/layout/_macro/sidebar.swig`尾部中引入：
+>注：代码块要放置在`sider-inner`的`div`块中，放在`div`块的位置决定时钟样式的展示位置。我选择放置在尾部，看着效果好点。
+
+### 通过配置文件配置
+
+1、在`博客目录\themes\next\layout\_macro\sidebar.swig`尾部中引入：
 ```
         {% if theme.diy_time.clock %}
           <!-- canvas粒子时钟 -->
@@ -299,6 +301,15 @@ if(canvas.getContext){
 示意图如下：
 ![](https://img-blog.nos-eastchina1.126.net/blog/blog_clock_if.png)
 
+>注：代码块要放置在`sider-inner`的`div`块中，放在`div`块的位置决定时钟样式的展示位置。
+
+2、在主题的配置文件中加入应用代码，配置文件位置是`博客目录\themes\next\_config.yml`：
+```
+# 侧栏粒子时钟
+diy_time:
+  runtime: true 
+  clock: true # 粒子时钟
+```
 
 ### [我的个人博客主页，欢迎访问](http://www.aomanhao.top/)
 ### [我的CSDN主页，欢迎访问](https://blog.csdn.net/Aoman_Hao)
