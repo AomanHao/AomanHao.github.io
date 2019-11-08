@@ -1,24 +1,27 @@
 ---
-title: 图像增强CLAHE灰度均衡化
+title: 图像增强—自适应直方图均衡化（AHE）-限制对比度自适应直方图均衡（CLAHE）
 date: 2019-09-21 21:44:45
 tags: [图像处理, 图像增强]
 ---
 
-图像增强CLAHE灰度均衡化
+图像增强—自适应直方图均衡化（AHE）-限制对比度自适应直方图均衡（CLAHE）
 <!--more-->
 
 
-### 自适应直方图均衡化(Adaptive histgram equalization/AHE)
+### 一、自适应直方图均衡化(Adaptive histgram equalization/AHE)
 #### 1.简述
 自适应直方图均衡化(AHE)用来提升图像的对比度的一种计算机图像处理技术。和普通的直方图均衡算法不同，AHE算法通过计算图像的局部直方图，然后重新分布亮度来来改变图像对比度。因此，该算法更适合于改进图像的局部对比度以及获得更多的图像细节。
 不过，AHE有过度放大图像中相同区域的噪音的问题，另外一种自适应的直方图均衡算法即限制对比度直方图均衡（CLAHE）算法能有限的限制这种不利的放大。
-#### 2. 算法的解释
-普通的直方图均衡算法对于整幅图像的像素使用相同的直方图变换，对于那些像素值分布比较均衡的图像来说，算法的效果很好。然后，如果图像中包括明显比图像其它区域暗或者亮的部分，在这些部分的对比度将得不到有效的增强。
+#### 2. 普通直方图均衡算法与AHE算法的解释
+普通的直方图均衡算法对于整幅图像的像素使用相同的直方图变换，对于那些像素值分布比较均衡的图像效果比较好。然后，如果图像中包括明显比图像其它区域暗或者亮的部分，在这些部分的对比度将得不到有效的增强。
+
 AHE算法通过对局部区域执行响应的直方图均衡来改变上述问题。该算法首先被开发出来适用于改进航天器驾驶舱的显示效果。其最简单的形式，就是每个像素通过其周边一个矩形范围内的像素的直方图进行均衡化。均衡的方式则完全同普通的均衡化算法：变换函数同像素周边的累积直方图函数（CDF）成比例。
+
 图像边缘的像素需要特殊处理，因为边缘像素的领域不完全在图像内部。这个通过镜像图像边缘的行像素或列像素来解决。直接复制边缘的像素进行扩充是不合适的。因为这会导致带有剑锋的领域直方图。
-#### 3. AHE的属性
-领域的大小是该方法的一个参数。领域小，对比度得到增强，领域大，则对比度降低。
-当某个区域包含的像素值非常相似，其直方图就会尖状化，此时直方图的变换函数会将一个很窄范围内的像素映射到整个像素范围。这将使得某些平坦区域中的少量噪音经AHE处理后过度放大。
+#### 3. AHE算法的缺点
+算法设定的邻域参数小，对比度得到增强，邻域参数大，则对比度会降低。
+
+当某个区域包含的像素值非常接近，其区域的直方图就会尖状化，此时直方图的变换函数会将一个很窄范围内的像素映射到整个像素范围。这将使得某些平坦区域中的少量噪音经AHE处理后过度放大。
 ### 二、限制对比度自适应直方图均衡（Contrast Limited Adaptive histgram equalization/CLAHE)
 #### 1.简述
 CLAHE同普通的自适应直方图均衡不同的地方主要是其对比度限幅。这个特性也可以应用到全局直方图均衡化中，即构成所谓的限制对比度直方图均衡（CLHE），但这在实际中很少使用。在CLAHE中，对于每个小区域都必须使用对比度限幅。CLAHE主要是用来克服AHE的过度放大噪音的问题。
@@ -48,6 +51,15 @@ CLAHE算法很多时候比直接的直方图均衡化算法的效果要好很多
 这个函数的编码是需要一定的时间和能力的，为此，我用C++编制了一个DLL，并用C#给出了调用的过程，供有需要的朋友使用。
 [DllImport("AdaptHistEqualize.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Unicode, ExactSpelling =true)]privatestatic extern voidAdaptHistEqualize(byte *Scan0, int Width, int Height, int Stride,int TileX , int TileY , double CutLimit, bool SeparateChannel);
 C++的速度是相当的惊人的，处理1024*768的图像时间在20-30ms以内。 C#示例代码下载：http://files.cnblogs.com/Imageshop/AdaptHistEqualizeTest.rar
+
+
+
+![](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-AHE4256.jpg)
+
+![](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-AHE16256.jpg)
+![](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-CLAHE.jpg)
+![](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-HE.jpg)
+![](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan.jpg)
 
 ---
 
