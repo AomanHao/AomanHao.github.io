@@ -25,50 +25,50 @@ AHE算法通过对局部区域执行响应的直方图均衡来改变上述问�
 ### 二、限制对比度自适应直方图均衡（Contrast Limited Adaptive histgram equalization/CLAHE)
 #### 1.简述
 CLAHE同普通的自适应直方图均衡不同的地方主要是其对比度限幅。这个特性也可以应用到全局直方图均衡化中，即构成所谓的限制对比度直方图均衡（CLHE），但这在实际中很少使用。在CLAHE中，对于每个小区域都必须使用对比度限幅。CLAHE主要是用来克服AHE的过度放大噪音的问题。
+
 这主要是通过限制AHE算法的对比提高程度来达到的。在指定的像素值周边的对比度放大主要是由变换函数的斜度决定的。这个斜度和领域的累积直方图的斜度成比例。CLAHE通过在计算CDF前用预先定义的阈值来裁剪直方图以达到限制放大幅度的目的。这限制了CDF的斜度因此，也限制了变换函数的斜度。直方图被裁剪的值，也就是所谓的裁剪限幅，取决于直方图的分布因此也取决于领域大小的取值。
 通常，直接忽略掉那些超出直方图裁剪限幅的部分是不好的，而应该将这些裁剪掉的部分均匀的分布到直方图的其他部分。如下图所示。
 这个重分布的过程可能会导致那些倍裁剪掉的部分由重新超过了裁剪值（如上图的绿色部分所示）。如果这不是所希望的，可以不带使用重复不的过程指导这个超出的部分已经变得微不足道了。
 #### 2. 通过插值加快计算速度
 如上所述的直接的自适应直方图，不管是否带有对比度限制，都需要对图像中的每个像素计算器领域直方图以及对应的变换函数，这使得算法及其耗时。
+
 而插值使得上述算法效率上有极大的提升，并且质量上没有下降。首先，将图像均匀分成等份矩形大小，如下图的右侧部分所示（8行8列64个块是常用的选择）。然后计算个块的直方图、CDF以及对应的变换函数。这个变换函数对于块的中心像素（下图左侧部分的黑色小方块）是完全符合原始定义的。而其他的像素通过哪些于其临近的四个块的变换函数插值获取。位于图中蓝色阴影部分的像素采用双线性查插值，而位于便于边缘的（绿色阴影）部分采用线性插值，角点处（红色阴影处）直接使用块所在的变换函数。
+
 这样的过程极大的降低了变换函数需要计算的次数，只是增加了一些双线性插值的计算量。
 
-其中AHE算法可以认为是裁剪限幅为1的CLAHE算法，CLHE是水平网格和垂直网格都为1的算法。
-均衡分布方式和ALPHA的解释可参考matlab的代码.
-CLAHE算法很多时候比直接的直方图均衡化算法的效果要好很多，比如:
-原始图像 普通的直方图均衡化 CALHE
-可以看出，在图像的上部，CALHE有效的抑制了噪音的增强。
-再举一些例子看看效果
-原始图像 普通的直方图均衡化 CALHE
-原始图像 普通的直方图均衡化 CALHE
-原始图像 普通的直方图均衡化 CALHE
-对于彩色图像，matlab的那个函数不支持，我这里采用了两种方式处理，一种是各通道分开处理，一种是每个通道都放在一起，对于彩色的图像似乎放在一起处理的效果要比分开处理好很多。
-比如界面中那个图像，如果各通道放在一起处理，效果如下：
-而通道分开处理，则各通道的颜色不很匹配：
-对于处理速度，这个函数由于只有一些分开+插值计算，速度很快。如果图像不能倍分成整块，一般需要扩充边缘，matlab的处理方式是上下左右四条边对称镜像扩充。这种方式很合理。
-实例工程是用VB6编写的，由于VB不支持指针，在速度比C#之类的语言大概慢了50%左右。但是也还是很快的了。
-2013.10.20 补充
-这个函数的编码是需要一定的时间和能力的，为此，我用C++编制了一个DLL，并用C#给出了调用的过程，供有需要的朋友使用。
-[DllImport("AdaptHistEqualize.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Unicode, ExactSpelling =true)]privatestatic extern voidAdaptHistEqualize(byte *Scan0, int Width, int Height, int Stride,int TileX , int TileY , double CutLimit, bool SeparateChannel);
-C++的速度是相当的惊人的，处理1024*768的图像时间在20-30ms以内。 C#示例代码下载：http://files.cnblogs.com/Imageshop/AdaptHistEqualizeTest.rar
 
 
+### 效果对比
 
-![](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-AHE4256.jpg)
-
-![](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-AHE16256.jpg)
-![](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-CLAHE.jpg)
-![](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-HE.jpg)
+测试图像，见下图：
 ![](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan.jpg)
+
+直方图均衡化图像(HE)，见下图：
+![HE](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-HE.jpg)
+
+自适应直方图均衡化参数1（AHE），见下图：
+![AHE](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-AHE4256.jpg)
+自适应直方图均衡化参数2（AHE），见下图：
+![AHE](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-AHE16256.jpg)
+
+
+限制对比度自适应直方图均衡（CLAHE），见下图：
+![](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-CLAHE.jpg)
+
+从效果上来看，CLAHE算法效果比较好，提亮了暗处，高亮处不至于过曝；AHE算法需要添加参数，参数不同，影响增强效果不同，并且影响很大；HE算法全局提亮，整体略亮。
+
+感兴趣的同学可以到我的github下载这些代码运行看看，链接如下：
+[Matlab代码链接](https://github.com/AomanHao/Matlab-Image-Dehazing-Enhazing)
 
 ---
 
-https://www.cnblogs.com/Imageshop/archive/2013/04/07/3006334.html
-https://blog.csdn.net/baimafujinji/article/details/50660189
+[参考文章](https://www.cnblogs.com/Imageshop/archive/2013/04/07/3006334.html)
+[参考文章](https://blog.csdn.net/baimafujinji/article/details/50660189)
+[参考文章](https://blog.csdn.net/kl1411/article/details/89100740)
+[参考文章](https://blog.csdn.net/gdymind/article/details/82357139)
 
-https://blog.csdn.net/kl1411/article/details/89100740
 
-https://blog.csdn.net/gdymind/article/details/82357139
+
 
 ---
 
