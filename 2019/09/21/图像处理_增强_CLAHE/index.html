@@ -116,18 +116,24 @@ daovoice('update');
  </script>
 
 
-  <meta name="description" content="图像增强CLAHE灰度均衡化">
+  <meta name="description" content="图像增强—自适应直方图均衡化（AHE）-限制对比度自适应直方图均衡（CLAHE）">
 <meta name="keywords" content="图像处理,图像增强">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图像增强CLAHE灰度均衡化">
+<meta property="og:title" content="图像增强—自适应直方图均衡化（AHE）-限制对比度自适应直方图均衡（CLAHE）">
 <meta property="og:url" content="http://www.aomanhao.top/2019/09/21/图像处理_增强_CLAHE/index.html">
 <meta property="og:site_name" content="AomanHao的个人博客">
-<meta property="og:description" content="图像增强CLAHE灰度均衡化">
+<meta property="og:description" content="图像增强—自适应直方图均衡化（AHE）-限制对比度自适应直方图均衡（CLAHE）">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-26T16:21:35.756Z">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan.jpg">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-HE.jpg">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-AHE4256.jpg">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-AHE16256.jpg">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-CLAHE.jpg">
+<meta property="og:updated_time" content="2019-11-08T14:07:31.182Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图像增强CLAHE灰度均衡化">
-<meta name="twitter:description" content="图像增强CLAHE灰度均衡化">
+<meta name="twitter:title" content="图像增强—自适应直方图均衡化（AHE）-限制对比度自适应直方图均衡（CLAHE）">
+<meta name="twitter:description" content="图像增强—自适应直方图均衡化（AHE）-限制对比度自适应直方图均衡（CLAHE）">
+<meta name="twitter:image" content="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan.jpg">
 
 
 
@@ -144,7 +150,7 @@ daovoice('update');
   };
 </script>
 
-  <title>图像增强CLAHE灰度均衡化 | AomanHao的个人博客</title>
+  <title>图像增强—自适应直方图均衡化（AHE）-限制对比度自适应直方图均衡（CLAHE） | AomanHao的个人博客</title>
   
 
 
@@ -427,7 +433,7 @@ daovoice('update');
 
         
         
-          <h1 class="post-title" itemprop="name headline">图像增强CLAHE灰度均衡化
+          <h1 class="post-title" itemprop="name headline">图像增强—自适应直方图均衡化（AHE）-限制对比度自适应直方图均衡（CLAHE）
 
               
             
@@ -470,7 +476,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-27 00:21:35" itemprop="dateModified" datetime="2019-10-27T00:21:35+08:00">2019-10-27</time>
+                <time title="修改时间：2019-11-08 22:07:31" itemprop="dateModified" datetime="2019-11-08T22:07:31+08:00">2019-11-08</time>
               
             
           </span>
@@ -496,7 +502,7 @@ daovoice('update');
 
           
           
-            <span id="/2019/09/21/图像处理_增强_CLAHE/" class="leancloud_visitors" data-flag-title="图像增强CLAHE灰度均衡化">
+            <span id="/2019/09/21/图像处理_增强_CLAHE/" class="leancloud_visitors" data-flag-title="图像增强—自适应直方图均衡化（AHE）-限制对比度自适应直方图均衡（CLAHE）">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -522,7 +528,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2.9k</span>
+                <span title="本文字数">2k</span>
               
 
               
@@ -536,7 +542,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">5 分钟</span>
+                <span title="阅读时长">3 分钟</span>
               
             </div>
           
@@ -556,17 +562,26 @@ daovoice('update');
       
 
       
-        <p>图像增强CLAHE灰度均衡化<br><a id="more"></a></p>
-<h3 id="自适应直方图均衡化-Adaptive-histgram-equalization-AHE"><a href="#自适应直方图均衡化-Adaptive-histgram-equalization-AHE" class="headerlink" title="自适应直方图均衡化(Adaptive histgram equalization/AHE)"></a>自适应直方图均衡化(Adaptive histgram equalization/AHE)</h3><h4 id="1-简述"><a href="#1-简述" class="headerlink" title="1.简述"></a>1.简述</h4><p>自适应直方图均衡化(AHE)用来提升图像的对比度的一种计算机图像处理技术。和普通的直方图均衡算法不同，AHE算法通过计算图像的局部直方图，然后重新分布亮度来来改变图像对比度。因此，该算法更适合于改进图像的局部对比度以及获得更多的图像细节。<br>不过，AHE有过度放大图像中相同区域的噪音的问题，另外一种自适应的直方图均衡算法即限制对比度直方图均衡（CLAHE）算法能有限的限制这种不利的放大。</p>
-<h4 id="2-算法的解释"><a href="#2-算法的解释" class="headerlink" title="2. 算法的解释"></a>2. 算法的解释</h4><p>普通的直方图均衡算法对于整幅图像的像素使用相同的直方图变换，对于那些像素值分布比较均衡的图像来说，算法的效果很好。然后，如果图像中包括明显比图像其它区域暗或者亮的部分，在这些部分的对比度将得不到有效的增强。<br>AHE算法通过对局部区域执行响应的直方图均衡来改变上述问题。该算法首先被开发出来适用于改进航天器驾驶舱的显示效果。其最简单的形式，就是每个像素通过其周边一个矩形范围内的像素的直方图进行均衡化。均衡的方式则完全同普通的均衡化算法：变换函数同像素周边的累积直方图函数（CDF）成比例。<br>图像边缘的像素需要特殊处理，因为边缘像素的领域不完全在图像内部。这个通过镜像图像边缘的行像素或列像素来解决。直接复制边缘的像素进行扩充是不合适的。因为这会导致带有剑锋的领域直方图。</p>
-<h4 id="3-AHE的属性"><a href="#3-AHE的属性" class="headerlink" title="3. AHE的属性"></a>3. AHE的属性</h4><p>领域的大小是该方法的一个参数。领域小，对比度得到增强，领域大，则对比度降低。<br>当某个区域包含的像素值非常相似，其直方图就会尖状化，此时直方图的变换函数会将一个很窄范围内的像素映射到整个像素范围。这将使得某些平坦区域中的少量噪音经AHE处理后过度放大。</p>
-<h3 id="二、限制对比度自适应直方图均衡（Contrast-Limited-Adaptive-histgram-equalization-CLAHE"><a href="#二、限制对比度自适应直方图均衡（Contrast-Limited-Adaptive-histgram-equalization-CLAHE" class="headerlink" title="二、限制对比度自适应直方图均衡（Contrast Limited Adaptive histgram equalization/CLAHE)"></a>二、限制对比度自适应直方图均衡（Contrast Limited Adaptive histgram equalization/CLAHE)</h3><h4 id="1-简述-1"><a href="#1-简述-1" class="headerlink" title="1.简述"></a>1.简述</h4><p>CLAHE同普通的自适应直方图均衡不同的地方主要是其对比度限幅。这个特性也可以应用到全局直方图均衡化中，即构成所谓的限制对比度直方图均衡（CLHE），但这在实际中很少使用。在CLAHE中，对于每个小区域都必须使用对比度限幅。CLAHE主要是用来克服AHE的过度放大噪音的问题。<br>这主要是通过限制AHE算法的对比提高程度来达到的。在指定的像素值周边的对比度放大主要是由变换函数的斜度决定的。这个斜度和领域的累积直方图的斜度成比例。CLAHE通过在计算CDF前用预先定义的阈值来裁剪直方图以达到限制放大幅度的目的。这限制了CDF的斜度因此，也限制了变换函数的斜度。直方图被裁剪的值，也就是所谓的裁剪限幅，取决于直方图的分布因此也取决于领域大小的取值。<br>通常，直接忽略掉那些超出直方图裁剪限幅的部分是不好的，而应该将这些裁剪掉的部分均匀的分布到直方图的其他部分。如下图所示。<br>这个重分布的过程可能会导致那些倍裁剪掉的部分由重新超过了裁剪值（如上图的绿色部分所示）。如果这不是所希望的，可以不带使用重复不的过程指导这个超出的部分已经变得微不足道了。</p>
-<h4 id="2-通过插值加快计算速度"><a href="#2-通过插值加快计算速度" class="headerlink" title="2. 通过插值加快计算速度"></a>2. 通过插值加快计算速度</h4><p>如上所述的直接的自适应直方图，不管是否带有对比度限制，都需要对图像中的每个像素计算器领域直方图以及对应的变换函数，这使得算法及其耗时。<br>而插值使得上述算法效率上有极大的提升，并且质量上没有下降。首先，将图像均匀分成等份矩形大小，如下图的右侧部分所示（8行8列64个块是常用的选择）。然后计算个块的直方图、CDF以及对应的变换函数。这个变换函数对于块的中心像素（下图左侧部分的黑色小方块）是完全符合原始定义的。而其他的像素通过哪些于其临近的四个块的变换函数插值获取。位于图中蓝色阴影部分的像素采用双线性查插值，而位于便于边缘的（绿色阴影）部分采用线性插值，角点处（红色阴影处）直接使用块所在的变换函数。<br>这样的过程极大的降低了变换函数需要计算的次数，只是增加了一些双线性插值的计算量。</p>
-<p>其中AHE算法可以认为是裁剪限幅为1的CLAHE算法，CLHE是水平网格和垂直网格都为1的算法。<br>均衡分布方式和ALPHA的解释可参考matlab的代码.<br>CLAHE算法很多时候比直接的直方图均衡化算法的效果要好很多，比如:<br>原始图像 普通的直方图均衡化 CALHE<br>可以看出，在图像的上部，CALHE有效的抑制了噪音的增强。<br>再举一些例子看看效果<br>原始图像 普通的直方图均衡化 CALHE<br>原始图像 普通的直方图均衡化 CALHE<br>原始图像 普通的直方图均衡化 CALHE<br>对于彩色图像，matlab的那个函数不支持，我这里采用了两种方式处理，一种是各通道分开处理，一种是每个通道都放在一起，对于彩色的图像似乎放在一起处理的效果要比分开处理好很多。<br>比如界面中那个图像，如果各通道放在一起处理，效果如下：<br>而通道分开处理，则各通道的颜色不很匹配：<br>对于处理速度，这个函数由于只有一些分开+插值计算，速度很快。如果图像不能倍分成整块，一般需要扩充边缘，matlab的处理方式是上下左右四条边对称镜像扩充。这种方式很合理。<br>实例工程是用VB6编写的，由于VB不支持指针，在速度比C#之类的语言大概慢了50%左右。但是也还是很快的了。<br>2013.10.20 补充<br>这个函数的编码是需要一定的时间和能力的，为此，我用C++编制了一个DLL，并用C#给出了调用的过程，供有需要的朋友使用。<br>[DllImport(“AdaptHistEqualize.dll”, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Unicode, ExactSpelling =true)]privatestatic extern voidAdaptHistEqualize(byte <em>Scan0, int Width, int Height, int Stride,int TileX , int TileY , double CutLimit, bool SeparateChannel);<br>C++的速度是相当的惊人的，处理1024</em>768的图像时间在20-30ms以内。 C#示例代码下载：<a href="http://files.cnblogs.com/Imageshop/AdaptHistEqualizeTest.rar" target="_blank" rel="noopener">http://files.cnblogs.com/Imageshop/AdaptHistEqualizeTest.rar</a></p>
+        <p>图像增强—自适应直方图均衡化（AHE）-限制对比度自适应直方图均衡（CLAHE）<br><a id="more"></a></p>
+<h3 id="一、自适应直方图均衡化-Adaptive-histgram-equalization-AHE"><a href="#一、自适应直方图均衡化-Adaptive-histgram-equalization-AHE" class="headerlink" title="一、自适应直方图均衡化(Adaptive histgram equalization/AHE)"></a>一、自适应直方图均衡化(Adaptive histgram equalization/AHE)</h3><h4 id="1-简述"><a href="#1-简述" class="headerlink" title="1.简述"></a>1.简述</h4><p>自适应直方图均衡化(AHE)用来提升图像的对比度的一种计算机图像处理技术。和普通的直方图均衡算法不同，AHE算法通过计算图像的局部直方图，然后重新分布亮度来来改变图像对比度。因此，该算法更适合于改进图像的局部对比度以及获得更多的图像细节。<br>不过，AHE有过度放大图像中相同区域的噪音的问题，另外一种自适应的直方图均衡算法即限制对比度直方图均衡（CLAHE）算法能有限的限制这种不利的放大。</p>
+<h4 id="2-普通直方图均衡算法与AHE算法的解释"><a href="#2-普通直方图均衡算法与AHE算法的解释" class="headerlink" title="2. 普通直方图均衡算法与AHE算法的解释"></a>2. 普通直方图均衡算法与AHE算法的解释</h4><p>普通的直方图均衡算法对于整幅图像的像素使用相同的直方图变换，对于那些像素值分布比较均衡的图像效果比较好。然后，如果图像中包括明显比图像其它区域暗或者亮的部分，在这些部分的对比度将得不到有效的增强。</p>
+<p>AHE算法通过对局部区域执行响应的直方图均衡来改变上述问题。该算法首先被开发出来适用于改进航天器驾驶舱的显示效果。其最简单的形式，就是每个像素通过其周边一个矩形范围内的像素的直方图进行均衡化。均衡的方式则完全同普通的均衡化算法：变换函数同像素周边的累积直方图函数（CDF）成比例。</p>
+<p>图像边缘的像素需要特殊处理，因为边缘像素的领域不完全在图像内部。这个通过镜像图像边缘的行像素或列像素来解决。直接复制边缘的像素进行扩充是不合适的。因为这会导致带有剑锋的领域直方图。</p>
+<h4 id="3-AHE算法的缺点"><a href="#3-AHE算法的缺点" class="headerlink" title="3. AHE算法的缺点"></a>3. AHE算法的缺点</h4><p>算法设定的邻域参数小，对比度得到增强，邻域参数大，则对比度会降低。</p>
+<p>当某个区域包含的像素值非常接近，其区域的直方图就会尖状化，此时直方图的变换函数会将一个很窄范围内的像素映射到整个像素范围。这将使得某些平坦区域中的少量噪音经AHE处理后过度放大。</p>
+<h3 id="二、限制对比度自适应直方图均衡（Contrast-Limited-Adaptive-histgram-equalization-CLAHE"><a href="#二、限制对比度自适应直方图均衡（Contrast-Limited-Adaptive-histgram-equalization-CLAHE" class="headerlink" title="二、限制对比度自适应直方图均衡（Contrast Limited Adaptive histgram equalization/CLAHE)"></a>二、限制对比度自适应直方图均衡（Contrast Limited Adaptive histgram equalization/CLAHE)</h3><h4 id="1-简述-1"><a href="#1-简述-1" class="headerlink" title="1.简述"></a>1.简述</h4><p>CLAHE同普通的自适应直方图均衡不同的地方主要是其对比度限幅。这个特性也可以应用到全局直方图均衡化中，即构成所谓的限制对比度直方图均衡（CLHE），但这在实际中很少使用。在CLAHE中，对于每个小区域都必须使用对比度限幅。CLAHE主要是用来克服AHE的过度放大噪音的问题。</p>
+<p>这主要是通过限制AHE算法的对比提高程度来达到的。在指定的像素值周边的对比度放大主要是由变换函数的斜度决定的。这个斜度和领域的累积直方图的斜度成比例。CLAHE通过在计算CDF前用预先定义的阈值来裁剪直方图以达到限制放大幅度的目的。这限制了CDF的斜度因此，也限制了变换函数的斜度。直方图被裁剪的值，也就是所谓的裁剪限幅，取决于直方图的分布因此也取决于领域大小的取值。<br>通常，直接忽略掉那些超出直方图裁剪限幅的部分是不好的，而应该将这些裁剪掉的部分均匀的分布到直方图的其他部分。如下图所示。<br>这个重分布的过程可能会导致那些倍裁剪掉的部分由重新超过了裁剪值（如上图的绿色部分所示）。如果这不是所希望的，可以不带使用重复不的过程指导这个超出的部分已经变得微不足道了。</p>
+<h4 id="2-通过插值加快计算速度"><a href="#2-通过插值加快计算速度" class="headerlink" title="2. 通过插值加快计算速度"></a>2. 通过插值加快计算速度</h4><p>如上所述的直接的自适应直方图，不管是否带有对比度限制，都需要对图像中的每个像素计算器领域直方图以及对应的变换函数，这使得算法及其耗时。</p>
+<p>而插值使得上述算法效率上有极大的提升，并且质量上没有下降。首先，将图像均匀分成等份矩形大小，如下图的右侧部分所示（8行8列64个块是常用的选择）。然后计算个块的直方图、CDF以及对应的变换函数。这个变换函数对于块的中心像素（下图左侧部分的黑色小方块）是完全符合原始定义的。而其他的像素通过哪些于其临近的四个块的变换函数插值获取。位于图中蓝色阴影部分的像素采用双线性查插值，而位于便于边缘的（绿色阴影）部分采用线性插值，角点处（红色阴影处）直接使用块所在的变换函数。</p>
+<p>这样的过程极大的降低了变换函数需要计算的次数，只是增加了一些双线性插值的计算量。</p>
+<h3 id="效果对比"><a href="#效果对比" class="headerlink" title="效果对比"></a>效果对比</h3><p>测试图像，见下图：<br><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan.jpg" alt=""></p>
+<p>直方图均衡化图像(HE)，见下图：<br><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-HE.jpg" alt="HE"></p>
+<p>自适应直方图均衡化参数1（AHE），见下图：<br><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-AHE4256.jpg" alt="AHE"><br>自适应直方图均衡化参数2（AHE），见下图：<br><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-AHE16256.jpg" alt="AHE"></p>
+<p>限制对比度自适应直方图均衡（CLAHE），见下图：<br><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-CLAHE.jpg" alt=""></p>
+<p>从效果上来看，CLAHE算法效果比较好，提亮了暗处，高亮处不至于过曝；AHE算法需要添加参数，参数不同，影响增强效果不同，并且影响很大；HE算法全局提亮，整体略亮。</p>
+<p>感兴趣的同学可以到我的github下载这些代码运行看看，链接如下：<br><a href="https://github.com/AomanHao/Matlab-Image-Dehazing-Enhazing" target="_blank" rel="noopener">Matlab代码链接</a></p>
 <hr>
-<p><a href="https://www.cnblogs.com/Imageshop/archive/2013/04/07/3006334.html" target="_blank" rel="noopener">https://www.cnblogs.com/Imageshop/archive/2013/04/07/3006334.html</a><br><a href="https://blog.csdn.net/baimafujinji/article/details/50660189" target="_blank" rel="noopener">https://blog.csdn.net/baimafujinji/article/details/50660189</a></p>
-<p><a href="https://blog.csdn.net/kl1411/article/details/89100740" target="_blank" rel="noopener">https://blog.csdn.net/kl1411/article/details/89100740</a></p>
-<p><a href="https://blog.csdn.net/gdymind/article/details/82357139" target="_blank" rel="noopener">https://blog.csdn.net/gdymind/article/details/82357139</a></p>
+<p><a href="https://www.cnblogs.com/Imageshop/archive/2013/04/07/3006334.html" target="_blank" rel="noopener">参考文章</a><br><a href="https://blog.csdn.net/baimafujinji/article/details/50660189" target="_blank" rel="noopener">参考文章</a><br><a href="https://blog.csdn.net/kl1411/article/details/89100740" target="_blank" rel="noopener">参考文章</a><br><a href="https://blog.csdn.net/gdymind/article/details/82357139" target="_blank" rel="noopener">参考文章</a></p>
 <hr>
 <h3 id="我的个人博客主页，欢迎访问"><a href="#我的个人博客主页，欢迎访问" class="headerlink" title="我的个人博客主页，欢迎访问"></a><a href="http://www.aomanhao.top/">我的个人博客主页，欢迎访问</a></h3><h3 id="我的CSDN主页，欢迎访问"><a href="#我的CSDN主页，欢迎访问" class="headerlink" title="我的CSDN主页，欢迎访问"></a><a href="https://blog.csdn.net/Aoman_Hao" target="_blank" rel="noopener">我的CSDN主页，欢迎访问</a></h3><h3 id="我的GitHub主页，欢迎访问"><a href="#我的GitHub主页，欢迎访问" class="headerlink" title="我的GitHub主页，欢迎访问"></a><a href="https://github.com/AomanHao" target="_blank" rel="noopener">我的GitHub主页，欢迎访问</a></h3>
       
@@ -601,7 +616,7 @@ daovoice('update');
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="http://www.aomanhao.top/2019/09/21/图像处理_增强_CLAHE/" title="图像增强CLAHE灰度均衡化">http://www.aomanhao.top/2019/09/21/图像处理_增强_CLAHE/</a>
+    <a href="http://www.aomanhao.top/2019/09/21/图像处理_增强_CLAHE/" title="图像增强—自适应直方图均衡化（AHE）-限制对比度自适应直方图均衡（CLAHE）">http://www.aomanhao.top/2019/09/21/图像处理_增强_CLAHE/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -629,8 +644,8 @@ daovoice('update');
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/21/ISP_Filter/" rel="next" title="10句话读懂图像频域滤波（转载）">
-                <i class="fa fa-chevron-left"></i> 10句话读懂图像频域滤波（转载）
+              <a href="/2019/09/21/图像处理评价指标_模糊度/" rel="next" title="图像处理评价指标之模糊度（更新中）">
+                <i class="fa fa-chevron-left"></i> 图像处理评价指标之模糊度（更新中）
               </a>
             
           </div>
@@ -639,8 +654,8 @@ daovoice('update');
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/21/图像处理评价指标_模糊度/" rel="prev" title="图像处理评价指标之模糊度（更新中）">
-                图像处理评价指标之模糊度（更新中） <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/27/ISP_ICR_光敏电阻/" rel="prev" title="光敏电阻遇上日夜切换">
+                光敏电阻遇上日夜切换 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -890,7 +905,7 @@ daovoice('update');
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#自适应直方图均衡化-Adaptive-histgram-equalization-AHE"><span class="nav-number">1.</span> <span class="nav-text">自适应直方图均衡化(Adaptive histgram equalization/AHE)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-简述"><span class="nav-number">1.1.</span> <span class="nav-text">1.简述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-算法的解释"><span class="nav-number">1.2.</span> <span class="nav-text">2. 算法的解释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-AHE的属性"><span class="nav-number">1.3.</span> <span class="nav-text">3. AHE的属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、限制对比度自适应直方图均衡（Contrast-Limited-Adaptive-histgram-equalization-CLAHE"><span class="nav-number">2.</span> <span class="nav-text">二、限制对比度自适应直方图均衡（Contrast Limited Adaptive histgram equalization/CLAHE)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-简述-1"><span class="nav-number">2.1.</span> <span class="nav-text">1.简述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-通过插值加快计算速度"><span class="nav-number">2.2.</span> <span class="nav-text">2. 通过插值加快计算速度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我的个人博客主页，欢迎访问"><span class="nav-number">3.</span> <span class="nav-text">我的个人博客主页，欢迎访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我的CSDN主页，欢迎访问"><span class="nav-number">4.</span> <span class="nav-text">我的CSDN主页，欢迎访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我的GitHub主页，欢迎访问"><span class="nav-number">5.</span> <span class="nav-text">我的GitHub主页，欢迎访问</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、自适应直方图均衡化-Adaptive-histgram-equalization-AHE"><span class="nav-number">1.</span> <span class="nav-text">一、自适应直方图均衡化(Adaptive histgram equalization/AHE)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-简述"><span class="nav-number">1.1.</span> <span class="nav-text">1.简述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-普通直方图均衡算法与AHE算法的解释"><span class="nav-number">1.2.</span> <span class="nav-text">2. 普通直方图均衡算法与AHE算法的解释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-AHE算法的缺点"><span class="nav-number">1.3.</span> <span class="nav-text">3. AHE算法的缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、限制对比度自适应直方图均衡（Contrast-Limited-Adaptive-histgram-equalization-CLAHE"><span class="nav-number">2.</span> <span class="nav-text">二、限制对比度自适应直方图均衡（Contrast Limited Adaptive histgram equalization/CLAHE)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-简述-1"><span class="nav-number">2.1.</span> <span class="nav-text">1.简述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-通过插值加快计算速度"><span class="nav-number">2.2.</span> <span class="nav-text">2. 通过插值加快计算速度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果对比"><span class="nav-number">3.</span> <span class="nav-text">效果对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我的个人博客主页，欢迎访问"><span class="nav-number">4.</span> <span class="nav-text">我的个人博客主页，欢迎访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我的CSDN主页，欢迎访问"><span class="nav-number">5.</span> <span class="nav-text">我的CSDN主页，欢迎访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我的GitHub主页，欢迎访问"><span class="nav-number">6.</span> <span class="nav-text">我的GitHub主页，欢迎访问</span></a></li></ol></div>
             
 
           </div>
@@ -1211,7 +1226,7 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">348k</span>
+    <span title="站点总字数">347k</span>
   
 
   
