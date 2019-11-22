@@ -193,7 +193,7 @@ daovoice('update');
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -203,7 +203,7 @@ daovoice('update');
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -413,20 +413,20 @@ daovoice('update');
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2019/05/03/Hexo_Netlify/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AomanHao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/head.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="AomanHao的个人博客">
     </span>
 
@@ -530,7 +530,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">897</span>
+                <span title="本文字数">898</span>
               
 
               
@@ -564,21 +564,21 @@ daovoice('update');
       
 
       
-        <p>个人博客迁移到托管平台Netlify上<br><a id="more"></a><br>Netlify是一家国外的静态网站的托管平台，提供免费的https，自动化部署和升级，可以监控GitHub、GitLab或者Bitbucket做到自动更新发布。</p>
+        <script src="\assets\js\APlayer.min.js"> </script><p>个人博客迁移到托管平台Netlify上<br><a id="more"></a><br>Netlify是一家国外的静态网站的托管平台，提供免费的https，自动化部署和升级，可以监控GitHub、GitLab或者Bitbucket做到自动更新发布。</p>
 <font color="DeepPink" size="6">个人体会访问速度不是很理想，不如部署在GitHub上。</font>
 
 
 <h3 id="一、使用github或者gitlab登陆netlify"><a href="#一、使用github或者gitlab登陆netlify" class="headerlink" title="一、使用github或者gitlab登陆netlify"></a>一、使用github或者gitlab登陆netlify</h3><p>打开<a href="https://app.netlify.com/" target="_blank" rel="noopener">Netlify网站</a><br>然后点击右上角Sign up注册账号，选择GitHub关联登录。</p>
-<p><img src="https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step1.png" alt=""></p>
-<h3 id="二、根据github-gitlab仓库创建网站"><a href="#二、根据github-gitlab仓库创建网站" class="headerlink" title="二、根据github/gitlab仓库创建网站"></a>二、根据github/gitlab仓库创建网站</h3><p>创建站点，点击New site from Git按钮：<br><img src="https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step0.5.jpg" alt=""></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step1.png" alt></p>
+<h3 id="二、根据github-gitlab仓库创建网站"><a href="#二、根据github-gitlab仓库创建网站" class="headerlink" title="二、根据github/gitlab仓库创建网站"></a>二、根据github/gitlab仓库创建网站</h3><p>创建站点，点击New site from Git按钮：<br><img src="https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step0.5.jpg" alt></p>
 <h3 id="三、选择代码托管空间"><a href="#三、选择代码托管空间" class="headerlink" title="三、选择代码托管空间"></a>三、选择代码托管空间</h3><p>可以选择GitHub、GitLab或者BitBucket。</p>
-<p><img src="https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step2.png" alt=""></p>
-<p><img src="https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step3.png" alt=""></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step2.png" alt></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step3.png" alt></p>
 <h3 id="四、选择要部署的项目仓库"><a href="#四、选择要部署的项目仓库" class="headerlink" title="四、选择要部署的项目仓库"></a>四、选择要部署的项目仓库</h3><p>点击你已经建好的库，选好分支（默认master即可），然后点击“Deploy site”，系统就会自动编译你的静态页面了。网站的控制台去进行设置域名绑定和https申请即可，部署成功后会自动进行cdn加速的。</p>
-<p><img src="https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step4.png" alt=""></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step4.png" alt></p>
 <p>之后我们就不需要这么麻烦了以后编辑好文章之后，只需要执行 hexo clean &amp;&amp; hexo g &amp;&amp; hexo d 即可自动化部署，然后要记得将我们的项目文件 push 到 github 的 master分支上去哦。</p>
-<h2 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h2><h3 id="网站引导"><a href="#网站引导" class="headerlink" title="网站引导"></a>网站引导</h3><p>Netlify网站 提供的网站域名是该网站的二级域名，看起来不太美观，如果你拥有自己的域名，可以通过绑定自己的域名然后跳转到Netlity的二级域名。<br><img src="https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step7.jpg" alt=""></p>
-<p><img src="https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step8.png" alt=""></p>
+<h2 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h2><h3 id="网站引导"><a href="#网站引导" class="headerlink" title="网站引导"></a>网站引导</h3><p>Netlify网站 提供的网站域名是该网站的二级域名，看起来不太美观，如果你拥有自己的域名，可以通过绑定自己的域名然后跳转到Netlity的二级域名。<br><img src="https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step7.jpg" alt></p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/hexo_netlity_step8.png" alt></p>
 <h3 id="域名控制台"><a href="#域名控制台" class="headerlink" title="域名控制台"></a>域名控制台</h3><p>添加两条解析记录，一条A记录，一条CNAME记录。A记录的记录值IP是你的<code>https://xxx.netlify.com</code>域名对应的<code>ip</code>，这个可以网上查。<br>CNAME记录的记录值是<code>https://xxx.netlify.com</code>的<code>xxx.netlify.com</code>值，添加完解析后就可将你的域名绑定到<code>Netlify</code>了。</p>
 <h2 id="使用体验"><a href="#使用体验" class="headerlink" title="使用体验"></a>使用体验</h2><p>想要部署在Netlity的初衷是部署在Coding上需要备案，且已经被公安催了要备案，需要一个不用备案的代码托管网站。在网站部署操作不是很麻烦，但是实际部署下来访问速度不是很理想，不如部署在GitHub上。纠结一下</p>
 
@@ -713,7 +713,7 @@ daovoice('update');
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="AomanHao">
             
@@ -728,7 +728,7 @@ daovoice('update');
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">122</span>
+                    <span class="site-state-item-count">125</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -815,7 +815,11 @@ daovoice('update');
                     
                       
                     
-                    <span class="site-state-item-count">36</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -925,7 +929,7 @@ daovoice('update');
           <h3 class="widget-title"></h3>
           <div id="myCanvasContainer" class="widget tagcloud">
               <canvas width="200" height="200" id="resCanvas" style="width=100%">
-                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">33</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐/">音乐</a><span class="tag-list-count">1</span></li></ul>
+                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">33</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理学/">心理学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐/">音乐</a><span class="tag-list-count">1</span></li></ul>
               </canvas>
           </div>
         </div>
@@ -933,7 +937,7 @@ daovoice('update');
       
       
           <!-- canvas粒子时钟 -->
-          <div style="">
+          <div style>
   <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
 </div>
 <script>
@@ -1222,7 +1226,7 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">347k</span>
+    <span title="站点总字数">355k</span>
   
 
   

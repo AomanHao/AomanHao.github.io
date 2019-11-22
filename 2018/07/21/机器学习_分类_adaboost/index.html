@@ -189,7 +189,7 @@ daovoice('update');
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -199,7 +199,7 @@ daovoice('update');
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -409,20 +409,20 @@ daovoice('update');
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2018/07/21/机器学习_分类_adaboost/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AomanHao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/head.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="AomanHao的个人博客">
     </span>
 
@@ -560,7 +560,7 @@ daovoice('update');
       
 
       
-        <p>机器学习_分类_adaboost</p>
+        <script src="\assets\js\APlayer.min.js"> </script><p>机器学习_分类_adaboost</p>
 <a id="more"></a>
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Boosting, 也称为增强学习或提升法，是一种重要的集成学习技术， 能够将预测精度仅比随机猜度略高的弱学习器增强为预测精度高的强学习器。</p>
 <blockquote>
@@ -571,9 +571,9 @@ daovoice('update');
 <p>误差率低的弱分类器在最终分类器中占的权重较大，否则较小。</p>
 </blockquote>
 <p>alpha值是基于每个弱分类器的错误率进行计算,计算出alpha值之后，可以对权重向量进行更新，以使得那些正确分类的样本的权重降低而错分样本的权重升高，直到错误率为0或者弱分类器的数目达到用户的指定值为止</p>
-<h3 id="算法过程"><a href="#算法过程" class="headerlink" title="算法过程"></a>算法过程</h3><p><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/adaboost_liucheng1.png" alt=""></p>
-<p><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/adaboost_liucheng2.png" alt=""></p>
-<p><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/adaboost_liucheng3.png" alt=""></p>
+<h3 id="算法过程"><a href="#算法过程" class="headerlink" title="算法过程"></a>算法过程</h3><p><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/adaboost_liucheng1.png" alt></p>
+<p><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/adaboost_liucheng2.png" alt></p>
+<p><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/adaboost_liucheng3.png" alt></p>
 <p><a href="https://blog.csdn.net/guyuealian/article/details/70995333" target="_blank" rel="noopener">参考文章地址</a></p>
 <p><a href="https://blog.csdn.net/v_july_v/article/details/40718799" target="_blank" rel="noopener">参考文章</a></p>
 <p>数据分类模型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;opencv2/core/core.hpp&quot;  </span><br><span class="line">#include &quot;opencv2/highgui/highgui.hpp&quot;  </span><br><span class="line">#include &quot;opencv2/imgproc/imgproc.hpp&quot;  </span><br><span class="line">#include &quot;opencv2/ml/ml.hpp&quot;  </span><br><span class="line">  </span><br><span class="line">#include &lt;iostream&gt;  </span><br><span class="line">using namespace cv;  </span><br><span class="line">using namespace std;  </span><br><span class="line">  </span><br><span class="line">int main( int argc, char** argv )  </span><br><span class="line">&#123;     </span><br><span class="line">    //训练样本  </span><br><span class="line">    float trainingData[42][2]=&#123; &#123;40, 55&#125;,&#123;35, 35&#125;,&#123;55, 15&#125;,&#123;45, 25&#125;,&#123;10, 10&#125;,&#123;15, 15&#125;,&#123;40, 10&#125;,  </span><br><span class="line">                            &#123;30, 15&#125;,&#123;30, 50&#125;,&#123;100, 20&#125;,&#123;45, 65&#125;,&#123;20, 35&#125;,&#123;80, 20&#125;,&#123;90, 5&#125;,  </span><br><span class="line">                            &#123;95, 35&#125;,&#123;80, 65&#125;,&#123;15, 55&#125;,&#123;25, 65&#125;,&#123;85, 35&#125;,&#123;85, 55&#125;,&#123;95, 70&#125;,  </span><br><span class="line">                            &#123;105, 50&#125;,&#123;115, 65&#125;,&#123;110, 25&#125;,&#123;120, 45&#125;,&#123;15, 45&#125;,  </span><br><span class="line">                            &#123;55, 30&#125;,&#123;60, 65&#125;,&#123;95, 60&#125;,&#123;25, 40&#125;,&#123;75, 45&#125;,&#123;105, 35&#125;,&#123;65, 10&#125;,  </span><br><span class="line">                            &#123;50, 50&#125;,&#123;40, 35&#125;,&#123;70, 55&#125;,&#123;80, 30&#125;,&#123;95, 45&#125;,&#123;60, 20&#125;,&#123;70, 30&#125;,  </span><br><span class="line">                            &#123;65, 45&#125;,&#123;85, 40&#125;   &#125;;  </span><br><span class="line">    Mat trainingDataMat(42, 2, CV_32FC1, trainingData);   </span><br><span class="line">    //训练样本的响应值  </span><br><span class="line">    float responses[42] = &#123;&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,  </span><br><span class="line">                            &apos;R&apos;,&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,&apos;R&apos;,  </span><br><span class="line">                        &apos;B&apos;,&apos;B&apos;,&apos;B&apos;,&apos;B&apos;,&apos;B&apos;,&apos;B&apos;,&apos;B&apos;,&apos;B&apos;,&apos;B&apos;,&apos;B&apos;,&apos;B&apos;,&apos;B&apos;,&apos;B&apos;,&apos;B&apos;,&apos;B&apos;,&apos;B&apos; &#125;;  </span><br><span class="line">    Mat responsesMat(42, 1, CV_32FC1, responses);  </span><br><span class="line">  </span><br><span class="line">    float priors[2] = &#123;1, 1&#125;;    //先验概率  </span><br><span class="line">  </span><br><span class="line">    CvBoostParams params( CvBoost::REAL, // boost_type    </span><br><span class="line">                          10, // weak_count    </span><br><span class="line">                          0.95, // weight_trim_rate    </span><br><span class="line">                          15, // max_depth    </span><br><span class="line">                          false, // use_surrogates    </span><br><span class="line">                          priors // priors   </span><br><span class="line">                          );    </span><br><span class="line">  </span><br><span class="line">    CvBoost boost;  </span><br><span class="line">    boost.train (   trainingDataMat,   </span><br><span class="line">                    CV_ROW_SAMPLE,   </span><br><span class="line">                    responsesMat,  </span><br><span class="line">                    Mat(),    </span><br><span class="line">                    Mat(),  </span><br><span class="line">                    Mat(),  </span><br><span class="line">                    Mat(),    </span><br><span class="line">                    params  </span><br><span class="line">                    );    </span><br><span class="line">    //预测样本  </span><br><span class="line">    float myData[2] = &#123;55, 25&#125;;  </span><br><span class="line">    Mat myDataMat(2, 1, CV_32FC1, myData);  </span><br><span class="line">    double r = boost.predict( myDataMat );  </span><br><span class="line">  </span><br><span class="line">    cout&lt;&lt;endl&lt;&lt;&quot;result:  &quot;&lt;&lt;(char)r&lt;&lt;endl;  </span><br><span class="line">  </span><br><span class="line">    return 0;  </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
@@ -712,7 +712,7 @@ daovoice('update');
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="AomanHao">
             
@@ -727,7 +727,7 @@ daovoice('update');
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">122</span>
+                    <span class="site-state-item-count">125</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -814,7 +814,11 @@ daovoice('update');
                     
                       
                     
-                    <span class="site-state-item-count">36</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -924,7 +928,7 @@ daovoice('update');
           <h3 class="widget-title"></h3>
           <div id="myCanvasContainer" class="widget tagcloud">
               <canvas width="200" height="200" id="resCanvas" style="width=100%">
-                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">33</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐/">音乐</a><span class="tag-list-count">1</span></li></ul>
+                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">33</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理学/">心理学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐/">音乐</a><span class="tag-list-count">1</span></li></ul>
               </canvas>
           </div>
         </div>
@@ -932,7 +936,7 @@ daovoice('update');
       
       
           <!-- canvas粒子时钟 -->
-          <div style="">
+          <div style>
   <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
 </div>
 <script>
@@ -1221,7 +1225,7 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">347k</span>
+    <span title="站点总字数">355k</span>
   
 
   

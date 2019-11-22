@@ -193,7 +193,7 @@ daovoice('update');
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -203,7 +203,7 @@ daovoice('update');
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -413,20 +413,20 @@ daovoice('update');
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2018/07/16/图像处理_图像增强/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AomanHao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/head.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="AomanHao的个人博客">
     </span>
 
@@ -564,7 +564,7 @@ daovoice('update');
       
 
       
-        <p>图像处理_图像增强</p>
+        <script src="\assets\js\APlayer.min.js"> </script><p>图像处理_图像增强</p>
 <a id="more"></a>
 <h2 id="图像增强前期知识"><a href="#图像增强前期知识" class="headerlink" title="图像增强前期知识"></a>图像增强前期知识</h2><p>图像增强是图像模式识别中非常重要的图像预处理过程。<br>图像增强的目的是通过对图像中的信息进行处理，使得有利于模式识别的信息得到增强，不利于模式识别的信息被抑制，扩大图像中不同物体特征之间的差别，为图像的信息提取及其识别奠定良好的基础。图像增强按实现方法不同可分为点增强、空域增强和频域增强。</p>
 <p>1、点增强<br>点增强主要指图像灰度变换和几何变换。图像的灰度变换也称为点运算、对比度增强或对比度拉伸，它是图像数字化软件和图像显示软件的重要组成部分。灰度变换是一种既简单又重要的技术，它能让用户改变图像数据占据的灰度范围。一幅输入图像经过灰度变换后将产生一幅新的输出图像，由输入像素点的灰度值决定相应的输出像素点的灰度值。灰度变换不会改变图像内的空间关系。图像的几何变换是图像处理中的另一种基本变换。它通常包括图像的平移、图像的镜像变换、图像的缩放和图像的旋转。通过图像的几何变换可以实现图像的最基本的坐标变换及缩放功能。</p>
@@ -737,13 +737,13 @@ daovoice('update');
 <p>先做归一化，再指数变换，最后反归一化</p>
 </blockquote>
 <script type="math/tex; mode=display">S=c*R^r</script><p>通过合理的选择c和r可以压缩灰度范围，算法以c=1.0/255.0, r=2实现</p>
-<p><img src="https://img-blog.csdn.net/20161229163907449?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRWJvd1Rhbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="https://img-blog.csdn.net/20161229163907449?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRWJvd1Rhbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
 <p>Opencv代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">void ExpEnhance(IplImage* img, IplImage* dst)</span><br><span class="line">&#123;</span><br><span class="line">	// 由于oldPixel:[1,256],则可以先保存一个查找表</span><br><span class="line">	uchar lut[256] =&#123;0&#125;;</span><br><span class="line"> </span><br><span class="line">	double temp = 1.0/255.0;</span><br><span class="line"> </span><br><span class="line">	for ( int i =0; i&lt;255; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		lut[i] = (uchar)(temp*i*i+0.5);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	for( int row =0; row &lt;img-&gt;height; row++)</span><br><span class="line">	&#123;</span><br><span class="line">		uchar *data = (uchar*)img-&gt;imageData+ row* img-&gt;widthStep;</span><br><span class="line">		uchar *dstData = (uchar*)dst-&gt;imageData+ row* dst-&gt;widthStep;</span><br><span class="line"> </span><br><span class="line">		for ( int col = 0; col&lt;img-&gt;width; col++)</span><br><span class="line">		&#123;</span><br><span class="line">			for( int k=0; k&lt;img-&gt;nChannels; k++)</span><br><span class="line">			&#123;</span><br><span class="line">				uchar t1 = data[col*img-&gt;nChannels+k];				</span><br><span class="line">				dstData[col*img-&gt;nChannels+k] = lut[t1];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="对数变换"><a href="#对数变换" class="headerlink" title="对数变换"></a>对数变换</h3><blockquote>
 <p>低灰度值部分扩展，高灰度值部分压缩,来强调图像低灰度部分</p>
 </blockquote>
 <script type="math/tex; mode=display">s=c*log_{v+1}(1+v*r)</script><p>底数为（v+1），实际输入范围为归一化的【0-1】，其输出也为【0-1】。底数越大，对低灰度部分的强调就越强，对高灰度部分的压缩也就越强</p>
-<p><img src="https://img-blog.csdn.net/20131014153326875?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdGhuaDE2OQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p><img src="https://img-blog.csdn.net/20131014153326875?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdGhuaDE2OQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt></p>
 <p>matlab代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function dst_img=myLogEnhance(src_img,v)   </span><br><span class="line">c=1.0;  </span><br><span class="line">src_img = mat2gray(src_img,[0 255]);  </span><br><span class="line">g =c*log2(1 + v*src_img)/log2(v+1);  </span><br><span class="line">%反归一化  </span><br><span class="line">max=255;  </span><br><span class="line">min=0;  </span><br><span class="line">dst_img=uint8(g*(max-min)+min);</span><br></pre></td></tr></table></figure></p>
 <h3 id="灰度拉伸"><a href="#灰度拉伸" class="headerlink" title="灰度拉伸"></a>灰度拉伸</h3><blockquote>
 <p>灰度拉升可以改善图像的动态范围</p>
@@ -778,16 +778,16 @@ daovoice('update');
 </table>
 </div>
 <h3 id="分析频谱图"><a href="#分析频谱图" class="headerlink" title="分析频谱图"></a>分析频谱图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">clc;  %清空命令行</span><br><span class="line">clear;%清空变量</span><br><span class="line"> </span><br><span class="line">I1=imread(&apos;beauty.jpg&apos;);</span><br><span class="line">subplot(1,2,1);</span><br><span class="line">imshow(I1);</span><br><span class="line">title(&apos;beauty.jpg&apos;);</span><br><span class="line"> </span><br><span class="line">I2=fft2(I1);%计算二维FFT</span><br><span class="line">spectrum =fftshift(I2);%将零点移到中心</span><br><span class="line">temp= log(1+ abs(spectrum) ); %对幅值做 对数变换 以压缩动态范围</span><br><span class="line">subplot(1,2,2);</span><br><span class="line">imshow(temp,[]);</span><br><span class="line">title(&apos;FFT&apos;);</span><br></pre></td></tr></table></figure>
-<p><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/img_fft.png" alt=""></p>
+<p><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/img_fft.png" alt></p>
 <blockquote>
 <p>低频分量:主要对整副图像的强度的综合度量.灰度变化缓慢的特性<br>高频分量:主要是对图像边缘和轮廓的度量.灰度变化快的特性</p>
 </blockquote>
 <p>幅度图，看图像的频率分布，哪里亮那里暗，低频一般在图像中央<br>如果只保留图像的中心点，则图像的细节会丢失，大致轮廓还在，不同区域好友不同的灰度<br>如果保留远离中心的点，而去掉中心的幅度，则保留着图像的细节，而不同区域的灰度一样</p>
 <h3 id="频域低通滤波"><a href="#频域低通滤波" class="headerlink" title="频域低通滤波"></a>频域低通滤波</h3><h4 id="理想低通滤波器"><a href="#理想低通滤波器" class="headerlink" title="理想低通滤波器"></a>理想低通滤波器</h4><p>理想低通滤波器并不能很好的兼顾 滤除噪声 与 保留细节 这两个方面</p>
 <p>理想低通滤波器：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">% 频域低通滤波器 imidealflpf.m</span><br><span class="line">%&#123;</span><br><span class="line">函数：    function ff=imidealflpf(I,freq)</span><br><span class="line">函数说明：构造理想的频域低通滤波器（即 滤镜）</span><br><span class="line">参数说明：I：为输入原图像</span><br><span class="line">         freq:为截止频率</span><br><span class="line">返回值： 与I等大的频域滤镜</span><br><span class="line"> %&#125;</span><br><span class="line"> </span><br><span class="line"> function ff=imidealflpf(I,freq)</span><br><span class="line"> </span><br><span class="line"> [M,N]=size(I);</span><br><span class="line"> ff=ones(M,N);</span><br><span class="line"> for i=1:M</span><br><span class="line">     for j=1:N</span><br><span class="line">         if (sqrt ((i-M/2)^2+ (j-N/2)^2 ) &gt;freq)  ff(i,j)=0; %高于截止频率 设为0</span><br><span class="line">         end</span><br><span class="line">     end</span><br><span class="line"> end</span><br></pre></td></tr></table></figure></p>
-<p>不同截止频率的滤波结果：<br><img src="https://img-blog.csdn.net/20180515114639532?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTI2Nzk3MDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
+<p>不同截止频率的滤波结果：<br><img src="https://img-blog.csdn.net/20180515114639532?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTI2Nzk3MDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
 <h4 id="高斯低通滤波器"><a href="#高斯低通滤波器" class="headerlink" title="高斯低通滤波器"></a>高斯低通滤波器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">%高斯低通滤波器滤镜 imgaussflpf.m</span><br><span class="line">%&#123;</span><br><span class="line">函数： function ff=imgaussflpf(I,sigma)</span><br><span class="line">函数说明：构造高斯低通滤镜</span><br><span class="line">参数说明：I：输入图像</span><br><span class="line">         sigma：标准差</span><br><span class="line">返回值：与原图像等大的高斯低通滤镜</span><br><span class="line"> </span><br><span class="line">%&#125;</span><br><span class="line">  </span><br><span class="line">function ff=imgaussflpf(I,sigma)</span><br><span class="line">[M,N]=size(I);</span><br><span class="line"> ff=ones(M,N);</span><br><span class="line"> for i=1:M</span><br><span class="line">     for j=1:N</span><br><span class="line">         ff(i,j)= exp( -((i-M/2)^2+(j-N/2)^2) /2/(sigma^2) ); %高斯函数</span><br><span class="line">        </span><br><span class="line">     end</span><br><span class="line"> end</span><br></pre></td></tr></table></figure>
-<p>高斯滤波结果：<br><img src="https://img-blog.csdn.net/20180515114758843?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTI2Nzk3MDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
+<p>高斯滤波结果：<br><img src="https://img-blog.csdn.net/20180515114758843?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTI2Nzk3MDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
 <blockquote>
 <p>高斯相比于低通滤波，在有效抑制噪声的同时，图像的模糊程度更低</p>
 </blockquote>
@@ -796,14 +796,14 @@ daovoice('update');
 <p>图像锐化可以通过衰减频域中的低频信号来实现</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">%高斯高通滤波器滤镜 imgaussfhpf.m</span><br><span class="line">%&#123;</span><br><span class="line">函数： function ff=imgaussfhpf(I,sigma)</span><br><span class="line">函数说明：构造高斯高通滤镜</span><br><span class="line">参数说明：I：输入图像</span><br><span class="line">         sigma：标准差</span><br><span class="line">返回值：与原图像等大的高斯高通滤镜</span><br><span class="line"> </span><br><span class="line">%&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">function ff=imgaussfhpf(I,sigma)</span><br><span class="line">[M,N]=size(I);</span><br><span class="line"> ff=ones(M,N);</span><br><span class="line"> for i=1:M</span><br><span class="line">     for j=1:N</span><br><span class="line">         ff(i,j)= 1-exp( -((i-M/2)^2+(j-N/2)^2) /2/(sigma^2) ); %  1-(gauss)</span><br><span class="line">        </span><br><span class="line">     end</span><br><span class="line"> end</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdn.net/20180515114917692?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTI2Nzk3MDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
+<p><img src="https://img-blog.csdn.net/20180515114917692?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTI2Nzk3MDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
 <blockquote>
 <p>1、高斯高通滤波器可以较好的提取边缘信息；<br>2、sigma越小，Gauss高通的截止频率越低，通过的低频成分越多，边缘提取越不精确，会包含更多的非边缘信息；（要求太低，多了浑水摸鱼者）<br>3、sigma越大，边缘提取越精确，但可能包含不完整的边缘信息。（要求太高，有了漏网之鱼）</p>
 </blockquote>
 <h3 id="拉普拉斯滤波器"><a href="#拉普拉斯滤波器" class="headerlink" title="拉普拉斯滤波器"></a>拉普拉斯滤波器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">%laplace滤波器滤镜 imlapf.m</span><br><span class="line">%&#123;</span><br><span class="line">函数： function ff=imlapf(I)</span><br><span class="line">函数说明：构造laplace滤镜</span><br><span class="line">参数说明：I：输入图像</span><br><span class="line">       </span><br><span class="line">返回值：与原图像等大的laplace滤镜</span><br><span class="line"> </span><br><span class="line">%&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">function ff=imlapf(I)</span><br><span class="line">[M,N]=size(I);</span><br><span class="line"> ff=ones(M,N);</span><br><span class="line"> for i=1:M</span><br><span class="line">     for j=1:N</span><br><span class="line">         ff(i,j)= -((i-M/2)^2+(j-N/2)^2)  % </span><br><span class="line">        </span><br><span class="line">     end</span><br><span class="line"> end</span><br></pre></td></tr></table></figure>
 <h2 id="图像处理评价指标"><a href="#图像处理评价指标" class="headerlink" title="图像处理评价指标"></a>图像处理评价指标</h2><h3 id="基于误差灵敏度评价算法："><a href="#基于误差灵敏度评价算法：" class="headerlink" title="基于误差灵敏度评价算法："></a>基于误差灵敏度评价算法：</h3><p>最简单的质量评价算法就是均方差(Mean Squared Error, MSE)和峰值信噪比(Peak Signal- Noise Ratio, PSNR)。MSE 和 PSNR 计算复杂度小，易于实现，在图像处理领域中广泛应用。但缺点是它们给出的数值与图像的感知质量之间没有必然联系。</p>
 <h4 id="峰值信噪比-PSNR"><a href="#峰值信噪比-PSNR" class="headerlink" title="峰值信噪比-PSNR"></a>峰值信噪比-PSNR</h4><p>图像压缩等领域信号重建质量的评价</p>
-<p><img src="https://img-blog.csdn.net/20171029101506855?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcGlhb3h1ZXpob25n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="https://img-blog.csdn.net/20171029101506855?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcGlhb3h1ZXpob25n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
 <p>MSE为当前图像 X 和参考图像 Y 的均方误差,H、W 分别表示图像的高和宽；n为每像素的比特数，一般取8，即像素灰阶数为256。PSNR的单位是dB，数值越大表示失真越小。</p>
 <p>matlab代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function pnsr_result = psnr(img_ref,img_in)       </span><br><span class="line">    %   img_ref is a high reference quality image   </span><br><span class="line">    %   img_in is the denoise image    </span><br><span class="line">    %   pnsr_result is the PSNR of the denoise image    </span><br><span class="line">    width = size(img_ref,2);    </span><br><span class="line">    heigh = size(img_ref,1);    </span><br><span class="line">    if( width ~= size(img_in,2) || heigh ~= size(img_in,1) )    </span><br><span class="line">        disp(&apos;Please check whether the input image and reference image have same size&apos;);    </span><br><span class="line">        return    </span><br><span class="line">    end    </span><br><span class="line">    [a,b]=size(img_ref);      </span><br><span class="line">    XX=double(img_ref) - double(img_in);      </span><br><span class="line">    mse_value = sum(sum( XX.^2 ))/(a*b);      </span><br><span class="line">    pnsr_result = 10*log10( 255*255 / mse_value );   </span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
 <h4 id="SSIM"><a href="#SSIM" class="headerlink" title="SSIM"></a>SSIM</h4><h4 id="信噪比（SNR）"><a href="#信噪比（SNR）" class="headerlink" title="信噪比（SNR）"></a>信噪比（SNR）</h4><p>信噪比就是有用信号与噪声信号的比值</p>
@@ -869,8 +869,8 @@ daovoice('update');
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/16/边缘检测/" rel="next" title="图像处理_边缘检测">
-                <i class="fa fa-chevron-left"></i> 图像处理_边缘检测
+              <a href="/2018/07/16/特征提取_局部特征/" rel="next" title="特征提取——局部特征">
+                <i class="fa fa-chevron-left"></i> 特征提取——局部特征
               </a>
             
           </div>
@@ -879,8 +879,8 @@ daovoice('update');
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/16/图像处理_图像滤波/" rel="prev" title="图像处理_图像滤波">
-                图像处理_图像滤波 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/16/边缘检测/" rel="prev" title="图像处理_边缘检测">
+                图像处理_边缘检测 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -942,7 +942,7 @@ daovoice('update');
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="AomanHao">
             
@@ -957,7 +957,7 @@ daovoice('update');
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">122</span>
+                    <span class="site-state-item-count">125</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1044,7 +1044,11 @@ daovoice('update');
                     
                       
                     
-                    <span class="site-state-item-count">36</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1154,7 +1158,7 @@ daovoice('update');
           <h3 class="widget-title"></h3>
           <div id="myCanvasContainer" class="widget tagcloud">
               <canvas width="200" height="200" id="resCanvas" style="width=100%">
-                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">33</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐/">音乐</a><span class="tag-list-count">1</span></li></ul>
+                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">33</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理学/">心理学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐/">音乐</a><span class="tag-list-count">1</span></li></ul>
               </canvas>
           </div>
         </div>
@@ -1162,7 +1166,7 @@ daovoice('update');
       
       
           <!-- canvas粒子时钟 -->
-          <div style="">
+          <div style>
   <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
 </div>
 <script>
@@ -1451,7 +1455,7 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">347k</span>
+    <span title="站点总字数">355k</span>
   
 
   

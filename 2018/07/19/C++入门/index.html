@@ -188,7 +188,7 @@ daovoice('update');
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -198,7 +198,7 @@ daovoice('update');
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -408,20 +408,20 @@ daovoice('update');
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2018/07/19/C++入门/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AomanHao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/head.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="AomanHao的个人博客">
     </span>
 
@@ -559,7 +559,7 @@ daovoice('update');
       
 
       
-        <p>C++入门</p>
+        <script src="\assets\js\APlayer.min.js"> </script><p>C++入门</p>
 <a id="more"></a>
 <h3 id="指针入门"><a href="#指针入门" class="headerlink" title="指针入门"></a>指针入门</h3><blockquote>
 <p>指针作用：  引用类型，传递地址，减少内存消耗<br>案例<br>int p &gt;定义变量p<br>int* p &gt;定义指针变量p<br>使用指针，先要定义指针变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int main() &#123;</span><br><span class="line">    int *p;     //int* p &gt;定义指针变量p</span><br><span class="line">    int a=3; </span><br><span class="line">    p=&amp;a;   //&amp;a是把a的地址赋给指针p，&amp;：取址符a</span><br><span class="line">    printf(&quot;%d\n&quot;,*p)   //输出为3</span><br><span class="line">    return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -575,8 +575,8 @@ daovoice('update');
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">void  </span><br><span class="line">swap ( int *a, int *b )&#123;  </span><br><span class="line">    int c;  </span><br><span class="line">    c = *a;  </span><br><span class="line">    *a = *b;  </span><br><span class="line">    *b = c;  </span><br><span class="line">&#125;  </span><br><span class="line">int  </span><br><span class="line">main(int argc, char **argv)&#123;  </span><br><span class="line">    int a,b;  </span><br><span class="line">    a = 16;  </span><br><span class="line">    b = 32;  </span><br><span class="line">    swap( &amp;a, &amp;b);  </span><br><span class="line">    return ( a - b );  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>段代码编译成汇编语言之后，除了会有代码段，数据段，堆栈，那么在调用的时候，会把main函数的参数变量压入main函数的栈帧，然后接着会压入swap函数的局部变量和参数</p>
-<p><img src="http://hi.csdn.net/attachment/201002/9/4758664_12657012034TT4.jpg" alt=""></p>
-<p>我们申明 **a之后，其实双指针变量a其实已经存在,内存效果如下<br><img src="http://hi.csdn.net/attachment/201002/9/4758664_1265703222WluB.jpg" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">p中放的是中间桥梁bridge的地址&amp;bridge</span><br><span class="line">*p就是中间桥梁bridge的内容(即是目标操作数的地址&amp;income)，</span><br><span class="line">**p就是目标操作数</span><br><span class="line"></span><br><span class="line">中间的bridge是桥梁，中间件使用的，过度吧</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://hi.csdn.net/attachment/201002/9/4758664_12657012034TT4.jpg" alt></p>
+<p>我们申明 **a之后，其实双指针变量a其实已经存在,内存效果如下<br><img src="http://hi.csdn.net/attachment/201002/9/4758664_1265703222WluB.jpg" alt><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">p中放的是中间桥梁bridge的地址&amp;bridge</span><br><span class="line">*p就是中间桥梁bridge的内容(即是目标操作数的地址&amp;income)，</span><br><span class="line">**p就是目标操作数</span><br><span class="line"></span><br><span class="line">中间的bridge是桥梁，中间件使用的，过度吧</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>双指针主要用在但我们想向一个A函数传递参数的时候，但是我们希望在A内部对参数做任何修改都能保存起来，那么就是用双指针吧。</p>
 </blockquote>
@@ -637,7 +637,7 @@ daovoice('update');
 <p>good()<br>这是最通用的：如果调用以上任何一个函数返回true 的话，此函数返回 false 。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">要想重置以上成员函数所检查的状态标志，你可以使用成员函数clear()，没有参数。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### sizeof</span><br><span class="line">sizeof 求对象或者类型的大小`sizeof(array)`&lt;br&gt;</span><br><span class="line">[cankao](https://blog.csdn.net/tao20dage/article/details/52372604)</span><br></pre></td></tr></table></figure></p>
 <p>特性0：sizeof是运算符，不是函数<br>特性1：sizeof不能求得void类型的长度<br>特性2：sizeof能求得void类型的指针的长度<br>特性3：sizeof能求得静态分配内存的数组的长度!<br>特性4：sizeof不能求得动态分配的内存的大小!<br>特性5：sizeof不能对不完整的数组求长度！<br>特性6：当表达式作为sizeof的操作数时，它返回表达式的计算结果的类型大小，但是它不对表达式求值！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">### new(std::nothrow)</span><br><span class="line"> 顾名思义，即不抛出异常，当new一个对象失败时，默认设置该对象为NULL，这样可以方便的通过if(p == NULL) 来判断new操作是否成功</span><br><span class="line"> 建议在c++代码中，凡是涉及到new操作，都采用new(std::nothrow)，然后if(p==NULL)的方式进行判断</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">### vector</span><br><span class="line">[cankao](https://blog.csdn.net/duan19920101/article/details/50617190/)&lt;br&gt;</span><br><span class="line">在c++中，vector是一个十分有用的容器。</span><br><span class="line">作用：它能够像容器一样存放各种类型的对象，简单地说，vector是一个能够存放任意类型的动态数组，能够增加和压缩数据。&lt;br&gt;</span><br><span class="line">&gt;1、如果你要表示的向量长度较长（需要为向量内部保存很多数），容易导致内存泄漏，而且效率会很低；&lt;br&gt;</span><br><span class="line">2、Vector作为函数的参数或者返回值时，需要注意它的写法：</span><br><span class="line">   double Distance(vector&lt;int&gt;&amp;a, vector&lt;int&gt;&amp;b) 其中的“&amp;”绝对不能少！！！</span><br><span class="line"></span><br><span class="line">   c++基本操作</span><br></pre></td></tr></table></figure></p>
 <p>   1 、基本操作</p>
-<p>(1)头文件#include<vector>.<br>(2)创建vector对象，vector<int> vec;<br>(3)尾部插入数字：vec.push_back(a);<br>(4)使用下标访问元素，cout&lt;<vec[0]<<endl;记住下标是从0开始的。 (5)使用迭代器访问元素.="" vector<int="">::iterator it;<br>for(it=vec.begin();it!=vec.end();it++)<br>    cout&lt;&lt;*it&lt;<endl; (6)插入元素：="" vec.insert(vec.begin()+i,a);在第i+1个元素前面插入a;="" (7)删除元素：="" vec.erase(vec.begin()+2);删除第3个元素="" vec.erase(vec.begin()+i,vec.end()+j);删除区间[i,j-1];区间从0开始="" (8)向量大小:vec.size();="" (9)清空:vec.clear();="" <figure="" class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">### 二维数组</span><br></pre></td></tr></table></endl;></vec[0]<<endl;记住下标是从0开始的。></int></vector></p>
+<p>(1)头文件#include<vector>.<br>(2)创建vector对象，vector<int> vec;<br>(3)尾部插入数字：vec.push_back(a);<br>(4)使用下标访问元素，cout&lt;<vec[0]<<endl;记住下标是从0开始的。 (5)使用迭代器访问元素. vector<int>::iterator it;<br>for(it=vec.begin();it!=vec.end();it++)<br>    cout&lt;&lt;*it&lt;<endl; (6)插入元素： vec.insert(vec.begin()+i,a);在第i+1个元素前面插入a; (7)删除元素： vec.erase(vec.begin()+2);删除第3个元素 vec.erase(vec.begin()+i,vec.end()+j);删除区间[i,j-1];区间从0开始 (8)向量大小:vec.size(); (9)清空:vec.clear(); <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">### 二维数组</span><br></pre></td></tr></table></endl;></vec[0]<<endl;记住下标是从0开始的。></int></vector></p>
 <h1 id="include-“stdafx-h”"><a href="#include-“stdafx-h”" class="headerlink" title="include “stdafx.h”"></a>include “stdafx.h”</h1><h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <cv.h></cv.h></h1><h1 id="include-1"><a href="#include-1" class="headerlink" title="include "></a>include <vector></vector></h1><h1 id="include-2"><a href="#include-2" class="headerlink" title="include "></a>include <iostream></iostream></h1><p>using namespace std;<br>int main()<br>{<br>    using namespace std;<br>    int out[3][2] = { 1, 2,<br>             3, 4,<br>            5, 6 };<br>    vector <int*> v1;</int*></p>
 <pre><code>v1.push_back(out[0]);
 v1.push_back(out[1]);
@@ -713,8 +713,8 @@ return 0;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/19/数据结构_二叉树/" rel="next" title="数据结构_二叉树">
-                <i class="fa fa-chevron-left"></i> 数据结构_二叉树
+              <a href="/2018/07/19/大佬终极面经/" rel="next" title="大佬终极面经">
+                <i class="fa fa-chevron-left"></i> 大佬终极面经
               </a>
             
           </div>
@@ -723,8 +723,8 @@ return 0;
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/19/机器学习推荐书/" rel="prev" title="机器学习推荐书">
-                机器学习推荐书 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/20/机器学习_分类_SVM/" rel="prev" title="机器学习_分类_SVM">
+                机器学习_分类_SVM <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -786,7 +786,7 @@ return 0;
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="AomanHao">
             
@@ -801,7 +801,7 @@ return 0;
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">122</span>
+                    <span class="site-state-item-count">125</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -888,7 +888,11 @@ return 0;
                     
                       
                     
-                    <span class="site-state-item-count">36</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -998,7 +1002,7 @@ return 0;
           <h3 class="widget-title"></h3>
           <div id="myCanvasContainer" class="widget tagcloud">
               <canvas width="200" height="200" id="resCanvas" style="width=100%">
-                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">33</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐/">音乐</a><span class="tag-list-count">1</span></li></ul>
+                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">33</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理学/">心理学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐/">音乐</a><span class="tag-list-count">1</span></li></ul>
               </canvas>
           </div>
         </div>
@@ -1006,7 +1010,7 @@ return 0;
       
       
           <!-- canvas粒子时钟 -->
-          <div style="">
+          <div style>
   <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
 </div>
 <script>
@@ -1295,7 +1299,7 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">347k</span>
+    <span title="站点总字数">355k</span>
   
 
   

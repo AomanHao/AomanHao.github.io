@@ -191,7 +191,7 @@ daovoice('update');
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -201,7 +201,7 @@ daovoice('update');
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -411,20 +411,20 @@ daovoice('update');
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2019/09/21/图像处理_增强_CLAHE/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AomanHao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/head.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="AomanHao的个人博客">
     </span>
 
@@ -562,7 +562,7 @@ daovoice('update');
       
 
       
-        <p>图像增强—自适应直方图均衡化（AHE）-限制对比度自适应直方图均衡（CLAHE）<br><a id="more"></a></p>
+        <script src="\assets\js\APlayer.min.js"> </script><p>图像增强—自适应直方图均衡化（AHE）-限制对比度自适应直方图均衡（CLAHE）<br><a id="more"></a></p>
 <h3 id="一、自适应直方图均衡化-Adaptive-histgram-equalization-AHE"><a href="#一、自适应直方图均衡化-Adaptive-histgram-equalization-AHE" class="headerlink" title="一、自适应直方图均衡化(Adaptive histgram equalization/AHE)"></a>一、自适应直方图均衡化(Adaptive histgram equalization/AHE)</h3><h4 id="1-简述"><a href="#1-简述" class="headerlink" title="1.简述"></a>1.简述</h4><p>自适应直方图均衡化(AHE)用来提升图像的对比度的一种计算机图像处理技术。和普通的直方图均衡算法不同，AHE算法通过计算图像的局部直方图，然后重新分布亮度来来改变图像对比度。因此，该算法更适合于改进图像的局部对比度以及获得更多的图像细节。<br>不过，AHE有过度放大图像中相同区域的噪音的问题，另外一种自适应的直方图均衡算法即限制对比度直方图均衡（CLAHE）算法能有限的限制这种不利的放大。</p>
 <h4 id="2-普通直方图均衡算法与AHE算法的解释"><a href="#2-普通直方图均衡算法与AHE算法的解释" class="headerlink" title="2. 普通直方图均衡算法与AHE算法的解释"></a>2. 普通直方图均衡算法与AHE算法的解释</h4><p>普通的直方图均衡算法对于整幅图像的像素使用相同的直方图变换，对于那些像素值分布比较均衡的图像效果比较好。然后，如果图像中包括明显比图像其它区域暗或者亮的部分，在这些部分的对比度将得不到有效的增强。</p>
 <p>AHE算法通过对局部区域执行响应的直方图均衡来改变上述问题。该算法首先被开发出来适用于改进航天器驾驶舱的显示效果。其最简单的形式，就是每个像素通过其周边一个矩形范围内的像素的直方图进行均衡化。均衡的方式则完全同普通的均衡化算法：变换函数同像素周边的累积直方图函数（CDF）成比例。</p>
@@ -574,10 +574,10 @@ daovoice('update');
 <h4 id="2-通过插值加快计算速度"><a href="#2-通过插值加快计算速度" class="headerlink" title="2. 通过插值加快计算速度"></a>2. 通过插值加快计算速度</h4><p>如上所述的直接的自适应直方图，不管是否带有对比度限制，都需要对图像中的每个像素计算器领域直方图以及对应的变换函数，这使得算法及其耗时。</p>
 <p>而插值使得上述算法效率上有极大的提升，并且质量上没有下降。首先，将图像均匀分成等份矩形大小，如下图的右侧部分所示（8行8列64个块是常用的选择）。然后计算个块的直方图、CDF以及对应的变换函数。这个变换函数对于块的中心像素（下图左侧部分的黑色小方块）是完全符合原始定义的。而其他的像素通过哪些于其临近的四个块的变换函数插值获取。位于图中蓝色阴影部分的像素采用双线性查插值，而位于便于边缘的（绿色阴影）部分采用线性插值，角点处（红色阴影处）直接使用块所在的变换函数。</p>
 <p>这样的过程极大的降低了变换函数需要计算的次数，只是增加了一些双线性插值的计算量。</p>
-<h3 id="效果对比"><a href="#效果对比" class="headerlink" title="效果对比"></a>效果对比</h3><p>测试图像，见下图：<br><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan.jpg" alt=""></p>
+<h3 id="效果对比"><a href="#效果对比" class="headerlink" title="效果对比"></a>效果对比</h3><p>测试图像，见下图：<br><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan.jpg" alt></p>
 <p>直方图均衡化图像(HE)，见下图：<br><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-HE.jpg" alt="HE"></p>
 <p>自适应直方图均衡化参数1（AHE），见下图：<br><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-AHE4256.jpg" alt="AHE"><br>自适应直方图均衡化参数2（AHE），见下图：<br><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-AHE16256.jpg" alt="AHE"></p>
-<p>限制对比度自适应直方图均衡（CLAHE），见下图：<br><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-CLAHE.jpg" alt=""></p>
+<p>限制对比度自适应直方图均衡（CLAHE），见下图：<br><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/SpaceMan-CLAHE.jpg" alt></p>
 <p>从效果上来看，CLAHE算法效果比较好，提亮了暗处，高亮处不至于过曝；AHE算法需要添加参数，参数不同，影响增强效果不同，并且影响很大；HE算法全局提亮，整体略亮。</p>
 <p>感兴趣的同学可以到我的github下载这些代码运行看看，链接如下：<br><a href="https://github.com/AomanHao/Matlab-Image-Dehazing-Enhazing" target="_blank" rel="noopener">Matlab代码链接</a></p>
 <hr>
@@ -644,8 +644,8 @@ daovoice('update');
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/21/ISP_Filter/" rel="next" title="10句话读懂图像频域滤波（转载）">
-                <i class="fa fa-chevron-left"></i> 10句话读懂图像频域滤波（转载）
+              <a href="/2019/09/21/filter/" rel="next" title="滤光片相关">
+                <i class="fa fa-chevron-left"></i> 滤光片相关
               </a>
             
           </div>
@@ -654,8 +654,8 @@ daovoice('update');
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/21/图像处理评价指标_模糊度/" rel="prev" title="图像处理评价指标之模糊度（更新中）">
-                图像处理评价指标之模糊度（更新中） <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/27/ISP_ICR_光敏电阻/" rel="prev" title="光敏电阻遇上日夜切换">
+                光敏电阻遇上日夜切换 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -717,7 +717,7 @@ daovoice('update');
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="AomanHao">
             
@@ -732,7 +732,7 @@ daovoice('update');
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">122</span>
+                    <span class="site-state-item-count">125</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -819,7 +819,11 @@ daovoice('update');
                     
                       
                     
-                    <span class="site-state-item-count">36</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -929,7 +933,7 @@ daovoice('update');
           <h3 class="widget-title"></h3>
           <div id="myCanvasContainer" class="widget tagcloud">
               <canvas width="200" height="200" id="resCanvas" style="width=100%">
-                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">33</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐/">音乐</a><span class="tag-list-count">1</span></li></ul>
+                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">33</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理学/">心理学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐/">音乐</a><span class="tag-list-count">1</span></li></ul>
               </canvas>
           </div>
         </div>
@@ -937,7 +941,7 @@ daovoice('update');
       
       
           <!-- canvas粒子时钟 -->
-          <div style="">
+          <div style>
   <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
 </div>
 <script>
@@ -1226,7 +1230,7 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">347k</span>
+    <span title="站点总字数">355k</span>
   
 
   

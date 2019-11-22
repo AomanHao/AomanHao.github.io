@@ -189,7 +189,7 @@ daovoice('update');
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -199,7 +199,7 @@ daovoice('update');
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -409,20 +409,20 @@ daovoice('update');
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2018/07/18/机器学习_分类_决策树/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AomanHao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/head.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="AomanHao的个人博客">
     </span>
 
@@ -560,7 +560,7 @@ daovoice('update');
       
 
       
-        <p>机器学习<em>分类</em>决策树</p>
+        <script src="\assets\js\APlayer.min.js"> </script><p>机器学习<em>分类</em>决策树</p>
 <a id="more"></a>
 <p>决策树算法是借助于树的分支结构实现分类。</p>
 <p>叶子节点：存放决策结果<br>非叶子节点：特征属性，及其对应输出，按照输出选择分支<br>决策过程：从根节点出发，根据数据的各个属性，计算结果，选择对应的输出分支，直到到达叶子节点，得到结果</p>
@@ -568,7 +568,7 @@ daovoice('update');
 <blockquote>
 <p>我们通过<strong>基尼不纯度</strong>或者<strong>熵</strong>来对一个集合进行的有序程度进行量化，然后引入<strong>信息增益</strong>概念对一次拆分进行量化评价</p>
 </blockquote>
-<p><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/tree_1.png" alt=""></p>
+<p><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/tree_1.png" alt></p>
 <h3 id="基尼不纯度"><a href="#基尼不纯度" class="headerlink" title="基尼不纯度"></a>基尼不纯度</h3><p>基尼不纯度是指将来自集合中的某种结果随机应用于集合中某一数据项的预期误差率。该值越高，说明拆分的越不理想，如果该值为 0，说明完美拆分。</p>
 <script type="math/tex; mode=display">Gini(D)=1−∑_i=(1^m)p_i^2</script><h3 id="熵"><a href="#熵" class="headerlink" title="熵"></a>熵</h3><p>用来表示集合的无序程度，熵越大表示集合越混乱<br></p>
 <script type="math/tex; mode=display">E = -P * log2P</script><blockquote>
@@ -589,12 +589,12 @@ daovoice('update');
 <blockquote>
 <p>缺点：1、此公式偏向数据量多的属性，如果样本分布不均，则会导致过拟合。<br>2、不能处理连续分布的数据特征</p>
 </blockquote>
-<p><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/tree_ID3.png" alt=""></p>
+<p><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/tree_ID3.png" alt></p>
 <h4 id="2、C4-5算法"><a href="#2、C4-5算法" class="headerlink" title="2、C4.5算法"></a>2、C4.5算法</h4><p>C4.5算法用<strong>信息增益率</strong>来选择属性，继承了ID3算法的优点<br>优点：</p>
 <blockquote>
 <p>1、克服了用信息增益选择属性时偏向选择取值多的属性的不足；<br>2、在树构造过程中进行剪枝；<br>3、能够完成对连续属性的离散化处理；<br>4、能够对不完整数据进行处理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C4.5算法产生的分类规则易于理解、准确率较高；但效率低，因树构造过程中，需要对数据集进行多次的顺序扫描和排序C4.5算法在结构与递归上与ID3完全相同，区别只在于选取决决策特征时的决策依据不同，二者都有贪心性质：即通过局部最优构造全局最优</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<p><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/tree_C4.5.png" alt=""></p>
+<p><img src="http://p3qhnc0eg.bkt.clouddn.com/blog/img/tree_C4.5.png" alt></p>
 <p>svm:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">模型在真实世界中也应用场景 </span><br><span class="line">支撑向量机用于文本和超文本的分类；</span><br><span class="line">用于图像分类；</span><br><span class="line">用于手写体识别；</span><br><span class="line"></span><br><span class="line">这个模型的优势是什么？</span><br><span class="line"></span><br><span class="line">分类效果好；</span><br><span class="line">可以有效地处理高维空间的数据；</span><br><span class="line">可以有效地处理变量个数大于样本个数的数据；</span><br><span class="line">只是使用了一部分子集来进行训练模型，所以SVM模型不需要太大的内存；</span><br><span class="line">可以提高泛化能力；</span><br><span class="line">无局部极小值问题；</span><br><span class="line">他什么情况下表现最好？</span><br><span class="line"></span><br><span class="line">数据的维度较高；</span><br><span class="line">需要模型具有非常强的泛化能力；</span><br><span class="line">样本数据量较小时；</span><br><span class="line">解决非线性问题；</span><br><span class="line">这个模型的缺点是什么？</span><br><span class="line"></span><br><span class="line">无法处理大规模的数据集，因为该算法需要较长的训练时间；</span><br><span class="line">无法有效地处理包含噪声太多的数据集；</span><br><span class="line">SVM模型没有直接给出概率的估计值，而是利用交叉验证的方式估计，这种方式耗时较长；</span><br><span class="line">对缺失数据非常敏感；</span><br><span class="line">对于非线性问题，有时很难找到一个合适的核函数。</span><br><span class="line">什么条件下它表现很差？</span><br><span class="line"></span><br><span class="line">数据集的数据量过大；</span><br><span class="line">数据集中的含有噪声；</span><br><span class="line">数据集中的缺失较多的数据；</span><br><span class="line">对算法的训练效率要求较高；</span><br><span class="line">根据我们当前数据集的特点，为什么这个模型适合这个问题。 </span><br><span class="line">该项目所提供的样本数据相对较少；</span><br><span class="line">该问题是属于非线性问题；</span><br><span class="line">数据集经过“独热编码”后，维度较高</span><br></pre></td></tr></table></figure></p>
 <p>决策树：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">这个模型的优势是什么？</span><br><span class="line"></span><br><span class="line">决策树易于实现和理解；</span><br><span class="line">对于决策树，数据的准备工作一般比较简单；</span><br><span class="line">能够同时处理多种数据类型</span><br><span class="line">给定一个决策树模型，可以根据产生的决策树推出相应的逻辑表达式；</span><br><span class="line">通过静态测试来对模型的表现进行评价；</span><br><span class="line">在相对较短的时间内可以对大量的数据做出非常好的结果；</span><br><span class="line">决策树可以很好地扩展到大型数据中，同时决策树的大小独立于数据库的大小；</span><br><span class="line">计算复杂度相对较低，结果的输出易于理解，对部分的数据缺失不敏感。</span><br><span class="line">他什么情况下表现最好？</span><br><span class="line"></span><br><span class="line">实例是由“属性-值”对表示的；</span><br><span class="line">目标函数具有离散的输出值；</span><br><span class="line">训练数据集包含部分错误(决策树对错误有适应性)；</span><br><span class="line">训练数据缺少少量属性的实例。</span><br><span class="line">这个模型的缺点是什么？</span><br><span class="line"></span><br><span class="line">易于出现过拟合问题；</span><br><span class="line">忽略了数据集中属性之间的相关性；</span><br><span class="line">对于类比不一致的样本，决策树的信息增益倾向于那些数据值较多的特征</span><br><span class="line">什么条件下它表现很差？</span><br><span class="line"></span><br><span class="line">决策树匹配的数据过多时；</span><br><span class="line">分类的类别过于复杂；</span><br><span class="line">数据的属性之间具有非常强的关联。</span><br><span class="line">根据我们当前数据集的特点，为什么这个模型适合这个问题。</span><br><span class="line"></span><br><span class="line">不需要准备太多的训练数据，不需要对数据过多的处理如删除空白值等；</span><br><span class="line">易于编码；</span><br><span class="line">该问题是非线性问题，决策树能够很好地解决非线性问题；</span><br><span class="line">算法的执行效率高，对机器的要求较小。</span><br></pre></td></tr></table></figure></p>
 
@@ -656,8 +656,8 @@ daovoice('update');
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/16/opencv_斑点检测/" rel="next" title="Opencv_斑点检测">
-                <i class="fa fa-chevron-left"></i> Opencv_斑点检测
+              <a href="/2018/07/16/特征提取_颜色特征/" rel="next" title="特征提取——颜色特征">
+                <i class="fa fa-chevron-left"></i> 特征提取——颜色特征
               </a>
             
           </div>
@@ -666,8 +666,8 @@ daovoice('update');
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/19/机器学习_分类_KNN_EM/" rel="prev" title="机器学习_分类_KNN_EM">
-                机器学习_分类_KNN_EM <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/19/机器学习推荐书/" rel="prev" title="机器学习推荐书">
+                机器学习推荐书 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -729,7 +729,7 @@ daovoice('update');
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="AomanHao">
             
@@ -744,7 +744,7 @@ daovoice('update');
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">122</span>
+                    <span class="site-state-item-count">125</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -831,7 +831,11 @@ daovoice('update');
                     
                       
                     
-                    <span class="site-state-item-count">36</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -941,7 +945,7 @@ daovoice('update');
           <h3 class="widget-title"></h3>
           <div id="myCanvasContainer" class="widget tagcloud">
               <canvas width="200" height="200" id="resCanvas" style="width=100%">
-                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">33</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐/">音乐</a><span class="tag-list-count">1</span></li></ul>
+                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">33</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理学/">心理学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐/">音乐</a><span class="tag-list-count">1</span></li></ul>
               </canvas>
           </div>
         </div>
@@ -949,7 +953,7 @@ daovoice('update');
       
       
           <!-- canvas粒子时钟 -->
-          <div style="">
+          <div style>
   <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
 </div>
 <script>
@@ -1238,7 +1242,7 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">347k</span>
+    <span title="站点总字数">355k</span>
   
 
   

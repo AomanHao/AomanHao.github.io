@@ -185,7 +185,7 @@ daovoice('update');
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -195,7 +195,7 @@ daovoice('update');
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -405,20 +405,20 @@ daovoice('update');
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2018/08/16/剑指Offer算法Code_Java_C++/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AomanHao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/head.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="AomanHao的个人博客">
     </span>
 
@@ -556,7 +556,7 @@ daovoice('update');
       
 
       
-        <p>剑指Offer算法Code_Java_C++</p>
+        <script src="\assets\js\APlayer.min.js"> </script><p>剑指Offer算法Code_Java_C++</p>
 <a id="more"></a>
 <h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
 <blockquote>
@@ -616,12 +616,12 @@ private boolean isBit1(int target, int index){
 }
 </code></pre><p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">C++代码：</span><br></pre></td></tr></table></figure></p>
 <p>链接：<a href="https://www.nowcoder.com/questionTerminal/e02fdb54d7524710a7d664d082bb7811" target="_blank" rel="noopener">https://www.nowcoder.com/questionTerminal/e02fdb54d7524710a7d664d082bb7811</a><br>来源：牛客网</p>
-<p>class Solution {<br>public:<br>    void FindNumsAppearOnce(vector<int> data,int<em> num1,int </em>num2) {<br>  if(data.size()<2) return="" ;="" int="" size="data.size();" temp="data[0];" for(int="" i="1;i<size;i++)" if(temp="=0)" index="0;" while((temp&1)="=0){">&gt;1;<br>   ++index;<br>  }<br>  <em>num1=</em>num2=0;<br>  for(int i=0;i<size;i++) {="" if(isbit(data[i],index))="" *num1^="data[i];" else="" *num2^="data[i];" }="" bool="" isbit(int="" num,int="" index)="" num="num">&gt;index;<br>  return (num&amp;1);<br> }<br>};<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> ^=:逐位异或 </span><br><span class="line"></span><br><span class="line">### 12</span><br><span class="line">最小的k个数</span><br><span class="line">输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。</span><br><span class="line"></span><br><span class="line">Java代码：(快排/最小堆)</span><br></pre></td></tr></table></figure></size;i++)></2)></int></p>
+<p>class Solution {<br>public:<br>    void FindNumsAppearOnce(vector<int> data,int<em> num1,int </em>num2) {<br>  if(data.size()<2) return ; int size="data.size();" temp="data[0];" for(int i="1;i<size;i++)" if(temp="=0)" index="0;" while((temp&1)="=0){">&gt;1;<br>   ++index;<br>  }<br>  <em>num1=</em>num2=0;<br>  for(int i=0;i<size;i++) { if(isbit(data[i],index)) *num1^="data[i];" else *num2^="data[i];" } bool isbit(int num,int index) num="num">&gt;index;<br>  return (num&amp;1);<br> }<br>};<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> ^=:逐位异或 </span><br><span class="line"></span><br><span class="line">### 12</span><br><span class="line">最小的k个数</span><br><span class="line">输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。</span><br><span class="line"></span><br><span class="line">Java代码：(快排/最小堆)</span><br></pre></td></tr></table></figure></size;i++)></2)></int></p>
 <p>链接：<a href="https://www.nowcoder.com/questionTerminal/6a296eb82cf844ca8539b57c23e6e9bf" target="_blank" rel="noopener">https://www.nowcoder.com/questionTerminal/6a296eb82cf844ca8539b57c23e6e9bf</a><br>来源：牛客网</p>
 <p>/<em>
 </em>基于堆排序算法，构建最大堆。时间复杂度为O(nlogk)<br><em>如果用快速排序，时间复杂度为O(nlogn)；
 </em>如果用冒泡排序，时间复杂度为O(n<em>k)
-</em>/<br>import java.util.ArrayList;<br>public class Solution {<br>    public ArrayList<integer> GetLeastNumbers_Solution(int [] input, int k) {<br>        ArrayList<integer> list=new ArrayList<integer>();<br>        //检查输入的特殊情况<br>        if(input==null || input.length&lt;=0 || input.length<k){ return="" list;="" }="" 构建最大堆="" for(int="" len="k/2-1;">=0; len—){<br>            adjustMaxHeapSort(input,len,k-1);<br>        }<br>        //从第k个元素开始分别与最大堆的最大值做比较，如果比最大值小，则替换并调整堆。<br>        //最终堆里的就是最小的K个数。<br>        int tmp;<br>        for(int i=k; i&lt;input.length; i++){<br>            if(input[i]&lt;input[0]){<br>                tmp=input[0];<br>                input[0]=input[i];<br>                input[i]=tmp;<br>                adjustMaxHeapSort(input,0,k-1);<br>            }<br>        }<br>        for(int j=0; j&lt;k; j++){<br>            list.add(input[j]);<br>        }<br>        return list;<br>    }</k){></integer></integer></integer></p>
+</em>/<br>import java.util.ArrayList;<br>public class Solution {<br>    public ArrayList<integer> GetLeastNumbers_Solution(int [] input, int k) {<br>        ArrayList<integer> list=new ArrayList<integer>();<br>        //检查输入的特殊情况<br>        if(input==null || input.length&lt;=0 || input.length<k){ return list; } 构建最大堆 for(int len="k/2-1;">=0; len—){<br>            adjustMaxHeapSort(input,len,k-1);<br>        }<br>        //从第k个元素开始分别与最大堆的最大值做比较，如果比最大值小，则替换并调整堆。<br>        //最终堆里的就是最小的K个数。<br>        int tmp;<br>        for(int i=k; i&lt;input.length; i++){<br>            if(input[i]&lt;input[0]){<br>                tmp=input[0];<br>                input[0]=input[i];<br>                input[i]=tmp;<br>                adjustMaxHeapSort(input,0,k-1);<br>            }<br>        }<br>        for(int j=0; j&lt;k; j++){<br>            list.add(input[j]);<br>        }<br>        return list;<br>    }</k){></integer></integer></integer></p>
 <pre><code>public void adjustMaxHeapSort(int[] input, int pos, int length){
     int temp;
     int child;
@@ -738,8 +738,8 @@ private boolean isBit1(int target, int index){
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/16/机器学习-梯度消失爆炸/" rel="prev" title="机器学习-梯度消失爆炸">
-                机器学习-梯度消失爆炸 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/17/图像处理_Retinex图像增强/" rel="prev" title="图像处理_Retinex图像增强">
+                图像处理_Retinex图像增强 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -801,7 +801,7 @@ private boolean isBit1(int target, int index){
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="AomanHao">
             
@@ -816,7 +816,7 @@ private boolean isBit1(int target, int index){
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">122</span>
+                    <span class="site-state-item-count">125</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -903,7 +903,11 @@ private boolean isBit1(int target, int index){
                     
                       
                     
-                    <span class="site-state-item-count">36</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1013,7 +1017,7 @@ private boolean isBit1(int target, int index){
           <h3 class="widget-title"></h3>
           <div id="myCanvasContainer" class="widget tagcloud">
               <canvas width="200" height="200" id="resCanvas" style="width=100%">
-                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">33</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐/">音乐</a><span class="tag-list-count">1</span></li></ul>
+                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">33</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理学/">心理学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐/">音乐</a><span class="tag-list-count">1</span></li></ul>
               </canvas>
           </div>
         </div>
@@ -1021,7 +1025,7 @@ private boolean isBit1(int target, int index){
       
       
           <!-- canvas粒子时钟 -->
-          <div style="">
+          <div style>
   <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
 </div>
 <script>
@@ -1310,7 +1314,7 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">347k</span>
+    <span title="站点总字数">355k</span>
   
 
   
