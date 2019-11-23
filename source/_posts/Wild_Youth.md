@@ -1,35 +1,22 @@
 ---
-title: Git插件报错，Appears to be a git repo or submodule
+title: 野居青年-三个男人的诗和远方
 date: 2019-11-21 21:44:45
 tags: [Hexo, Next, Github]
 ---
 
-Git插件报错，Appears to be a git repo or submodule
+野居青年-三个男人的诗和远方
 <!--more-->
+简介： 远离城市，隐居深山，三个男人的诗和远方。
+[野居青年的B站主页](https://space.bilibili.com/176756724?from=search&seid=2689578322465416287)
+### 喜欢的一集
+<iframe src="//player.bilibili.com/player.html?aid=14875394&cid=24237231&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+### 
+他们的视频内容很简单，一狗两鸡三餐四季，还有画画写生，很日常的生活。
 
-Hexo博客需要引入第三方插件，不少包作者误把包项目得`.git`文件上传到`github`，或者在插件的`github`路径下直接下载插件文件夹，结果是插件内含有`.git`文件，导致下载别的`npm`包时报错`npm err:`
+拍的视频不像同类型博主那样精细，但是，会让你觉得很真实。没有夸张的滤镜，简简单单的配乐，不过剪辑是真的好。
+反正视频我看着是很舒服，对他们这种生活方式也很是向往，也很佩服。
 
-### 报错信息如下：
-```
-$ npm install hexo-generator-index-pin-top --save                                            npm ERR! path D:\GitHub\AomanHao.github.io\node_modules\hexo-symbols-count-time
-npm ERR! code EISGIT
-npm ERR! git D:\GitHub\AomanHao.github.io\node_modules\hexo-symbols-count-time: Appears to be a git repo or submodule.
-npm ERR! git     D:\GitHub\AomanHao.github.io\node_modules\hexo-symbols-count-time
-npm ERR! git Refusing to remove it. Update manually,
-npm ERR! git or move it out of the way first.
-
-npm ERR! A complete log of this run can be found in:
-npm ERR!     C:\Users\10143\AppData\Roaming\npm-cache\_logs\2019-11-22T12_30_49_238Z-debug.log
-```
-
-
-![](https://img-blog.nos-eastchina1.126.net/blog/git_error_repo.png)
-### 解决方式：
-
-
-进入到报错的`node_modules\hexo-symbols-count-time`目录去把.git目录删除就可以了
-
-![](https://img-blog.nos-eastchina1.126.net/blog/git_error_repo1.png)
+他们的勇气，创意，能力。
 
 ---
 
