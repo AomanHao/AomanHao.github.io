@@ -1,7 +1,7 @@
 ---
 title: Git插件报错，Appears to be a git repo or submodule
 date: 2019-11-21 21:44:45
-tags: [Hexo, Next, Github]
+tags: [Hexo, Next, GitHub]
 ---
 
 Git插件报错，Appears to be a git repo or submodule
