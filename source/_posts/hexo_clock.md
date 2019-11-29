@@ -1,5 +1,5 @@
 ---
-title: Hexo博客添加粒子时钟特效
+title: Hexo博客Next主题添加粒子时钟特效
 date: 2019-11-04 18:44:45
 tags: [GitHub, Hexo, Next]
 ---
