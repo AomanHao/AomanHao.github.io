@@ -1,6 +1,6 @@
 ---
 title: Markdown 公式指导手册
-date: 2019-11-04 18:44:45
+date: 2019-12-01 18:44:45
 tags: [GitHub, Hexo, Markdown]
 ---
 
@@ -244,7 +244,6 @@ $$\sum_{i=1}^n \frac{1}{i^2} \quad and \quad \prod_{i=1}^n \frac{1}{i^2} \quad a
 
 > **若需要显示更大或更小的字符，在符号前插入 `\large` 或 `\small` 命令。**
 
-> 若找不到需要的符号，使用 [$\rm{Detexify^2}$](http://detexify.kirelabs.org/classify.html) 来画出想要的符号。
 
 > ![Detexify^2](http://i.stack.imgur.com/ScK3R.png)
 
