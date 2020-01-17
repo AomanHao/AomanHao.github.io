@@ -206,7 +206,7 @@
                 'url': 'https://img-blog.nos-eastchina1.126.net/process_photo/2019-09-13_XiangLake2.jpg'
             },
             {
-                'title': '',
+                'title': '之江建筑',
                 'url': 'https://img-blog.nos-eastchina1.126.net/process_photo/2019-04-07_1ZJUPowerHouse.jpg'
             },
             {
