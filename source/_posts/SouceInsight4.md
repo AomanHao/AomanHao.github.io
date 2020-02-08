@@ -9,16 +9,19 @@ Source Insight 4.0 破解和使用
 转自博客：https://blog.csdn.net/xiaoxu2050/article/details/82752799
 
 ## Source Insight 4.0 破解安装
-第一步：安装    安装sourceinsight4.0 （可从下文地址下载）
-第二步：替换     用下文地址中的 sourceinsight4.0.exe 替换安装后路径下的 sourceinsight4.0.exe
-第三步：破解     运行sourceinsight4.0，选择破解文件破解
+1.从官网下载source insight4.0版本(不用下载，在后面已经把所有需要的文件都准备好了);
 
-安装：如果需要全部重新安装，请下载  完全安装包+破解exe+lisence 压缩包：
-```
-https://pan.baidu.com/s/1eSZtsbw            密码: 3kjj
-解压密码: biu 
-```
-下载解压后先找到安装文件进行安装，然后用解压后的“source insight 4.0.exe”替换安装路径下的source insight 4.0.exe，然后运行SI4，在弹出的对话框中选择第三项并将下载的文件 si4.pediy.lic选中并“Next”即可破解！
+2.安装source insightt4.0;
+
+3.使用下载好的sourceinsight4.exe替换安装在program file(x86)目录下的sourceinsight4.exe;
+
+4.启动sourceinsight，导入下载好的后缀名为.lic的license文件
+
+ 
+
+所有需要用到的文件已打包，请自取：
+
+链接：https://pan.baidu.com/s/1dF729UT 密码：9nx6
 
 
 ![](https://img-blog.nos-eastchina1.126.net/blog/blog_source_1.png)
