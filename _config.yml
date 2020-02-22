@@ -100,7 +100,7 @@ deploy:
   type: git
   repo:
     github: git@github.com:AomanHao/AomanHao.github.io.git
-    coding: git@git.coding.net:AomanHao/AomanHao.git
+    #coding: git@git.coding.net:AomanHao/AomanHao.git
     #github: https://github.com/AomanHao/AomanHao.github.io.git
     #coding: https://git.coding.net/AomanHao/AomanHao.git
   branch: master
