@@ -93,6 +93,7 @@ pagination_dir: page
 ## Themes:
 #theme: yilia
 theme: next
+#theme: Butterfly
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -198,3 +199,10 @@ tag_cloud:
     textHeight: 20
     outlineColor: '#E2E1D1'
     maxSpeed: 0.1
+
+leancloud_counter_security:
+  enable_sync: true
+  appid: llBsNPTabKsl2d4aU3OvrmSz-gzGzoHsz
+  appkey: gzSQowSIzhnuc5eYPj4k7c7z
+  username: # Will be asked while deploying if is left blank
+  password: # Recommmended to be left blank. Will be asked while deploying if is left blank
