@@ -29,7 +29,7 @@ type: "links"
 然后按照以下格式在本站留言区留言，待博主为您添上友链
 
 >名称：AomanHao 
-头像链接：http://www.aomanhao.top/images/Avatar.jpg
-主页链接：http://www.aomanhao.top/ 
+头像链接：https://www.aomanhao.top/images/Avatar.jpg
+主页链接：https://www.aomanhao.top/ 
 说明信息：图像处理，优化世界
 
