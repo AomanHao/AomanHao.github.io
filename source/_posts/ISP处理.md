@@ -1,6 +1,6 @@
 ---
 title: [转]-- ISP（图像信号处理）算法概述、工作原理、架构、处理流程
-date: 2020-03-20 21:44:45
+date: 2020-03-22 21:44:45
 tags: [图像处理]
 mathjax: true
 ---
@@ -8,46 +8,74 @@ mathjax: true
 [转]-- ISP（图像信号处理）算法概述、工作原理、架构、处理流程
 <!--more-->
 ## 目录
-ISP的主要内部构成：ISP内部包含 CPU、SUP IP（各种功能模块的通称）、IF 等设备
-ISP的控制结构：1、ISP逻辑    2、运行在其上的firmware
-ISP上的Firmware包含三部分：
+### ISP的主要内部构成：
+ISP内部包含 CPU、SUP IP（各种功能模块的通称）、IF 等设备
+
+### ISP的控制结构：1、ISP逻辑    2、运行在其上的firmware
+
+### ISP上的Firmware包含三部分：
+
 AP对ISP的操控方式：外置：I2C/SPI。 内置：MEM MAP、MEM SHARE
-ISP架构方案：内置、外置
-ISP 处理流程：
+
+### ISP架构方案：
+内置、外置
+
+### ISP 处理流程：
+
 Bayer、黑电平补偿 （black level compensation）、镜头矫正（lens shading correction）、坏像素矫正（bad pixel correction）、颜色插值 （demosaic）、Bayer 噪声去除、 白平衡（AWB） 矫正、 色彩矫正（color correction）、gamma 矫正、色彩空间转换（RGB 转换为 YUV）、在YUV 色彩空间上彩噪去除与边缘加强、色彩与对比度加强，中间还要进行自动曝光控制等， 然后输出 YUV（或者RGB） 格式的数据， 再通过 I/O 接口传输到 CPU 中处理。
-概念
+
+
+## 概念
 ISP是Image Signal Processor 的简称，也就是图像信号处理器。
+
 DSP是Digital Signal Processor 的缩写，也就是数字信号处理器。
+
 ISP一般用来处理Image Sensor（图像传感器）的输出数据，如做AEC（自动曝光控制）、AGC（自动增益控制）、AWB（自动白平衡）、色彩校正、Lens Shading、Gamma 校正、祛除坏点、Auto Black Level、Auto White Level等等功能的处理。
+
 而DSP功能就比较多了，它可以做些拍照以及回显（JPEG的编解码）、录像以及回放（Video 的编解码）、H.264的编解码、还有很多其他方面的处理，总之是处理数字信号了。ISP是一类特殊的处理图像信号的DSP。
+
 ISP架构方案：分为独立（外置）与集成（内置）两种形式。
+
 CPU处理器包括：AP、BP、CP。 其中BP：基带处理器、AP：应用处理器、CP：多媒体加速器。
-ISP的主要内部构成
+
+## ISP的主要内部构成
 如下图所示，ISP内部包含 CPU、SUP IP、IF 等设备，事实上，可以认为 ISP 是一个 SOC（system of chip），可以运行各种算法程序，实时处理图像信号。
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_isp_1.png)
+
 CPU：CPU 即中央处理器，可以运行 AF、LSC 等各种图像处理算法，控制外围设备。现代的 ISP 内部的 CPU 一般都是 ARM Cortex-A 系列的，例如 Cortex-A5、Cortex-A7。
+
 SUB IP：SUB IP 是各种功能模块的通称，对图像进行各自专业的处理。常见的 SUB IP 如 DIS、CSC、VRA 等。
 图像传输接口：图像传输接口主要分两种，并口 ITU 和串口 CSI。CSI 是 MIPI CSI 的简称，鉴于 MIPI CSI 的诸多优点，在手机相机领域，已经广泛使用 MIPI-CSI 接口传输图像数据和各种自定义数据。外置 ISP 一般包含 MIPI-CSIS 和 MIPI-CSIM 两个接口。内置 ISP 一般只需要 MIPI-CSIS 接口。
 通用外围设备：通用外围设备指 I2C、SPI、PWM、UART、WATCHDOG 等。ISP 中包含 I2C 控制器，用于读取 OTP 信息，控制 VCM 等。对于外置 ISP，ISP 本身还是 I2C 从设备。AP 可以通过 I2C 控制 ISP 的工作模式，获取其工作状态等。
-ISP的控制结构
+
+## ISP的控制结构
 ISP包括： 1、ISP逻辑    2、运行在其上的firmware
 如图所示，lens 将光信号投射到sensor 的感光区域后，sensor 经过光电转换，将Bayer 格式的原始图像送给ISP，ISP 经过算法处理，输出RGB空间域的图像给后端的视频采集单元。在这个过程中，ISP通过运行在其上的firmware（固件）对ISP逻辑，从而对lens 和sensor 进行相应控制，进而完成自动光圈、自动曝光、自动白平衡等功能。其中，firmware的运转靠视频采集单元的中断驱动。PQ Tools 工具通过网口或者串口完成对ISP 的在线图像质量调节。
 ISP 由ISP逻辑及运行在其上的Firmware组成，逻辑单元除了完成一部分算法处理外，还可以统计出当前图像的实时信息。Firmware 通过获取ISP 逻辑的图像统计信息，重新计算，反馈控制lens、sensor 和ISP 逻辑，以达到自动调节图像质量的目的。
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_isp_2.png)
 
 ISP上的Firmware包含三部分
 ISP 的Firmware包含三部分，一部分是ISP 控制单元和基础算法库，一部分是AE/AWB/AF 算法库，一部分是sensor 库。Firmware 设计的基本思想是单独提供3A算法库，由ISP控制单元调度基础算法库和3A 算法库，同时sensor 库分别向ISP 基础算法库和3A 算法库注册函数回调，以实现差异化的sensor 适配。ISP firmware 架构如图所示。
 不同的sensor 都以回调函数的形式，向ISP 算法库注册控制函数。ISP 控制单元调度基础算法库和3A 算法库时，将通过这些回调函数获取初始化参数，并控制sensor，如调节曝光时间、模拟增益、数字增益，控制lens 步进聚焦或旋转光圈等。
 
-AP对ISP的操控方式
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_isp_3.png)
+
+## AP对ISP的操控方式
 CPU处理器包括：AP、BP、CP。 BP：基带处理器、AP：应用处理器、CP：多媒体加速器
 这里所说的控制方式是AP 对 ISP 的操控方式 。
 I2C/SPI：这一般是外置 ISP 的做法。SPI 一般用于下载固件、I2C 一般用于寄存器控制。在内核的 ISP 驱动中，外置 ISP 一般是实现为 I2C 设备，然后封装成 V4L2-SUBDEV。
 MEM MAP：这一般是内置 ISP 的做法。将 ISP 内部的寄存器地址空间映射到内核地址空间，
 MEM SHARE：这也是内置 ISP 的做法。AP 这边分配内存，然后将内存地址传给 ISP，二者实际上共享同一块内存。因此 AP 对这段共享内存的操作会实时反馈到 ISP 端。
-ISP架构方案
+
+## ISP架构方案
 上文多次提到外置 ISP 和内置 ISP，这实际上是 ISP的架构方案。
-外置 ISP 架构
+### 外置 ISP 架构
+
 外置 ISP 架构是指在 AP 外部单独布置 ISP 芯片用于图像信号处理。外置 ISP 的架构图一般如下所示：
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_isp_4.png)
 
 外置 ISP 架构的优点主要有：
 能够提供更优秀的图像质量：在激烈的市场竞争下，能够存活到现在的外置 ISP 生产厂商在此领域一般都有很深的造诣，积累了丰富的影像质量调试经验，能够提供比内置 ISP 更优秀的性能和效果。因此，选用优质的外置 ISP 能提供专业而且优秀的图像质量。
@@ -56,8 +84,10 @@ ISP架构方案
 外置 ISP 架构的缺点主要有：
 成本价格高：外置 ISP 需要单独购买，其售价往往不菲，而且某些特殊功能还需要额外支付费用。使用外置 ISP，需要进行额外的原理图设计和 LAYOUT，需要使用额外的元器件。
 开发周期长：外置 ISP 驱动的设计需要多费精力和时间。使用外置 ISP 时，AP 供应商提供的 ISP 驱动就无法使用，需要额外设计编写外置 ISP 驱动。另外，为了和 AP 进行完美的搭配，将效果最大化，也往往需要付出更多的调试精力。上文也提到，使用外置 ISP，需要进行额外的原理图设计和 LAYOUT，需要使用额外的元器件，这也是需要花费时间进行处理的。
-内置 ISP 架构：
+### 内置 ISP 架构：
 内置 ISP 架构是指在 AP 内部嵌入了 ISP IP，直接使用 AP 内部的 ISP 进行图像信号处理。 内置 ISP 的架构图一般如下所示：
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_isp_5.png)
 
 内置 ISP 架构的优点主要有：
 能降低成本价格：内置 ISP 内嵌在 AP 内部，因此无需像外置 ISP 一样需要额外购买，且不占 PCB 空间，无需单独为其设计外围电路，这样就能节省 BOM，降低成本。鉴于大多数用户在选购手机时会将价格因素放在重要的位置，因此降低成本能有效的降低终端成品价格，有利于占领市场。
@@ -65,88 +95,107 @@ ISP架构方案
 能降低开发难度：如果使用内置 ISP，那么 AP 供应商能在前期提供相关资料，驱动开发人员可以有充足的时间熟悉相关资料，而且不会存在软件版本适配问题，也不存在平台架构兼容性问题。但是，如果使用外置 ISP，那么 ISP 供应商往往都不能提供针对某个平台的代码/资料，而且一般都存在软件版本兼容问题，这就需要驱动开发人员付出额的经历和时间。
 使用内置 ISP 当然也有相应的不足之处，具体见上文的分析，这里就不赘述了。
 事实上，鉴于 ISP 的重要性，为了推广其 AP，提高其 AP 竞争力，现在 AP 内置的 ISP 也越来越强大，其性能足以满足手机市场的需求。再加上其一系列优点，现在使用内置 ISP 方案的手机越来越多。
-ISP 处理流程
+## ISP 处理流程
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_isp_6.png)
 
-
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_isp_7.png)
 图像产生过程：景物通过 Lens 生成的光学图像投射到 sensor 表面上， 经过光电转换为模拟电信号， 消噪声后经过 A/D 转换后变为数字图像信号， 再送到数字信号处理芯片（ DSP） 中加工处理。
 所以，从 sensor 端过来的图像是 Bayer 图像，经过黑电平补偿 （black level compensation）、镜头矫正（lens shading correction）、坏像素矫正（bad pixel correction）、颜色插值 （demosaic）、Bayer 噪声去除、 白平衡（awb） 矫正、 色彩矫正（color correction）、gamma 矫正、色彩空间转换（RGB 转换为 YUV）、在YUV 色彩空间上彩噪去除与边缘加强、色彩与对比度加强，中间还要进行自动曝光控制等， 然后输出 YUV（或者RGB） 格式的数据， 再通过 I/O 接口传输到 CPU 中处理。
-1.Bayer（拜耳滤波器得到彩色）
+### 1.Bayer（拜耳滤波器得到彩色）
 图像在将实际的景物转换为图像数据时， 通常是将传感器分别接收红、 绿、 蓝三个分量的信息， 然后将红、 绿、 蓝三个分量的信息合成彩色图像。 该方案需要三块滤镜， 这样价格昂贵，且不好制造， 因为三块滤镜都必须保证每一个像素点都对齐。
 通过在黑白 cmos 图像传感器的基础上， 增加彩色滤波结构和彩色信息处理模块就可以获得图像的彩色信息， 再对该彩色信息进行处理， 就可以获得色彩逼真的彩色图像。通常把彩色图像传感器表面覆盖的滤波称为彩色滤波阵列（Color Filter Arrays，CFA）。
 目前最常用的滤镜阵列是棋盘格式的， 已经有很多种类的， 其中绝大多数的摄像产品采用的是原色贝尔模板彩色滤波阵列（Bayer Pattern CFA）。R、G、B 分别表示透红色、透绿色和透蓝色的滤镜阵列单元。由于人的视觉对绿色最为敏感，所以在 Bayer CFA 中G分量是 R和B 的二倍，在每个像素点上只能获取一种色彩分量的信息，然后根据该色彩分量的信息通过插值算法得到全色彩图像。
-2.BLC(Black level Correction)（黑电平补偿）
-a.暗电流
+### 2.BLC(Black level Correction)（黑电平补偿）
+#### a.暗电流
 物理器件不可能是理想的， 由于杂质、 受热等其他原因的影响， 即使没有光照射到象素，象素单元也会产生电荷， 这些电荷产生了暗电流。 而且， 暗电流与光照产生的电荷很难进行区分。
-b.Black Level
+#### b.Black Level
 Black Level 是用来定义图像数据为0时对应的信号电平。由于暗电流的影响， 传感器出来的实际原始数据并不是我们需要的黑平衡（数据不为0）。所以，为减少暗电流对图像信号的影响，可以采用的有效的方法是从已获得的图像信号中减去参考暗电流信号。一般情况下， 在传感器中，实际像素要比有效像素多， 如下图所示， 像素区头几行作为不感光区（ 实际上，这部分区域也做了RGB 的 color filter），用于自动黑电平校正，其平均值作为校正值， 然后在下面区域的像素都减去此矫正值，那么就可以将黑电平矫正过来了。
 做了black level 矫正与没做black level 矫正的对比，没做black level矫正的图片会比较亮，影响图像的对比度。
-3.LSC(Lens Shading Correction)（镜头矫正）
+### 3.LSC(Lens Shading Correction)（镜头矫正）
 由于镜头本身的物理性质， 造成图像四周亮度相对中心亮度逐渐降低，以及，由于图像光照在透过镜头照射到 pixel 上时，边角处的焦点夹角大于中心焦点夹角，造成边角失光。表现在图像上的效果就是亮度从图像中心到四周逐渐衰减， 且离图像中心越远亮度越暗。 为了补偿四周的亮度， 需要进行 Lens Shading 的矫正。
 Lens Shading 的矫正的方法是根据一定的算法计算每个像素对应的亮度矫正值，从而补偿周边衰减的亮度。  
 矫正方法有二次项矫正、 四次项矫正。
-4.BPC(Bad Pixel Correction)（坏点矫正）
-a.坏点
+### 4.BPC(Bad Pixel Correction)（坏点矫正）
+#### a.坏点
 坏点为全黑环境下输出图像中的白点，高亮环境下输出图像中的黑点。
-b.坏点修复方法
+#### b.坏点修复方法
 一般情况下， RGB 信号应与景物亮度呈线性响应关系， 但由于 Senor 部分 pixel 不良导致输出的信号不正常， 出现白点或黑点。
+
 坏点修复方法通常有两种：
 一种是自动检测坏点并自动修复， 另一种是建立坏点像素链表进行固定位置的坏像素点修复， 这种方式是 OTP 的方式。
-5.Demosaic颜色插值 （抵马赛克）
+### 5.Demosaic颜色插值 （抵马赛克）
 当光线通过 Bayer型 CFA（Color Filter Arrays） 阵列之后， 单色光线打在传感器上，每个像素都为单色光，从而理想的Bayer 图是一个较为昏暗的马赛克图。
 首先需要说明的就是demosaiced并不是和字面的意思一样是为了去除电影中的一些打马赛克的图像，而是数字图像处理中用来从不完整的color samples插值生成完整的color samples的方法(因为bayer pattern看起来像一个个马赛克，因此称为去马赛克)。在sensor端通常需要使用CFA滤镜来得到Bayer pattern，而在后面的处理中需要把bayer pattern变成完整的RGB444(真彩色)图像。在ISP中需要有这么一个模块来做。
+
 在传统的ISP中有很多算法可以来做这个插值，包括最近邻域法，bilinear 插值，cubic 插值等。
-6.Bayer Denoise（去噪声）
+### 6.Bayer Denoise（去噪声）
 使用 cmos sensor获取图像，光照程度和传感器问题是生成图像中大量噪声的主要因素。同时， 当信号经过ADC 时， 又会引入其他一些噪声。 这些噪声会使图像整体变得模糊， 而且丢失很多细节， 所以需要对图像进行去噪处理空间去噪传统的方法有均值滤波、 高斯滤波等。
+
 但是， 一般的高斯滤波在进行采样时主要考虑了像素间的空间距离关系， 并没有考虑像素值之间的相似程度， 因此这样得到的模糊结果通常是整张图片一团模糊。 所以， 一般采用非线性去噪算法， 例如双边滤波器， 在采样时不仅考虑像素在空间距离上的关系， 同时加入了像素间的相似程度考虑， 因而可以保持原始图像的大体分块， 进而保持边缘。
-7.AWB(Automatic White Balance)（自动白平衡）
+### 7.AWB(Automatic White Balance)（自动白平衡）
 白平衡的基本原理是在任意环境下， 把白色物体还原成白色物体， 也就是通过找到图像中的白块， 然后调整R/G/B 的比例， 如下关系：
-R’= R * R_Gain
-G’ = G * G_Gain
-B’ = B * B_Gain
-R’ = G’= B’
+
+$$R’= R * R_Gain$$
+
+$$G’ = G * G_Gain$$
+
+$$B’ = B * B_Gain$$
+
+$$R’ = G’= B’$$
+
 AWB 算法通常包括的步骤如下：
 (1)色温统计： 根据图像统计出色温；
+
 (2)计算通道增益： 计算出R 和B 通道的增益；
+
 (3)进行偏色的矫正： 根据给出的增益， 算出偏色图像的矫正。
-8.Color Correction（颜色矫正）
+### 8.Color Correction（颜色矫正）
 由于人类眼睛可见光的频谱响应度和半导体传感器频谱响应度之间存在差别，还有透镜等的影响， 得到的RGB 值颜色会存在偏差， 因此必须对颜色进行校正， 通常的做法是通过一个3x3 的颜色变化矩阵来进行颜色矫正。 
-9.Gamma Correction（伽马矫正）
+### 9.Gamma Correction（伽马矫正）
 人眼对外界光源的感光值与输入光强不是呈线性关系的， 而是呈指数型关系的。 在低照度下，人眼更容易分辨出亮度的变化， 随着照度的增加，人眼不易分辨出亮度的变化。而摄像机感光与输入光强呈线性关系， 为方便人眼辨识图像， 需要将摄像机采集的图像进行gamma 矫正。
 Gamma 矫正是对输入图像灰度值进行的非线性操作， 使输出图像灰度值与输入图像灰度值呈指数关系：
 out = Vin ^ gamma
-
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_isp_8.png)
 这个指数就是 gamma， 横坐标是输入灰度值， 纵坐标是输出灰度值， 蓝色曲线是 gamma 值小于 1 时的输入输出关系， 红色曲线是 gamma 值大于 1 时的输入输出关系。 可以观察到， 当 gamma 值小于 1 时(蓝色曲线)， 图像的整体亮度值得到提升， 同时低灰度处的对比度得到增加， 更利于分辩低灰度值时的图像细节。
-10.色彩空间转换
+### 10.色彩空间转换
 YUV 是一种基本色彩空间， 人眼对亮度改变的敏感性远比对色彩变化大很多， 因此， 对于人眼而言， 亮度分量Y 要比色度分量U、V 重要得多。 所以， 可以适当地抛弃部分U、V分量， 达到压缩数据的目的。
 YCbCr 其实是YUV 经过缩放和偏移的改动版，Y 表示亮度，Cr、Cb 表示色彩的色差，RGB信号亮度值之间的差异，分别是红色和蓝色的分量。 在YUV 家族中，YCbCr 是在计算机系统中应用最多的成员， 其应用领域很广泛，JPEG、MPEG 均采用此格式。 一般人们所讲的YUV 大多是指YCbCr。YCbCr有许多取样格式，如 4∶4∶4，4∶2∶2， 4∶1∶1和 4∶2∶0。
 Cb：反映的是RGB输入信号蓝色部分与RGB信号亮度值之间的差异。
 Cr：反映了RGB输入信号红色部分与RGB信号亮度值之间的差异。
 在以下两个公式中RGB和YCbCr各分量的值的范围均为0-255。
 RGB转换为Ycbcr公式：
-Y = 0.257*R+0.564*G+0.098*B+16
-Cb = -0.148*R-0.291*G+0.439*B+128
-Cr = 0.439*R-0.368*G-0.071*B+128
+$$Y = 0.257*R+0.564*G+0.098*B+16$$
+$$Cb = -0.148*R-0.291*G+0.439*B+128$$
+$$Cr = 0.439*R-0.368*G-0.071*B+128$$
 YCbCr转换为RGB公式：
-R = 1.164*(Y-16)+1.596*(Cr-128)
-G = 1.164*(Y-16)-0.392*(Cb-128)-0.813*(Cr-128)
-B =1.164*(Y-16)+2.017*(Cb-128)
+$$R = 1.164*(Y-16)+1.596*(Cr-128)$$
+$$G = 1.164*(Y-16)-0.392*(Cb-128)-0.813*(Cr-128)$$
+$$B =1.164*(Y-16)+2.017*(Cb-128)$$
 色彩空间转换这个模块， 是将RGB 转换为 YUV444， 然后在YUV 色彩空间上进行后续的彩色噪声去除、 边缘增强等， 也为后续输出转换为jpeg 图片提供方便。
-11.Color Denoise
+### 11.Color Denoise
 为了抑制图像的彩色噪声， 一般采用低通滤波器进行处理。 例如使用M×N的高斯低通滤波器在色度通道上进行处理。
+
+
 参考：
-高通camera结构（摄像头基础介绍）
-https://blog.csdn.net/weijory/article/details/70225392
-ISP算法概述
-https://blog.csdn.net/weijory/article/details/53306545
-ISP概述、工作原理及架构
-https://blog.csdn.net/l18318931829/article/details/78274790
-ISP  DSP的区别
-https://blog.csdn.net/hunanchenxingyu/article/details/49750177
-数字图像处理 颜色空间RGB、HSI、CMYK、YUV的相互转换
-https://blog.csdn.net/aoshilang2249/article/details/38070663
-ISP基本框架及算法介绍
-https://blog.csdn.net/a1809032425/article/details/81272965
-SP（图像信号处理）之——图像处理概述
-https://blog.csdn.net/lyfwill/article/details/81220380
-相机系统综述 —— ISP
-http://kernel.meizu.com/camera-isp-intro.html
+[高通camera结构（摄像头基础介绍）](https://blog.csdn.net/weijory/article/details/70225392)
+[ISP算法概述](https://blog.csdn.net/weijory/article/details/53306545)
+[ISP概述、工作原理及架构](https://blog.csdn.net/l18318931829/article/details/78274790)
+[ISP  DSP的区别](https://blog.csdn.net/hunanchenxingyu/article/details/49750177)
+[数字图像处理 颜色空间RGB、HSI、CMYK、YUV的相互转换](https://blog.csdn.net/aoshilang2249/article/details/38070663)
+[ISP基本框架及算法介绍](https://blog.csdn.net/a1809032425/article/details/81272965)
+[ISP（图像信号处理）之——图像处理概述](https://blog.csdn.net/lyfwill/article/details/81220380)
+[相机系统综述 —— ISP](http://kernel.meizu.com/camera-isp-intro.html)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
