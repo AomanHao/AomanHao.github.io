@@ -42,6 +42,28 @@ menu:
 guestbook: /guestbook/ || comment #留言
 ```
 
+### 效果预览
+
+本地预览
+```
+hexo clean && hexo g && hexo s 
+```
+
+### 博客部署
+
+博客部署
+```
+hexo clean && hexo g && hexo d 
+```
+推荐使用 `&&` 作为组合命令的串联符号
+
+注：一定要严格清理缓存，这样不容易出现问题，即需要执行`hexo clean`
+
+---
+
+### [我的个人博客主页，欢迎访问](http://www.aomanhao.top/)
+### [我的CSDN主页，欢迎访问](https://blog.csdn.net/Aoman_Hao)
+### [我的GitHub主页，欢迎访问](https://github.com/AomanHao)
 
 
 

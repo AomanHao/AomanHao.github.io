@@ -136,3 +136,8 @@ hexo clean && hexo g && hexo d
 [参考文章1](https://github.com/MikeCoder/hexo-tag-cloud/blob/master/README.ZH.md)
 
 [参考文章2](https://blog.csdn.net/DreamHome_S/article/details/78250692)
+
+### [我的个人博客主页，欢迎访问](http://www.aomanhao.top/)
+### [我的CSDN主页，欢迎访问](https://blog.csdn.net/Aoman_Hao)
+### [我的GitHub主页，欢迎访问](https://github.com/AomanHao)
+
