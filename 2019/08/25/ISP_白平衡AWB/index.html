@@ -125,11 +125,15 @@ daovoice('update');
 <meta property="og:description" content="ISP图像处理——白平衡AWB">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_1.jpeg">
+<meta property="og:image" content="http://img.blog.csdn.net/20140808093139634">
+<meta property="og:image" content="http://img.blog.csdn.net/20140808093207074?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3p3eGlhb3poZW5n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
 <meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_2.jpeg">
+<meta property="og:image" content="http://img.blog.csdn.net/20141029145413687?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3p3eGlhb3poZW5n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
 <meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_SE1.jpeg">
 <meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_SE2.jpeg">
 <meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_SE3.jpeg">
-<meta property="og:updated_time" content="2019-08-31T15:01:59.732Z">
+<meta property="og:image" content="http://img.blog.csdn.net/20141029145720071?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3p3eGlhb3poZW5n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:updated_time" content="2020-03-27T14:25:43.605Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ISP图像处理——白平衡AWB">
 <meta name="twitter:description" content="ISP图像处理——白平衡AWB">
@@ -495,7 +499,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-31 23:01:59" itemprop="dateModified" datetime="2019-08-31T23:01:59+08:00">2019-08-31</time>
+                <time title="修改时间：2020-03-27 22:25:43" itemprop="dateModified" datetime="2020-03-27T22:25:43+08:00">2020-03-27</time>
               
             
           </span>
@@ -547,7 +551,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">3k</span>
+                <span title="本文字数">2.6k</span>
               
 
               
@@ -561,7 +565,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">5 分钟</span>
+                <span title="阅读时长">4 分钟</span>
               
             </div>
           
@@ -584,34 +588,27 @@ daovoice('update');
         <script src="\assets\js\APlayer.min.js"> </script><p>ISP图像处理——白平衡AWB<br><a id="more"></a></p>
 <h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>　　白平衡是一个很抽象的概念，最通俗的理解就是让白色所成的像依然为白色，那其他景物的影像就会接近人眼的色彩视觉习惯。调整白平衡的过程叫做白平衡调整，白平衡调整在前期设备上一般有三种方式：预置白平衡、手动白平衡调整和自动跟踪白平衡调整。通常按照白平衡调整的程序，推动白平衡的调整开关，白平衡调整电路开始工作，自动完成调校工作，并记录调校结果。</p>
 <h2 id="色温曲线"><a href="#色温曲线" class="headerlink" title="色温曲线"></a>色温曲线</h2><p>色温的概念,并且知道sensor原始图像中的白色如果不经AWB处理,在高色温(如阴天)下偏蓝,低色温下偏黄,如宾馆里的床头灯(WHY!OTZ) (如下图).</p>
-<p>下面这个T恤的图片非常经典,怎么个经典后续再说,不过大体可以看出有偏黄和偏蓝的情况.虽然如此,却已经是AWB矫正以后的效果.</p>
-<p>所以,为了眼前的女神白富美在镜头里不变成阿凡达和黄脸婆,这时就需要白平衡来工作了.</p>
+<p>  <img src="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_1.jpeg" alt></p>
 <h2 id="白平衡调整"><a href="#白平衡调整" class="headerlink" title="白平衡调整"></a>白平衡调整</h2><p>在生活中日光的色温是不断变化的，可以说没有两个地方的色温会完全一样，不同的地域、季节、地面白平衡环境、天气、早晚等等都会对色温造成影响，还有大量的人工光源，色温也不尽相同。摄像师调整白平衡的方法大体分粗调、精细调整和自动跟踪(ATW)三种：粗调指在预置情况下改变色温滤光片，使色温接近到3200K的出厂设置;精细调整是指在色温滤光片的配合下通过摄像机白平衡调整功能，针对特定环境色温得到一个更为精确的调整结果;自动跟踪是指依靠摄像机的自动跟踪功能(ATW)，摄像机自身根据画面的色温变化随时调整。</p>
 <p>流程原理很简单:</p>
-<p>1,在各个色温下(2500~7500)拍几张白纸照片,假设拍6张(2500,3500…7500),可以称作色温照.</p>
-<p>2,把色温照进行矫正,具体是对R/G/B通道进行轿正,让偏色的白纸照变成白色,并记录各个通道的矫正参数.</p>
-<p>   实际上只矫正R和B通道就可以,这样就得到了6组矫正参数(Rgain,Bgain).</p>
-<p>3,上面是做前期工作,爱思考的小明发现,只要知道当前场景是什么色温,再轿正一下就可以了.事实上也就是如此.</p>
-<p>所以,AWB算法的核心就是判断图像的色温,是在白天,晚上,室内,室外,是烈日还是夕阳,还是在阳光下的沙滩上.或者是在卧室里”暖味”的床头灯下.</p>
-<p> <img src="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_1.jpeg" alt></p>
-<p>之前拍了6张色温照以及6组矫正参数.可是6够么,当然不够, 插值一下可以得到无数个值,我们把点连成线, 得到了一个神奇的曲线———色温曲线.大概是下面这个样子.</p>
-<p> <img src="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_2.jpeg" alt><br><img src="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_SE1.jpeg" alt></p>
-<p><img src="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_SE2.jpeg" alt></p>
-<p><img src="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_SE3.jpeg" alt></p>
-<p>上面提到了三个值(RG,BG,色温),这应该是个三维的.没关系,我们再来一条RG跟色温的曲线,这样只要知道色温,就知道RG,知道RG,就知道BG,知道RG,BG就能轿正了,yes!</p>
-<p>至此,我们的前期工作已经全部做完了, 并得到了AWB的色温曲线,下一步只要计算得到当前色温,顺藤摸瓜就能得到当前的矫正参数(Rgain,Bgain),那白平衡的工作就作完了.(放心,当然没这么简单)</p>
-<p>2，色温计算</p>
-<p>本文主要讲解了白平衡算法中估算当前场景色温的流程.</p>
-<p>色温计算的原理并不复杂,但是要做好,还是要细心做好每一步工作,这需要大量的测试,并对算法不断完善.</p>
-<p>首先简单说一下流程:</p>
-<p>1, 取一帧图像数据,并分成MxN块,假设是25x25,并统计每一块的基本信息(,白色像素的数量及R/G/B通道的分量的均值).</p>
+<blockquote>
+<p>1,在各个色温下(2500~7500)拍几张白纸照片,假设拍6张(2500,3500…7500),可以称作色温照.<br>2,把色温照进行矫正,具体是对R/G/B通道进行轿正,让偏色的白纸照变成白色,并记录各个通道的矫正参数.<br> 实际上只矫正R和B通道就可以,这样就得到了6组矫正参数(Rgain,Bgain).<br>3,上面是做前期工作,只要知道当前场景是什么色温,再轿正一下就可以了</p>
+</blockquote>
+<p>所以,<font size="5" color="red">AWB算法的核心就是判断图像的色温</font></p>
+<p>之前拍了6张色温照以及6组矫正参数. 插值一下可以得到无数个值,我们把点连成线, 得到了色温曲线.大概是下面这个样子.<br><img src="http://img.blog.csdn.net/20140808093139634" alt></p>
+<p>上面提到了三个值<font color="red">(RG,BG,色温)</font>,这应该是个三维的.没关系,我们再来一条RG跟色温的曲线,这样只要知道色温,就知道RG,知道RG,就知道BG,知道RG,BG就能轿正了</p>
+<p> <img src="http://img.blog.csdn.net/20140808093207074?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3p3eGlhb3poZW5n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<p>至此,我们的前期工作已经全部做完了, 并得到了AWB的色温曲线,下一步只要计算得到当前色温,顺藤摸瓜就能得到当前的矫正参数(Rgain,Bgain),那白平衡的工作就完成了</p>
+<h3 id="2，色温计算"><a href="#2，色温计算" class="headerlink" title="2，色温计算"></a>2，色温计算</h3><p>本节主要讲解了白平衡算法中估算当前场景色温的流程.</p>
+<h4 id="简述流程"><a href="#简述流程" class="headerlink" title="简述流程:"></a>简述流程:</h4><p>1, 取一帧图像数据,并分成MxN块,假设是25x25,并统计每一块的基本信息(,白色像素的数量及R/G/B通道的分量的均值).</p>
+<p> <img src="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_2.jpeg" alt></p>
 <p>2, 根据第1步中的统计值, 找出图像中所有的白色块,并根据色温曲线判断色温.</p>
 <p>3, 至此,我们得出来了图像中所有的可能色温,如果是单一光源的话,可以取色温最多的,当作当前色温.</p>
 <p>   比如25x25=625 个块中,一共找出了100个有效白色块, 里面又有80个白色块代表了色温4500左右, 那当前色温基本就是4500.</p>
-<p>   根据4500色温得出的Rgain,Bgain来调整当前图像,就不会差(很多!).</p>
-<p>下面我们再详细讲解一下,每一步中需要做的工作:</p>
-<p>第1步, 计算每一块的基本信息.</p>
-<p>   关于白色像素统计,大家知道sensor原始图像是偏色的,怎么统计块中的白色点呢,那只有设置一个颜色范围,只要在范围中,就可以认为是白色像素,范围见下图:</p>
+<p>   根据4500色温得出的Rgain,Bgain来调整当前图像</p>
+<p><img src="http://img.blog.csdn.net/20141029145413687?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3p3eGlhb3poZW5n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<h3 id="详解步骤"><a href="#详解步骤" class="headerlink" title="详解步骤"></a>详解步骤</h3><p>第1步, 计算每一块的基本信息.</p>
+<p>关于白色像素统计,大家知道sensor原始图像是偏色的,怎么统计块中的白色点呢,那只有设置一个颜色范围,只要在范围中,就可以认为是白色像素,范围见下图:</p>
 <p>统计白色像素个数的用处是,1,如果块中的白色像素太少,可以抛弃掉. 2,如果白色像素太多,多到每一个像素点都是,那也要抛弃掉,因为很可能在该区域过曝了</p>
 <p>   接着把统计到的白色像素点R/G/B取均值, 并得到该block 的R/G,  B/G值</p>
 <p>   至此,我们得到了每一块的白点数目及R/G,B/G的值. (请自动对应第1部分中色温曲线).</p>
@@ -619,17 +616,20 @@ daovoice('update');
 <p>   这个比较复杂, 大自然绚丽多彩,景色万千. 上一步中统计的”白色点”难免会有失误的地方,比较常见的如黄色皮肤容易被误判为低色温下的白点,淡蓝色的窗帘,容易被误判为高色温下的白点,一张图中既有白色,也有黄色,也有蓝色的时候,是不是感觉情况有点复杂,其它的大家可继续脑补.</p>
 <p>   这时我们需要一定的策略来正确的判断出到哪个才是真的白.</p>
 <p>   通常我们会把取到的白色块,计算一下到曲线的距离,再设置相应的权重.话不多说,上个图大家就都明白了.</p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_SE1.jpeg" alt></p>
 <p>假设有上面这样一幅图,该图是在没有开AWB的前提下截取的,可以看到左边白色地方略有偏绿,当前色温是室内白炽灯,大概4000~5000k左右.(请忽略颜色不正的问题,我们在讨论白平衡)</p>
 <p>下面我们就根据之前的统计信息和测量好的色温曲线进行白平衡矫正.</p>
 <p>首先要找出白区,如下图:</p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_SE2.jpeg" alt></p>
 <p>上面这个图中的数字标示出了检测到的白色区域,数字相同的表示一个白区,根据统计信息(白点数,rg/bg值)来区分的.可以看到有误判的地方,比如色卡左上第二块的肤色块.还有最右边从上面数第二块也是容易被判断成低色温白块的情况.</p>
 <p>针对这种误判的情况,对不同块根据统计信息进行权重设置,以求让误判的区域对最终结果影响小一些.</p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/BLOG_AWB_SE3.jpeg" alt></p>
 <p>上面这个图标注了权重,基本是根据统计信息中白点数来确定的.可以看到图中一片白色被标识了高权重.其它情况被标识了低权重. 权重高低一是看块中白色点数量,二是看rg/bg到色温曲线的距离.</p>
 <p>   通过上面两个图,大家就可以明显的找到白色区,并根据曲线来矫正,即使不通过曲线矫正,把白色区的r/g,b/g值向1趋近,让r=g=b,也会得到非常好的白平衡效果.如下图所示:</p>
+<p><img src="http://img.blog.csdn.net/20141029145720071?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3p3eGlhb3poZW5n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
 <p>至此,白平衡的基本流程就讲完了,有图有真相,大家一定看着也方便.</p>
 <p>总结一下:第一次做白平衡,感觉理论很简单,不用什么基础也能看懂.实际算法调试时,可谓差之毫厘,失之千里.总是感觉不由自主就走上歪路.中间参考了大量资料,比如网上有许多基于色温/灰度世界/白点检测的白平衡算法,实际个人感觉应该把它们都结合起来,让算法强壮,健康才是我们想要的.</p>
-<p>还记得第一章中开始的那两张白色T恤的图么,算了,我再贴一下:</p>
-<p>这张图可以理解为在多光源下的白平衡调整.阴影色温比阳光下色温要高一些,如果阳光下是5000k,阴影可能是7000k.有光就有影,它们经常出现在一个镜头里,对着其中一个色温调,另一边就会偏色.为了整体效果好,要把翘翘板平衡起来,可以加一些策略在里面。</p>
+<p>本文转载wzwxiaozheng的白平衡算法，主要包括两部分：色温曲线和色温计算。原文<a href="http://blog.csdn.net/wzwxiaozheng/article/details/38434391" target="_blank" rel="noopener">http://blog.csdn.net/wzwxiaozheng/article/details/38434391</a></p>
 <p>声明：</p>
 <p>此资料部分转载自网络，仅供学习参考。</p>
 <h1 id="我的个人博客主页，欢迎访问"><a href="#我的个人博客主页，欢迎访问" class="headerlink" title="我的个人博客主页，欢迎访问"></a><a href="http://www.aomanhao.top/">我的个人博客主页，欢迎访问</a></h1><h1 id="我的CSDN主页，欢迎访问"><a href="#我的CSDN主页，欢迎访问" class="headerlink" title="我的CSDN主页，欢迎访问"></a><a href="https://blog.csdn.net/Aoman_Hao" target="_blank" rel="noopener">我的CSDN主页，欢迎访问</a></h1><h1 id="我的GitHub主页，欢迎访问"><a href="#我的GitHub主页，欢迎访问" class="headerlink" title="我的GitHub主页，欢迎访问"></a><a href="https://github.com/AomanHao" target="_blank" rel="noopener">我的GitHub主页，欢迎访问</a></h1>
@@ -781,7 +781,7 @@ daovoice('update');
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">138</span>
+                    <span class="site-state-item-count">140</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -962,7 +962,7 @@ daovoice('update');
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#工作原理"><span class="nav-number">1.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#色温曲线"><span class="nav-number">2.</span> <span class="nav-text">色温曲线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#白平衡调整"><span class="nav-number">3.</span> <span class="nav-text">白平衡调整</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#我的个人博客主页，欢迎访问"><span class="nav-number"></span> <span class="nav-text">我的个人博客主页，欢迎访问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#我的CSDN主页，欢迎访问"><span class="nav-number"></span> <span class="nav-text">我的CSDN主页，欢迎访问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#我的GitHub主页，欢迎访问"><span class="nav-number"></span> <span class="nav-text">我的GitHub主页，欢迎访问</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#工作原理"><span class="nav-number">1.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#色温曲线"><span class="nav-number">2.</span> <span class="nav-text">色温曲线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#白平衡调整"><span class="nav-number">3.</span> <span class="nav-text">白平衡调整</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2，色温计算"><span class="nav-number">3.1.</span> <span class="nav-text">2，色温计算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简述流程"><span class="nav-number">3.1.1.</span> <span class="nav-text">简述流程:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#详解步骤"><span class="nav-number">3.2.</span> <span class="nav-text">详解步骤</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#我的个人博客主页，欢迎访问"><span class="nav-number"></span> <span class="nav-text">我的个人博客主页，欢迎访问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#我的CSDN主页，欢迎访问"><span class="nav-number"></span> <span class="nav-text">我的CSDN主页，欢迎访问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#我的GitHub主页，欢迎访问"><span class="nav-number"></span> <span class="nav-text">我的GitHub主页，欢迎访问</span></a></li></div>
             
 
           </div>
@@ -986,7 +986,7 @@ daovoice('update');
           <h3 class="widget-title"></h3>
           <div id="myCanvasContainer" class="widget tagcloud">
               <canvas width="200" height="200" id="resCanvas" style="width=100%">
-                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">32</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo，Next/">Hexo，Next</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">39</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像融合/">图像融合</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理学/">心理学</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推荐/">推荐</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/相册/">相册</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li></ul>
+                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">32</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo，Next/">Hexo，Next</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">41</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像融合/">图像融合</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理学/">心理学</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推荐/">推荐</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/相册/">相册</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li></ul>
               </canvas>
           </div>
         </div>
@@ -1283,7 +1283,7 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">401k</span>
+    <span title="站点总字数">404k</span>
   
 
   
