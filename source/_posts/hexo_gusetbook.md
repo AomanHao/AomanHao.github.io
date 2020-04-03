@@ -1,7 +1,7 @@
 ---
 title: hexo博客Next主题留言板
 date: 2020-03-25 21:39:40
-tags: [Hexo，Next]
+tags: [Hexo, Next]
 mathjax: true
 ---
 
