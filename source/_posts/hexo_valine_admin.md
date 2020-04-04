@@ -28,6 +28,12 @@ Github 项目地址，具体教程以 最新版 为准
 
 设置自定义环境变量，需要设置云引擎的环境变量以提供必要的信息，变量参数参考下面的配置项
 
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_valine_admin_1.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_valine_admin_2.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_valine_admin_3.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_valine_admin_4.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_valine_admin_5.png)
+
 
 配置项
 变量 示例 说明
