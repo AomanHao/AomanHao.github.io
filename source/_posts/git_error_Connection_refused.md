@@ -1,10 +1,10 @@
 ---
-title: Hexo博客Next主题valine评论系统邮件提醒
+title: Gitc错误Failed to connect to 127.0.0.1 port 1080 Connection refused拒绝连接错误
 date: 2020-04-05 10:59:59
 tags: [Hexo, Next]
 ---
  
-Hexo博客Next主题valine评论系统邮件提醒
+Failed to connect to 127.0.0.1 port 1080: Connection refused拒绝连接错误
 <!--more-->
 
 ## 一、git拒绝连接原因分析
