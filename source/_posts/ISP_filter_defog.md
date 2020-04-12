@@ -24,6 +24,7 @@ mathjax: true
 
 2、增加了透雾滤光片，以实现较为经济的光学透雾。此机械装置可由摄像机自动控制，也可人工切换。此类滤光片吸收可见光，允许紫外光通过，也允许 一些近红外光通过。
 
+[参考文章](http://www.360doc.com/content/16/0310/12/248984_541014417.shtml)
 
 #[我的个人博客主页，欢迎访问](http://www.aomanhao.top/)
 #[我的CSDN主页，欢迎访问](https://blog.csdn.net/Aoman_Hao)

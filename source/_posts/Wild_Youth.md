@@ -14,7 +14,7 @@ top: 10
 
 ### 喜欢的一集
 [秋名山一集](https://www.bilibili.com/video/av14875394)
-<iframe src="//player.bilibili.com/player.html?aid=14875394&cid=24237231&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+<iframe class="bilibili" src="//player.bilibili.com/player.html?aid=14875394&cid=24237231&page=1&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 
 想来都已经是2年前的作品了，时光过得真快啊
 
