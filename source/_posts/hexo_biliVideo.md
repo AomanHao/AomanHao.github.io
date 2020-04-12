@@ -9,7 +9,10 @@ Hexo博客Next主题bilibili视频Markdown引入文章
 <!--more-->
 
 ## 问题及需求
-B站视频无广告有弹幕，非常简洁，经常看B站视频，在文章引用B站的视频，在不用插件的情况下用官方的iframe方式引入视频，默认的方式导入视频屏幕会很小
+B站视频无广告有弹幕，非常简洁，经常看B站视频，在文章引用B站的视频
+![](https://cdn.jsdelivr.net/gh/hongcyu/image/images/20200307095024.png)
+
+在不用插件的情况下用官方的iframe方式引入视频，默认的方式导入视频屏幕会很小
 
 ![](https://img-blog.nos-eastchina1.126.net/blog/blog_bilibili_1.png)
 
