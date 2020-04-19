@@ -24,6 +24,22 @@ tags: [GitHub]
 项目放在我的主域名下的子域名内，主域名对应`Github Page`的主仓库`ID.github.io`。
 
 ---
+## 指导
+### 复制项目文件
+
+[我的git项目地址](https://github.com/AomanHao/loveheart)
+点到我的github，fork这个项目到自己仓库，然后点击setting设置
+
+
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_love_web1.png)
+### 开启项目的github pages
+设置页面往下拉， github pages部分，选择一个主题，开启功能，根据显示域名就能访问爱礼页面了
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_love_web.png)
+
+### 设置域名绑定
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_love_web3.png)
+
+---
 
 
 可以修改index.html中的BGM区域和土味情话部分，实现内容自定义。
