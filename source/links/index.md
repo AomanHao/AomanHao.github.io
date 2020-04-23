@@ -16,7 +16,6 @@ type: "links"
 4、头像能够快速加载
 5、拥有独立域名
 
-
 ### 友链声明：
 
 1、本站会主动保存您的 HTTPS 形式的头像图片链接
@@ -31,5 +30,5 @@ type: "links"
 >名称：AomanHao 
 头像链接：https://www.aomanhao.top/images/Avatar.jpg
 主页链接：https://www.aomanhao.top/ 
-说明信息：图像处理，优化世界
+说明信息：热爱图像处理，优化彩色世界
 
