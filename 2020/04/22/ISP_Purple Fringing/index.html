@@ -124,10 +124,15 @@ daovoice('update');
 <meta property="og:site_name" content="AomanHao的个人博客">
 <meta property="og:description" content="ISP图像处理——紫边Purple Fringing">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-23T14:24:22.395Z">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_PF_色差.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_PF_数字成像系统.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_PF_伪色.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_PF_过曝.png">
+<meta property="og:updated_time" content="2020-04-25T09:35:41.760Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ISP图像处理——紫边Purple Fringing占坑">
 <meta name="twitter:description" content="ISP图像处理——紫边Purple Fringing">
+<meta name="twitter:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_PF_色差.png">
 
 
 
@@ -489,7 +494,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-04-23 22:24:22" itemprop="dateModified" datetime="2020-04-23T22:24:22+08:00">2020-04-23</time>
+                <time title="修改时间：2020-04-25 17:35:41" itemprop="dateModified" datetime="2020-04-25T17:35:41+08:00">2020-04-25</time>
               
             
           </span>
@@ -541,7 +546,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">96</span>
+                <span title="本文字数">1.5k</span>
               
 
               
@@ -555,7 +560,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">2 分钟</span>
               
             </div>
           
@@ -576,7 +581,18 @@ daovoice('update');
 
       
         <script src="\assets\js\APlayer.min.js"> </script><p>ISP图像处理——紫边Purple Fringing<br><a id="more"></a></p>
-<p>   图像紫边存在数码相机、监控摄像头等数字成像图像</p>
+<p>图像紫边存在数码相机、监控摄像头等数字成像图像，使用设备在逆光、大光圈条件下拍摄图像的高反差区域容易出现紫边，解决图像自编问题有助设备得到完美图像。</p>
+<p>紫边成因分析和确定有助与紫边消除的图像处理算法研究和摄像设备工程改进，能够改善自编的硬件成本更高，非常需要研究去除紫边的图像处理算法。</p>
+<h3 id="镜头色差"><a href="#镜头色差" class="headerlink" title="镜头色差"></a>镜头色差</h3><p>众所周知，镜头色差会使得图像中物体边缘出现不属于物体的颜色，我们将物体边缘出现的颜色称为色差色边。光学色差分为<code>纵向色差</code>和<code>横向色差</code>，纵向色差又叫轴向色差。对于横向色差，通常在图像全局上进项校正，将红绿蓝三 个颜色通道调整到相同的放大倍数，一般通过拍摄棋盘格标定，这对于固定的光学镜头比较有效，但是对变焦镜头则难以适用。<br> <img src="https://img-blog.nos-eastchina1.126.net/blog/blog_PF_色差.png" alt></p>
+<p>对于紫边的成因，通常认为是镜头/微透镜色差所导致，如图2-1所 示，成像系统一般将绿色通道准确对焦，然而由于镜头/微镜头色差，蓝色和红色通道不能完全准确对焦，从而使物体边缘出现紫红色的色边。</p>
+<h3 id="图像颜色插值算法（去马赛克算法〉"><a href="#图像颜色插值算法（去马赛克算法〉" class="headerlink" title="图像颜色插值算法（去马赛克算法〉"></a>图像颜色插值算法（去马赛克算法〉</h3><p>颜色插值算法是数宇成像系统的核心技术之一，对图像颜色影响巨大，如图 所示为数字成像系统流程。<br><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_PF_数字成像系统.png" alt></p>
+<p>在数字成像系统中，一般由单个CCD/CMOS 获得经过CFA(Color Filter Array)过滤后的图像原始数据，这样每个传感器只采集 了一个颜色通遣的数据，这些数据排列规律与CFA的样式是一致的。</p>
+<p>颜色插值算法如果不能合理地处理红蓝通道的高频混叠，其恢复结果中图像 边缘、图像纹理等高频部分则会出现颜色错误(falsccolor),具体表现如图2-5所 示，右上图为原始图像，右下图•是使用双线性插值得到的插值结果，可见颜色插 值算法使得物体的边缘、图像纹理等高频区域颜色出现伪彩色。</p>
+<p>早期一些简单的颜色插值算法比如最近邻、双线性、边缘定向(edgedircctcd) 等方法在空间域恢复图像颜色，这些方法没能很好处理高頻混叠导致恢复后 的物体边缘带来锯齿效应以及错误颜色。<br>目前顏色插值算法在消混叠方面已经做得很好，即使在图像中物体边缘，纹 理等高频区域也能很好地恢复图像颜色井避免带来错误颜色 </p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_PF_伪色.png" alt></p>
+<h3 id="过曝区域图像色边"><a href="#过曝区域图像色边" class="headerlink" title="过曝区域图像色边"></a>过曝区域图像色边</h3><p>图像的过曝区域边缘会出现蓝紫色背景，具体表现如图〗-2(c)图所示。数字成像器件<code>CCD</code>和<code>CMOS</code>当过度曝光时会产生电荷溢出现象，当一个像素过度曝光时，其产生的电荷会泄漏到临近的像素并污染图像中的临近区域的场景信号，如图所示，CMOS对于过曝溢出的表现要好于CCD。左侧CMOS,右侧CCD<br><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_PF_过曝.png" alt></p>
+<p>从以上的分析可知，图像紫边是数字成像系统的短波色差引起的，并且在图 像中受紫边影响严重的区域是天空、灯光附近等物体的边缘，由于天空和灯光的 光谱中富含短波成分导致图像中这一区域内部的物体边缘出现较为严重的色边, 进而影响图像在这一区域的视觉效果。<br>对于成像系统的色差校正，最重要的工作在于光学系统的设计。目前的现状 是，由于受到生产制造成本，器件大小等因素的限制，光学镜头能很好地控制光 学色差。但是对一些時定场景下比如逆光对着天空和灯光区域成徼，数字成像系 统对于图像紫边的控制仍然不够，光学系统的短波色差在图像中凸显出来。考虑 到进一步提升镜头设计的成本过高，人们将思路转向后期的图像处理算法，图像 处理算法能够针对性地处理色差色边、图僳紫边等图像问題，并且成本也得到了 极大的节省。</p>
+<p>参考文献：《数字成像系统图像消紫边方法研究》</p>
 <h1 id="我的个人博客主页，欢迎访问"><a href="#我的个人博客主页，欢迎访问" class="headerlink" title="我的个人博客主页，欢迎访问"></a><a href="http://www.aomanhao.top/">我的个人博客主页，欢迎访问</a></h1><h1 id="我的CSDN主页，欢迎访问"><a href="#我的CSDN主页，欢迎访问" class="headerlink" title="我的CSDN主页，欢迎访问"></a><a href="https://blog.csdn.net/Aoman_Hao" target="_blank" rel="noopener">我的CSDN主页，欢迎访问</a></h1><h1 id="我的GitHub主页，欢迎访问"><a href="#我的GitHub主页，欢迎访问" class="headerlink" title="我的GitHub主页，欢迎访问"></a><a href="https://github.com/AomanHao" target="_blank" rel="noopener">我的GitHub主页，欢迎访问</a></h1>
       
     </div>
@@ -903,7 +919,7 @@ daovoice('update');
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#我的个人博客主页，欢迎访问"><span class="nav-number">1.</span> <span class="nav-text">我的个人博客主页，欢迎访问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#我的CSDN主页，欢迎访问"><span class="nav-number">2.</span> <span class="nav-text">我的CSDN主页，欢迎访问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#我的GitHub主页，欢迎访问"><span class="nav-number">3.</span> <span class="nav-text">我的GitHub主页，欢迎访问</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#镜头色差"><span class="nav-number">1.</span> <span class="nav-text">镜头色差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图像颜色插值算法（去马赛克算法〉"><span class="nav-number">2.</span> <span class="nav-text">图像颜色插值算法（去马赛克算法〉</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过曝区域图像色边"><span class="nav-number">3.</span> <span class="nav-text">过曝区域图像色边</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#我的个人博客主页，欢迎访问"><span class="nav-number"></span> <span class="nav-text">我的个人博客主页，欢迎访问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#我的CSDN主页，欢迎访问"><span class="nav-number"></span> <span class="nav-text">我的CSDN主页，欢迎访问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#我的GitHub主页，欢迎访问"><span class="nav-number"></span> <span class="nav-text">我的GitHub主页，欢迎访问</span></a></li></div>
             
 
           </div>
@@ -1224,7 +1240,7 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">411k</span>
+    <span title="站点总字数">413k</span>
   
 
   
