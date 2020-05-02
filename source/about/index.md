@@ -12,9 +12,12 @@
 第六个向右:make something right 尝试去做正确的事
 
 
+热爱图像处理，废老大劲才投了三区SCI文章
 
-<font color=#5F9EA0 size=5 face="STCAIYUN">音乐<font color=#FF8C00>是我<font color=#9370D8>生命<font color=#006400>中的<font color=#FF00FF>彩虹</font></font></font></font></font>
-<font color=#5F9EA0 size=5 face="STCAIYUN">蓉蓉<font color=#FF8C00>是我<font color=#9370D8>生命<font color=#006400>中的<font color=#FF00FF>太阳</font></font></font></font></font>
+
+<!--<font color=#5F9EA0 size=5 face="STCAIYUN">音乐<font color=#FF8C00>是我<font color=#9370D8>生命<font color=#006400>中的<font color=#FF00FF>彩虹</font></font></font></font></font>
+<font color=#5F9EA0 size=5 face="STCAIYUN">蓉蓉<font color=#FF8C00>是我<font color=#9370D8>生命<font color=#006400>中的<font color=#FF00FF>太阳</font></font></font></font></font>-->
+
 
 
 
