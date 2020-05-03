@@ -2,7 +2,7 @@
 
 ![](https://img-blog.nos-eastchina1.126.net/backimg/tattoo.png)
 
-### 六诫
+## 🍭六诫
 
 第一个向左:Don't be waver 不要左右摇摆，犹豫不决
 第二个向前:Keeping forward 一直保持向前
@@ -11,9 +11,19 @@
 第五个宝石型:Be strong 坚强起来,经历那么多坎坷没有什么能打倒你
 第六个向右:make something right 尝试去做正确的事
 
+## 🍭共勉
 
-热爱图像处理，废老大劲才投了三区SCI文章
+双非研究生一枚，热爱图像处理，废老大劲收获一篇三区SCI文章
 
+## 🍭打工
+主修模糊聚类图像分割算法和图像去噪算法
+
+辅修3A算法和ISP算法
+
+## 🍭爱好
+捣鼓DIY机械键盘，喜欢红轴黄轴。
+
+喜欢骑车的宅男，现在没有公路车了，只剩宅男了。
 
 <!--<font color=#5F9EA0 size=5 face="STCAIYUN">音乐<font color=#FF8C00>是我<font color=#9370D8>生命<font color=#006400>中的<font color=#FF00FF>彩虹</font></font></font></font></font>
 <font color=#5F9EA0 size=5 face="STCAIYUN">蓉蓉<font color=#FF8C00>是我<font color=#9370D8>生命<font color=#006400>中的<font color=#FF00FF>太阳</font></font></font></font></font>-->
