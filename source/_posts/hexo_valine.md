@@ -175,6 +175,20 @@ leancloud_visitors:
 
 以上内容完成Valine评论的配置相关，都是自己踩的坑，合并了文章阅读次数的功能。
 
+### 禁止留言
+
+在 禁止留言的文章或者板块添加`comments` 并将赋值`false`
+
+```
+---
+title: tags
+date: 2019-01-28 10:02:04
+type: "tags"
+comments: false
+---
+
+```
+
  [我的个人博客文章地址，欢迎访问](http://www.aomanhao.top/2019/02/20/hexo_valine/#more)
  [我的CSDN文章地址，欢迎访问](https://blog.csdn.net/Aoman_Hao/article/details/87809762)
  [我的简书文章地址，欢迎访问](https://www.jianshu.com/p/f4658df66a15)
