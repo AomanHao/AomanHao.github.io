@@ -8,31 +8,26 @@ ISP图像处理之image output interface
 <!--more-->
 
 手机，车载sensor常见的接口主要是DVP和MIPI。 DVP是比较老的并行接口；MIPI是高速串行接口。另外安森美自己搞了一个HiSPi接口，但是只有他家自己在用，和MIPI差不多。
+
 MIPI全称为“Mobile Industry Processor Interface”，分为MIPI DSI 和MIPI CSI，分别对应于视频显示和视频输入标准。
 
 接口对比如下：
 
 
-
+![](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_isp_inter1.jpg)
 
 MIPI采用差分线传输，速度还是很快的，比并行传输要快很多
 
 
 
-DVP接口：
+## DVP接口：
 
 Digital Video Port： DVP是比较老sensor支持的接口，但是现在的sensor一般都兼容。
 
 DVP采用并行输出方式，d数据位宽有8bit、10bit、12bit、16bit，是CMOS电平信号（重点是非差分信号），PCLK最大速率为96MHz，接口和时序如下图：
+![](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_isp_interDVP.jpg)
 
-
-
-
-
-
-
-
-MIPI 接口；
+## MIPI 接口；
 
 MIPI（移动行业处理器接口）是Mobile Industry Processor Interface的缩写。
 
@@ -47,13 +42,10 @@ MIPI CSI-2和MIPI CSI-3是原MIPI相机接口标准的继承者。这两种标�
 
 
 
+## 硬件相关
+面试别人的时候问一问就可以知道别人到底有没有真的做过MIPI（可能做过也不知道），那就是：
 
-
-MIPI CSI2协议和MIPI DPHY的相关知识内容太多，后面会写专门的文章来详细解释。
-
-作为半个MIPI 专家(自封的),这里可以偷偷的告诉你一个工程经验，以后面试别人的时候问一问就可以知道别人到底有没有真的做过MIPI（可能做过也不知道），那就是：
-
-MIPI DPHY 的传输距离一般不超过20cm
+MIPI DPHY 的传输距离一般不超过20cm。
 
 DVP总线PCLK极限大约在96M左右，而且走线长度不能过长，所有DVP最大速率最好控制在72M以下，故PCB layout会较好画
 
