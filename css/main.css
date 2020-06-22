@@ -1917,7 +1917,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #7886ff;
+  background: #3d93ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3200,7 +3200,7 @@ ul.breadcrumb li+li:last-child {
   }
 }
 body {
-  background: url("/images/starry-sky-over-lake.jpg");
+  background: url("/images/Nasa-earth.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
@@ -3233,4 +3233,11 @@ body {
     height: 40em;
     max-width: 50em;
   }
+}
+.main-inner {
+  opacity: 0.9;
+}
+.header-inner {
+  opacity: 0.8;
+  z-index: 10;
 }
