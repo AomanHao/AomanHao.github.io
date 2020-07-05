@@ -126,7 +126,9 @@ daovoice('update');
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_fisheye.jpg">
 <meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_fisheye2.jpg">
-<meta property="og:updated_time" content="2020-06-07T14:23:46.457Z">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_fishmodel2.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_fishmodel1.png">
+<meta property="og:updated_time" content="2020-07-05T09:21:36.018Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="鱼眼摄像机及鱼眼畸变矫正（挖坑）">
 <meta name="twitter:description" content="鱼眼摄像机及鱼眼畸变矫正(挖坑)">
@@ -492,7 +494,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-06-07 22:23:46" itemprop="dateModified" datetime="2020-06-07T22:23:46+08:00">2020-06-07</time>
+                <time title="修改时间：2020-07-05 17:21:36" itemprop="dateModified" datetime="2020-07-05T17:21:36+08:00">2020-07-05</time>
               
             
           </span>
@@ -544,7 +546,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">583</span>
+                <span title="本文字数">1.8k</span>
               
 
               
@@ -558,7 +560,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">3 分钟</span>
               
             </div>
           
@@ -583,10 +585,26 @@ daovoice('update');
 <p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_fisheye.jpg" alt><br>图1 鱼眼     </p>
 <p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_fisheye2.jpg" alt></p>
 <p>图2 鱼眼镜头</p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_fishmodel2.png" alt></p>
+<p>图 鱼类视觉结构</p>
 <h2 id="二、鱼眼摄像机技术难点"><a href="#二、鱼眼摄像机技术难点" class="headerlink" title="二、鱼眼摄像机技术难点"></a>二、鱼眼摄像机技术难点</h2><p>光学畸变严重：鱼眼摄像机具备超广角，可凭借少量的设备实现大范围场景全面监控。但相对的，过大的视角带来更加严重的光学畸变（画面甚至已呈圆形），图像失真较严重；需要设备对原始图像做矫正后，其效果才会被用户接受。</p>
 <p>细节表现不足：大场景监控及较小的焦距及景深，导致鱼眼摄像机对远处场景看的不是很清楚。为此需要工程师们采用高分辨率传感器，保证目标物体有更多的像素来表现；同时尽可能的提升鱼眼镜头的性能，提供比传统摄像机更佳的景深范围，以提升较远处物体清晰度。</p>
-<h2 id="三、畸变矫正"><a href="#三、畸变矫正" class="headerlink" title="三、畸变矫正"></a>三、畸变矫正</h2><p>挖坑</p>
-<p>[参考] <a href="http://www.tpy888.cn/news/201507/06/83029.html" target="_blank" rel="noopener">http://www.tpy888.cn/news/201507/06/83029.html</a></p>
+<h2 id="三、畸变矫正"><a href="#三、畸变矫正" class="headerlink" title="三、畸变矫正"></a>三、畸变矫正</h2><p>参考文献-鱼眼镜头视频图像实时校正技术研究-刑立新</p>
+<h3 id="经典标定算法"><a href="#经典标定算法" class="headerlink" title="经典标定算法"></a>经典标定算法</h3><blockquote>
+<p>1986 年 Roger Y. Tsai 首次提出了经典的 Tsai 两步骤标定法，这种算法的提出，为鱼眼镜头畸变矫正技术的后续研究指明了方向，具有很高的借鉴价值。目的在于更加高效的计算出摄像机在建立的参考坐标系中的位置，方向信息，以及摄像机镜头焦距，径向畸变系数等参数信息[6]。算法自身也存在着非常大的局限性。Roger Y. Tsai 在建立算法的时候，只计算了鱼眼镜头图像信息的径向畸变，而没有计算镜头存在的切向等畸变对图像信息的精准性带来的影响。算法只能用在图像切向畸变等畸变因素对图像畸变无影响或者影响可以忽略的场所</p>
+<p>1999 年微软研究院视觉技术组高级研究员张正友提出了著名的张正友图像标定法。这种标定方法很简单，成本较小，算法的稳定性也很高，适合大规模普及使用。算法的畸变矫<br>正模型选用了经典的摄像机针孔成像模型。算法的实现，首先需要制作黑白棋盘格图像信息标定的模板，然后通过从不同角度（至少两个）观察标定模板获取不同视角的标定模板的图像信息，并提取出黑白棋盘模板中的特征信息，获取模板图像信息的过程中摄相机和黑白棋盘标定板是可以随意移动的。最后根据建立的广角镜头的成像模型和提取到的特征点信息拟合计算出畸变模型参数，进而实现了相机的标定。</p>
+<p>2001 年初我国科学院王欣刚，宋建中，顾海军三人为了解决通过红外观察仪带来的图像信息径向畸变，从而提高图像获取设备的精准级别，建立了一整套的的摄像头畸变校正模型，且这种镜头畸变模型的建立有很大的实用价值。</p>
+</blockquote>
+<p>如下图，$P0(x0，y0)$，$P1(x1，y1)$分别为理想点和畸变点坐标，到圆心的<br>距离分别为 $r0$，$r1$。其中半径 $r0$，$r1$ 满足下列关系式：</p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_fishmodel1.png" alt></p>
+<script type="math/tex; mode=display">r1 = F(r0)</script><p>王欣刚认为图像只产生径向畸变，进而将函数$F(r0)$写成多项式求和的形式。</p>
+<script type="math/tex; mode=display">F(r0) = \sum_{i=0}^{无穷}a_ir_0 =</script><h2 id="插值算法"><a href="#插值算法" class="headerlink" title="插值算法"></a>插值算法</h2><p>鱼眼镜头畸变矫正算法计算完的坐标对应原图可能不是整数点。就会导致图像的清晰度不能够满足要求，这时就要用到图像插值算法。</p>
+<h3 id="最近点插值法"><a href="#最近点插值法" class="headerlink" title="最近点插值法"></a>最近点插值法</h3><p>最原始的图像插值法，利用距离目标点最近的像素点代替目标点。由于算法比较简单，图像插值算法需要消耗的时间也比较短</p>
+<h3 id="双线性插值法"><a href="#双线性插值法" class="headerlink" title="双线性插值法"></a>双线性插值法</h3><p>双线性插值法是计算机视觉图像处理中常用的插值算法，这是由于算法兼顾插值精度要求和算法简洁性要求。</p>
+<p>双线性插值算法的核心思想是认为相邻两像素点之间的图像灰度值变化是线性的。插值图像的灰度信息也是连续的，改善了最近点插值算法带来的灰度值离散的问题。</p>
+<p>参考：<a href="https://blog.csdn.net/qq_37577735/article/details/80041586" target="_blank" rel="noopener">https://blog.csdn.net/qq_37577735/article/details/80041586</a></p>
+<hr>
+<p>[参考] <a href="http://www.tpy888.cn/news/201507/06/83029.html" target="_blank" rel="noopener">http://www.tpy888.cn/news/201507/06/83029.html</a><br>参考文献-鱼眼镜头视频图像实时校正技术研究-刑立新</p>
 <h3 id="我的个人博客主页，欢迎访问"><a href="#我的个人博客主页，欢迎访问" class="headerlink" title="我的个人博客主页，欢迎访问"></a><a href="http://www.aomanhao.top/">我的个人博客主页，欢迎访问</a></h3><h3 id="我的CSDN主页，欢迎访问"><a href="#我的CSDN主页，欢迎访问" class="headerlink" title="我的CSDN主页，欢迎访问"></a><a href="https://blog.csdn.net/Aoman_Hao" target="_blank" rel="noopener">我的CSDN主页，欢迎访问</a></h3><h3 id="我的GitHub主页，欢迎访问"><a href="#我的GitHub主页，欢迎访问" class="headerlink" title="我的GitHub主页，欢迎访问"></a><a href="https://github.com/AomanHao" target="_blank" rel="noopener">我的GitHub主页，欢迎访问</a></h3>
       
     </div>
@@ -646,8 +664,8 @@ daovoice('update');
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/16/ISP_HLC/" rel="next" title="强光抑制算法研究">
-                <i class="fa fa-chevron-left"></i> 强光抑制算法研究
+              <a href="/2020/06/05/ISP_DSP/" rel="next" title="Camera ISP与DSP的区别">
+                <i class="fa fa-chevron-left"></i> Camera ISP与DSP的区别
               </a>
             
           </div>
@@ -656,8 +674,8 @@ daovoice('update');
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/06/05/ISP_DSP/" rel="prev" title="Camera ISP与DSP的区别">
-                Camera ISP与DSP的区别 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/06/14/ISP_shading/" rel="prev" title="Lens Shading成因及相关">
+                Lens Shading成因及相关 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -915,7 +933,7 @@ daovoice('update');
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、鱼眼摄像机"><span class="nav-number">1.</span> <span class="nav-text">一、鱼眼摄像机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、鱼眼摄像机技术难点"><span class="nav-number">2.</span> <span class="nav-text">二、鱼眼摄像机技术难点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、畸变矫正"><span class="nav-number">3.</span> <span class="nav-text">三、畸变矫正</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#我的个人博客主页，欢迎访问"><span class="nav-number">3.1.</span> <span class="nav-text">我的个人博客主页，欢迎访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我的CSDN主页，欢迎访问"><span class="nav-number">3.2.</span> <span class="nav-text">我的CSDN主页，欢迎访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我的GitHub主页，欢迎访问"><span class="nav-number">3.3.</span> <span class="nav-text">我的GitHub主页，欢迎访问</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、鱼眼摄像机"><span class="nav-number">1.</span> <span class="nav-text">一、鱼眼摄像机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、鱼眼摄像机技术难点"><span class="nav-number">2.</span> <span class="nav-text">二、鱼眼摄像机技术难点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、畸变矫正"><span class="nav-number">3.</span> <span class="nav-text">三、畸变矫正</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#经典标定算法"><span class="nav-number">3.1.</span> <span class="nav-text">经典标定算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插值算法"><span class="nav-number">4.</span> <span class="nav-text">插值算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最近点插值法"><span class="nav-number">4.1.</span> <span class="nav-text">最近点插值法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双线性插值法"><span class="nav-number">4.2.</span> <span class="nav-text">双线性插值法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我的个人博客主页，欢迎访问"><span class="nav-number">4.3.</span> <span class="nav-text">我的个人博客主页，欢迎访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我的CSDN主页，欢迎访问"><span class="nav-number">4.4.</span> <span class="nav-text">我的CSDN主页，欢迎访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我的GitHub主页，欢迎访问"><span class="nav-number">4.5.</span> <span class="nav-text">我的GitHub主页，欢迎访问</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1236,7 +1254,7 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">404k</span>
+    <span title="站点总字数">405k</span>
   
 
   
