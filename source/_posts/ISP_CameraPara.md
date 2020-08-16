@@ -121,13 +121,105 @@ mathjax: true
 ![](https://img-blog.nos-eastchina1.126.net/blog/blog_CaPara_8.jpg)
 
 数字相机工作流程图如下：
-![](https://img-blog.nos-eastchina1.126.net/blog/blog_CaPara_8.jpg)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_CaPara_9.jpg)
+
+## 畸变
+
+一般来说，镜头畸变实际上是光学透镜固有的透视失真的总称，也就是因为透视原因造成的失真，这种失真对于照片的成像质量是非常不利的，但因为这是透镜的固有特性（凸透镜汇聚光线、凹透镜发散光线），所以无法消除，只能改善。
+
+ 
 
 
-转自公众号《AI图像》
 
-#[我的个人博客主页，欢迎访问](http://www.aomanhao.top/)
-#[我的CSDN主页，欢迎访问](https://blog.csdn.net/Aoman_Hao)
-#[我的GitHub主页，欢迎访问](https://github.com/AomanHao)
+枕形畸变
+
+![](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_Capara_jibian1.jpg)
+
+
+
+枕形畸变（Pincushion Distortion），又称枕形失真，它是由镜头引起的画面向中间“收缩”的现象。我们在使用长焦镜头或使用变焦镜头的长焦端时，最容易察觉枕形失真现象。
+
+桶形畸变
+
+
+![](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_Capara_jibian2.jpg)
+
+桶形畸变（Barrel Distortion），又称桶形失真，是由镜头中透镜物理性能以及镜片组结构引起的成像画面呈桶形膨胀状的失真现象。我们在使用广角镜头或使用变焦镜头的广角端时，最容易察觉桶形失真现象。
+
+
+
+
+## 远心镜头
+
+远心镜头（Telecentric），主要是为纠正传统工业镜头视差而设计，它可以在一定的物距范围内，使得到的图像放大倍率不会变化，这对被测物不在同一物面上的情况是非常重要的应用。远心镜头由于其特有的平行光路设计一直为对镜头畸变要求很高的机器视觉应用场合所青睐.
+
+
+远心镜头光路的特点是，几乎进入到镜头的光都是强反射光。
+
+ 
+
+![](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_Capara_yuanxin.jpg)
+
+
+非远心镜头成像效果：
+
+
+![](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_Capara_yuanxin1.jpg)
+
+远心镜头成像效果：
+
+![](https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_Capara_yuanxin2.jpg)
+
+### 远心镜头主要弥补非远心镜头的以下特点;
+
+1）由于被测量物体不在同一个测量平面，而造成放大倍率的不同；
+
+2）镜头畸变大
+
+3）视差也就是当物距变大时，对物体的放大倍数也改变；
+
+4）镜头的解析度不高；
+
+5）由于视觉光源的几何特性，而造成的图像边缘位置的不确定性。
+
+ 
+
+### 远心和非远心各自的优点：
+
+普通镜头优点：成本低，实用，用途广。
+
+普通镜头缺点：放大倍率会有变化，有视差。
+
+普通镜头应用：大物体成像。
+
+远心镜头的优点：放大倍数恒定，不随景深变化而变化，无视差。
+
+远心镜头的缺点：成本高，尺寸大，重量重。
+
+远心镜头的应用：度量衡方面，基于CCD方面的测量，微晶学
+
+ 
+
+当检查物体遇到以下6中情况时，最好选用远心镜头：
+
+1）当需要检测有厚度的物体时（厚度>1/10 FOV直径）；
+
+2）需要检测不在同一平面的物体时；
+
+3）当不清楚物体到镜头的距离究竟是多少时；
+
+4）当需要检测带孔径、三维的物体时；
+
+5）当需要低畸变、图像效果亮度几乎完全一致时；
+
+6）当缺陷只在同一方向平行照明下才能检测到时。
+
+
+
+素材转自公众号《AI图像》
+
+### [我的个人博客主页，欢迎访问](http://www.aomanhao.top/)
+### [我的CSDN主页，欢迎访问](https://blog.csdn.net/Aoman_Hao)
+### [我的GitHub主页，欢迎访问](https://github.com/AomanHao)
 
 
