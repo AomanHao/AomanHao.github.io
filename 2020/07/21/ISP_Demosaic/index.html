@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-cat.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-cat.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+ <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/b6dbddb6.js","daovoice")
+ daovoice('init', {
+  app_id: "b69005f1"
+});
+daovoice('update');
+ </script>
+
+
+  <meta name="description" content="ISP图像处理之Demosaic算法及相关">
+<meta name="keywords" content="ISP,图像处理,Sensor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ISP图像处理之Demosaic算法及相关">
+<meta property="og:url" content="http://www.aomanhao.top/2020/07/21/ISP_Demosaic/index.html">
+<meta property="og:site_name" content="AomanHao的个人博客">
+<meta property="og:description" content="ISP图像处理之Demosaic算法及相关">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_sensor_cfa_ray.jpg">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_sensor_cfa.jpg">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/blog/blog_4800W_sensor.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_inter_Sensorimg.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_inter_Sensorimg.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_inter_Sensorimg.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_inter_Sensorimg.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/Blog_Demosaic_kodim19.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/Blog_Demosaic_TwoInter.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/Blog_Demosaic_AdaInter.png">
+<meta property="og:image" content="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/Blog_Demosaic_DifInter.png">
+<meta property="og:updated_time" content="2020-08-08T14:56:29.851Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ISP图像处理之Demosaic算法及相关">
+<meta name="twitter:description" content="ISP图像处理之Demosaic算法及相关">
+<meta name="twitter:image" content="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_sensor_cfa_ray.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.aomanhao.top/2020/07/21/ISP_Demosaic/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ISP图像处理之Demosaic算法及相关 | AomanHao的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AomanHao的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">唯有梦想与好姑娘不可辜负</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-相册">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/photos/" rel="section"><i class="menu-item-icon fa fa-fw fa-camera-retro"></i> <br>相册</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-爱礼">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="http://www.aomanhao.top/LoveHeart/" rel="section"><i class="menu-item-icon fa fa-fw fa-heart"></i> <br>爱礼</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-links">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/links/" rel="section"><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友链</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.aomanhao.top/2020/07/21/ISP_Demosaic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AomanHao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/Avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AomanHao的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ISP图像处理之Demosaic算法及相关
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+          
+          
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-07-21 10:08:00" itemprop="dateCreated datePublished" datetime="2020-07-21T10:08:00+08:00">2020-07-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-08-08 22:56:29" itemprop="dateModified" datetime="2020-08-08T22:56:29+08:00">2020-08-08</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2020/07/21/ISP_Demosaic/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2020/07/21/ISP_Demosaic/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2020/07/21/ISP_Demosaic/" class="leancloud_visitors" data-flag-title="ISP图像处理之Demosaic算法及相关">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">热度：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+              <span>℃</span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">4.4k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">7 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="\assets\js\APlayer.min.js"> </script><p>ISP图像处理之Demosaic算法及相关<br><a id="more"></a></p>
+<h2 id="CFA及Demosaic介绍"><a href="#CFA及Demosaic介绍" class="headerlink" title="CFA及Demosaic介绍"></a>CFA及Demosaic介绍</h2><h3 id="1-Bayer（拜耳滤波器得到彩色）"><a href="#1-Bayer（拜耳滤波器得到彩色）" class="headerlink" title="1.Bayer（拜耳滤波器得到彩色）"></a>1.Bayer（拜耳滤波器得到彩色）</h3><p>图像在将实际的景物转换为图像数据时， 通常是将传感器分别接收红、 绿、 蓝三个分量的信息， 然后将红、 绿、 蓝三个分量的信息合成彩色图像。 该方案需要三块滤镜， 这样价格昂贵，且不好制造， 因为三块滤镜都必须保证每一个像素点都对齐。</p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_sensor_cfa_ray.jpg" alt><br>（光线透过镜头然后通过颜色分离片分离 R G B信息，示意图来自《颜色插值算法改进及其电路设计》）</p>
+<p>通过在黑白 cmos 图像传感器的基础上， 增加彩色滤波结构和彩色信息处理模块就可以获得图像的彩色信息， 再对该彩色信息进行处理， 就可以获得色彩逼真的彩色图像。通常把彩色图像传感器表面覆盖的滤波称为彩色滤波阵列（Color Filter Arrays，CFA）。<br><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_sensor_cfa.jpg" alt><br>目前最常用的滤镜阵列是棋盘格式的， 已经有很多种类的， 其中绝大多数的摄像产品采用的是原色贝尔模板彩色滤波阵列（Bayer Pattern CFA）。R、G、B 分别表示透红色、透绿色和透蓝色的滤镜阵列单元。由于人的视觉对绿色最为敏感，所以在 Bayer CFA 中G分量是 R和B 的二倍，在每个像素点上只能获取一种色彩分量的信息，然后根据该色彩分量的信息通过插值算法得到全色彩图像。</p>
+<h3 id="2-Demosaic颜色插值-（去马赛克）"><a href="#2-Demosaic颜色插值-（去马赛克）" class="headerlink" title="2.Demosaic颜色插值 （去马赛克）"></a>2.Demosaic颜色插值 （去马赛克）</h3><p>当光线通过 Bayer型 CFA（Color Filter Arrays） 阵列之后， 单色光线打在传感器上，每个像素都为单色光，理想的Bayer 图是一个较为昏暗的马赛克图。（见感光元件成像示意图（2））。</p>
+<p>根据sensor上感知的光线强度，再结合对应滤光片颜色排列就可以估计出 sensor输出的彩色图像（见bayer滤镜输出图像示意图（3））</p>
+<p>首先需要说明的就是demosaiced并不是和字面的意思一样是为了去除电影中的一些打马赛克的图像，而是数字图像处理中用来从不完整的color samples插值生成完整的color samples的方法(因为bayer pattern看起来像一个个马赛克，因此称为去马赛克)。在sensor端通常需要使用CFA滤镜来得到Bayer pattern，而在后面的处理中需要把bayer pattern变成完整的RGB444(真彩色)图像。在ISP中需要有这么一个模块来做。</p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/blog/blog_4800W_sensor.png" alt></p>
+<h2 id="插值算法"><a href="#插值算法" class="headerlink" title="插值算法"></a>插值算法</h2><p>在传统的ISP中有很多算法可以来做这个插值，包括最近邻域法，bilinear 插值，cubic 插值等。</p>
+<h3 id="最近邻域法"><a href="#最近邻域法" class="headerlink" title="最近邻域法"></a>最近邻域法</h3><p>最近邻插值算法是将目标图像中的点，对应到原图像中后，找到最相邻的整数坐标点的像素值，作为该点的像素值输出。图像会出现明显的块状效应，会在一定程度上损失空间对称性（Alignment）。最近邻法速度最快，没有考虑像素之间的空间关系、色彩关系，效果肯定不佳。</p>
+<p>选择最近邻插值算法在图像放大的应用，在demosaic应用距离都相等，选择任意一个或者只选择一侧的像素数值作为插值数值，该方法没有考虑到附近的几个像素点按权重分配。</p>
+<h3 id="双线性插值算法"><a href="#双线性插值算法" class="headerlink" title="双线性插值算法"></a>双线性插值算法</h3><p>sensor输出一幅Bayer时，每个像素只有R,G,B三个通道中的一个通道的像素，通过插值算法把缺失的像素估计出来，<code>m*n</code>的二维数组插值为<code>m*n*3</code>的3个二维数组</p>
+<p>举例说明一下双线性插值，以下图的GRBG bayer矩阵为例</p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_inter_Sensorimg.png" alt></p>
+<p>1、以$G<em>{3,3}$ 这个点为例，我们需要求出$G</em>{3,3}$点处的<code>R</code> 和<code>B</code>像素数值，$G<em>{3,3}$的<code>R</code> 像素数值可以根据$G</em>{3,3}$ 左、右两个<code>R</code> 插值得到：</p>
+<script type="math/tex; mode=display">R_{G_{3,3}} = (R_{3,2} + R_{3,4})/2</script><p>则$G<em>{3,3}$的<code>B</code>像素数值可以根据$G</em>{3,3}$ 上、下两个<code>B</code> 插值得到：</p>
+<script type="math/tex; mode=display">B_{G_{3,3}} = (B_{2,3} + B_{4,3})/2</script><p>其他的<code>G</code>像素插值<code>R</code>、<code>B</code>数值都是这样。</p>
+<p>2、以$R<em>{3,4}$ 这个点为例，我们需要求出$R</em>{3,4}$点处的<code>G</code>和<code>B</code>像素数值，则$R<em>{3,4}$的<code>G</code>像素数值可以根据$R</em>{3,4}斜角四个<code>G</code>像素数值插值得到：</p>
+<script type="math/tex; mode=display">G_{R_{3,4}} = (G_{2,4} + R_{3,3} + G_{3,5} + G_{4,4})/4</script><p>$R<em>{3,4}$的<code>B</code>像素数值可以根据$R</em>{3,4}$上下左右四个<code>B</code> 像素数值插值得到：</p>
+<script type="math/tex; mode=display">B_{R_{3,4}} = (B_{2,3} + B_{3,5} + B_{4,3} + B_{4,5})/4</script><p>同理，在当前点是<code>B</code>或<code>R</code> 像素时，插值办法类似之上。</p>
+<p>根据同样的原理，我们可以对Bayer图像中的每一个点都进行插值，然后得到插值结果：</p>
+<h3 id="颜色相关性原理（色差恒定理论）"><a href="#颜色相关性原理（色差恒定理论）" class="headerlink" title="颜色相关性原理（色差恒定理论）"></a>颜色相关性原理（色差恒定理论）</h3><p>色差恒定准则与色比恒定准则都是基于颜色通道之间的相关性，目的都是把颜色通道之间的相关性信息引入颜色插值算法，提高插值的准确性。色差相比于色比有两点优势：</p>
+<p>第一，色差的运算简单，更容易实现。第二， 色比在G通道接近0时误差较大，色差不存在这类问题。因此，绝大多数颜色插值算法中使用了色差。</p>
+<p>以下图的GRBG bayer矩阵为例</p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_inter_Sensorimg.png" alt></p>
+<p>一种基于色差恒定准则的颜色插值算法，定义$Kr$、$Kb$</p>
+<p>$Kr = G - R$</p>
+<p>$kB = G - B$</p>
+<p>以$Kr$举例，对没有R像素数值的像素，需要$K_r$附近的像素进行数值估计，</p>
+<script type="math/tex; mode=display">Kr_{3,3} = G_{3,3} - R_{3,3} = G_{3,3}-(R_{3,2}+R_{3,4})/2</script><script type="math/tex; mode=display">Kr_{2,4} = G_{2,4} - R_{2,4} = G9_{2,4}-(R_{1,4}+R_{3,4})/2</script><p>插值的过程也是先对绿色通道插值，得到所有的G，然后再计算R<br>和B。</p>
+<p>（1）绿色G通道的R、B像素插值：</p>
+<p>在计算G值之前，需要计算好周围的Kr或者Kb，以R点处的G值为例</p>
+<script type="math/tex; mode=display">R_{G_{3,2}} =R_{3,2} + (K_{R_{2,2}} +K_{R_{3,1}}+ K_{R_{3,3}}+ K_{R_{4,2}})</script><p>B点处的G值类似。</p>
+<p>（2）红、蓝通道的插值；</p>
+<p>以红色为例，有两种情况，分别是G(3，3)点处的R值($ R<em>{G</em>{3,3}}$)和B(2,3)点处的R值(($ R<em>{B</em>{2,3}}$))。</p>
+<script type="math/tex; mode=display">R_{G_{3,3}} =R_{3,3} + (K_{R_{1,3}} +K_{R_{3,2}}+ K_{R_{3,4}}+ K_{R_{4,3}})</script><script type="math/tex; mode=display">R_{B_{2,3}} =G_{B_{2,3}} + (K_{R_{2,3}} +K_{R_{3,2}}+ K_{R_{3,4}}+ K_{R_{4,3}})</script><h3 id="自适应插值算法"><a href="#自适应插值算法" class="headerlink" title="自适应插值算法"></a>自适应插值算法</h3><p>双线性插值忽视了各通道间的相关性，插值结果往往带有比较严重的伪彩色。</p>
+<p>Hamilton and Adams 考虑到了各颜色通道之间的关系，利用梯度变化即两个通道之差，通常是用G通道分别减去R和B通道来增加通道之间的相关性，再用相减得到的结果进行插值。这种方法考虑了各通道间的关联，因此插值结果伪彩色大大减少</p>
+<p>其计算水平梯度和竖直梯度，在计算梯度时综合了<code>亮度分量梯度</code>和使用的<code>拉普拉斯二阶微分算子</code>。</p>
+<h4 id="插值缺失的绿色"><a href="#插值缺失的绿色" class="headerlink" title="插值缺失的绿色"></a>插值缺失的绿色</h4><p>在计算绿色像素值时，不仅使用了边缘方向的像素值进行平均，还使用了色差对平均值进行修正。<br><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_inter_Sensorimg.png" alt></p>
+<p>1、 计算水平梯度和竖直梯度(以$B_{2,3}$举例)</p>
+<script type="math/tex; mode=display">\nabla{H} = {丨G_{2,2}-G_{2,4}丨} + 丨2*B_{2,3}-B_{2,1}-B_{2,5}丨</script><script type="math/tex; mode=display">\nabla{V} = {丨G_{1,3}-G_{3,3}丨} + 丨2*B_{2,3}-B_{-1,3}-B_{4,3}丨</script><p>2、分析梯度数值大小，计算插值的G值（梯度数值小，色彩差异小，选择梯度小的方向作为插值方向）</p>
+<p>当$\nabla{H} &lt; \nabla{V}$时，</p>
+<script type="math/tex; mode=display">G_{B_{2,3}} = ( G_{2,2} + G_{2,4} )/2 + (2*B_{2,3}-B_{2,1}-B_{2,5})/4</script><p>当$\nabla{H} &gt; \nabla{V}$时，</p>
+<script type="math/tex; mode=display">G_{B_{2,3}} = (G_{1,3} + G_{3,3} )/2 + (2*B_{2,3}-B_{-1,3}-B_{4,3})/4</script><p>当$\nabla{H} = \nabla{V}$时，</p>
+<script type="math/tex; mode=display">G_{B_{2,3}} = (G_{1,3} + G_{2,2} + G_{3,3} + G_{2,4} )/4 + (4*B_{2,3}-B_{-1,3}-B_{4,3}-B_{2,1}-B_{2,5})/4</script><h4 id="插值绿色通道缺失的-红、蓝数值"><a href="#插值绿色通道缺失的-红、蓝数值" class="headerlink" title="插值绿色通道缺失的 红、蓝数值"></a>插值绿色通道缺失的 红、蓝数值</h4><p>1、插值红像素数值，寻找附近一列或者一行存在红色像素进行权重插值</p>
+<p>举例$G_{3,3}$</p>
+<script type="math/tex; mode=display">R_{G_{3,3}} = ( R_{3,2} + R_{3,4} )/2 + (2*G_{3,3}-G_{3,1}-G_{3,5})/4</script><p>蓝色插值同上</p>
+<h4 id="插值红（蓝）通道缺失的-蓝（红）数值"><a href="#插值红（蓝）通道缺失的-蓝（红）数值" class="headerlink" title="插值红（蓝）通道缺失的 蓝（红）数值"></a>插值红（蓝）通道缺失的 蓝（红）数值</h4><p>已知的红色像素值在两条对角线上，算法的思想是计算两条对角线对应的梯度，选择梯度较小的方向插值。</p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/blog_inter_Sensorimg.png" alt></p>
+<p>举例以$B_{2,3}$举例</p>
+<p>定义倾斜梯度$\nabla{N}$、$\nabla{P}$：</p>
+<script type="math/tex; mode=display">\nabla{N} = 丨R_{1,2}-R_{3,4}丨 + 丨2*G_{2,3}-G_{1,2}-G_{3,4}丨</script><script type="math/tex; mode=display">\nabla{P} = 丨R_{1,4}-R_{3,2}丨 + 丨2*G_{2,3}-G_{1,4}-G_{3,2}丨</script><p>根据倾斜梯度，选择插值方向：<br>当$\nabla{N} &lt; \nabla{P}$时，</p>
+<script type="math/tex; mode=display">G_{B_{2,3}} = ( R_{1,2} + R_{3,4} )/2 + (2*G_{2,3}-G_{1,2}-G_{3,4})/4</script><p>当$\nabla{N} &gt; \nabla{P}$时，</p>
+<script type="math/tex; mode=display">G_{B_{2,3}} = (R_{1,4} + R_{3,2} )/2 + (2*G_{2,3}-G_{1,4}-G_{3,2})/4</script><p>当$\nabla{N} = \nabla{P}$时，</p>
+<script type="math/tex; mode=display">G_{B_{2,3}} = (R_{1,2} + R_{3,4} + R_{1,4} + R_{3,2} )/4 + (4*B_{2,3}-G_{1,2}-G_{3,4}-G_{1,4}-G_{3,2})/4</script><p><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/Blog_Demosaic_kodim19.png" alt="测试图像"><br>图、kodim19测试图像</p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/Blog_Demosaic_TwoInter.png" alt><br>图、双线性插值图像</p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/Blog_Demosaic_AdaInter.png" alt><br>图、自适应插值算法图像</p>
+<p><img src="https://img-blog.nos-eastchina1.126.net/PersonalPhoto/Blog_Demosaic_DifInter.png" alt><br>图、双线性插值、自适应插值算法图像对比</p>
+<p>双线性插值法使图片变模糊，在图片中栅栏区域有大量的拉链效应和伪彩色失真；自适应插值算法拉链效应会好很多，还是有一点异常需要优化</p>
+<p>感兴趣的可以去我的github 跑跑程序</p>
+<p><a href="https://github.com/AomanHao/ISP_Demosiac" target="_blank" rel="noopener">https://github.com/AomanHao/ISP_Demosiac</a></p>
+<h3 id="我的个人博客主页，欢迎访问"><a href="#我的个人博客主页，欢迎访问" class="headerlink" title="我的个人博客主页，欢迎访问"></a><a href="http://www.aomanhao.top/">我的个人博客主页，欢迎访问</a></h3><h3 id="我的CSDN主页，欢迎访问"><a href="#我的CSDN主页，欢迎访问" class="headerlink" title="我的CSDN主页，欢迎访问"></a><a href="https://blog.csdn.net/Aoman_Hao" target="_blank" rel="noopener">我的CSDN主页，欢迎访问</a></h3><h3 id="我的GitHub主页，欢迎访问"><a href="#我的GitHub主页，欢迎访问" class="headerlink" title="我的GitHub主页，欢迎访问"></a><a href="https://github.com/AomanHao" target="_blank" rel="noopener">我的GitHub主页，欢迎访问</a></h3>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>AomanHao</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://www.aomanhao.top/2020/07/21/ISP_Demosaic/" title="ISP图像处理之Demosaic算法及相关">http://www.aomanhao.top/2020/07/21/ISP_Demosaic/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ISP/" rel="tag"><i class="fa fa-tag"></i> ISP</a>
+          
+            <a href="/tags/图像处理/" rel="tag"><i class="fa fa-tag"></i> 图像处理</a>
+          
+            <a href="/tags/Sensor/" rel="tag"><i class="fa fa-tag"></i> Sensor</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/18/ISP_Sensor_type/" rel="next" title="堆栈式 CMOS、背照式 CMOS 和传统 CMOS 传感器的区别">
+                <i class="fa fa-chevron-left"></i> 堆栈式 CMOS、背照式 CMOS 和传统 CMOS 传感器的区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/19/ISP_BLC/" rel="prev" title="ISP之黑电平矫正">
+                ISP之黑电平矫正 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Avatar.jpg" alt="AomanHao">
+            
+              <p class="site-author-name" itemprop="name">AomanHao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">148</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/aomanhao" title="GitHub &rarr; https://github.com/aomanhao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:1014325364@qq.com" title="E-Mail &rarr; mailto:1014325364@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/2831714980" title="Weibo &rarr; https://weibo.com/u/2831714980" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://me.csdn.net/Aoman_Hao" title="CSDN &rarr; https://me.csdn.net/Aoman_Hao" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CFA及Demosaic介绍"><span class="nav-number">1.</span> <span class="nav-text">CFA及Demosaic介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Bayer（拜耳滤波器得到彩色）"><span class="nav-number">1.1.</span> <span class="nav-text">1.Bayer（拜耳滤波器得到彩色）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Demosaic颜色插值-（去马赛克）"><span class="nav-number">1.2.</span> <span class="nav-text">2.Demosaic颜色插值 （去马赛克）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插值算法"><span class="nav-number">2.</span> <span class="nav-text">插值算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最近邻域法"><span class="nav-number">2.1.</span> <span class="nav-text">最近邻域法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双线性插值算法"><span class="nav-number">2.2.</span> <span class="nav-text">双线性插值算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#颜色相关性原理（色差恒定理论）"><span class="nav-number">2.3.</span> <span class="nav-text">颜色相关性原理（色差恒定理论）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自适应插值算法"><span class="nav-number">2.4.</span> <span class="nav-text">自适应插值算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#插值缺失的绿色"><span class="nav-number">2.4.1.</span> <span class="nav-text">插值缺失的绿色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插值绿色通道缺失的-红、蓝数值"><span class="nav-number">2.4.2.</span> <span class="nav-text">插值绿色通道缺失的 红、蓝数值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插值红（蓝）通道缺失的-蓝（红）数值"><span class="nav-number">2.4.3.</span> <span class="nav-text">插值红（蓝）通道缺失的 蓝（红）数值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我的个人博客主页，欢迎访问"><span class="nav-number">2.5.</span> <span class="nav-text">我的个人博客主页，欢迎访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我的CSDN主页，欢迎访问"><span class="nav-number">2.6.</span> <span class="nav-text">我的CSDN主页，欢迎访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我的GitHub主页，欢迎访问"><span class="nav-number">2.7.</span> <span class="nav-text">我的GitHub主页，欢迎访问</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+          <h3 class="widget-title"></h3>
+          <div id="myCanvasContainer" class="widget tagcloud">
+              <canvas width="200" height="200" id="resCanvas" style="width=100%">
+                  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/">GUI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">28</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">31</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISP/">ISP</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matlab/">Matlab</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Music/">Music</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netlify/">Netlify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Next/">Next</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opencv/">Opencv</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sensor/">Sensor</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theme/">Theme</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode/">VScode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/">yilia</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像分割/">图像分割</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像增强/">图像增强</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a><span class="tag-list-count">52</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像插值/">图像插值</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像融合/">图像融合</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安防/">安防</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理学/">心理学</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推荐/">推荐</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最优化/">最优化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特征提取/">特征提取</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/相册/">相册</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔面试/">笔面试</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评价指标/">评价指标</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">1</span></li></ul>
+              </canvas>
+          </div>
+        </div>
+      
+      
+      
+          <!-- canvas粒子时钟 -->
+          <div style>
+  <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
+
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<!--网页底部copyright部分-->
+<div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">by AomanHao</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">421k</span>
+  
+
+  
+
+    
+    <span class="post-meta-divider">|</span>
+  
+
+  <!--访问量访问人数-->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+
+
+</div>
+
+
+<span id="timeDate"></span><span id="times"></span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("11/27/2017 12:00:00");//在此处修改你的建站时间
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = " 网站安全运行 "+dnum+" 天 "; 
+        
+    } 
+setInterval("createtime()",250);
+</script>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<!--Hexo版本模块-->
+
+ <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+<!--Next主题版本模块-->
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<script type="text/javascript" src="https://s22.cnzz.com/z_stat.php?id=1274486405&web_id=1274486405"></script>
+
+<!--document.getElementById("times").innerHTML = hnum + " H " + mnum + " M " + snum + " S"; -->
+        
+
+
+
+
+
+
+<div>
+<!--始
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+document.write(unescape("%3Cspan id='cnzz_stat_icon_1274486405'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + 
+"s22.cnzz.com/z_stat.php%3Fid%3D1274486405%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+</script>
+末-->
+</div>
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.2" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.13.2/dist/av-min.js"></script>
+
+
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/valine@1.3.4/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'llBsNPTabKsl2d4aU3OvrmSz-gzGzoHsz',
+    appKey: 'gzSQowSIzhnuc5eYPj4k7c7z',
+    placeholder: '欢迎交流讨论...',
+    avatar: 'monsterid',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":75,"height":150},"mobile":{"show":false},"log":false});</script></body>
+</html>
+
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
