@@ -31,12 +31,11 @@ tags: [ISP, 图像处理]
 ### １）最小均方误差匹配
 假设$f_c(i,j)$为当前帧中子块的中心像素，$f_p(i,j)$表示参考帧中搜索窗口内一子块的中心像素，
 
-$S(\delta_i,\delta_j) = \sum_{i=1}^n \sum_{j=1}^n(f_c(i,j)-f_p(i+\delta_i,j+\delta_j))^2 $ 
+$$S(\delta_i,\delta_j) = \sum_{i=1}^n \sum_{j=1}^n(f_c(i,j)-f_p(i+\delta_i,j+\delta_j))^2 $$
 
 上式中出了参考帧中特定子块与当前帧子块的均方差值，并求出参考帧变动范围内的所有子块的均方差值，比较得到最小值。
 
-$(\delta_{i_{0}},\delta_{j_{0}}) = argmin_{\delta_{i},\delta_{j}}
-S(\delta_i,\delta_j)$ 
+$$(\delta_{i_{0}},\delta_{j_{0}}) = argmin_{\delta_{i},\delta_{j}}S(\delta_i,\delta_j)$$
 
 上式求使$S(\delta_i，\delta_j)$最小的参数值$(\delta_{i_{0}},\delta_{j_{0}})$。在参考帧中与当前帧子块匹配的像素块中。为，运动向量为最小绝对误差匹配最小绝对误差匹配与上述的最小均方误差匹配的操作步骤类似，只是所比较的值由均方差变成了差的绝对值。
 
