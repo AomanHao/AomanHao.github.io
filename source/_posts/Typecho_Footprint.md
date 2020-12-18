@@ -6,8 +6,8 @@ tags: [Hexo, Next]
  
 Hexo博客使用添加足迹地图
 <!--more-->
-# 教你用 jVectorMap 制作属于自己的旅行足迹
 
+作者的足迹地图，地址如下：
 ![我的足迹地图](http://wx1.sinaimg.cn/large/cf5b72a1ly1fvv1gupvz0j20xx0op760.jpg)
 
 ## jVectorMap
@@ -36,17 +36,6 @@ Demo : <http://www.wujiayi.vip/index.php/46.html>
 
 - index.html 中需要添加足迹位置和相关样式。
 
-## 开始
-
- `index.html` 分为三部分介绍：
- 
- - 如何更换不同国家地图。
- 
- 
- - 如何修改地图颜色等相关样式。
- 
- 
- - 如何添加足迹位置。
  
 ## 第一部分：如何更换不同国家地图。
  
@@ -72,11 +61,11 @@ Demo : <http://www.wujiayi.vip/index.php/46.html>
 	</head>
 <body>
 ```
-提前下载需要的国家地图，拷贝到 js 目录下。
+提前下载需要的国家地图，默认使用中国地图拷贝到 `js `目录下。
 
 在 `<head>` 标签里引入地图数据： `<script type="text/javascript" src="js/地图文件名"></script>`
 
-**注意** ：同时只能有一个地图库，注意不要引入多个地图数据。可以选择注释掉其他的，方便更改。
+同时只能有一个地图库，注意不要引入多个地图数据。可以选择注释掉其他的，方便更改。
 
 ## 第二部分：如何修改地图颜色等相关样式。
 
