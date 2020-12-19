@@ -157,23 +157,26 @@ Demo : <http://www.wujiayi.vip/index.php/46.html>
 
 ## 如何嵌入式到博客中
 
-```html
-<iframe style="max-width: 100%" 
-      frameborder="no" 
-      border="0" 
-      marginwidth="0" 
-      marginheight="0" 
-      width="100%" 
-      height="750px" 
-      src="替换成你的足迹地图链接">                                        
-</iframe>
+
+### 动态博客：例如typecho
+在部署服务器上新建文件夹`map`或者类似，把制作好的足迹地图文件上传，保证访问路径地图能生效，把访问连接放在 `src` 中替换足迹地图链接。
+
+比如我的博客是： http://www.aomanhao.top/
+我的足迹文章路径： http://www.aomanhao.top/map
+
+然后新建一个文章，将嵌入代码复制到你的文章页面上即可，若需要在首页显示足迹链接，则需要在首页添加`足迹`的文章链接，按照自己博客来操作吧。
+
+嵌入代码如下：
 
 ```
-把制作好的足迹地图文件放在服务器上，把访问连接放在 `src` 中。
+<iframe style="max-width: 100%" frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="750px"src="替换成你的足迹地图链接"></iframe>
+
+```
+
+### 静态博客：例如hexo
+在部署服务器或者github上新建文件夹`map`或者类似，把制作好的足迹地图文件上传，保证访问路径地图能生效，把访问连接放在 `src` 中替换足迹地图链接。
 
 然后将上面的代码复制到你的博客页面上即可。
-
-可适配手机端和等比例缩放。
 
 ## 获取源码
 
@@ -183,11 +186,10 @@ git clone https://github.com/HelloWuJiaYi/jVectorMap-Footprint
 
 
 
+转载地址：http://www.wujiayi.vip/index.php/46.html
 
 
 
-
-```
 
  [我的个人博客文章地址，欢迎访问](http://www.aomanhao.top/2019/02/20/hexo_valine/#more)
  [我的CSDN文章地址，欢迎访问](https://blog.csdn.net/Aoman_Hao/article/details/87809762)
