@@ -13,17 +13,19 @@
 
 ## 🍭共勉
 
-双非研究生一枚，热爱图像处理，废老大劲收获一篇三区SCI文章
+热爱图像处理，玩玩sensor
 
 ## 🍭打工
-主修模糊聚类图像分割算法和图像去噪算法
-
-辅修3A算法和ISP算法
+从北漂到南，从西飘到东，漂到华东奋斗之都，成为杭漂之一；
+以前想扬名立万，现在只想搞钱，向你致敬，salute
 
 ## 🍭爱好
+
 捣鼓DIY机械键盘，喜欢红轴黄轴。
 
 喜欢骑车的宅男，现在没有公路车了，只剩宅男了。
+
+
 
 <!--<font color=#5F9EA0 size=5 face="STCAIYUN">音乐<font color=#FF8C00>是我<font color=#9370D8>生命<font color=#006400>中的<font color=#FF00FF>彩虹</font></font></font></font></font>
 <font color=#5F9EA0 size=5 face="STCAIYUN">蓉蓉<font color=#FF8C00>是我<font color=#9370D8>生命<font color=#006400>中的<font color=#FF00FF>太阳</font></font></font></font></font>-->

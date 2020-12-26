@@ -1,14 +1,17 @@
 ---
-title: Hexo博客使用添加足迹地图
+title: 静态动态博客添加足迹地图
 date: 2020-12-20 10:08:00
 tags: [Hexo, Next]
 ---
  
-Hexo博客使用添加足迹地图
+静态动态博客添加足迹地图
 <!--more-->
 
-作者的足迹地图，地址如下：
-![我的足迹地图](http://wx1.sinaimg.cn/large/cf5b72a1ly1fvv1gupvz0j20xx0op760.jpg)
+足迹地图作者效果如下：
+![](http://wx1.sinaimg.cn/large/cf5b72a1ly1fvv1gupvz0j20xx0op760.jpg)
+
+本文部署的足迹地图，地址如下：
+http://www.aomanhao.top/index.php/archives/183/
 
 ## jVectorMap
 
@@ -25,6 +28,12 @@ JVectorMap 官方网站提供了很多相关文档和使用示例，感兴趣的
 今天教大家通过 jVectorMap 制作旅行足迹地图，最终的效果可以查看下面的 Demo 演示（中国），并教大家如何将制作好的足迹地图嵌入到我们自己的博客中。
 
 Demo : <http://www.wujiayi.vip/index.php/46.html>
+
+## 获取源码
+
+```
+git clone https://github.com/HelloWuJiaYi/jVectorMap-Footprint
+```
 
 ## 目录结构
 
@@ -151,7 +160,7 @@ Demo : <http://www.wujiayi.vip/index.php/46.html>
 
 ```
 
-推荐查询经纬度网站：http://www.gpsspg.com/maps.htm
+推荐查询经纬度网站：https://jingweidu.51240.com/
 
 语法：`{latLng: [经度（保留两位小数）, 纬度（保留两位小数）], name: '城市名称'},`。
 
@@ -178,11 +187,7 @@ Demo : <http://www.wujiayi.vip/index.php/46.html>
 
 然后将上面的代码复制到你的博客页面上即可。
 
-## 获取源码
 
-```
-git clone https://github.com/HelloWuJiaYi/jVectorMap-Footprint
-```
 
 
 
