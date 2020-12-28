@@ -23,7 +23,7 @@ JVectorMap 官方网站提供了很多相关文档和使用示例，感兴趣的
 
 官方网站：<http://jvectormap.com/>
 
-![jVectorMap](http://wx4.sinaimg.cn/large/cf5b72a1ly1fvv2t7olhjj20ss0e8jvo.jpg)
+![jVectorMap](https://img-blog.nos-eastchina1.126.net/blog/blog_jvectormap.jpg)
 
 今天教大家通过 jVectorMap 制作旅行足迹地图，最终的效果可以查看下面的 Demo 演示（中国），并教大家如何将制作好的足迹地图嵌入到我们自己的博客中。
 
@@ -37,7 +37,7 @@ git clone https://github.com/HelloWuJiaYi/jVectorMap-Footprint
 
 ## 目录结构
 
-![](http://wx1.sinaimg.cn/large/cf5b72a1ly1fvv432zeqzj20b806gaaa.jpg)
+![](https://img-blog.nos-eastchina1.126.net/blog/blog_jvectormap_2.jpg)
 
 - 红色框中的文件是必须要引入的内容。
 
@@ -196,7 +196,6 @@ git clone https://github.com/HelloWuJiaYi/jVectorMap-Footprint
 
 
 
- [我的个人博客文章地址，欢迎访问](http://www.aomanhao.top/2019/02/20/hexo_valine/#more)
- [我的CSDN文章地址，欢迎访问](https://blog.csdn.net/Aoman_Hao/article/details/87809762)
- [我的简书文章地址，欢迎访问](https://www.jianshu.com/p/f4658df66a15)
- [我的GitHub主页，欢迎访问](https://github.com/AomanHao)
+### [我的个人博客主页，欢迎访问](http://www.aomanhao.top/)
+### [我的CSDN主页，欢迎访问](https://blog.csdn.net/Aoman_Hao)
+### [我的GitHub主页，欢迎访问](https://github.com/AomanHao)

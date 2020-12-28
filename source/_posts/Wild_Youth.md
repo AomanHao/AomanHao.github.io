@@ -27,6 +27,17 @@ top: 10
 我喜欢他们拍摄视频的创意和编排，喜欢他们的动手能力，自己去完善和实现自己的想法与创意，剪辑的手法与风格也渐渐成熟，希望他们越来越好，越来越火，带来更多的创意视频。
 
 ---
+## 野居青年精心周边
+![野居造物](https://img-blog.nos-eastchina1.126.net/blog/width_youth.jpg)
+
+
+野居青年出周边了，不同于各种网红款选择厂商的共模加logo商品，野居青年的周边商品原创设计得非常用心，融入粉丝甚为喜爱的春分、中分、李葵的原创萌宠元素，台历夜与复旦才女合作原创诗词。首批周边包括台历、帆布包、手账、鼠标垫、棉袜等商品。
+
+周边讲解视频如下：
+[](https://www.bilibili.com/video/BV1Cf4y1e7XR)
+
+淘宝链接如下：
+[野居造物](https://shop370525833.taobao.com/shop/view_shop.htm?spm=a1z0k.7385961.0.0.1f587fd47vPHw4&shop_id=370525833)
 
 ### [我的个人博客主页，欢迎访问](http://www.aomanhao.top/)
 ### [我的CSDN主页，欢迎访问](https://blog.csdn.net/Aoman_Hao)

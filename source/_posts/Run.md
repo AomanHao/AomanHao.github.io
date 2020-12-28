@@ -41,8 +41,6 @@ tags: [Hexo, Next]
 <iframe src="//player.bilibili.com/player.html?aid=755267033&bvid=BV1xr4y1F73Y&cid=257353520&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 </div>
 
-
- [我的个人博客文章地址，欢迎访问](http://www.aomanhao.top/2019/02/20/hexo_valine/#more)
- [我的CSDN文章地址，欢迎访问](https://blog.csdn.net/Aoman_Hao/article/details/87809762)
- [我的简书文章地址，欢迎访问](https://www.jianshu.com/p/f4658df66a15)
- [我的GitHub主页，欢迎访问](https://github.com/AomanHao)
+### [我的个人博客主页，欢迎访问](http://www.aomanhao.top/)
+### [我的CSDN主页，欢迎访问](https://blog.csdn.net/Aoman_Hao)
+### [我的GitHub主页，欢迎访问](https://github.com/AomanHao)

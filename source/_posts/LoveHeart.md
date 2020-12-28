@@ -19,7 +19,7 @@ tags: [GitHub]
 [我的项目地址](https://github.com/AomanHao/loveheart)
 
 项目效果预览网址如下：
-[效果预览](http://www.aomanhao.top/loveheart/)
+[效果预览](https://aomanhao.github.io/LoveHeart/)
 
 项目放在我的主域名下的子域名内，主域名对应`Github Page`的主仓库`ID.github.io`。
 
