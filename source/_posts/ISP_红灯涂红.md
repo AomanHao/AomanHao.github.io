@@ -1,28 +1,45 @@
 ---
-title: CMOS sensor HCG模式？
-date: 2020-09-05 10:08:00
+title: 交通灯颜色校正
+date: 2021-01-31 10:08:00
 tags: [图像处理]
 ---
 
-CMOS sensor HCG模式？
+交通灯颜色校正
 <!--more-->
+交通灯颜色校正
 
-High conversion gain吗？这个要High和low配合去做才会有动态范围的优势，就把它当成Gain就行，一个high gain，一个low gain，可以拼出来一个HDR的图像。我60fps全尺寸High+Low，经过ISP支持可以出30fps HDR拼好的图像。High Gain用在暗处，Low Gain用在亮处。（uV/e-）
+日常使用监控摄像机检测交通违法行为，闯红灯行为需要检测和判断交通信号灯的颜色和指向，但是当检测场景环境较暗时，监控摄像机需要增加曝光时间来抓拍机动车信息，增加曝光时间会使交通信号灯颜色区域过度饱和，例如红灯的红色会偏白，影响闯红灯等违法行为的判断，图示如下：
 
-作者：Shingo
-链接：https://www.zhihu.com/question/265887206/answer/312331088
-来源：知乎
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-
-是 pixel level原生的gain（可从LCG切换），相比 ramp adc的gain，有更好的snr，不过不能线性调节，是固定的，需要在gain在一定范围以上与ADC的gain做重新分配
-
-会影响动态单位。hcg就是增大放大倍数，adc的输入是范围是固定的。
-然而hcg就是在弱光下用的，一般也不会超过动态范围。
-发布于 2018-01-21
+通常情况下交通信号灯 R>200 ,G<60,B<50 
 
 
-###[我的个人博客主页，欢迎访问](http://www.aomanhao.top/)
-###[我的CSDN主页，欢迎访问](https://blog.csdn.net/Aoman_Hao)
-###[我的GitHub主页，欢迎访问](https://github.com/AomanHao)
+## 基于RGB空间的交通灯颜色校正
+图像选择交通信号灯颜色区域，在RGB空间将划分区域的像素分类为红黄绿黑白五种，提取单色图像，对单色图像进行二值化处理，然后使用形态学滤波处理噪点，最后提取连通区域进行识别。
+
+
+### 像素颜色提取
+像素N，判断分量R，分量B，分量G之间的大小关系
+
+红：`R-G>阈值1` 且 `G-B<阈值2` ，保证R分量最多
+
+黄：`R-B>阈值3` 且 `G-B>阈值4` 
+
+绿：`R-B<阈值5` 且 `G-B>阈值6` 
+
+黑：`R+B+G < 阈值7`
+
+## 基于HSV空间的交通灯颜色校正
+
+基本步骤类似基于RGB的方法，但是提取颜色空间变换为HSV空间，颜色阈值不也不同于RGB空间，提取单色区域后，进行连通域识别。
+
+
+
+参考：
+1、Suspended Traffic Lights Detection and Distance Estimation Using Color Features
+2、基于色域差分与伽马校正的交通灯识别
+
+### [我的个人博客主页，欢迎访问](http://www.aomanhao.top/)
+### [我的CSDN主页，欢迎访问](https://blog.csdn.net/Aoman_Hao)
+### [我的GitHub主页，欢迎访问](https://github.com/AomanHao)
 
 

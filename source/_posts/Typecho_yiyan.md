@@ -16,14 +16,15 @@ tags: [Typecho]
 ## 调用方法
 ### PHP调用方法
 添加如下代码到页面头部
-
+```
 <?php $hitokoto = file_get_contents('https://sunpma.com/other/hitokoto/'); ?>
-
+```
 注意：
 >需要把代码中的URL地址替换为你自己的URL
 然后在需要显示“一言”的标签，插入如下代码：
-
+```
 <?php echo $hitokoto; ?>
+```
 ### JS调用方法
 添加如下代码到页面底部；
 ```
