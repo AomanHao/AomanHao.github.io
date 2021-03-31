@@ -26,7 +26,7 @@ search:
   format: html
   limit: 10000
 ```
-[![klzbon.md.png](https://s2.ax1x.com/2019/01/30/klzbon.md.png)](https://imgchr.com/i/klzbon)
+![](https://img-blog.nos-eastchina1.126.net/blog/hexo_search_config1.png)
 
 编辑`博客本地目录/themes/next/_config.yml` 主题配置文件，启用本地搜索功能,将`local_search:`下面的`enable:`的值，改成`true`，`local_search`顶格放置。
 
@@ -41,7 +41,7 @@ local_search:
   # unescape html strings to the readable one
   unescape: false
 ```
-[![k1pk7j.md.png](https://s2.ax1x.com/2019/01/30/k1pk7j.md.png)](https://imgchr.com/i/k1pk7j)
+![](https://img-blog.nos-eastchina1.126.net/blog/hexo_search_config2.png)
 
 可以输入以下命令，先清理缓存，然后本地部署调试
 ```
@@ -55,7 +55,7 @@ hexo s
 
 根据以上配置出的搜索框有可能出现无法加载，搜索无效，动画一直loading的问题，如下图：
 
-[![klzjzT.md.jpg](https://s2.ax1x.com/2019/01/30/klzjzT.md.jpg)](https://imgchr.com/i/klzjzT)
+![](https://img-blog.nos-eastchina1.126.net/blog/hexo_search_loading.png)
 
 按F12可以查看请求命令的状态，状态码`200`表示请求成功。但是搜索动画还是一直在转。
 
@@ -81,26 +81,28 @@ hexo clean
 hexo s
 ```
 
-[![klzLiq.md.png](https://s2.ax1x.com/2019/01/30/klzLiq.md.png)](https://imgchr.com/i/klzLiq)
+![](https://img-blog.nos-eastchina1.126.net/blog/hhexo_search_local1.png)
 
 报错先不用管，命令输入完成，提示：**Hexo is running at http://localhost:4000/**。可以把网址复制到浏览器上，查看本地生成的博客，体验跟网站版的差不多，不出所料搜索框的动画还是会一直loading。
-![klzxQU.png](https://s2.ax1x.com/2019/01/30/klzxQU.png)
+
+![](https://img-blog.nos-eastchina1.126.net/blog/hexo_search_loading.png)
 
 现在就要检查`search.xml` 文件，复制以下网址到浏览器，查看`search.xml`文件内容，是否报错。
 ```
 localhost:4000/search.xml
 ```
 效果图如下：
-[![klzzyF.md.png](https://s2.ax1x.com/2019/01/30/klzzyF.md.png)](https://imgchr.com/i/klzzyF)
+![](https://img-blog.nos-eastchina1.126.net/blog/hexo_search_loading2.png)
 
 可以看到，有报错，报错内容就是说`search.xml` 文件有一些不能读取的内容，因为xml文件是有特殊符号不能使用。如果报错，浏览器右侧滑条拉到底，看看是哪里的文章出现问题。
 
 效果图如下：
-[![klzOJ0.md.png](https://s2.ax1x.com/2019/01/30/klzOJ0.md.png)](https://imgchr.com/i/klzOJ0)
+![](https://img-blog.nos-eastchina1.126.net/blog/hexo_search_loading3.png)
 
 从最后的文字中找到`一些信息`，打开博客根目录下的`search.xml`文件
 
-[![klzXWV.png](https://s2.ax1x.com/2019/01/30/klzXWV.png)](https://imgchr.com/i/klzXWV)
+![](https://img-blog.nos-eastchina1.126.net/blog/hexo_search_loading4.png)
+
 
 打开`search.xml`文件，找到包含那`一些信息`的那篇文章，最好是能开MarkDown在线编辑，也可以把有问题的`.md`文件拿出来，重新部署博客。
 

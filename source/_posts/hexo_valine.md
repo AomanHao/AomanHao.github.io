@@ -36,19 +36,19 @@ Valine: https://github.com/xCss/Valine (简约，实用，使用Leancloud作�
 ### 2、配置LeanCloud
 
 创建一个新的应用
-![k2FG0s.png](https://s2.ax1x.com/2019/02/20/k2FG0s.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/hexo_valine_signup1.png)
 
 随便取个名字，自己看着取吧
-![k2FdpT.png](https://s2.ax1x.com/2019/02/20/k2FdpT.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/hexo_valine_signup2.png)
 
 应用创建完成，点开配置按钮
-![k2F8mj.png](https://s2.ax1x.com/2019/02/20/k2F8mj.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/hexo_valine_signup3.png)
 
 点击`设置` > `应用Key` 复制App ID 和 App Key
-![k2FNt0.png](https://s2.ax1x.com/2019/02/20/k2FNt0.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/hexo_valine_signup4.png)
 
 点击`设置` > `安全中心` 把自己博客网址添加到安全中心，保证数据的调用安全。
-![k2FUhV.png](https://s2.ax1x.com/2019/02/20/k2FUhV.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/hexo_valine_signup5.png)
 
 ### 修改配置文件
 在主题`themes`目录下有第三方提供的主题配置文件`\themes\next\_config.yml`
@@ -74,10 +74,10 @@ valine:
 ## 阅读次数功能配置过程
 ### 创建阅读次数Class类
 在应用里面创建名称为`Counter`的`Class`，名称必须为`Counter`
-![k2Ftkq.png](https://s2.ax1x.com/2019/02/20/k2Ftkq.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/hexo_valine_signup6.png)
 
 创建完成，效果如下：
-![k2FJ7n.png](https://s2.ax1x.com/2019/02/20/k2FJ7n.png)
+![](https://img-blog.nos-eastchina1.126.net/blog/hexo_valine_signup7.png)
 
 ## 修改配置文件
 
@@ -179,17 +179,8 @@ leancloud_visitors:
 
 在 禁止留言的文章或者板块添加`comments` 并将赋值`false`
 
-```
----
-title: tags
-date: 2019-01-28 10:02:04
-type: "tags"
-comments: false
----
 
-```
 
- [我的个人博客文章地址，欢迎访问](http://www.aomanhao.top/2019/02/20/hexo_valine/#more)
- [我的CSDN文章地址，欢迎访问](https://blog.csdn.net/Aoman_Hao/article/details/87809762)
- [我的简书文章地址，欢迎访问](https://www.jianshu.com/p/f4658df66a15)
+ [我的个人博客文章地址，欢迎访问](http://www.aomanhao.top)
+ [我的CSDN地址，欢迎访问](https://blog.csdn.net/Aoman_Hao)
  [我的GitHub主页，欢迎访问](https://github.com/AomanHao)
