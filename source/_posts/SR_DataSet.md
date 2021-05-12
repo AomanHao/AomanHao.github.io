@@ -11,19 +11,19 @@ tags: [图像处理, 超分辨率]
 
 
 
- | Dataset      | Amount |      |
-  | ------------ | ------ | ---- |
-  | Set5         | 5      |      |
-  | Set14        | 14     |      |
-  | Urban100     | 100    |      |
-  | BSDS300      | 300    |      |
-  | BSDS500      | 500    |      |
-  | DIV2K        | 1000   |      |
-  | General-100  | 100    |      |
-  | L20          | 20     |      |
-  | Manga109     | 109    |      |
-  | OutdoorScene | 10624  |      |
-  |              |        |      |
+  | Dataset      | Amount |  
+  | ------------ | ------ | 
+  | Set5         | 5      | 
+  | Set14        | 14     |      
+  | Urban100     | 100    |      
+  | BSDS300      | 300    |      
+  | BSDS500      | 500    |      
+  | DIV2K        | 1000   |      
+  | General-100  | 100    |     
+  | L20          | 20     |      
+  | Manga109     | 109    |      
+  | OutdoorScene | 10624  |      
+
 
 
 数据库链接：
@@ -81,8 +81,7 @@ $$
 `PSNR`与`MES`强相关，对比图像质量越高，`PSNR`值越大
 
 ### SSIM
-
-Structural Similarity Index (SSIM) 有效评价图像的视觉质量，广泛应用图像压缩、超分辨率等算法评价
+结构相似性Structural Similarity Index (SSIM) 有效评价图像的视觉质量，广泛应用图像压缩、超分辨率等算法评价
 
 
 
