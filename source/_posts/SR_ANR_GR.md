@@ -1,3 +1,12 @@
+---
+title: 图像超分辨率-数据集和评价标准
+date: 2021-05-12 10:08:00
+tags: [图像处理, 超分辨率]
+---
+ 
+图像超分辨率-数据集和评价标准
+<!--more-->
+
 ## 论文信息
 
 
@@ -26,7 +35,8 @@ LR: 低分辨率；HR：高分辨率
 
 假设输入图像块特征对应相同的映射矩阵全局回归看作稀疏为$l_2$范数正则化的最小二乘回归
 $$
-min\lVert y_F-N_l\beta \rVert_2^2+ \lambda \rVert\beta\rVert_2 (1)
+min\lVert y_F-N_l\beta \rVert_2^2+ \lambda \rVert\beta\rVert_2 (1)
+
 $$
 
 
