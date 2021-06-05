@@ -1,10 +1,10 @@
 ---
-title: 图像超分辨率-数据集和评价标准
+title: 【阅读笔记】Anchored Neighborhood Regression for Fast Example-Based uper ResolutionGR全局回归
 date: 2021-05-12 10:08:00
 tags: [图像处理, 超分辨率]
 ---
  
-图像超分辨率-数据集和评价标准
+【阅读笔记】Anchored Neighborhood Regression for Fast Example-Based uper ResolutionGR全局回归
 <!--more-->
 
 ## 论文信息
