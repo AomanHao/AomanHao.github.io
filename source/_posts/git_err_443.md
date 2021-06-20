@@ -22,8 +22,11 @@ OpenSSL SSL_connect: Connection was reset in connection to github.com:443
 ipconfig/flushdns
 ```
 
+可以在电脑设置里找到网络代理，或者输入命令关闭代理
 
-可以在电脑设置里找到网络代理
+```
+git --config --unset https.proxy
+```
 
 ![](https://img-blog.nos-eastchina1.126.net/blog2021/blog_git_err443_web.png)
 
